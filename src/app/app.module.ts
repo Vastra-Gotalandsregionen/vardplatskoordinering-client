@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './view/home/home.component';
 import { HeaderComponent } from './elements/header/header.component';
-import { MatCardModule, MatListModule, MatToolbarModule } from '@angular/material';
 import { CoordinationComponent } from './view/coordination/coordination.component';
+import {MaterialModule} from './material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,8 @@ import { CoordinationComponent } from './view/coordination/coordination.componen
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatListModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
