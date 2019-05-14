@@ -1,0 +1,30 @@
+export class Registrera {
+  id: number;
+  verksamhet: string;
+  datum: string;
+  veckodag: string;
+  vecka: number;
+  manad: string;
+  ar: string;
+  disp_vpl: number;
+  fastst_vpl: number;
+  fys_tillaten: number;
+  fys_otillaten: number;
+  disp_tot: number;
+  disp_tot_varav_oppna: number;
+  plan_inl: number;
+  prognos_fore: number;
+  prognos_efter: number;
+  maltal_vardag: number;
+  maltal_helg: number;
+  maltal_storhelg: number;
+  diff_vardag: number;
+  diff_helg: number;
+  diff_storhelg: number;
+  kommentar: string;
+  klar: string;
+  klartid: string;
+  vgrid: string;
+  inneliggande: number;
+  pg: number;
+}
