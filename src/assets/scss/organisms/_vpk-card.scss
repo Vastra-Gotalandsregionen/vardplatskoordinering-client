@@ -6,7 +6,10 @@
         color: $vgr-blue;
         margin-bottom: 10px;
 
-        .mat-icon {}
+        .mat-card-avatar {
+            height: auto;
+            width: auto;
+        }
 
         .mat-card-header-text {
             margin: 0 10px;
