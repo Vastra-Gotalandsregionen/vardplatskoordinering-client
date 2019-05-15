@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './view/home/home.component';
 import { HeaderComponent } from './elements/header/header.component';
 import { CoordinationComponent } from './view/coordination/coordination.component';
+import { StyleguideComponent } from './view/styleguide/styleguide.component';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTableModule } from '@angular/material';
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    CoordinationComponent
+    CoordinationComponent,
+    StyleguideComponent
   ],
   imports: [
     BrowserModule,
