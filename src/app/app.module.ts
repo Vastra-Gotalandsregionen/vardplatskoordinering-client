@@ -21,6 +21,7 @@ import { StyleguideComponent } from './view/styleguide/styleguide.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 
 @NgModule({
   declarations: [
@@ -55,5 +56,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 export class AppModule {
   constructor() {
     library.add(fas);
+    library.add(far);
   }
 }
