@@ -4,8 +4,9 @@ import { MatDialog, MatTable } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { PageResponse } from '../../domain/PageResponse';
 import { Administration } from '../../domain/Administration';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { EditRegistreraDialogComponent } from '../../elements/edit-registrera-dialog/edit-registrera-dialog.component';
+import { RegistreraAggregate } from '../../domain/RegistreraAggregate';
 
 @Component({
   selector: 'app-coordination',
@@ -14,14 +15,14 @@ import { EditRegistreraDialogComponent } from '../../elements/edit-registrera-di
 })
 export class CoordinationComponent implements OnInit {
 
-  registreringar: Registrera[] = [];
   todaysRegistreringar: Registrera[] = [];
   administrationer: Administration[];
+  registreraAggregates: RegistreraAggregate[];
 
   todayDisplayedColumns = ['verksamhet', 'dispVpl', 'inneliggande', 'fysOtillaten', 'fysTillaten', 'prognosFore',
     'maltalVardag', 'diffVardag', 'action'];
 
-  displayedColumns = ['verksamhet', 'datum', 'veckodag'];
+  displayedColumns = ['datum', 'ledigaDisp', 'overbel', 'diff', 'vardplatstrappa'];
 
   @ViewChild('oldRegistreraTable')
   table: MatTable<Registrera>;
@@ -56,9 +57,9 @@ export class CoordinationComponent implements OnInit {
         });
       });
 
-    this.http.get('/api/registrera')
-      .subscribe((pageResponse: PageResponse<Registrera[]>) => {
-        this.registreringar = pageResponse.content;
+    this.http.get('/api/registreraAggregate')
+      .subscribe((registreraAggregates: RegistreraAggregate[]) => {
+        this.registreraAggregates = registreraAggregates;
       });
   }
 
@@ -68,7 +69,7 @@ export class CoordinationComponent implements OnInit {
       data: {registrera}
     });
 
-    dialogRef.afterClosed().subscribe((result: Registrera) => {
+    dialogRef.componentInstance.save.subscribe((result: Registrera) => {
       if (result) {
         this.http.put('/api/registrera', result).subscribe(() => this.ngOnInit());
       }

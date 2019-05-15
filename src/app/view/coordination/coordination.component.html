@@ -67,26 +67,36 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      Vårdplatstrappa och beslut om åtgärder (fel tabell än så länge)
+      Tidigare beslut
     </mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
-    <table mat-table [dataSource]="registreringar" #oldRegistreraTable>
-
-      <ng-container matColumnDef="verksamhet">
-        <th mat-header-cell *matHeaderCellDef> Verksamhet </th>
-        <td mat-cell *matCellDef="let registrera"> {{registrera.verksamhet}} </td>
-      </ng-container>
+    <table mat-table [dataSource]="registreraAggregates" #oldRegistreraTable>
 
       <ng-container matColumnDef="datum">
-        <th mat-header-cell *matHeaderCellDef> Datum </th>
-        <td mat-cell *matCellDef="let registrera"> {{registrera.datum}} </td>
+        <th mat-header-cell *matHeaderCellDef>Datum</th>
+        <td mat-cell *matCellDef="let aggregate">{{aggregate.veckodag.slice(0,3)}} ({{aggregate.datum}})</td>
       </ng-container>
 
-      <ng-container matColumnDef="veckodag">
-        <th mat-header-cell *matHeaderCellDef> Veckodag </th>
-        <td mat-cell *matCellDef="let registrera"> {{registrera.veckodag}} </td>
+      <ng-container matColumnDef="ledigaDisp">
+        <th mat-header-cell *matHeaderCellDef>Utfall lediga disp vpl</th>
+        <td mat-cell *matCellDef="let aggregate"> {{aggregate.ledigaDisp}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="overbel">
+        <th mat-header-cell *matHeaderCellDef>Utfall antal överbeläggn.</th>
+        <td mat-cell *matCellDef="let aggregate">{{aggregate.overbel}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="diff">
+        <th mat-header-cell *matHeaderCellDef>Prognis minus måltal</th>
+        <td mat-cell *matCellDef="let aggregate">{{aggregate.diff}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="vardplatstrappa">
+        <th mat-header-cell *matHeaderCellDef>Grad av påverkan</th>
+        <td mat-cell *matCellDef="let aggregate">{{aggregate.vardplatstrappa}}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
