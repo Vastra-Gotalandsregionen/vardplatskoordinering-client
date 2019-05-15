@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Elements
 import { HeaderComponent } from './elements/header/header.component';
+import { VpkIconComponent } from './elements/vpk-icon/vpk-icon.component';
 import { VpkCardComponent } from './elements/vpk-card/vpk-card.component';
 
 // Views
@@ -18,12 +19,19 @@ import { HomeComponent } from './view/home/home.component';
 import { CoordinationComponent } from './view/coordination/coordination.component';
 import { StyleguideComponent } from './view/styleguide/styleguide.component';
 
+// Font Awesome
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+//import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
 @NgModule({
   declarations: [
     AppComponent,
     // Elements
     HeaderComponent,
     VpkCardComponent,
+    VpkIconComponent,
     //Views
     HomeComponent,
     CoordinationComponent,
@@ -35,6 +43,7 @@ import { StyleguideComponent } from './view/styleguide/styleguide.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    FontAwesomeModule,
     FlexLayoutModule,
     MatTableModule
   ],
@@ -42,4 +51,7 @@ import { StyleguideComponent } from './view/styleguide/styleguide.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor() {
+    library.add(fas);
+  }
 }
