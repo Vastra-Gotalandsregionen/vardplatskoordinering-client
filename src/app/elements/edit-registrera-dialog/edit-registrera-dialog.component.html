@@ -40,7 +40,8 @@
 
     <div>
       <label>Kommentarer</label>
-      <textarea formControlName="kommentar" placeholder="Ange kontaktperson nåbar under eftermiddagen, namn och telefonnummer samt övriga kommentarer..."></textarea>
+      <textarea formControlName="kommentar"
+                placeholder="Ange kontaktperson nåbar under eftermiddagen, namn och telefonnummer samt övriga kommentarer..."></textarea>
     </div>
 
 
@@ -50,6 +51,6 @@
   </mat-form-field>-->
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="data.registrera" (click)="save()" cdkFocusInitial>Registrera</button>
+  <button mat-button (click)="cancel()">Avbryt</button>
+  <button mat-button [mat-dialog-close]="data.registrera" (click)="save()" cdkFocusInitial>Registrera</button>
 </div>

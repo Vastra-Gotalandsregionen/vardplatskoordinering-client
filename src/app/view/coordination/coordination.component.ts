@@ -18,7 +18,9 @@ export class CoordinationComponent implements OnInit {
   todaysRegistreringar: Registrera[] = [];
   administrationer: Administration[];
 
-  todayDisplayedColumns = ['verksamhet', 'dispVpl', 'veckodag', 'action'];
+  todayDisplayedColumns = ['verksamhet', 'dispVpl', 'inneliggande', 'fysOtillaten', 'fysTillaten', 'prognosFore',
+    'maltalVardag', 'diffVardag', 'action'];
+
   displayedColumns = ['verksamhet', 'datum', 'veckodag'];
 
   @ViewChild('oldRegistreraTable')
@@ -58,11 +60,6 @@ export class CoordinationComponent implements OnInit {
       .subscribe((pageResponse: PageResponse<Registrera[]>) => {
         this.registreringar = pageResponse.content;
       });
-
-    this.http.get('/api/administration')
-      .subscribe((administrationer: Administration[]) => {
-        this.administrationer = administrationer;
-      });
   }
 
   editRegistrera(registrera: Registrera) {
@@ -72,7 +69,9 @@ export class CoordinationComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: Registrera) => {
-      this.http.put('/api/registrera', result).subscribe(() => this.ngOnInit());
+      if (result) {
+        this.http.put('/api/registrera', result).subscribe(() => this.ngOnInit());
+      }
     });
   }
 }
