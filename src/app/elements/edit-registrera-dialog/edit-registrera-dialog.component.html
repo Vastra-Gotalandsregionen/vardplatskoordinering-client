@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Registrera vårdplatsläget</h1>
+<div mat-dialog-content>
+  <h2>{{registrera.verksamhet}}, datum....</h2>
+
+  <form [formGroup]="formGroup">
+    <div>
+      <label>Fastställda vårdplatser:</label>
+      <span>{{registrera.faststVpl}}</span>
+    </div>
+
+    <div>
+      <label>Måltal:</label>
+      <span>{{registrera.maltalVardag}}</span>
+    </div>
+
+    <div>
+      <label>Disponibla vårdplatser kl 06.00:</label>
+      <input formControlName="dispVpl" type="number">
+    </div>
+
+    <div>
+      <label>Inneliggande:</label>
+      <input formControlName="inneliggande" type="number">
+    </div>
+
+    <div>
+      <label>Bristande fysisk utformning och utrustning:</label>
+      <input formControlName="fysTillaten" type="number">
+    </div>
+
+    <div>
+      <label>Prognos lediga kl 16.00:</label>
+      <input formControlName="prognosFore" type="number">
+    </div>
+
+    <div>
+      <label>Påverkansgrad:</label>
+      <input formControlName="pg" type="number">
+    </div>
+
+    <div>
+      <label>Kommentarer</label>
+      <textarea formControlName="kommentar" placeholder="Ange kontaktperson nåbar under eftermiddagen, namn och telefonnummer samt övriga kommentarer..."></textarea>
+    </div>
+
+
+  </form>
+  <!--<mat-form-field>
+    <input matInput [(ngModel)]="registrera.verksamhet">
+  </mat-form-field>-->
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data.registrera" (click)="save()" cdkFocusInitial>Registrera</button>
+</div>

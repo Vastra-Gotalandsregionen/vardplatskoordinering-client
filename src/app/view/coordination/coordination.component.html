@@ -13,9 +13,9 @@
         <td mat-cell *matCellDef="let registrera"> {{registrera.verksamhet}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="datum">
-        <th mat-header-cell *matHeaderCellDef> Datum </th>
-        <td mat-cell *matCellDef="let registrera"> {{registrera.datum}} </td>
+      <ng-container matColumnDef="dispVpl">
+        <th mat-header-cell *matHeaderCellDef> Disp. vpl 06.00 </th>
+        <td mat-cell *matCellDef="let registrera"> {{registrera.dispVpl}} </td>
       </ng-container>
 
       <ng-container matColumnDef="veckodag">
@@ -23,8 +23,18 @@
         <td mat-cell *matCellDef="let registrera"> {{registrera.veckodag}} </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let registrera">
+          <a (click)="editRegistrera(registrera)" >
+            <span *ngIf="!registrera.dispVpl" >add</span>
+            <span *ngIf="registrera.dispVpl" >edit</span>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="todayDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: todayDisplayedColumns;"></tr>
     </table>
   </mat-card-content>
 </mat-card>

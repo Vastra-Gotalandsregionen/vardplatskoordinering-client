@@ -7,17 +7,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './view/home/home.component';
 import { HeaderComponent } from './elements/header/header.component';
 import { CoordinationComponent } from './view/coordination/coordination.component';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './module/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTableModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { EditRegistreraDialogComponent } from './elements/edit-registrera-dialog/edit-registrera-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    CoordinationComponent
+    CoordinationComponent,
+    EditRegistreraDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +29,13 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule
   ],
   providers: [],
+  entryComponents: [
+    EditRegistreraDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
