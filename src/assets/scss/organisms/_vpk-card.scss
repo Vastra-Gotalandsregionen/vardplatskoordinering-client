@@ -1,0 +1,17 @@
+.vpk-card {
+     border-top: 7px solid $vgr-blue;
+
+    .mat-card-header {
+
+        color: $vgr-blue;
+        margin-bottom: 10px;
+
+        .mat-icon {}
+
+        .mat-card-header-text {
+            margin: 0 10px;
+        }
+
+    }
+
+}

@@ -1,0 +1,14 @@
+<mat-card class="vpk-card">
+    <mat-card-header *ngIf="title">
+
+      <mat-icon *ngIf="icon" mat-card-avatar>{{icon}}</mat-icon>
+
+      <mat-card-title>{{title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      
+        <ng-content></ng-content>
+
+    </mat-card-content>
+  </mat-card>
+  
