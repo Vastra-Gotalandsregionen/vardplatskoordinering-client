@@ -1,6 +1,8 @@
 .vpk-card {
      border-top: 7px solid $vgr-blue;
 
+     margin-bottom: 20px;
+
      &.mat-card {
          padding: 20px;
      }
@@ -13,10 +15,11 @@
         .mat-card-avatar {
             height: auto;
             width: auto;
+            margin-right: 15px;
         }
 
         .mat-card-header-text {
-            margin: 0 15px;
+            margin: 0;
 
             .mat-card-title {
                 font-size: 1.5em;
