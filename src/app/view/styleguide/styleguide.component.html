@@ -11,3 +11,26 @@
     <vpk-list-item url="www.google.se" text="Download" icon="file-download"></vpk-list-item>
     <vpk-list-item url="www.google.se" text="Some other" icon="arrow-right"></vpk-list-item>
 </vpk-list>
+
+<h2>Layout with Angular Flex</h2>
+
+<div fxLayout="row" fxLayoutGap="20px">
+    <div fxFlex="50%">
+        <vpk-card title="Dokument" icon="file-alt">
+            <vpk-list>
+                <vpk-list-item url="www.google.se" text="Point to the right" icon="arrow-right"></vpk-list-item>
+                <vpk-list-item url="www.google.se" text="Download" icon="file-download"></vpk-list-item>
+                <vpk-list-item url="www.google.se" text="Some other" icon="arrow-right"></vpk-list-item>
+            </vpk-list>
+        </vpk-card>
+    </div>
+    <div fxFlex="50%">
+        <vpk-card title="Länkar" icon="link">
+            <vpk-list>
+                <vpk-list-item url="www.google.se" text="Point to the right" icon="arrow-right"></vpk-list-item>
+                <vpk-list-item url="www.google.se" text="Download" icon="file-download"></vpk-list-item>
+                <vpk-list-item url="www.google.se" text="Some other" icon="arrow-right"></vpk-list-item>
+            </vpk-list>
+        </vpk-card>
+    </div>
+</div>
