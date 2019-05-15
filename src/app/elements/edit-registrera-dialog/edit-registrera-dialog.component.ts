@@ -29,7 +29,7 @@ export class EditRegistreraDialogComponent {
     });
   }
 
-  onNoClick(): void {
+  cancel(): void {
     this.dialogRef.close();
   }
 
