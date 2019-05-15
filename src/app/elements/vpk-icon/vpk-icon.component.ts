@@ -9,6 +9,7 @@ export class VpkIconComponent implements OnInit {
 
   @Input() iconSet: string = 'fas';
   @Input() icon: string = 'circle';
+  @Input() size: string = 'lg';
 
   iconData: string[];
 
