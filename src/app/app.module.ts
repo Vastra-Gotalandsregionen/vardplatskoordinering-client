@@ -16,12 +16,12 @@ import { EditRegistreraDialogComponent } from './elements/edit-registrera-dialog
 import { ReactiveFormsModule } from '@angular/forms';
 import { VpkCardComponent } from './elements/vpk-card/vpk-card.component';
 import { StyleguideComponent } from './view/styleguide/styleguide.component';
-
-// Font Awesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+import { VpkListComponent } from './elements/vpk-list/vpk-list.component';
+import { VpkListItemComponent } from './elements/vpk-list-item/vpk-list-item.component';
 import { DecisionTableComponent } from './elements/decision-table/decision-table.component';
 import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edit-decision-dialog.component';
 
@@ -33,6 +33,8 @@ import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edi
     EditRegistreraDialogComponent,
     VpkCardComponent,
     VpkIconComponent,
+    VpkListComponent,
+    VpkListItemComponent,
     // Views
     HomeComponent,
     CoordinationComponent,

@@ -1,6 +1,6 @@
 <mat-card class="vpk-card">
     <mat-card-header *ngIf="title">
-      <vpk-icon mat-card-avatar [icon]="icon"></vpk-icon>
+      <vpk-icon *ngIf="icon" mat-card-avatar [icon]="icon" size="2x"></vpk-icon>
 
       <mat-card-title>{{title}}</mat-card-title>
     </mat-card-header>

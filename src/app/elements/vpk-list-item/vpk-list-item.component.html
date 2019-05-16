@@ -1,0 +1,15 @@
+<a [href]="url" class="vpk-list-item-link">
+
+    <div fxLayout="row">
+
+        <div fxFlex class="vpk-list-item-text" >
+            {{text}}
+        </div>
+
+        <div *ngIf="icon" fxFlex="40px" class="vpk-list-item-icon" >
+            <vpk-icon [icon]="icon" [iconSet]="iconSet"></vpk-icon>
+        </div>
+        
+    </div>
+
+</a>

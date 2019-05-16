@@ -1,18 +1,31 @@
 .vpk-card {
      border-top: 7px solid $vgr-blue;
 
+     margin-bottom: 20px;
+
+     &.mat-card {
+         padding: 20px;
+     }
+
     .mat-card-header {
 
         color: $vgr-blue;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
 
         .mat-card-avatar {
             height: auto;
             width: auto;
+            margin-right: 15px;
         }
 
         .mat-card-header-text {
-            margin: 0 10px;
+            margin: 0;
+
+            .mat-card-title {
+                font-size: 1.5em;
+                line-height: 1.5em;
+                margin-bottom: 0;
+            }
         }
 
     }

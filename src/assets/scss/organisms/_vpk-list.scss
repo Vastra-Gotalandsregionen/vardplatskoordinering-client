@@ -1,0 +1,46 @@
+.vpk-list {
+
+    display: block;
+
+    .vpk-list-item {
+        border-bottom: 1px solid $vgr-gray;
+        display: block;
+
+        &:first-child {
+            border-top: 1px solid $vgr-gray;
+        }
+    }
+
+    .vpk-list-item-link {
+        color: $vgr-blue;
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+
+        .vpk-list-item-text {
+            color: $vgr-blue;
+            text-decoration: underline;
+        }
+
+        .vpk-list-item-text {}
+
+        .vpk-list-item-icon {
+            color: $vgr-gray-dark;
+            text-decoration: none;
+        }
+
+        &:hover {
+            .vpk-list-item-text {
+                text-decoration: none;
+            }
+        }
+        
+    }
+
+
+    .vpk-list-item-icon {
+        text-align: right;
+    }
+
+
+}
