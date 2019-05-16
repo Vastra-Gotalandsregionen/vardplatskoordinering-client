@@ -12,9 +12,9 @@ export class EditRegistreraDialogComponent {
 
   formGroup: FormGroup;
 
-  private registrera: Registrera;
+  registrera: Registrera;
 
-  @Output('save') save: EventEmitter<Registrera> = new EventEmitter<Registrera>();
+  @Output() save: EventEmitter<Registrera> = new EventEmitter<Registrera>();
 
   constructor(public dialogRef: MatDialogRef<EditRegistreraDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { registrera: Registrera }) {

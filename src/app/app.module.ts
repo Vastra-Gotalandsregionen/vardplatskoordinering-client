@@ -22,6 +22,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+import { DecisionTableComponent } from './elements/decision-table/decision-table.component';
+import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edit-decision-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { far } from '@fortawesome/free-regular-svg-icons';
     // Views
     HomeComponent,
     CoordinationComponent,
-    StyleguideComponent
+    StyleguideComponent,
+    DecisionTableComponent,
+    EditDecisionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +53,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
   ],
   providers: [],
   entryComponents: [
+    EditDecisionDialogComponent,
     EditRegistreraDialogComponent
   ],
   bootstrap: [AppComponent]

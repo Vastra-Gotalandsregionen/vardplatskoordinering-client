@@ -1,0 +1,27 @@
+<vpk-card title="Dagens beslut - {{!akutenTrappa.id ? 'Ny' : 'Befintlig'}}">
+  <h1 mat-dialog-title>Registrera vårdplatsläget</h1>
+  <div mat-dialog-content>
+    <h2>{{akutenTrappa.datum}}, $förvaltning</h2>
+
+    <form [formGroup]="formGroup">
+      <div>
+        <label>Påverkansgrad:</label>
+        <input formControlName="vardplatstrappa">
+      </div>
+
+      <div>
+        <label>Kommentarer:</label>
+        <input formControlName="beslut">
+      </div>
+
+    </form>
+    <!--<mat-form-field>
+      <input matInput [(ngModel)]="registrera.verksamhet">
+    </mat-form-field>-->
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancel()">Avbryt</button>
+    <button mat-button (click)="saveAndEmit()" cdkFocusInitial>Spara beslut</button>
+  </div>
+
+</vpk-card>

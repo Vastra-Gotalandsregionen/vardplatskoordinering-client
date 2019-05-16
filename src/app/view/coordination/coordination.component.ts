@@ -7,6 +7,8 @@ import { Administration } from '../../domain/Administration';
 import { forkJoin } from 'rxjs';
 import { EditRegistreraDialogComponent } from '../../elements/edit-registrera-dialog/edit-registrera-dialog.component';
 import { RegistreraAggregate } from '../../domain/RegistreraAggregate';
+import { AkutenTrappa } from '../../domain/AkutenTrappa';
+import { EditDecisionDialogComponent } from '../../elements/edit-decision-dialog/edit-decision-dialog.component';
 
 @Component({
   selector: 'app-coordination',
@@ -18,21 +20,22 @@ export class CoordinationComponent implements OnInit {
   todaysRegistreringar: Registrera[] = [];
   administrationer: Administration[];
   registreraAggregates: RegistreraAggregate[];
+  todaysDecision: RegistreraAggregate[];
 
   todayDisplayedColumns = ['verksamhet', 'dispVpl', 'inneliggande', 'fysOtillaten', 'fysTillaten', 'prognosFore',
     'maltalVardag', 'diffVardag', 'action'];
-
-  displayedColumns = ['datum', 'ledigaDisp', 'overbel', 'diff', 'vardplatstrappa'];
 
   @ViewChild('oldRegistreraTable')
   table: MatTable<Registrera>;
 
   constructor(private http: HttpClient,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog) {
+  }
 
   ngOnInit() {
 
-    const todaysRegistreringarObservable = this.http.get('/api/registrera?datum=' + new Date().toISOString().slice(0, 10));
+    const today = new Date().toISOString().slice(0, 10);
+    const todaysRegistreringarObservable = this.http.get('/api/registrera?datum=' + today);
     const administrationObservable = this.http.get('/api/administration');
 
     forkJoin(todaysRegistreringarObservable, administrationObservable)
@@ -45,14 +48,12 @@ export class CoordinationComponent implements OnInit {
           if (!found) {
             const registrera = new Registrera();
 
-            registrera.datum = new Date().toISOString().slice(0, 10);
+            registrera.datum = today;
             registrera.verksamhet = administration.verks;
             registrera.faststVpl = administration.faststVpl;
             registrera.maltalVardag = administration.maltalVardag;
 
             this.todaysRegistreringar.push(registrera);
-          } else {
-            console.log('found');
           }
         });
       });
@@ -60,6 +61,10 @@ export class CoordinationComponent implements OnInit {
     this.http.get('/api/registreraAggregate')
       .subscribe((registreraAggregates: RegistreraAggregate[]) => {
         this.registreraAggregates = registreraAggregates;
+
+        if (registreraAggregates[0].datum === today) {
+          this.todaysDecision = registreraAggregates.slice(0, 1);
+        }
       });
   }
 
@@ -74,5 +79,24 @@ export class CoordinationComponent implements OnInit {
         this.http.put('/api/registrera', result).subscribe(() => this.ngOnInit());
       }
     });
+  }
+
+  editDecision(akutenTrappa: AkutenTrappa) {
+    const dialogRef = this.dialog.open(EditDecisionDialogComponent, {
+      width: '500px',
+      data: {akutenTrappa}
+    });
+
+    dialogRef.componentInstance.save.subscribe((result: AkutenTrappa) => {
+      if (result) {
+        this.http.put('/api/akutenTrappa', result).subscribe(() => this.ngOnInit());
+      }
+    });
+  }
+
+  editNewDecision() {
+    const akutenTrappa = new AkutenTrappa();
+    akutenTrappa.datum = new Date().toISOString().slice(0, 10);
+    this.editDecision(akutenTrappa);
   }
 }
