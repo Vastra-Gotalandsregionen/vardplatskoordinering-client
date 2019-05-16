@@ -24,7 +24,7 @@ export class EditDecisionDialogComponent implements OnInit {
 
     this.formGroup = new FormGroup({
       id: new FormControl(at.id),
-      vardplatstrappa: new FormControl(at.vardplatstrappa, Validators.required),
+      vardplatstrappa: new FormControl(at.vardplatstrappa, [Validators.required, Validators.min(0), Validators.max(4)]),
       beslut: new FormControl(at.beslut, Validators.required),
     });
   }

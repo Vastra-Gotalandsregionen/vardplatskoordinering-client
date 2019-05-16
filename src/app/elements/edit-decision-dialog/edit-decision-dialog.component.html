@@ -5,13 +5,13 @@
 
     <form [formGroup]="formGroup">
       <div>
-        <label>Påverkansgrad:</label>
+        <label>Påverkansgrad (0-4):</label>
         <input formControlName="vardplatstrappa">
       </div>
 
       <div>
         <label>Kommentarer:</label>
-        <input formControlName="beslut">
+        <textarea formControlName="beslut"></textarea>
       </div>
 
     </form>

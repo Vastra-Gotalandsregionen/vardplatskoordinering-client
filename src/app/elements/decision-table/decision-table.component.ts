@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RegistreraAggregate } from '../../domain/RegistreraAggregate';
 
 @Component({
@@ -8,13 +8,18 @@ import { RegistreraAggregate } from '../../domain/RegistreraAggregate';
 })
 export class DecisionTableComponent implements OnInit {
 
-  @Input('registreraAggregates') registreraAggregates: RegistreraAggregate[];
+  @Input() registreraAggregates: RegistreraAggregate[];
 
-  displayedColumns = ['datum', 'ledigaDisp', 'overbel', 'diff', 'vardplatstrappa'];
+  @Output() editDecision = new EventEmitter<number>();
+
+  displayedColumns = ['datum', 'ledigaDisp', 'overbel', 'diff', 'vardplatstrappa', 'action'];
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  outputEditDecision(akutenTrappaId: number) {
+    this.editDecision.emit(akutenTrappaId);
+  }
 }

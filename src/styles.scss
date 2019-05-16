@@ -17,3 +17,9 @@
 @import 'assets/scss/organisms/vpk-list';
 
 @import 'assets/scss/utilities/scaffolding';
+
+
+/* Shame */
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}

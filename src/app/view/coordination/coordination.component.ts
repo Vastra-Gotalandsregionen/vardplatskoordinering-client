@@ -99,4 +99,11 @@ export class CoordinationComponent implements OnInit {
     akutenTrappa.datum = new Date().toISOString().slice(0, 10);
     this.editDecision(akutenTrappa);
   }
+
+  editDecisionByAkutenTrappaId(akutenTrappaId: number) {
+    this.http.get('/api/akutenTrappa/' + akutenTrappaId)
+      .subscribe((akutenTrappa: AkutenTrappa) => {
+        this.editDecision(akutenTrappa);
+      });
+  }
 }

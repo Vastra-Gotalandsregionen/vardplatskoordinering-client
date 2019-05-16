@@ -4,7 +4,7 @@
   </div>
 
   <div *ngIf="todaysDecision">
-    <app-decision-table [registreraAggregates]="todaysDecision"></app-decision-table>
+    <app-decision-table [registreraAggregates]="todaysDecision" (editDecision)="editDecisionByAkutenTrappaId($event)"></app-decision-table>
   </div>
 </vpk-card>
 
@@ -69,6 +69,6 @@
 
 <vpk-card title="Tidigare beslut">
 
-  <app-decision-table [registreraAggregates]="registreraAggregates"></app-decision-table>
+  <app-decision-table [registreraAggregates]="registreraAggregates" (editDecision)="editDecisionByAkutenTrappaId($event)"></app-decision-table>
 
 </vpk-card>

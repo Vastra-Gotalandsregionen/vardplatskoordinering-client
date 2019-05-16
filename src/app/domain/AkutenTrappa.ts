@@ -3,4 +3,5 @@ export class AkutenTrappa {
   vardplatstrappa: string;
   beslut: string;
   datum: string;
+  akutenTrappaId: number;
 }
