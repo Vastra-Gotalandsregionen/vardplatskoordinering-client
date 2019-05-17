@@ -8,7 +8,6 @@ import { MaterialModule } from './module/material.module';
 import { HomeComponent } from './view/home/home.component';
 import { CoordinationComponent } from './view/coordination/coordination.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatTableModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './elements/header/header.component';
 import { VpkIconComponent } from './elements/vpk-icon/vpk-icon.component';
@@ -24,6 +23,7 @@ import { VpkListComponent } from './elements/vpk-list/vpk-list.component';
 import { VpkListItemComponent } from './elements/vpk-list-item/vpk-list-item.component';
 import { DecisionTableComponent } from './elements/decision-table/decision-table.component';
 import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edit-decision-dialog.component';
+import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edi
     CoordinationComponent,
     StyleguideComponent,
     DecisionTableComponent,
-    EditDecisionDialogComponent
+    EditDecisionDialogComponent,
+    CoordinationLandingComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +51,7 @@ import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edi
     MaterialModule,
     FontAwesomeModule,
     FlexLayoutModule,
-    MatTableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   entryComponents: [
