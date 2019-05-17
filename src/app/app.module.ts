@@ -24,6 +24,8 @@ import { VpkListComponent } from './elements/vpk-list/vpk-list.component';
 import { VpkListItemComponent } from './elements/vpk-list-item/vpk-list-item.component';
 import { DecisionTableComponent } from './elements/decision-table/decision-table.component';
 import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edit-decision-dialog.component';
+import { UserAdminComponent } from './view/user-admin/user-admin.component';
+import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edi
     // Elements
     HeaderComponent,
     EditRegistreraDialogComponent,
+    EditUserDialogComponent,
     VpkCardComponent,
     VpkIconComponent,
     VpkListComponent,
@@ -40,7 +43,8 @@ import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edi
     CoordinationComponent,
     StyleguideComponent,
     DecisionTableComponent,
-    EditDecisionDialogComponent
+    EditDecisionDialogComponent,
+    UserAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edi
   providers: [],
   entryComponents: [
     EditDecisionDialogComponent,
-    EditRegistreraDialogComponent
+    EditRegistreraDialogComponent,
+    EditUserDialogComponent
   ],
   bootstrap: [AppComponent]
 })
