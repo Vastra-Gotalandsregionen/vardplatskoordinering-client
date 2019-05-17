@@ -1,0 +1,12 @@
+<h1>
+  Välj förvaltning
+</h1>
+
+<a [routerLink]="management.id" *ngFor="let management of managements">
+  <vpk-card>
+    <h2>{{management.name}}</h2>
+    <div>Välj
+      <vpk-icon icon="arrow-right"></vpk-icon>
+    </div>
+  </vpk-card>
+</a>
