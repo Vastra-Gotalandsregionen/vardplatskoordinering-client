@@ -28,10 +28,11 @@ import {
   MatDialogModule,
   // MatTooltipModule,
   // MatSnackBarModule,
-  // MatTableModule,
+  MatTableModule,
   // MatSortModule,
-  // MatPaginatorModule
+  MatPaginatorModule, MatPaginatorIntl
 } from '@angular/material';
+import { MatPaginatorIntlSv } from './mat-paginator-intl-sv';
 
 @NgModule({
   declarations: [],
@@ -65,9 +66,9 @@ import {
     MatDialogModule,
     // MatTooltipModule,
     // MatSnackBarModule,
-    // MatTableModule,
+    MatTableModule,
     // MatSortModule,
-    // MatPaginatorModule
+    MatPaginatorModule
   ],
   exports: [
     MatCardModule,
@@ -98,9 +99,13 @@ import {
     MatDialogModule,
     // MatTooltipModule,
     // MatSnackBarModule,
-    // MatTableModule,
+    MatTableModule,
     // MatSortModule,
-    // MatPaginatorModule
+    MatPaginatorModule
+  ],
+  providers: [
+    {provide: MatPaginatorIntl, useClass: MatPaginatorIntlSv}
   ]
 })
-export class MaterialModule { }
+export class MaterialModule {
+}

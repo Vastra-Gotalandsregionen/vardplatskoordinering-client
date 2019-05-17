@@ -8,7 +8,6 @@ import { MaterialModule } from './module/material.module';
 import { HomeComponent } from './view/home/home.component';
 import { CoordinationComponent } from './view/coordination/coordination.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatTableModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './elements/header/header.component';
 import { VpkIconComponent } from './elements/vpk-icon/vpk-icon.component';
@@ -29,6 +28,9 @@ import { UnitsComponent } from './view/units/units.component';
 import { UsersComponent } from './view/users/users.component';
 import { ManagementsComponent } from './view/managements/managements.component';
 import { AreasComponent } from './view/areas/areas.component';
+import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
+import { UserAdminComponent } from './view/user-admin/user-admin.component';
+import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { AreasComponent } from './view/areas/areas.component';
     // Elements
     HeaderComponent,
     EditRegistreraDialogComponent,
+    EditUserDialogComponent,
     VpkCardComponent,
     VpkIconComponent,
     VpkListComponent,
@@ -45,6 +48,9 @@ import { AreasComponent } from './view/areas/areas.component';
     CoordinationComponent,
     StyleguideComponent,
     DecisionTableComponent,
+    EditDecisionDialogComponent,
+    CoordinationLandingComponent,
+    UserAdminComponent
     EditDecisionDialogComponent,
     AdministrationComponent,
     UnitsComponent,
@@ -60,13 +66,13 @@ import { AreasComponent } from './view/areas/areas.component';
     MaterialModule,
     FontAwesomeModule,
     FlexLayoutModule,
-    MatTableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   entryComponents: [
     EditDecisionDialogComponent,
-    EditRegistreraDialogComponent
+    EditRegistreraDialogComponent,
+    EditUserDialogComponent
   ],
   bootstrap: [AppComponent]
 })

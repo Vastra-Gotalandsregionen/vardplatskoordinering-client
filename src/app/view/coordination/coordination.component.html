@@ -1,11 +1,12 @@
+<h1>{{management?.name}}{{management ? ', ' : ''}} {{dayName ? dayName + ' ' : ''}}{{date}}</h1>
+
 <vpk-card title="Dagens beslut">
-  <div *ngIf="!todaysDecision">Det finns inget beslut för dagen ännu.
-    <div><button (click)="editNewDecision()">Plus</button> </div>
+  <div *ngIf="(todaysDecisionDataSource.count | async) === 0">
+    Det finns inget beslut för dagen ännu.
+    <div><button (click)="editNewDecision()">Plus</button></div>
   </div>
 
-  <div *ngIf="todaysDecision">
-    <app-decision-table [registreraAggregates]="todaysDecision" (editDecision)="editDecisionByAkutenTrappaId($event)"></app-decision-table>
-  </div>
+  <app-decision-table [dataSource]="todaysDecisionDataSource" (editDecision)="editDecisionByAkutenTrappaId($event)"></app-decision-table>
 </vpk-card>
 
 <vpk-card title="Dagens registreringar" icon="bed">
@@ -69,6 +70,6 @@
 
 <vpk-card title="Tidigare beslut">
 
-  <app-decision-table [registreraAggregates]="registreraAggregates" (editDecision)="editDecisionByAkutenTrappaId($event)"></app-decision-table>
+  <app-decision-table [dataSource]="oldDecisionsDataSource" (editDecision)="editDecisionByAkutenTrappaId($event)"></app-decision-table>
 
 </vpk-card>

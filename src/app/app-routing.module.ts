@@ -8,6 +8,8 @@ import { UsersComponent } from './view/users/users.component';
 import { UnitsComponent } from './view/units/units.component';
 import { ManagementsComponent } from './view/managements/managements.component';
 import { AreasComponent } from './view/areas/areas.component';
+import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
+import { UserAdminComponent } from './view/user-admin/user-admin.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,10 @@ const routes: Routes = [
   },
   {
     path: 'koordinering',
+    component: CoordinationLandingComponent
+  },
+  {
+    path: 'koordinering/:management',
     component: CoordinationComponent
   },
 
@@ -44,10 +50,13 @@ const routes: Routes = [
     component: AreasComponent
   },
   {
+    path: 'user-admin',
+    component: UserAdminComponent
+  },
+  {
     path: 'styleguide',
     component: StyleguideComponent
   },
-
   {
     path: '**',
     redirectTo: 'hem'
