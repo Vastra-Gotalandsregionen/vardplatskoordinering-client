@@ -44,7 +44,8 @@ import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-d
     StyleguideComponent,
     DecisionTableComponent,
     EditDecisionDialogComponent,
-    CoordinationLandingComponent
+    CoordinationLandingComponent,
+    UserAdminComponent
   ],
   imports: [
     BrowserModule,

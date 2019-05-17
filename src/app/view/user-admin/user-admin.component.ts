@@ -21,8 +21,8 @@ export class UserAdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    const todaysRegistreringarObservable = this.http.get('/api/user?username=' + this.usernameFilter + '&page=' + this.pageIndex);
-    todaysRegistreringarObservable.subscribe(o => {
+    const observable = this.http.get('/api/user?username=' + this.usernameFilter + '&page=' + this.pageIndex);
+    observable.subscribe((o: User[]) => {
       console.log('Found', o);
       this.pageContent = o;
     });
