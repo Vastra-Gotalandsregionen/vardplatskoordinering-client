@@ -23,11 +23,11 @@ import { VpkListComponent } from './elements/vpk-list/vpk-list.component';
 import { VpkListItemComponent } from './elements/vpk-list-item/vpk-list-item.component';
 import { DecisionTableComponent } from './elements/decision-table/decision-table.component';
 import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edit-decision-dialog.component';
-import { AdministrationComponent } from './view/administration/administration.component';
+import { ApplicationAdministrationComponent } from './view/application.administration/application.administration.component';
 import { UnitsComponent } from './view/units/units.component';
 import { UsersComponent } from './view/users/users.component';
 import { ManagementsComponent } from './view/managements/managements.component';
-import { AreasComponent } from './view/areas/areas.component';
+import { AdministrationComponent } from './view/administration/administration.component';
 import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
 import { UserAdminComponent } from './view/user-admin/user-admin.component';
 import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-dialog.component';
@@ -52,11 +52,11 @@ import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-d
     CoordinationLandingComponent,
     UserAdminComponent,
     EditDecisionDialogComponent,
-    AdministrationComponent,
+    ApplicationAdministrationComponent,
     UnitsComponent,
     UsersComponent,
     ManagementsComponent,
-    AreasComponent
+    AdministrationComponent
   ],
   imports: [
     BrowserModule,
