@@ -168,4 +168,8 @@ export class CoordinationComponent implements OnInit {
     // this.updateView(this.management.id, this.date);
     this.router.navigate([], {queryParams: {date: dateString}});
   }
+
+  sum(registreringar: Registrera[], property: string) {
+    return registreringar.map(r => r[property]).reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+  }
 }
