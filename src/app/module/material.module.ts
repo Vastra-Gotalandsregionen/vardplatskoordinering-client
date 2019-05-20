@@ -1,38 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  DateAdapter, MAT_DATE_LOCALE,
   MatCardModule,
-  MatToolbarModule,
-  MatListModule,
-  // MatCheckboxModule,
-  // MatButtonModule,
-  MatInputModule,
-  // MatAutocompleteModule,
-  // MatDatepickerModule,
-  MatFormFieldModule,
-  // MatRadioModule,
-  // MatSelectModule,
-  // MatSliderModule,
-  // MatSlideToggleModule,
-  // MatMenuModule,
-  // MatSidenavModule,
-  // MatGridListModule,
-  // MatStepperModule,
-  // MatTabsModule,
-  // MatExpansionModule,
-  // MatButtonToggleModule,
-  // MatChipsModule,
-  MatIconModule,
-  // MatProgressSpinnerModule,
-  // MatProgressBarModule,
+  MatDatepickerModule,
   MatDialogModule,
-  // MatTooltipModule,
-  // MatSnackBarModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatNativeDateModule,
+  MatPaginatorIntl,
+  MatPaginatorModule,
   MatTableModule,
-  // MatSortModule,
-  MatPaginatorModule, MatPaginatorIntl
+  MatToolbarModule,
+  NativeDateAdapter
 } from '@angular/material';
 import { MatPaginatorIntlSv } from './mat-paginator-intl-sv';
+import { SwedishDateAdapter } from '../angular/swedish-date-adapter';
 
 @NgModule({
   declarations: [],
@@ -46,7 +31,8 @@ import { MatPaginatorIntlSv } from './mat-paginator-intl-sv';
     // MatButtonModule,
     MatInputModule,
     // MatAutocompleteModule,
-    // MatDatepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     // MatRadioModule,
     // MatSelectModule,
@@ -79,7 +65,8 @@ import { MatPaginatorIntlSv } from './mat-paginator-intl-sv';
     // MatButtonModule,
     MatInputModule,
     // MatAutocompleteModule,
-    // MatDatepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     // MatRadioModule,
     // MatSelectModule,
@@ -104,7 +91,9 @@ import { MatPaginatorIntlSv } from './mat-paginator-intl-sv';
     MatPaginatorModule
   ],
   providers: [
-    {provide: MatPaginatorIntl, useClass: MatPaginatorIntlSv}
+    {provide: MatPaginatorIntl, useClass: MatPaginatorIntlSv},
+    {provide: DateAdapter, useClass: SwedishDateAdapter},
+    {provide: MAT_DATE_LOCALE, useValue: 'sv-SE'},
   ]
 })
 export class MaterialModule {

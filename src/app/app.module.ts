@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './elements/header/header.component';
 import { VpkIconComponent } from './elements/vpk-icon/vpk-icon.component';
 import { EditRegistreraDialogComponent } from './elements/edit-registrera-dialog/edit-registrera-dialog.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VpkCardComponent } from './elements/vpk-card/vpk-card.component';
 import { StyleguideComponent } from './view/styleguide/styleguide.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -52,6 +52,7 @@ import { CoordinationLandingComponent } from './view/coordination-landing/coordi
     FontAwesomeModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   entryComponents: [

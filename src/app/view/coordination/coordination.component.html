@@ -1,4 +1,9 @@
 <h1>{{management?.name}}{{management ? ', ' : ''}} {{dayName ? dayName + ' ' : ''}}{{date}}</h1>
+<div>
+  <input  (dateChange)="dateSelected('change', $event)" [(ngModel)]="dateObject" type="hidden" [matDatepicker]="picker" placeholder="Choose a date">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker touchUi #picker></mat-datepicker>
+</div>
 
 <vpk-card title="Dagens beslut">
   <div *ngIf="(todaysDecisionDataSource.count | async) === 0">

@@ -1,7 +1,6 @@
 <vpk-card title="Dagens beslut - {{!akutenTrappa.id ? 'Ny' : 'Befintlig'}}">
-  <h1 mat-dialog-title>Registrera vårdplatsläget</h1>
   <div mat-dialog-content>
-    <h2>{{akutenTrappa.datum}}, $förvaltning</h2>
+    <h2>{{akutenTrappa.datum}}, {{management.name}}</h2>
 
     <form [formGroup]="formGroup">
       <div>

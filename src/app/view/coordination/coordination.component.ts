@@ -8,9 +8,10 @@ import { combineLatest, forkJoin } from 'rxjs';
 import { EditRegistreraDialogComponent } from '../../elements/edit-registrera-dialog/edit-registrera-dialog.component';
 import { AkutenTrappa } from '../../domain/AkutenTrappa';
 import { EditDecisionDialogComponent } from '../../elements/edit-decision-dialog/edit-decision-dialog.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Management } from '../../domain/Management';
 import { RegistreraAggregatesDataSource } from '../../service/RegistreraAggregateDataSource';
+import { filter, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-coordination',
@@ -30,6 +31,8 @@ export class CoordinationComponent implements OnInit {
   dayName: string;
   today = new Date().toISOString().slice(0, 10);
 
+  dateObject: Date;
+
   todayDisplayedColumns = ['verksamhet', 'dispVpl', 'inneliggande', 'fysOtillaten', 'fysTillaten', 'prognosFore',
     'maltalVardag', 'diffVardag', 'action'];
 
@@ -38,6 +41,7 @@ export class CoordinationComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
+              private router: Router,
               public dialog: MatDialog) {
     this.oldDecisionsDataSource = new RegistreraAggregatesDataSource(this.http, null);
   }
@@ -83,42 +87,48 @@ export class CoordinationComponent implements OnInit {
 
     forkJoin(todaysRegistreringarObservable, administrationObservable)
       .subscribe((result: [PageResponse<Registrera[]>, Administration[]]) => {
-        this.todaysRegistreringar = result[0].content;
-        this.administrationer = result[1];
-
-        this.administrationer.forEach(administration => {
-          const found = this.todaysRegistreringar.find(registrering => registrering.verksamhet === administration.verks);
-          if (!found) {
-            const registrera = new Registrera();
-
-            registrera.datum = this.today;
-            registrera.verksamhet = administration.verks;
-            registrera.faststVpl = administration.faststVpl;
-            registrera.maltalVardag = administration.maltalVardag;
-
-            this.todaysRegistreringar.push(registrera);
-          }
-        });
+        this.updateTodaysRegistreringar(result[0].content, result[1]);
       });
+  }
+
+  private updateTodaysRegistreringar(todaysRegistreringar, administrationer) {
+    this.todaysRegistreringar = todaysRegistreringar;
+    this.administrationer = administrationer;
+
+    this.administrationer.forEach(administration => {
+      const found = this.todaysRegistreringar.find(registrering => registrering.verksamhet === administration.verks);
+      if (!found) {
+        const registrera = new Registrera();
+
+        registrera.datum = this.date;
+        registrera.verksamhet = administration.verks;
+        registrera.faststVpl = administration.faststVpl;
+        registrera.maltalVardag = administration.maltalVardag;
+
+        this.todaysRegistreringar.push(registrera);
+      }
+    });
   }
 
   editRegistrera(registrera: Registrera) {
     const dialogRef = this.dialog.open(EditRegistreraDialogComponent, {
       width: '500px',
-      data: {registrera}
+      data: {registrera, management: this.management}
     });
 
-    dialogRef.componentInstance.save.subscribe((result: Registrera) => {
-      if (result) {
-        this.http.put('/api/registrera', result).subscribe(() => this.ngOnInit());
-      }
+    dialogRef.componentInstance.save.pipe(
+      filter((result: Registrera) => !!result),
+      switchMap((result: Registrera) => this.http.put('/api/registrera', result)),
+      switchMap(() => this.http.get('/api/registrera?management=' + this.management.id + '&datum=' + this.date))
+    ).subscribe((pageResponse: PageResponse<Registrera[]>) => {
+      this.updateTodaysRegistreringar(pageResponse.content, this.administrationer);
     });
   }
 
   editDecision(akutenTrappa: AkutenTrappa) {
     const dialogRef = this.dialog.open(EditDecisionDialogComponent, {
       width: '500px',
-      data: {akutenTrappa}
+      data: {akutenTrappa, management: this.management}
     });
 
     dialogRef.componentInstance.save.subscribe((result: AkutenTrappa) => {
@@ -142,5 +152,13 @@ export class CoordinationComponent implements OnInit {
       .subscribe((akutenTrappa: AkutenTrappa) => {
         this.editDecision(akutenTrappa);
       });
+  }
+
+  dateSelected(thing, event: any) {
+    console.log(event);
+    const d: Date = event.value;
+    const dateString = d.toLocaleDateString('se-SE');
+    // this.updateView(this.management.id, this.date);
+    this.router.navigate([], {queryParams: {date: dateString}});
   }
 }

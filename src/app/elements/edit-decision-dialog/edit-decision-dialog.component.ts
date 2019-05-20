@@ -2,6 +2,7 @@ import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AkutenTrappa } from '../../domain/AkutenTrappa';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Management } from '../../domain/Management';
 
 @Component({
   selector: 'app-edit-decision-dialog',
@@ -13,12 +14,14 @@ export class EditDecisionDialogComponent implements OnInit {
   @Output() save: EventEmitter<AkutenTrappa> = new EventEmitter<AkutenTrappa>();
 
   akutenTrappa: AkutenTrappa;
+  management: Management;
 
   formGroup: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<EditDecisionDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { akutenTrappa: AkutenTrappa }) {
+              @Inject(MAT_DIALOG_DATA) public data: { akutenTrappa: AkutenTrappa, management: Management }) {
     this.akutenTrappa = data.akutenTrappa;
+    this.management = data.management;
 
     const at = this.akutenTrappa;
 
