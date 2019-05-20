@@ -11,7 +11,7 @@ import { EditDecisionDialogComponent } from '../../elements/edit-decision-dialog
 import { ActivatedRoute, Router } from '@angular/router';
 import { Management } from '../../domain/Management';
 import { RegistreraAggregatesDataSource } from '../../service/RegistreraAggregateDataSource';
-import { filter, switchMap } from 'rxjs/operators';
+import { filter, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-coordination',
@@ -43,7 +43,6 @@ export class CoordinationComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog) {
-    this.oldDecisionsDataSource = new RegistreraAggregatesDataSource(this.http, null);
   }
 
   ngOnInit() {
@@ -64,7 +63,9 @@ export class CoordinationComponent implements OnInit {
 
     this.date = date;
 
-    this.todaysDecisionDataSource = new RegistreraAggregatesDataSource(this.http, date);
+    this.todaysDecisionDataSource = new RegistreraAggregatesDataSource(this.http, date, managementId);
+    this.oldDecisionsDataSource = new RegistreraAggregatesDataSource(this.http, null, managementId);
+
     this.todaysDecisionDataSource.load(0);
     this.oldDecisionsDataSource.load(this.oldDecisionsDataSource.currentPage);
 
@@ -119,7 +120,8 @@ export class CoordinationComponent implements OnInit {
     dialogRef.componentInstance.save.pipe(
       filter((result: Registrera) => !!result),
       switchMap((result: Registrera) => this.http.put('/api/registrera', result)),
-      switchMap(() => this.http.get('/api/registrera?management=' + this.management.id + '&datum=' + this.date))
+      switchMap(() => this.http.get('/api/registrera?management=' + this.management.id + '&datum=' + this.date)),
+      tap(() => this.updateDecisions())
     ).subscribe((pageResponse: PageResponse<Registrera[]>) => {
       this.updateTodaysRegistreringar(pageResponse.content, this.administrationer);
     });
@@ -134,16 +136,21 @@ export class CoordinationComponent implements OnInit {
     dialogRef.componentInstance.save.subscribe((result: AkutenTrappa) => {
       if (result) {
         this.http.put('/api/akutenTrappa', result).subscribe(() => {
-          this.oldDecisionsDataSource.load(this.oldDecisionsDataSource.currentPage);
-          this.todaysDecisionDataSource.load(0);
+          this.updateDecisions();
         });
       }
     });
   }
 
+  private updateDecisions() {
+    this.oldDecisionsDataSource.load(this.oldDecisionsDataSource.currentPage);
+    this.todaysDecisionDataSource.load(0);
+  }
+
   editNewDecision() {
     const akutenTrappa = new AkutenTrappa();
-    akutenTrappa.datum = new Date().toISOString().slice(0, 10);
+    akutenTrappa.management = this.management.id;
+    akutenTrappa.datum = this.date;
     this.editDecision(akutenTrappa);
   }
 

@@ -14,7 +14,7 @@ export class UserAdminComponent implements OnInit {
 
   pageContent: User[] = [];
 
-  pageIndex: number = 0;
+  pageIndex = 0;
 
   constructor(private http: HttpClient, public dialog: MatDialog) {
 

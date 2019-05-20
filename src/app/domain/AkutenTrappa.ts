@@ -4,4 +4,5 @@ export class AkutenTrappa {
   beslut: string;
   datum: string;
   akutenTrappaId: number;
+  management: number;
 }

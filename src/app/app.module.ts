@@ -50,7 +50,7 @@ import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-d
     DecisionTableComponent,
     EditDecisionDialogComponent,
     CoordinationLandingComponent,
-    UserAdminComponent
+    UserAdminComponent,
     EditDecisionDialogComponent,
     AdministrationComponent,
     UnitsComponent,

@@ -11,7 +11,7 @@ export class RegistreraAggregatesDataSource implements DataSource<RegistreraAggr
   private _count = new BehaviorSubject(0);
   private _currentPage = 0;
 
-  constructor(private http: HttpClient, private datum: string) {
+  constructor(private http: HttpClient, private datum: string, private managementId: number) {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<RegistreraAggregate[] | ReadonlyArray<RegistreraAggregate>> {
@@ -24,7 +24,7 @@ export class RegistreraAggregatesDataSource implements DataSource<RegistreraAggr
 
   load(page: number) {
     this._currentPage = page;
-    this.http.get('/api/registreraAggregate?page=' + page + (this.datum ? '&datum=' + this.datum : ''))
+    this.http.get('/api/registreraAggregate?management=' + this.managementId + '&page=' + page + (this.datum ? '&datum=' + this.datum : ''))
       .subscribe((pageResponse: PageResponse<RegistreraAggregate[]>) => {
         this.registreraAggregatesSubject.next(pageResponse.content);
         this._count.next(pageResponse.totalElements);
