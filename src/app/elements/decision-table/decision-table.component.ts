@@ -1,12 +1,25 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material';
 import { RegistreraAggregatesDataSource } from '../../service/RegistreraAggregateDataSource';
-import { tap } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-decision-table',
   templateUrl: './decision-table.component.html',
-  styleUrls: ['./decision-table.component.scss']
+  styleUrls: ['./decision-table.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+    trigger('togglerExpand', [
+      state('collapsed', style({transform: 'rotate(0)'})),
+      state('expanded', style({transform: 'rotate(180deg)'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ]
 })
 export class DecisionTableComponent implements AfterViewInit, OnInit {
 
@@ -16,11 +29,17 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns = ['datum', 'ledigaDisp', 'overbel', 'diff', 'vardplatstrappa', 'action'];
+  displayedColumns = ['toggleExpand', 'datum', 'ledigaDisp', 'overbel', 'diff', 'vardplatstrappa', 'action'];
+
+  expandedElement: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.dataSource.connect(null).pipe(
+      filter(value => value.length === 1)
+    ).subscribe((value => this.expandedElement = value[0]));
+
     this.dataSource.load(0);
     this.dataSource.count.subscribe(length => this.paginator.length = length);
   }
