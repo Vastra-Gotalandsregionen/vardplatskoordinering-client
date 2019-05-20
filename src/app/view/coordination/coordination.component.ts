@@ -46,6 +46,10 @@ export class CoordinationComponent implements OnInit {
   }
 
   ngOnInit() {
+    const params = this.route.snapshot.params;
+    this.todaysDecisionDataSource = new RegistreraAggregatesDataSource(this.http, params.date, params.management);
+    this.oldDecisionsDataSource = new RegistreraAggregatesDataSource(this.http, null, params.management);
+
     const paramsObservable = this.route.params;
     const queryParamsObservable = this.route.queryParams;
 
@@ -63,9 +67,7 @@ export class CoordinationComponent implements OnInit {
 
     this.date = date;
 
-    this.todaysDecisionDataSource = new RegistreraAggregatesDataSource(this.http, date, managementId);
-    this.oldDecisionsDataSource = new RegistreraAggregatesDataSource(this.http, null, managementId);
-
+    this.todaysDecisionDataSource.setDate(date);
     this.todaysDecisionDataSource.load(0);
     this.oldDecisionsDataSource.load(this.oldDecisionsDataSource.currentPage);
 

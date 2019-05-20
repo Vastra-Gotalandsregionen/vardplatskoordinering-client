@@ -39,4 +39,9 @@ export class RegistreraAggregatesDataSource implements DataSource<RegistreraAggr
     return this._currentPage;
   }
 
+  setDate(date: string) {
+    if (date !== this.datum) {
+      this.datum = date;
+    }
+  }
 }
