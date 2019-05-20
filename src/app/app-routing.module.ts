@@ -4,6 +4,7 @@ import { HomeComponent } from './view/home/home.component';
 import { CoordinationComponent } from './view/coordination/coordination.component';
 import { StyleguideComponent } from './view/styleguide/styleguide.component';
 import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
+import { UserAdminComponent } from './view/user-admin/user-admin.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'koordinering/:management',
     component: CoordinationComponent
+  },
+  {
+    path: 'user-admin',
+    component: UserAdminComponent
   },
   {
     path: 'styleguide',

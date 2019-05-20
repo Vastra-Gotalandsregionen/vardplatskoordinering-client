@@ -24,6 +24,8 @@ import { VpkListItemComponent } from './elements/vpk-list-item/vpk-list-item.com
 import { DecisionTableComponent } from './elements/decision-table/decision-table.component';
 import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edit-decision-dialog.component';
 import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
+import { UserAdminComponent } from './view/user-admin/user-admin.component';
+import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { CoordinationLandingComponent } from './view/coordination-landing/coordi
     // Elements
     HeaderComponent,
     EditRegistreraDialogComponent,
+    EditUserDialogComponent,
     VpkCardComponent,
     VpkIconComponent,
     VpkListComponent,
@@ -41,7 +44,8 @@ import { CoordinationLandingComponent } from './view/coordination-landing/coordi
     StyleguideComponent,
     DecisionTableComponent,
     EditDecisionDialogComponent,
-    CoordinationLandingComponent
+    CoordinationLandingComponent,
+    UserAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,8 @@ import { CoordinationLandingComponent } from './view/coordination-landing/coordi
   providers: [],
   entryComponents: [
     EditDecisionDialogComponent,
-    EditRegistreraDialogComponent
+    EditRegistreraDialogComponent,
+    EditUserDialogComponent
   ],
   bootstrap: [AppComponent]
 })
