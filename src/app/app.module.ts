@@ -40,6 +40,8 @@ import { LayoutColumnComponent } from './elements/layout-column/layout-column.co
 import { LayoutComponent } from './elements/layout/layout.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { VpkButtonComponent } from './elements/vpk-button/vpk-button.component';
+import { MatMenuModule } from '@angular/material';
+import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/confirm-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -73,9 +75,11 @@ import { VpkButtonComponent } from './elements/vpk-button/vpk-button.component';
     AdministrationComponent,
     DefinitionsAdminComponent,
     CrudTableComponent,
+    GeneralEditDialogComponent,
+    ConfirmDeleteDialogComponent,
     GeneralEditDialogComponent
     // Attribute Directives
-    
+
   ],
   imports: [
     BrowserModule,
@@ -87,10 +91,12 @@ import { VpkButtonComponent } from './elements/vpk-button/vpk-button.component';
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
-    CKEditorModule
+    CKEditorModule,
+    MatMenuModule
   ],
   providers: [],
   entryComponents: [
+    ConfirmDeleteDialogComponent,
     EditDecisionDialogComponent,
     EditRegistreraDialogComponent,
     EditUserDialogComponent,

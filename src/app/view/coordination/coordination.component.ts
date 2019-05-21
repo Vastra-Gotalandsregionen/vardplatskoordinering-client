@@ -171,6 +171,9 @@ export class CoordinationComponent implements OnInit {
   }
 
   sum(registreringar: Registrera[], property: string) {
-    return registreringar.map(r => r[property]).filter(value => !!value).reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+    return registreringar
+      .map(r => r[property])
+      .filter(value => !!value)
+      .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
   }
 }

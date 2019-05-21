@@ -27,4 +27,8 @@ export class BasicEditDataSource<T> implements DataSource<T> {
   save(item: any): Observable<T> {
     return this.http.put<T>(this.resourceUrl, item);
   }
+
+  delete(item: any): Observable<T> {
+    return this.http.delete<T>(this.resourceUrl + '/' + item.id);
+  }
 }
