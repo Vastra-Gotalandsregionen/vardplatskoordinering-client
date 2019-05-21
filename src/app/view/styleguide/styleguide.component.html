@@ -39,6 +39,7 @@
 <h2>VPK Button</h2>
 <p>Tillgängliga attribut för vpk-button:</p>
 <ul>
+    <li><em>class</em>: Extra css-klasser för styling av knapp. Stylade värden är "condensed" som har mindre horisontell padding.</li>
     <li><em>color</em>: Om attributet utelämnas blir knappen en sekundärknapp. Möjliga värden är "primary", "accent", "warn"</li>
     <li><em>disabled</em>: Om värdet är true blir knappen disabled (inaktiv)</li>
     <li><em>icon</em>: Om attributet utelämnas visas ingen ikon. Möjliga värden: FontAwesome ikoner</li>
@@ -66,9 +67,9 @@
         <vpk-button icon="plus" iconPosition="right" color="primary" label="Lägg till"></vpk-button>
     </vpk-button-row>
 
-    <h3>Primärknapp med större ikon och tooltip</h3>
+    <h3>Primärknapp med större ikon, tooltip och class "condensed"</h3>
     <vpk-button-row>
-        <vpk-button icon="plus" iconPosition="right" iconSize="lg" color="primary" tooltip="Lägg till"></vpk-button>
+        <vpk-button class="condensed" icon="plus" iconPosition="right" iconSize="lg" color="primary" tooltip="Lägg till"></vpk-button>
     </vpk-button-row>
 
     <h3>Inaktiv (disabled) knapp</h3>
