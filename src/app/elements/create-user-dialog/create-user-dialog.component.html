@@ -1,45 +1,29 @@
 <h1 mat-dialog-title>
-  <span *ngIf="users.id">Användare {{users.id}}</span>
-  <span *ngIf="!users.id">Ny användare</span>
+  <span>Lägg till användare</span>
 </h1>
 <div mat-dialog-content>
-  <h2>{{users.verksamhet}}</h2>
-
-  <form [formGroup]="formGroup">
-    <div>
-      <label>Id:</label>
-      <span>{{users.id}}</span>
-    </div>
-
-    <div>
-      <label>Namn:</label>
-      <input formControlName="name" type="text">
-    </div>
-
-    <div>
-      <label>Användare:</label>
-      <input formControlName="username" type="text">
-    </div>
-  </form>
+  <!--<h2></h2>-->
 
   <div>
-    <input [value]="filter" type="text">
-    <button (click)="findFromServer()"></button>
+    <input [(ngModel)]="filter" type="text" (keyup.enter)="findFromServer()" placeholder="Vgr-Id / namn, 3-tecken + *">
+    <button (click)="findFromServer()">Sök</button>
   </div>
 
   <table mat-table [dataSource]="users">
+
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Namn</th>
-      <td mat-cell *matCellDef="let item">{{item.name}}</td>
+      <td mat-cell *matCellDef="let item"> <a (click)="createThat(item)"> {{item.name}} </a> </td>
     </ng-container>
 
     <ng-container matColumnDef="username">
       <th mat-header-cell *matHeaderCellDef>Användare</th>
-      <td mat-cell *matCellDef="let item">{{item.username}}</td>
+      <td mat-cell *matCellDef="let item"> <a (click)="createThat(item)"> {{item.username}} </a> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="['name', 'username']"></tr>
     <tr mat-row *matRowDef="let row; columns: ['name', 'username'];"></tr>
+
   </table>
 
 </div>

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { User } from '../../domain/User';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -15,13 +14,13 @@ export class CreateUserDialogComponent {
 
   users: User[];
 
-  filter: string;
+  filter: string = '';
 
   @Output() save: EventEmitter<User> = new EventEmitter<User>();
 
   constructor(private http: HttpClient, public dialogRef: MatDialogRef<CreateUserDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { user: User }) {
-    this.users = data.user;
+              @Inject(MAT_DIALOG_DATA) public data: { /*user: User*/ }) {
+    /*this.users = data.user;*/
     // const r = this.users;
 
     /*this.formGroup = new FormGroup({
@@ -65,6 +64,12 @@ export class CreateUserDialogComponent {
       console.log('Found', o);
       this.users = o;
     });
+  }
+
+  createThat(user: User) {
+    console.log(user);
+    this.dialogRef.close();
+    this.save.emit(user);
   }
 
 }

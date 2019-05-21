@@ -37,7 +37,8 @@ export class UserAdminComponent implements OnInit {
 
     dialogRef.componentInstance.save.subscribe((result: User) => {
       if (result) {
-        this.http.put('/api/user', result).subscribe(() => this.ngOnInit());
+        // this.http.put('/api/user', result).subscribe(() => this.ngOnInit());
+        this.editUser(result);
       }
     });
   }
@@ -53,11 +54,6 @@ export class UserAdminComponent implements OnInit {
         this.http.put('/api/user', result).subscribe(() => this.ngOnInit());
       }
     });
-  }
-
-  editNewUser() {
-    const user = new User();
-    this.editUser(user);
   }
 
 }
