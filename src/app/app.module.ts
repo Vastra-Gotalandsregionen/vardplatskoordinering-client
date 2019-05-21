@@ -35,6 +35,9 @@ import { DefinitionsAdminComponent } from './view/administration/definitions/def
 import { CrudTableComponent } from './elements/crud-table/crud-table.component';
 import { GeneralEditDialogComponent } from './elements/general-edit-dialog/general-edit-dialog.component';
 import { CreateUserDialogComponent } from './elements/create-user-dialog/create-user-dialog.component';
+import { LayoutRowComponent } from './elements/layout-row/layout-row.component';
+import { LayoutColumnComponent } from './elements/layout-column/layout-column.component';
+import { LayoutComponent } from './elements/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { CreateUserDialogComponent } from './elements/create-user-dialog/create-
     EditRegistreraDialogComponent,
     CreateUserDialogComponent,
     EditUserDialogComponent,
+    LayoutComponent,
+    LayoutColumnComponent,
+    LayoutRowComponent,
     VpkCardComponent,
     VpkIconComponent,
     VpkListComponent,
@@ -65,6 +71,8 @@ import { CreateUserDialogComponent } from './elements/create-user-dialog/create-
     DefinitionsAdminComponent,
     CrudTableComponent,
     GeneralEditDialogComponent
+    // Attribute Directives
+    
   ],
   imports: [
     BrowserModule,
