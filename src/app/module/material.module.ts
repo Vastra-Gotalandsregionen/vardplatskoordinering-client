@@ -15,7 +15,8 @@ import {
   MatPaginatorIntl,
   MatPaginatorModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 import { MatPaginatorIntlSv } from './mat-paginator-intl-sv';
 import { SwedishDateAdapter } from '../angular/swedish-date-adapter';
@@ -55,7 +56,8 @@ import { SwedishDateAdapter } from '../angular/swedish-date-adapter';
     // MatSnackBarModule,
     MatTableModule,
     // MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTooltipModule
   ],
   exports: [
     MatButtonModule,
@@ -90,7 +92,8 @@ import { SwedishDateAdapter } from '../angular/swedish-date-adapter';
     // MatSnackBarModule,
     MatTableModule,
     // MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTooltipModule
   ],
   providers: [
     {provide: MatPaginatorIntl, useClass: MatPaginatorIntlSv},
