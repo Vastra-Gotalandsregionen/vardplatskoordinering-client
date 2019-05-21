@@ -10,8 +10,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CreateUserDialogComponent {
 
-  // formGroup: FormGroup;
-
   users: User[];
 
   filter: string = '';
@@ -19,9 +17,7 @@ export class CreateUserDialogComponent {
   @Output() save: EventEmitter<User> = new EventEmitter<User>();
 
   constructor(private http: HttpClient, public dialogRef: MatDialogRef<CreateUserDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { user: User }) {
-    this.users = data.user;
-    // const r = this.users;
+              @Inject(MAT_DIALOG_DATA) public data: { }) {
 
     /*this.formGroup = new FormGroup({
       id: new FormControl(r.id),
@@ -66,4 +62,8 @@ export class CreateUserDialogComponent {
     });
   }
 
+  createThat(user: User) {
+    this.dialogRef.close();
+    this.save.emit(user);
+  }
 }
