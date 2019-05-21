@@ -37,25 +37,36 @@
 </app-layout-row>
 
 <h2>VPK Button</h2>
+<p>Tillgängliga attribut för vpk-button:</p>
+<ul>
+    <li><em>color</em>: Om attributet utelämnas blir knappen en sekundärknapp. Möjliga värden är "primary", "accent", "warn"</li>
+    <li><em>icon</em>: Om attributet utelämnas visas ingen ikon. Möjliga värden: FontAwesome ikoner</li>
+    <li><em>iconPosition</em>: Om attributet utelämnas visas ikonen till vänster om knappens text. Möjliga värden är "right"</li>
+    <li><em>iconSize</em>: Om attributet utelämnas visas ikonen med storleken "sg" möjliga värden är alla FontAwesome-storlekar men endast "sg" och "lg" har stylats korrekt. </li>
+    <li><em>label</em>: Knappens text</li>
+    <li><em>tooltip</em>: Tooltip för knappen</li>    
+</ul>
 
-<h3>Primär- och sekundärknapp utan ikon</h3>
-<vpk-button-row>
-    <vpk-button color="primary" label="Spara"></vpk-button>
-    <vpk-button label="Avbryt"></vpk-button>
-</vpk-button-row>
+<vpk-card>
+    <h3>Primär- och sekundärknapp utan ikon</h3>
+    <vpk-button-row>
+        <vpk-button color="primary" label="Spara"></vpk-button>
+        <vpk-button label="Avbryt"></vpk-button>
+    </vpk-button-row>
 
-<h3>Primär- och sekundärknapp med ikon</h3>
-<vpk-button-row>
-    <vpk-button icon="plus" color="primary" label="Lägg till"></vpk-button>    
-    <vpk-button icon="plus" label="Lägg till"></vpk-button>
-</vpk-button-row>
+    <h3>Primär- och sekundärknapp med ikon</h3>
+    <vpk-button-row>
+        <vpk-button icon="plus" color="primary" label="Lägg till"></vpk-button>    
+        <vpk-button icon="plus" label="Lägg till"></vpk-button>
+    </vpk-button-row>
 
-<h3>Primärknapp med ikon till höger</h3>
-<vpk-button-row>
-    <vpk-button icon="plus" iconPosition="right" color="primary" label="Lägg till"></vpk-button>
-</vpk-button-row>
+    <h3>Primärknapp med ikon till höger</h3>
+    <vpk-button-row>
+        <vpk-button icon="plus" iconPosition="right" color="primary" label="Lägg till"></vpk-button>
+    </vpk-button-row>
 
-<h3>Primärknapp med större ikon och tooltip</h3>
-<vpk-button-row>
-    <vpk-button icon="plus" iconPosition="right" iconSize="lg" color="primary" tooltip="Lägg till"></vpk-button>
-</vpk-button-row>
+    <h3>Primärknapp med större ikon och tooltip</h3>
+    <vpk-button-row>
+        <vpk-button icon="plus" iconPosition="right" iconSize="lg" color="primary" tooltip="Lägg till"></vpk-button>
+    </vpk-button-row>
+</vpk-card>
