@@ -43,6 +43,7 @@ import { VpkButtonComponent } from './elements/vpk-button/vpk-button.component';
 import { MatMenuModule } from '@angular/material';
 import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/confirm-delete-dialog.component';
 import { VpkButtonRowComponent } from './elements/vpk-button-row/vpk-button-row.component';
+import { VpkButtonFabComponent } from './elements/vpk-button-fab/vpk-button-fab.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { VpkButtonRowComponent } from './elements/vpk-button-row/vpk-button-row.
     LayoutColumnComponent,
     LayoutRowComponent,
     VpkButtonComponent,
+    VpkButtonFabComponent,
     VpkButtonRowComponent,
     VpkCardComponent,
     VpkIconComponent,
