@@ -1,0 +1,9 @@
+<form [formGroup]="formGroup">
+  <div *ngFor="let field of fieldsConfigs">
+    <input *ngIf="field.type === 'input'" [formControlName]="field.name" />
+    <textarea *ngIf="field.type === 'textarea'" [formControlName]="field.name"></textarea>
+  </div>
+
+  <button (click)="cancel()">Avbryt</button>
+  <button (click)="saveAndEmit()">Spara</button>
+</form>

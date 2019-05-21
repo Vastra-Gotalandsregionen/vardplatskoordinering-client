@@ -24,7 +24,7 @@
   </ng-container>
 
   <ng-container matColumnDef="diff">
-    <th mat-header-cell *matHeaderCellDef>Prognis minus måltal</th>
+    <th mat-header-cell *matHeaderCellDef>Prognos minus måltal</th>
     <td mat-cell *matCellDef="let aggregate">{{aggregate.diff}}</td>
   </ng-container>
 
@@ -49,7 +49,6 @@
       </div>
     </td>
   </ng-container>
-
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let aggregate; columns: displayedColumns;"

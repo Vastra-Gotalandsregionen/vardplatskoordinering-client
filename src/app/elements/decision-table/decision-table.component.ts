@@ -40,7 +40,6 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
       filter(value => value.length === 1)
     ).subscribe((value => this.expandedElement = value[0]));
 
-    this.dataSource.load(0);
     this.dataSource.count.subscribe(length => this.paginator.length = length);
   }
 

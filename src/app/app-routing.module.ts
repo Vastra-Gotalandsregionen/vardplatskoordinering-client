@@ -10,6 +10,7 @@ import { ManagementsComponent } from './view/managements/managements.component';
 import { AreasComponent } from './view/areas/areas.component';
 import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
 import { UserAdminComponent } from './view/user-admin/user-admin.component';
+import { DefinitionsAdminComponent } from './view/administration/definitions/definitions-admin.component';
 
 const routes: Routes = [
   {
@@ -27,9 +28,12 @@ const routes: Routes = [
 
   {
     path: 'administration',
-    component: AdministrationComponent
+    component: AdministrationComponent,
   },
-
+  {
+    path: 'administration/definition',
+    component: DefinitionsAdminComponent
+  },
   {
     path: 'users',
     component: UsersComponent

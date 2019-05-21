@@ -31,6 +31,9 @@ import { AreasComponent } from './view/areas/areas.component';
 import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
 import { UserAdminComponent } from './view/user-admin/user-admin.component';
 import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-dialog.component';
+import { DefinitionsAdminComponent } from './view/administration/definitions/definitions-admin.component';
+import { CrudTableComponent } from './elements/crud-table/crud-table.component';
+import { GeneralEditDialogComponent } from './elements/general-edit-dialog/general-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-d
     UnitsComponent,
     UsersComponent,
     ManagementsComponent,
-    AreasComponent
+    AreasComponent,
+    DefinitionsAdminComponent,
+    CrudTableComponent,
+    GeneralEditDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +79,8 @@ import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-d
   entryComponents: [
     EditDecisionDialogComponent,
     EditRegistreraDialogComponent,
-    EditUserDialogComponent
+    EditUserDialogComponent,
+    GeneralEditDialogComponent
   ],
   bootstrap: [AppComponent]
 })
