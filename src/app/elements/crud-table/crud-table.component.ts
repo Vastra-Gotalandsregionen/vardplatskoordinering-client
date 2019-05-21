@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { GeneralEditDialogComponent } from '../general-edit-dialog/general-edit-dialog.component';
+import { GenericEditDialogComponent } from '../generic-edit-dialog/generic-edit-dialog.component';
 import { FieldConfig } from '../../domain/FieldConfig';
 import { BasicEditDataSource } from '../../service/BasicEditDataSource';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -24,7 +24,7 @@ export class CrudTableComponent implements OnInit {
 
   openEdit(item: any) {
     const fieldsConfigs: FieldConfig[] = this.fieldConfigs;
-    const dialogRef = this.dialog.open(GeneralEditDialogComponent, {
+    const dialogRef = this.dialog.open(GenericEditDialogComponent, {
       width: '500px',
       data: {item, fieldsConfigs}
     });
@@ -38,8 +38,12 @@ export class CrudTableComponent implements OnInit {
     return this.fieldConfigs.map(value => value.name).concat('edit');
   }
 
-  getHtml(html: string) {
-    return this.sanitizer.bypassSecurityTrustHtml(html);
+  getValue(fieldConfig: FieldConfig, value: string) {
+    if (fieldConfig.type === 'select') {
+      return fieldConfig.options.find(option => option.value === value).label;
+    }
+
+    return this.sanitizer.bypassSecurityTrustHtml(value);
   }
 
   confirmDelete(item: any) {
@@ -53,5 +57,9 @@ export class CrudTableComponent implements OnInit {
         this.dataSource.load();
       });
     });
+  }
+
+  openAdd() {
+    this.openEdit({});
   }
 }

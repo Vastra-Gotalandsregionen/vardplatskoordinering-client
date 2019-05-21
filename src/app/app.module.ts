@@ -33,7 +33,7 @@ import { UserAdminComponent } from './view/user-admin/user-admin.component';
 import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-dialog.component';
 import { DefinitionsAdminComponent } from './view/administration/definitions/definitions-admin.component';
 import { CrudTableComponent } from './elements/crud-table/crud-table.component';
-import { GeneralEditDialogComponent } from './elements/general-edit-dialog/general-edit-dialog.component';
+import { GenericEditDialogComponent } from './elements/generic-edit-dialog/generic-edit-dialog.component';
 import { CreateUserDialogComponent } from './elements/create-user-dialog/create-user-dialog.component';
 import { LayoutRowComponent } from './elements/layout-row/layout-row.component';
 import { LayoutColumnComponent } from './elements/layout-column/layout-column.component';
@@ -73,9 +73,9 @@ import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/c
     AdministrationComponent,
     DefinitionsAdminComponent,
     CrudTableComponent,
-    GeneralEditDialogComponent,
+    GenericEditDialogComponent,
     ConfirmDeleteDialogComponent,
-    GeneralEditDialogComponent
+    GenericEditDialogComponent
     // Attribute Directives
 
   ],
@@ -98,7 +98,7 @@ import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/c
     EditDecisionDialogComponent,
     EditRegistreraDialogComponent,
     EditUserDialogComponent,
-    GeneralEditDialogComponent,
+    GenericEditDialogComponent,
     EditUserDialogComponent,
     CreateUserDialogComponent
   ],

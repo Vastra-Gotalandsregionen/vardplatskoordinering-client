@@ -3,7 +3,7 @@ export class FieldConfig {
   type: string;
   options: Option[];
 
-  static from(name, type, options?) {
+  static from(name, type, options?: Option[]) {
     return new FieldConfig(name, type, options);
   }
 

@@ -11,7 +11,7 @@ import {
   MatListModule,
   MatNativeDateModule,
   MatPaginatorIntl,
-  MatPaginatorModule,
+  MatPaginatorModule, MatSelectModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
@@ -34,7 +34,7 @@ import { SwedishDateAdapter } from '../angular/swedish-date-adapter';
     MatNativeDateModule,
     MatFormFieldModule,
     // MatRadioModule,
-    // MatSelectModule,
+    MatSelectModule,
     // MatSliderModule,
     // MatSlideToggleModule,
     // MatMenuModule,
@@ -68,7 +68,7 @@ import { SwedishDateAdapter } from '../angular/swedish-date-adapter';
     MatNativeDateModule,
     MatFormFieldModule,
     // MatRadioModule,
-    // MatSelectModule,
+    MatSelectModule,
     // MatSliderModule,
     // MatSlideToggleModule,
     // MatMenuModule,

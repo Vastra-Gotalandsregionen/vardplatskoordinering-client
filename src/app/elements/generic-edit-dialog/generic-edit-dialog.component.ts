@@ -5,11 +5,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../domain/FieldConfig';
 
 @Component({
-  selector: 'app-general-edit-dialog',
-  templateUrl: './general-edit-dialog.component.html',
-  styleUrls: ['./general-edit-dialog.component.scss']
+  selector: 'app-generic-edit-dialog',
+  templateUrl: './generic-edit-dialog.component.html',
+  styleUrls: ['./generic-edit-dialog.component.scss']
 })
-export class GeneralEditDialogComponent implements OnInit {
+export class GenericEditDialogComponent implements OnInit {
 
   @Output() save: EventEmitter<Registrera> = new EventEmitter<Registrera>();
 
@@ -18,7 +18,7 @@ export class GeneralEditDialogComponent implements OnInit {
   item: any;
   fieldsConfigs: FieldConfig[];
 
-  constructor(public dialogRef: MatDialogRef<GeneralEditDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<GenericEditDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: {item: any, fieldsConfigs: FieldConfig[]}) {
     this.item = data.item;
     this.fieldsConfigs = data.fieldsConfigs;

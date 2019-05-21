@@ -1,9 +1,21 @@
 <form [formGroup]="formGroup">
   <div *ngFor="let field of fieldsConfigs">
     <div><label>{{field.name}}</label></div>
+
     <input *ngIf="field.type === 'input'" [formControlName]="field.name" />
+
     <textarea *ngIf="field.type === 'textarea'" [formControlName]="field.name"></textarea>
+
     <ckeditor *ngIf="field.type === 'ckeditor'" [formControlName]="field.name"></ckeditor>
+
+    <mat-form-field *ngIf="field.type === 'select'">
+<!--      <mat-label>{{field.name}}</mat-label>-->
+      <mat-select [formControlName]="field.name">
+        <mat-option *ngFor="let option of field.options" [value]="option.value">
+          {{option.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <button (click)="cancel()">Avbryt</button>
