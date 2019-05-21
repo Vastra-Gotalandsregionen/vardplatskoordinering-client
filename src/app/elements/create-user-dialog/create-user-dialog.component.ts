@@ -13,7 +13,7 @@ export class CreateUserDialogComponent {
 
   // formGroup: FormGroup;
 
-  users: User[];
+  user: User;
 
   filter: string;
 
@@ -21,7 +21,7 @@ export class CreateUserDialogComponent {
 
   constructor(private http: HttpClient, public dialogRef: MatDialogRef<CreateUserDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { user: User }) {
-    this.users = data.user;
+    this.user = data.user;
     // const r = this.users;
 
     /*this.formGroup = new FormGroup({
@@ -63,8 +63,7 @@ export class CreateUserDialogComponent {
     const observable = this.http.get('/api/vgr-user?filter=' + this.filter);
     observable.subscribe((o: User[]) => {
       console.log('Found', o);
-      this.users = o;
+      // this.user = o;
     });
   }
-
 }
