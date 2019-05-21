@@ -35,6 +35,9 @@ import { DefinitionsAdminComponent } from './view/administration/definitions/def
 import { CrudTableComponent } from './elements/crud-table/crud-table.component';
 import { GeneralEditDialogComponent } from './elements/general-edit-dialog/general-edit-dialog.component';
 import { CreateUserDialogComponent } from './elements/create-user-dialog/create-user-dialog.component';
+import { LayoutRowComponent } from './elements/layout-row/layout-row.component';
+import { LayoutColumnComponent } from './elements/layout-column/layout-column.component';
+import { LayoutComponent } from './elements/layout/layout.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { MatMenuModule } from '@angular/material';
 import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/confirm-delete-dialog.component';
@@ -47,6 +50,9 @@ import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/c
     EditRegistreraDialogComponent,
     CreateUserDialogComponent,
     EditUserDialogComponent,
+    LayoutComponent,
+    LayoutColumnComponent,
+    LayoutRowComponent,
     VpkCardComponent,
     VpkIconComponent,
     VpkListComponent,
@@ -68,7 +74,10 @@ import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/c
     DefinitionsAdminComponent,
     CrudTableComponent,
     GeneralEditDialogComponent,
-    ConfirmDeleteDialogComponent
+    ConfirmDeleteDialogComponent,
+    GeneralEditDialogComponent
+    // Attribute Directives
+
   ],
   imports: [
     BrowserModule,

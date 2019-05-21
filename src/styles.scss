@@ -4,6 +4,9 @@
 @import 'assets/scss/utilities/variables';
 @import 'assets/scss/utilities/mixins';
 
+@import 'assets/scss/utilities/clearfix';
+@import 'assets/scss/utilities/scaffolding';
+
 @import 'assets/scss/atoms/body';
 @import 'assets/scss/atoms/container';
 @import 'assets/scss/atoms/headings';
@@ -16,7 +19,7 @@
 @import 'assets/scss/organisms/vpk-card';
 @import 'assets/scss/organisms/vpk-list';
 
-@import 'assets/scss/utilities/scaffolding';
+
 
 
 /* Shame */

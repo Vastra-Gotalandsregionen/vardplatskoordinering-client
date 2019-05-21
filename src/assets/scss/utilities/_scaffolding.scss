@@ -26,18 +26,97 @@
     position: relative;
 }
 
-.row {
+.container {
   box-sizing: border-box;
   margin: 0;
+  margin: 0 20px;
+  width: auto
+}
+
+.row {
+  @extend .clearfix;
+  padding: 8px 0;
+}
+
+.col, app-left-column, app-right-column {
+  float: left
+}
+
+.table, .c12 {
+  width: 100%
+}
+
+.c11 {
+  width: 91.66%
+}
+
+.c10 {
+  width: 83.33%
+}
+
+.c9 {
+  width: 75%
+}
+
+.c8 {
+  width: 66.66%
+}
+
+.c7 {
+  width: 58.33%
+}
+
+.c6 {
+  width: 50%
+}
+
+.c5 {
+  width: 41.66%
+}
+
+.c4 {
+  width: 33.33%
+}
+
+.c3 {
+  width: 25%;
+}
+
+.c2 {
+  width: 16.66%
+}
+
+.c1 {
+  width: 8.33%
 }
 
 .col-inner {
-  padding: 10px 20px;
-  position: relative;
+  min-height: 1px;
+  width: 100%;
+}
 
-  .inner-content {
-    position: absolute;
-    top: 32px;
-    right: 32px;
+.row {
+
+  .col-inner {
+    padding: 0 20px;
+  }
+
+  app-layout-column:first-child {
+    .col-inner {
+      padding-left: 0;
+    }
+  }
+
+  app-layout-column:last-child {
+    .col-inner {
+      padding-right: 0;
+    }
+  }
+
+}
+
+@media(max-width: 870px) {
+  .row .col {
+    width: 100%
   }
 }
