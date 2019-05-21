@@ -19,8 +19,8 @@ export class CreateUserDialogComponent {
   @Output() save: EventEmitter<User> = new EventEmitter<User>();
 
   constructor(private http: HttpClient, public dialogRef: MatDialogRef<CreateUserDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { /*user: User*/ }) {
-    /*this.users = data.user;*/
+              @Inject(MAT_DIALOG_DATA) public data: { user: User }) {
+    this.users = data.user;
     // const r = this.users;
 
     /*this.formGroup = new FormGroup({
@@ -64,12 +64,6 @@ export class CreateUserDialogComponent {
       console.log('Found', o);
       this.users = o;
     });
-  }
-
-  createThat(user: User) {
-    console.log(user);
-    this.dialogRef.close();
-    this.save.emit(user);
   }
 
 }
