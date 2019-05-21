@@ -36,6 +36,8 @@ import { CrudTableComponent } from './elements/crud-table/crud-table.component';
 import { GeneralEditDialogComponent } from './elements/general-edit-dialog/general-edit-dialog.component';
 import { CreateUserDialogComponent } from './elements/create-user-dialog/create-user-dialog.component';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { MatMenuModule } from '@angular/material';
+import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/confirm-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     AdministrationComponent,
     DefinitionsAdminComponent,
     CrudTableComponent,
-    GeneralEditDialogComponent
+    GeneralEditDialogComponent,
+    ConfirmDeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -77,10 +80,12 @@ import { CKEditorModule } from 'ng2-ckeditor';
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
-    CKEditorModule
+    CKEditorModule,
+    MatMenuModule
   ],
   providers: [],
   entryComponents: [
+    ConfirmDeleteDialogComponent,
     EditDecisionDialogComponent,
     EditRegistreraDialogComponent,
     EditUserDialogComponent,

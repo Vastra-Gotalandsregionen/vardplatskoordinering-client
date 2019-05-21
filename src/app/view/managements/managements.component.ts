@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Management } from '../../domain/Management';
 import { HttpClient } from '@angular/common/http';
-import { MatTableDataSource } from '@angular/material';
+import { FieldConfig } from '../../domain/FieldConfig';
+import { BasicEditDataSource } from '../../service/BasicEditDataSource';
 
 @Component({
   selector: 'app-managements',
@@ -11,18 +12,18 @@ import { MatTableDataSource } from '@angular/material';
 export class ManagementsComponent implements OnInit {
 
   managements: Management[] = [];
-  displayedColumns: string[] = ['management', 'action'];
-  dataSource = new MatTableDataSource<Management>();
+  fieldConfigs: FieldConfig[] = [
+    FieldConfig.from('name', 'input')
+  ];
 
-  constructor(private http: HttpClient) { }
+  dataSource: BasicEditDataSource<Management>;
+
+  constructor(private http: HttpClient) {
+    this.dataSource = new BasicEditDataSource(http, '/api/management');
+  }
 
   ngOnInit() {
-    debugger;
-    console.log('management');
-    this.http.get<Management[]>('/api/management/').subscribe((managements) => { this.dataSource.data = managements;
-                                                                                 console.log(this.dataSource.data);
-      }
-      );
+    this.dataSource.load();
   }
 
 }
