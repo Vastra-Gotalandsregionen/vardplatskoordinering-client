@@ -1,0 +1,18 @@
+.vpk-button-row {
+    margin: 0 0 20px 0;
+
+    vpk-button + vpk-button,
+    vpk-button-fab + vpk-button-fab {
+        margin-left: 15px;
+    }
+
+    &.vpk-button-row-center {
+        text-align: center;
+    }
+
+    &.vpk-button-row-right {
+        text-align: right;
+    }
+
+
+}

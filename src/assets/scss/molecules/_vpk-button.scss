@@ -1,0 +1,21 @@
+.vpk-button {
+
+    button {
+        min-width: auto;
+    }
+
+    vpk-icon + .vpk-button-label {
+        margin-left: 4px;
+    }
+
+    .vpk-button-label + vpk-icon  {
+        margin-left: 4px;
+    }
+
+    &.condensed {
+        button {
+            padding: 0 10px;
+        }
+    }
+
+}

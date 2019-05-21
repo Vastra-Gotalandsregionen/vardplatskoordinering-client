@@ -35,3 +35,75 @@
         </vpk-card>
         </app-layout-column>
 </app-layout-row>
+
+<h2>VPK Button</h2>
+<p>Tillgängliga attribut för vpk-button:</p>
+<ul>
+    <li><em>class</em>: Extra css-klasser för styling av knapp. Stylade värden är "condensed" som har mindre horisontell padding.</li>
+    <li><em>color</em>: Om attributet utelämnas blir knappen en sekundärknapp. Möjliga värden är "primary", "accent", "warn"</li>
+    <li><em>disabled</em>: Om värdet är true blir knappen disabled (inaktiv)</li>
+    <li><em>icon</em>: Om attributet utelämnas visas ingen ikon. Möjliga värden: FontAwesome ikoner</li>
+    <li><em>iconPosition</em>: Om attributet utelämnas visas ikonen till vänster om knappens text. Möjliga värden är "right"</li>
+    <li><em>iconSize</em>: Om attributet utelämnas visas ikonen med storleken "sg" möjliga värden är alla FontAwesome-storlekar men endast "sg" och "lg" har stylats korrekt. </li>
+    <li><em>label</em>: Knappens text</li>
+    <li><em>tooltip</em>: Tooltip för knappen</li>
+</ul>
+
+<vpk-card>
+    <h3>Primär- och sekundärknapp utan ikon</h3>
+    <vpk-button-row>
+        <vpk-button color="primary" label="Spara"></vpk-button>
+        <vpk-button label="Avbryt"></vpk-button>
+    </vpk-button-row>
+
+    <h3>Primär- och sekundärknapp med ikon</h3>
+    <vpk-button-row>
+        <vpk-button icon="plus" color="primary" label="Lägg till"></vpk-button>    
+        <vpk-button icon="plus" label="Lägg till"></vpk-button>
+    </vpk-button-row>
+
+    <h3>Primärknapp med ikon till höger</h3>
+    <vpk-button-row>
+        <vpk-button icon="plus" iconPosition="right" color="primary" label="Lägg till"></vpk-button>
+    </vpk-button-row>
+
+    <h3>Ikon-knappar</h3>
+    <vpk-button-row>
+        <vpk-button class="condensed" icon="plus" iconSize="lg" color="primary" tooltip="Lägg till"></vpk-button>
+        <vpk-button class="condensed" icon="pen" iconSize="sg" tooltip="Redigera"></vpk-button>
+    </vpk-button-row>
+
+    <h3>Inaktiv (disabled) knapp</h3>
+    <vpk-button-row>
+        <vpk-button color="primary" label="Spara" [disabled]="true"></vpk-button>
+    </vpk-button-row>
+
+    <h3>Centrerade knappar</h3>
+    <vpk-button-row align="center">
+        <vpk-button color="primary" label="Spara"></vpk-button>
+        <vpk-button label="Avbryt"></vpk-button>
+    </vpk-button-row>
+
+    <h3>Högerjusterade knappar</h3>
+    <vpk-button-row align="right">
+        <vpk-button color="primary" label="Spara"></vpk-button>
+        <vpk-button label="Avbryt"></vpk-button>
+    </vpk-button-row>
+
+
+</vpk-card>
+
+<h2>VPK Fab Button</h2>
+
+<h3>Vänsterjusterade knappar</h3>
+<vpk-button-row>
+    <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>    
+    <vpk-button-fab icon="plus" tooltip="Lägg till"></vpk-button-fab>
+</vpk-button-row>
+
+<h3>Högerjusterade knappar</h3>
+<vpk-button-row align="right">
+    <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>    
+    <vpk-button-fab icon="plus" tooltip="Lägg till"></vpk-button-fab>
+</vpk-button-row>
+
