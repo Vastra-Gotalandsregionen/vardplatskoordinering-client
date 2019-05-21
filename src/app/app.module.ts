@@ -35,6 +35,7 @@ import { DefinitionsAdminComponent } from './view/administration/definitions/def
 import { CrudTableComponent } from './elements/crud-table/crud-table.component';
 import { GeneralEditDialogComponent } from './elements/general-edit-dialog/general-edit-dialog.component';
 import { CreateUserDialogComponent } from './elements/create-user-dialog/create-user-dialog.component';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { CreateUserDialogComponent } from './elements/create-user-dialog/create-
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
+    CKEditorModule
   ],
   providers: [],
   entryComponents: [

@@ -43,9 +43,7 @@
     <td mat-cell *matCellDef="let aggregate" [attr.colspan]="displayedColumns.length">
       <div class="example-element-detail"
            [@detailExpand]="aggregate == expandedElement ? 'expanded' : 'collapsed'">
-        <p class="example-element-description">
-          {{aggregate.beslut}}
-        </p>
+        <p class="example-element-description" [innerHTML]="getHtml(aggregate.beslut)"></p>
       </div>
     </td>
   </ng-container>

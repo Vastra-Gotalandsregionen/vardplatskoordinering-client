@@ -15,7 +15,7 @@ export class DefinitionsAdminComponent implements OnInit {
 
   fieldsConfigs: FieldConfig[] = [
     FieldConfig.from('definition', 'input'),
-    FieldConfig.from('beskrivning', 'textarea'),
+    FieldConfig.from('beskrivning', 'ckeditor'),
     FieldConfig.from('lista', 'input')
   ];
 

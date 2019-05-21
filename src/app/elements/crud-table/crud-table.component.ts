@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { GeneralEditDialogComponent } from '../general-edit-dialog/general-edit-dialog.component';
 import { FieldConfig } from '../../domain/FieldConfig';
 import { BasicEditDataSource } from '../../service/BasicEditDataSource';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-crud-table',
@@ -14,7 +15,8 @@ export class CrudTableComponent implements OnInit {
   @Input() fieldConfigs: FieldConfig[];
   @Input() dataSource: BasicEditDataSource<any>;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
   }
@@ -34,4 +36,9 @@ export class CrudTableComponent implements OnInit {
   getColumns() {
     return this.fieldConfigs.map(value => value.name).concat('edit');
   }
+
+  getHtml(html: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+
 }
