@@ -31,6 +31,7 @@ import { AdministrationComponent } from './view/administration/administration.co
 import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
 import { UserAdminComponent } from './view/user-admin/user-admin.component';
 import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-dialog.component';
+import { CreateUserDialogComponent } from './elements/create-user-dialog/create-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-d
     // Elements
     HeaderComponent,
     EditRegistreraDialogComponent,
+    CreateUserDialogComponent,
     EditUserDialogComponent,
     VpkCardComponent,
     VpkIconComponent,
@@ -73,7 +75,8 @@ import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-d
   entryComponents: [
     EditDecisionDialogComponent,
     EditRegistreraDialogComponent,
-    EditUserDialogComponent
+    EditUserDialogComponent,
+    CreateUserDialogComponent
   ],
   bootstrap: [AppComponent]
 })

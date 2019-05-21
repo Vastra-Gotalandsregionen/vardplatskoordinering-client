@@ -1,4 +1,5 @@
-<table mat-table multiTemplateDataRows [dataSource]="dataSource" *ngIf="(dataSource.count | async) > 0">
+<!-- Needed to do this with ngStyle instead of *ngIf due to a problem where the rows didn't show after a view with zero items. -->
+<table mat-table multiTemplateDataRows [dataSource]="dataSource" [ngStyle]="{display: ((dataSource.count | async) > 0) ? 'table' : 'none'}" >
 
   <ng-container matColumnDef="toggleExpand">
     <th mat-header-cell *matHeaderCellDef></th>
@@ -48,7 +49,6 @@
       </div>
     </td>
   </ng-container>
-
 
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
