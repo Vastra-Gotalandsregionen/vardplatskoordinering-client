@@ -42,6 +42,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { VpkButtonComponent } from './elements/vpk-button/vpk-button.component';
 import { MatMenuModule } from '@angular/material';
 import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/confirm-delete-dialog.component';
+import { VpkButtonRowComponent } from './elements/vpk-button-row/vpk-button-row.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/c
     LayoutColumnComponent,
     LayoutRowComponent,
     VpkButtonComponent,
+    VpkButtonRowComponent,
     VpkCardComponent,
     VpkIconComponent,
     VpkListComponent,

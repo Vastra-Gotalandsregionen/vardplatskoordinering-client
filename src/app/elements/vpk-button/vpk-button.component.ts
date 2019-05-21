@@ -11,7 +11,7 @@ export class VpkButtonComponent implements OnInit {
   @Input() color: string;
   @Input() icon: string;
   @Input() iconPosition: string = 'left';
-  @Input() iconSize: string = 'lg';
+  @Input() iconSize: string = 'sg';
   @Input() label: string;
   @Input() tooltip: string;
   

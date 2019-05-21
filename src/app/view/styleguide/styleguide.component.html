@@ -38,16 +38,24 @@
 
 <h2>VPK Button</h2>
 
-<vpk-button icon="plus" label="Secondary"></vpk-button>
-<br />
-<br />
-<vpk-button icon="plus" color="primary" label="Primary"></vpk-button>
-<br />
-<br />
-<vpk-button color="primary" label="Primary no icon"></vpk-button>
-<br />
-<br />
-<vpk-button icon="plus" iconPosition="right" color="primary" label="Primary icon right"></vpk-button>
-<br />
-<br />
-<vpk-button icon="plus" iconPosition="right" color="primary" tooltip="Tooltip instead of label"></vpk-button>
+<h3>Primär- och sekundärknapp utan ikon</h3>
+<vpk-button-row>
+    <vpk-button color="primary" label="Spara"></vpk-button>
+    <vpk-button label="Avbryt"></vpk-button>
+</vpk-button-row>
+
+<h3>Primär- och sekundärknapp med ikon</h3>
+<vpk-button-row>
+    <vpk-button icon="plus" color="primary" label="Lägg till"></vpk-button>    
+    <vpk-button icon="plus" label="Lägg till"></vpk-button>
+</vpk-button-row>
+
+<h3>Primärknapp med ikon till höger</h3>
+<vpk-button-row>
+    <vpk-button icon="plus" iconPosition="right" color="primary" label="Lägg till"></vpk-button>
+</vpk-button-row>
+
+<h3>Primärknapp med större ikon och tooltip</h3>
+<vpk-button-row>
+    <vpk-button icon="plus" iconPosition="right" iconSize="lg" color="primary" tooltip="Lägg till"></vpk-button>
+</vpk-button-row>
