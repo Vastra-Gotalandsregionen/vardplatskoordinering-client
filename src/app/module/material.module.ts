@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   DateAdapter, MAT_DATE_LOCALE,
+  MatButtonModule,
   MatCardModule,
   MatDatepickerModule,
   MatDialogModule,
@@ -23,12 +24,12 @@ import { SwedishDateAdapter } from '../angular/swedish-date-adapter';
   declarations: [],
   imports: [
     CommonModule,
+    MatButtonModule,
     MatCardModule,
     MatToolbarModule,
     MatListModule,
     // MatCheckboxModule,
     // MatCheckboxModule,
-    // MatButtonModule,
     MatInputModule,
     // MatAutocompleteModule,
     MatDatepickerModule,
@@ -57,6 +58,7 @@ import { SwedishDateAdapter } from '../angular/swedish-date-adapter';
     MatPaginatorModule
   ],
   exports: [
+    MatButtonModule,
     MatCardModule,
     MatToolbarModule,
     MatListModule,

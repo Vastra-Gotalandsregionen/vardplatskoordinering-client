@@ -39,6 +39,7 @@ import { LayoutRowComponent } from './elements/layout-row/layout-row.component';
 import { LayoutColumnComponent } from './elements/layout-column/layout-column.component';
 import { LayoutComponent } from './elements/layout/layout.component';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { VpkButtonComponent } from './elements/vpk-button/vpk-button.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
     LayoutComponent,
     LayoutColumnComponent,
     LayoutRowComponent,
+    VpkButtonComponent,
     VpkCardComponent,
     VpkIconComponent,
     VpkListComponent,
