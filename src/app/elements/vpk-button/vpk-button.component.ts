@@ -9,6 +9,7 @@ export class VpkButtonComponent implements OnInit {
 
   
   @Input() color: string;
+  @Input() disabled: boolean = false;
   @Input() icon: string;
   @Input() iconPosition: string = 'left';
   @Input() iconSize: string = 'sg';

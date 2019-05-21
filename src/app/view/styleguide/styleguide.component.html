@@ -40,11 +40,12 @@
 <p>Tillgängliga attribut för vpk-button:</p>
 <ul>
     <li><em>color</em>: Om attributet utelämnas blir knappen en sekundärknapp. Möjliga värden är "primary", "accent", "warn"</li>
+    <li><em>disabled</em>: Om värdet är true blir knappen disabled (inaktiv)</li>
     <li><em>icon</em>: Om attributet utelämnas visas ingen ikon. Möjliga värden: FontAwesome ikoner</li>
     <li><em>iconPosition</em>: Om attributet utelämnas visas ikonen till vänster om knappens text. Möjliga värden är "right"</li>
     <li><em>iconSize</em>: Om attributet utelämnas visas ikonen med storleken "sg" möjliga värden är alla FontAwesome-storlekar men endast "sg" och "lg" har stylats korrekt. </li>
     <li><em>label</em>: Knappens text</li>
-    <li><em>tooltip</em>: Tooltip för knappen</li>    
+    <li><em>tooltip</em>: Tooltip för knappen</li>
 </ul>
 
 <vpk-card>
@@ -69,4 +70,10 @@
     <vpk-button-row>
         <vpk-button icon="plus" iconPosition="right" iconSize="lg" color="primary" tooltip="Lägg till"></vpk-button>
     </vpk-button-row>
+
+    <h3>Inaktiv (disabled) knapp</h3>
+    <vpk-button-row>
+        <vpk-button color="primary" label="Spara" [disabled]="true"></vpk-button>
+    </vpk-button-row>
+
 </vpk-card>
