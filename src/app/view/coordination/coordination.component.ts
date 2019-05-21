@@ -164,7 +164,6 @@ export class CoordinationComponent implements OnInit {
   }
 
   dateSelected(thing, event: any) {
-    console.log(event);
     const d: Date = event.value;
     const dateString = d.toLocaleDateString('se-SE');
     // this.updateView(this.management.id, this.date);
@@ -172,6 +171,6 @@ export class CoordinationComponent implements OnInit {
   }
 
   sum(registreringar: Registrera[], property: string) {
-    return registreringar.map(r => r[property]).reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+    return registreringar.map(r => r[property]).filter(value => !!value).reduce((previousValue, currentValue) => previousValue + currentValue, 0);
   }
 }

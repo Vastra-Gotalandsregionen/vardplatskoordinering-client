@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material';
 import { RegistreraAggregatesDataSource } from '../../service/RegistreraAggregateDataSource';
 import { filter, tap } from 'rxjs/operators';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-decision-table',
@@ -33,7 +34,7 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
 
   expandedElement: any;
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.dataSource.connect(null).pipe(
@@ -55,5 +56,9 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
 
   outputEditDecision(akutenTrappaId: number) {
     this.editDecision.emit(akutenTrappaId);
+  }
+
+  getHtml(html: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }

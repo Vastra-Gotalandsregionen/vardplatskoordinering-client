@@ -35,9 +35,13 @@ import { DefinitionsAdminComponent } from './view/administration/definitions/def
 import { CrudTableComponent } from './elements/crud-table/crud-table.component';
 import { GeneralEditDialogComponent } from './elements/general-edit-dialog/general-edit-dialog.component';
 import { CreateUserDialogComponent } from './elements/create-user-dialog/create-user-dialog.component';
+<<<<<<< HEAD
 import { LayoutRowComponent } from './elements/layout-row/layout-row.component';
 import { LayoutColumnComponent } from './elements/layout-column/layout-column.component';
 import { LayoutComponent } from './elements/layout/layout.component';
+=======
+import { CKEditorModule } from 'ng2-ckeditor';
+>>>>>>> 1584c6656738b0195bb71b813261066dba0733e1
 
 @NgModule({
   declarations: [
@@ -84,6 +88,7 @@ import { LayoutComponent } from './elements/layout/layout.component';
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
+    CKEditorModule
   ],
   providers: [],
   entryComponents: [
