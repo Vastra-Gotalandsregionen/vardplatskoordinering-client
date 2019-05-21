@@ -4,4 +4,14 @@
     vpk-button + vpk-button {
         margin-left: 15px;
     }
+
+    &.vpk-button-row-center {
+        text-align: center;
+    }
+
+    &.vpk-button-row-right {
+        text-align: right;
+    }
+
+
 }

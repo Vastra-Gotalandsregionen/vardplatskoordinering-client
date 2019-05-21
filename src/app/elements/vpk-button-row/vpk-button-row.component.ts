@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'vpk-button-row',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vpk-button-row.component.scss']
 })
 export class VpkButtonRowComponent implements OnInit {
+
+  @Input() align: string = 'left';
 
   constructor() { }
 
