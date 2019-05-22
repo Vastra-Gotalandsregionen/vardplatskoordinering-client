@@ -1,27 +1,50 @@
 .vpk-navigation-card {
 
+    .vpk-navigation-card-link {
+        display: block;
 
-    .vpk-card {
+        .vpk-card {
 
-        .mat-card-header {
-            display: block;
-            text-align: center;
-        }
-
-        .mat-card-content {
-            text-align: center;
-
-            .vpk-navigation-card-label {
-                font-size: 1.4em;
+            .mat-card-header {
+                display: block;
+                text-align: center;
             }
-
-            .vpk-icon {
-                margin-left: 5px;
+    
+            .mat-card-content {
+                text-align: center;
+    
+                .vpk-navigation-card-label {
+                    font-size: 1.4em;
+                }
+    
+                .vpk-icon {
+                    margin-left: 5px;
+                }
+    
             }
+    
+        }        
 
+        &:hover {
+            .vpk-card {
+                border-top-color: $vgr-orange;
+
+                .mat-card-header {
+                    color: $vgr-orange;
+                }
+
+                .mat-card-content {
+                    .vpk-navigation-card-label {
+                        //text-decoration: underline;
+                        color: $vgr-orange;
+                    }
+                    .vpk-icon {
+                        color: $vgr-orange;
+                    }
+                }
+
+            }
         }
-
-
     }
 
 }

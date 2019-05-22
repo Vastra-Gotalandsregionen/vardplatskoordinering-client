@@ -8,18 +8,7 @@
         width: 33.33%;
 
         .vpk-navigation-card-link {
-            display: block;
             margin: 0 10px;
-
-            &:hover {
-                .vpk-card {
-                    border-top-color: $vgr-orange;
-
-                    .mat-card-header {
-                        color: $vgr-orange;
-                    }
-                }
-            }
         }
 
         &:nth-child(3n+1) {
