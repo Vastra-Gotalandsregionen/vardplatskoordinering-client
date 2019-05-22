@@ -44,7 +44,7 @@
     <li><em>disabled</em>: Om värdet är true blir knappen disabled (inaktiv)</li>
     <li><em>icon</em>: Om attributet utelämnas visas ingen ikon. Möjliga värden: FontAwesome ikoner</li>
     <li><em>iconPosition</em>: Om attributet utelämnas visas ikonen till vänster om knappens text. Möjliga värden är "right"</li>
-    <li><em>iconSize</em>: Om attributet utelämnas visas ikonen med storleken "sg" möjliga värden är alla FontAwesome-storlekar men endast "sg" och "lg" har stylats korrekt. </li>
+    <li><em>iconSize</em>: Om attributet utelämnas visas ikonen med storleken "sg". Möjliga värden är alla FontAwesome-storlekar men endast "sg" har stylats för knappar med text. För ikon-knappar är "sg", "lg" och "2x" stylade.
     <li><em>label</em>: Knappens text</li>
     <li><em>tooltip</em>: Tooltip för knappen</li>
 </ul>
@@ -72,6 +72,13 @@
         <vpk-button class="condensed" icon="plus" iconSize="lg" color="primary" tooltip="Lägg till"></vpk-button>
         <vpk-button class="condensed" icon="pen" iconSize="sg" tooltip="Redigera"></vpk-button>
     </vpk-button-row>
+
+    <h3>Större Ikon-knappar</h3>
+    <vpk-button-row>
+        <vpk-button class="condensed" icon="plus" iconSize="2x" color="primary" tooltip="Lägg till"></vpk-button>
+        <vpk-button class="condensed" icon="pen" iconSize="2x" tooltip="Redigera"></vpk-button>
+    </vpk-button-row>
+
 
     <h3>Inaktiv (disabled) knapp</h3>
     <vpk-button-row>

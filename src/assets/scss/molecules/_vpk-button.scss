@@ -18,4 +18,16 @@
         }
     }
 
+    &.vpk-button-icon-2x {
+        button {
+            line-height: 48px;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            .ng-fa-icon {
+                vertical-align: -15%;
+            }
+        }
+    }
+
 }
