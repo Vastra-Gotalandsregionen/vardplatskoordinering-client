@@ -23,7 +23,7 @@ export class ApplicationAdministrationComponent implements OnInit {
     let navItem2 = new NavItem('Områden', 'Välj', '/areas', '', '');
     let navItem3 = new NavItem('Avdelningar', 'Välj', '/units', '', '');
     let navItem4 = new NavItem('Användare', 'Välj', '/user-admin', '', '');
-    let navItem5 = new NavItem('Definitioner', 'Välj', '/definition', '', '');
+    let navItem5 = new NavItem('Definitioner', 'Välj', '/administration/definition', '', '');
 
     navItems.push(navItem1);
     navItems.push(navItem2);
