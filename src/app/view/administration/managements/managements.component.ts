@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Management } from '../../domain/Management';
+import { Management } from '../../../domain/Management';
 import { HttpClient } from '@angular/common/http';
-import { FieldConfig } from '../../domain/FieldConfig';
-import { BasicEditDataSource } from '../../service/BasicEditDataSource';
+import { FieldConfig } from '../../../domain/FieldConfig';
+import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
 
 @Component({
   selector: 'app-managements',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavItem } from '../../domain/NavItem';
+import { NavItem } from '../../../domain/NavItem';
 
 @Component({
   selector: 'app-administration',
@@ -17,13 +17,13 @@ export class ApplicationAdministrationComponent implements OnInit {
   }
 
   getNavItems(): NavItem[] {
-    let navItems: NavItem[]  = [];
+    const navItems: NavItem[]  = [];
 
-    let navItem1 = new NavItem('Förvaltningar', 'Välj', '/managements', '', '');
-    let navItem2 = new NavItem('Områden', 'Välj', '/areas', '', '');
-    let navItem3 = new NavItem('Avdelningar', 'Välj', '/units', '', '');
-    let navItem4 = new NavItem('Användare', 'Välj', '/user-admin', '', '');
-    let navItem5 = new NavItem('Definitioner', 'Välj', '/administration/definition', '', '');
+    const navItem1 = new NavItem('Förvaltningar', 'Välj', '/administration/managements', '', '');
+    const navItem2 = new NavItem('Områden', 'Välj', '/administration/areas', '', '');
+    const navItem3 = new NavItem('Avdelningar', 'Välj', '/administration/units', '', '');
+    const navItem4 = new NavItem('Användare', 'Välj', '/administration/user-admin', '', '');
+    const navItem5 = new NavItem('Definitioner', 'Välj', '/administration/definition', '', '');
 
     navItems.push(navItem1);
     navItems.push(navItem2);

@@ -23,13 +23,12 @@ import { VpkListComponent } from './elements/vpk-list/vpk-list.component';
 import { VpkListItemComponent } from './elements/vpk-list-item/vpk-list-item.component';
 import { DecisionTableComponent } from './elements/decision-table/decision-table.component';
 import { EditDecisionDialogComponent } from './elements/edit-decision-dialog/edit-decision-dialog.component';
-import { ApplicationAdministrationComponent } from './view/application.administration/application.administration.component';
+import { ApplicationAdministrationComponent } from './view/administration/application.administration/application.administration.component';
 import { UnitsComponent } from './view/administration/units/units.component';
-import { UsersComponent } from './view/users/users.component';
-import { ManagementsComponent } from './view/managements/managements.component';
+import { ManagementsComponent } from './view/administration/managements/managements.component';
 import { AdministrationComponent } from './view/administration/administration/administration.component';
 import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
-import { UserAdminComponent } from './view/user-admin/user-admin.component';
+import { UserAdminComponent } from './view/administration/user-admin/user-admin.component';
 import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-dialog.component';
 import { DefinitionsAdminComponent } from './view/administration/definitions/definitions-admin.component';
 import { CrudTableComponent } from './elements/crud-table/crud-table.component';
@@ -86,7 +85,6 @@ import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vp
     EditDecisionDialogComponent,
     ApplicationAdministrationComponent,
     UnitsComponent,
-    UsersComponent,
     ManagementsComponent,
     AdministrationComponent,
     DefinitionsAdminComponent,

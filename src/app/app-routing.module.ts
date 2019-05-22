@@ -3,13 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './view/home/home.component';
 import { CoordinationComponent } from './view/coordination/coordination.component';
 import { StyleguideComponent } from './view/styleguide/styleguide.component';
-import { ApplicationAdministrationComponent } from './view/application.administration/application.administration.component';
-import { UsersComponent } from './view/users/users.component';
+import { ApplicationAdministrationComponent } from './view/administration/application.administration/application.administration.component';
 import { UnitsComponent } from './view/administration/units/units.component';
-import { ManagementsComponent } from './view/managements/managements.component';
+import { ManagementsComponent } from './view/administration/managements/managements.component';
 import { AdministrationComponent } from './view/administration/administration/administration.component';
 import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
-import { UserAdminComponent } from './view/user-admin/user-admin.component';
+import { UserAdminComponent } from './view/administration/user-admin/user-admin.component';
 import { DefinitionsAdminComponent } from './view/administration/definitions/definitions-admin.component';
 
 const routes: Routes = [
@@ -35,26 +34,21 @@ const routes: Routes = [
     component: DefinitionsAdminComponent
   },
   {
-    path: 'users',
-    component: UsersComponent
-  },
-
-  {
-    path: 'units',
+    path: 'administration/units',
     component: UnitsComponent
   },
 
   {
-    path: 'managements',
+    path: 'administration/managements',
     component: ManagementsComponent
   },
 
   {
-    path: 'areas',
+    path: 'administration/areas',
     component: AdministrationComponent
   },
   {
-    path: 'user-admin',
+    path: 'administration/user-admin',
     component: UserAdminComponent
   },
   {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../../domain/User';
-import { EditUserDialogComponent } from '../../elements/edit-user-dialog/edit-user-dialog.component';
+import { User } from '../../../domain/User';
+import { EditUserDialogComponent } from '../../../elements/edit-user-dialog/edit-user-dialog.component';
 import { MatDialog } from '@angular/material';
-import { CreateUserDialogComponent } from '../../elements/create-user-dialog/create-user-dialog.component';
+import { CreateUserDialogComponent } from '../../../elements/create-user-dialog/create-user-dialog.component';
 
 @Component({
   selector: 'app-user-admin',
