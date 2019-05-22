@@ -1,28 +1,40 @@
-<button mat-raised-button (click)="openAdd()">Lägg till</button>
+<vpk-title-row [heading]="heading">
+  <vpk-button-row align="right">
+    <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till" (click)="openAdd()"></vpk-button-fab>
+  </vpk-button-row>
+</vpk-title-row>
 
-<table mat-table [dataSource]="dataSource">
+<vpk-card>
+  <table mat-table [dataSource]="dataSource">
 
-  <ng-container *ngFor="let config of fieldConfigs" matColumnDef="{{config.name}}">
-    <th mat-header-cell *matHeaderCellDef>{{config.name}}</th>
-    <td mat-cell *matCellDef="let item" [innerHTML]="getValue(config, item[config.name])"></td>
-  </ng-container>
+    <ng-container *ngFor="let config of fieldConfigs" matColumnDef="{{config.name}}">
+      <th mat-header-cell *matHeaderCellDef>{{config.name}}</th>
+      <td mat-cell *matCellDef="let item" [innerHTML]="getValue(config, item[config.name])"></td>
+    </ng-container>
 
-  <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let item">
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <vpk-icon icon="ellipsis-v"></vpk-icon>
-      </button>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let item">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <vpk-icon icon="ellipsis-v"></vpk-icon>
+        </button>
 
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="openEdit(item)"><vpk-icon icon="edit"></vpk-icon> Redigera</button>
-        <button mat-menu-item (click)="confirmDelete(item)"><vpk-icon icon="trash"></vpk-icon> Radera</button>
-      </mat-menu>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openEdit(item)">
+            <vpk-icon icon="edit"></vpk-icon>
+            Redigera
+          </button>
+          <button mat-menu-item (click)="confirmDelete(item)">
+            <vpk-icon icon="trash"></vpk-icon>
+            Radera
+          </button>
+        </mat-menu>
 
-    </td>
-  </ng-container>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="getColumns()"></tr>
-  <tr mat-row *matRowDef="let item; columns: getColumns();"></tr>
+    <tr mat-header-row *matHeaderRowDef="getColumns()"></tr>
+    <tr mat-row *matRowDef="let item; columns: getColumns();"></tr>
 
-</table>
+  </table>
+</vpk-card>

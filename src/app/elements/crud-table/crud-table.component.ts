@@ -15,6 +15,7 @@ export class CrudTableComponent implements OnInit {
 
   @Input() fieldConfigs: FieldConfig[];
   @Input() dataSource: BasicEditDataSource<any>;
+  @Input() heading: string;
 
   constructor(public dialog: MatDialog,
               private sanitizer: DomSanitizer) { }
