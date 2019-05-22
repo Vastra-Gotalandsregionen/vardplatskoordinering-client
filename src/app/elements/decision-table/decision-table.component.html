@@ -35,7 +35,9 @@
 
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let aggregate"><button (click)="outputEditDecision(aggregate.akutenTrappaId)">Redigera</button> </td>
+    <td mat-cell *matCellDef="let aggregate">
+        <vpk-button (click)="outputEditDecision(aggregate.akutenTrappaId)" class="condensed" icon="pen" tooltip="Redigera"></vpk-button>
+    </td>
   </ng-container>
 
   <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
