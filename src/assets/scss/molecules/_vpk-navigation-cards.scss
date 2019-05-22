@@ -1,0 +1,30 @@
+.vpk-navigation-cards {
+
+    @include clearfix();
+
+    .vpk-navigation-card {
+
+        float: left;
+        width: 33.33%;
+
+        .vpk-navigation-card-link {
+            margin: 0 10px;
+        }
+
+        &:nth-child(3n+1) {
+            .vpk-navigation-card-link {
+                margin-left: 0;
+            }
+        }
+
+        &:nth-child(n+3):nth-child(odd) {
+            .vpk-navigation-card-link {
+                margin-right: 0;
+            }
+        }
+
+        
+
+    }
+
+}

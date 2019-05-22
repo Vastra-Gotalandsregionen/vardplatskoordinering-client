@@ -1,14 +1,24 @@
-<h1>{{management?.name}}{{management ? ', ' : ''}} {{dayName ? dayName + ' ' : ''}}{{date}}</h1>
+<vpk-title-row heading="{{management?.name}}{{management ? ', ' : ''}} {{dayName ? dayName + ' ' : ''}}{{date}}">
+    <vpk-button-row align="right">
+        <!--
+        <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>
+        -->
+        <vpk-button-fab (click)="picker.open()" icon="calendar-day" color="" tooltip="Byt datum"></vpk-button-fab>
+    </vpk-button-row>           
+</vpk-title-row>
+
+
 <div>
-  <input  (dateChange)="dateSelected('change', $event)" [(ngModel)]="dateObject" type="hidden" [matDatepicker]="picker" placeholder="Choose a date">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <input  (dateChange)="dateSelected('change', $event)" [(ngModel)]="dateObject" type="hidden" [matDatepicker]="picker" placeholder="Välj datum">
   <mat-datepicker touchUi #picker></mat-datepicker>
 </div>
 
 <vpk-card title="Dagens beslut">
   <div *ngIf="(todaysDecisionDataSource.count | async) === 0">
-    Det finns inget beslut för dagen ännu.
-    <div><button (click)="editNewDecision()">Plus</button></div>
+
+    <vpk-alert message="Det finns inget beslut för dagen ännu."></vpk-alert>
+
+    <vpk-button (click)="editNewDecision()" class="condensed" icon="plus" iconSize="2x" tooltip="Lägg till"></vpk-button>
   </div>
 
   <app-decision-table [dataSource]="todaysDecisionDataSource" (editDecision)="editDecisionByAkutenTrappaId($event)"></app-decision-table>
@@ -69,10 +79,8 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let registrera">
-        <button (click)="editRegistrera(registrera)">
-          <span *ngIf="!registrera.dispVpl">add</span>
-          <span *ngIf="registrera.dispVpl">edit</span>
-        </button>
+          <vpk-button *ngIf="!registrera.dispVpl" (click)="editRegistrera(registrera)" class="condensed" icon="plus" tooltip="Lägg till"></vpk-button>
+          <vpk-button *ngIf="registrera.dispVpl" (click)="editRegistrera(registrera)" class="condensed" icon="pen" tooltip="Redigera"></vpk-button>
       </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>

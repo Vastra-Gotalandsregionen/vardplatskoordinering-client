@@ -44,6 +44,12 @@ import { MatMenuModule } from '@angular/material';
 import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/confirm-delete-dialog.component';
 import { VpkButtonRowComponent } from './elements/vpk-button-row/vpk-button-row.component';
 import { VpkButtonFabComponent } from './elements/vpk-button-fab/vpk-button-fab.component';
+import { VpkNavigationCardsComponent } from './elements/vpk-navigation-cards/vpk-navigation-cards.component';
+import { VpkNavigationCardComponent } from './elements/vpk-navigation-card/vpk-navigation-card.component';
+import { VpkTitleRowComponent } from './elements/vpk-title-row/vpk-title-row.component';
+import { VpkAlertComponent } from './elements/vpk-alert/vpk-alert.component';
+import { VpkNavigationCardContentComponent } from './elements/vpk-navigation-card-content/vpk-navigation-card-content.component';
+import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vpk-list-item-content.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +68,13 @@ import { VpkButtonFabComponent } from './elements/vpk-button-fab/vpk-button-fab.
     VpkCardComponent,
     VpkIconComponent,
     VpkListComponent,
+    VpkListItemContentComponent,
     VpkListItemComponent,
+    VpkAlertComponent,
+    VpkNavigationCardComponent,
+    VpkNavigationCardContentComponent,
+    VpkNavigationCardsComponent,
+    VpkTitleRowComponent,
     // Views
     HomeComponent,
     CoordinationComponent,

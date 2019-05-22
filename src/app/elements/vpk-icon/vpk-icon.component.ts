@@ -3,7 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'vpk-icon',
   templateUrl: './vpk-icon.component.html',
-  styleUrls: ['./vpk-icon.component.scss']
+  styleUrls: ['./vpk-icon.component.scss'],
+  host: {'class': 'vpk-icon'}
 })
 export class VpkIconComponent implements OnInit {
 

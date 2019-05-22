@@ -22,9 +22,12 @@ export class VpkButtonComponent implements OnInit {
 
     let classes = 'vpk-button';
 
-    if(this.class != undefined) {
-      classes = classes + ' ' + this.class;
-    }
+      if(this.class != undefined) {
+        classes = classes + ' ' + this.class;
+      }
+
+      // Add icon size indication
+      classes = classes + ' ' + 'vpk-button-icon-' + this.iconSize;
 
       return classes;
   }
