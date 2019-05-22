@@ -48,6 +48,8 @@ import { VpkNavigationCardsComponent } from './elements/vpk-navigation-cards/vpk
 import { VpkNavigationCardComponent } from './elements/vpk-navigation-card/vpk-navigation-card.component';
 import { VpkTitleRowComponent } from './elements/vpk-title-row/vpk-title-row.component';
 import { VpkAlertComponent } from './elements/vpk-alert/vpk-alert.component';
+import { VpkNavigationCardContentComponent } from './elements/vpk-navigation-card-content/vpk-navigation-card-content.component';
+import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vpk-list-item-content.component';
 
 @NgModule({
   declarations: [
@@ -66,9 +68,11 @@ import { VpkAlertComponent } from './elements/vpk-alert/vpk-alert.component';
     VpkCardComponent,
     VpkIconComponent,
     VpkListComponent,
+    VpkListItemContentComponent,
     VpkListItemComponent,
     VpkAlertComponent,
     VpkNavigationCardComponent,
+    VpkNavigationCardContentComponent,
     VpkNavigationCardsComponent,
     VpkTitleRowComponent,
     // Views

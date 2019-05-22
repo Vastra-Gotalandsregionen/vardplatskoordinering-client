@@ -1,15 +1,9 @@
 <a *ngIf="navItem.routerLink" class="vpk-navigation-card-link" [routerLink]="navItem.routerLink">
-    <vpk-card [title]="navItem.label">
-        <span *ngIf="navItem.subLabel" class="vpk-navigation-card-label">{{navItem.subLabel}}</span>
-        <vpk-icon *ngIf="navItem.subLabel" icon="arrow-right"></vpk-icon>
-    </vpk-card>
+    <vpk-navigation-card-content [navItem]="navItem"></vpk-navigation-card-content>
 </a>
 
 <a *ngIf="navItem.url" class="vpk-navigation-card-link" [href]="navItem.url">
-    <vpk-card [title]="navItem.label">
-        <span *ngIf="navItem.subLabel" class="vpk-navigation-card-label">{{navItem.subLabel}}</span>
-        <vpk-icon *ngIf="navItem.subLabel" icon="arrow-right"></vpk-icon>
-    </vpk-card>   
+    <vpk-navigation-card-content [navItem]="navItem"></vpk-navigation-card-content>
 </a>
     
 

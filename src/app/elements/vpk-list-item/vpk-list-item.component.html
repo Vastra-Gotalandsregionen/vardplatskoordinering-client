@@ -1,21 +1,7 @@
 <a *ngIf="navItem.routerLink" class="vpk-list-item-link" [routerLink]="navItem.routerLink">
-    <div fxLayout="row">
-        <div fxFlex class="vpk-list-item-text" >
-            {{navItem.label}}
-        </div>
-        <div *ngIf="navItem.icon" fxFlex="40px" class="vpk-list-item-icon" >
-            <vpk-icon [icon]="navItem.icon"></vpk-icon>
-        </div>
-    </div>
+    <vpk-list-item-content [navItem]="navItem"></vpk-list-item-content>
 </a>
 
 <a *ngIf="navItem.url" class="vpk-list-item-link" [href]="navItem.url">
-    <div fxLayout="row">
-        <div fxFlex class="vpk-list-item-text" >
-            {{navItem.label}}
-        </div>
-        <div *ngIf="navItem.icon" fxFlex="40px" class="vpk-list-item-icon" >
-            <vpk-icon [icon]="navItem.icon"></vpk-icon>
-        </div>
-    </div>
+    <vpk-list-item-content [navItem]="navItem"></vpk-list-item-content>
 </a>
