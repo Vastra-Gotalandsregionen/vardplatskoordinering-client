@@ -116,3 +116,14 @@
 
 <h2>Navigation cards</h2>
 <vpk-navigation-cards [navItems]="navItems"></vpk-navigation-cards>
+
+<h2>Title row - heading only</h2>
+<vpk-title-row heading="Rubriken står här"></vpk-title-row>
+
+<h2>Title row - with controls</h2>
+<vpk-title-row heading="Rubriken står här">
+    <vpk-button-row align="right">
+        <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>    
+        <vpk-button-fab icon="plus" tooltip="Lägg till"></vpk-button-fab>
+    </vpk-button-row>           
+</vpk-title-row>

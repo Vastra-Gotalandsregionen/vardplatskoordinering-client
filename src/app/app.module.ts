@@ -46,6 +46,7 @@ import { VpkButtonRowComponent } from './elements/vpk-button-row/vpk-button-row.
 import { VpkButtonFabComponent } from './elements/vpk-button-fab/vpk-button-fab.component';
 import { VpkNavigationCardsComponent } from './elements/vpk-navigation-cards/vpk-navigation-cards.component';
 import { VpkNavigationCardComponent } from './elements/vpk-navigation-card/vpk-navigation-card.component';
+import { VpkTitleRowComponent } from './elements/vpk-title-row/vpk-title-row.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { VpkNavigationCardComponent } from './elements/vpk-navigation-card/vpk-n
     VpkListItemComponent,
     VpkNavigationCardComponent,
     VpkNavigationCardsComponent,
+    VpkTitleRowComponent,
     // Views
     HomeComponent,
     CoordinationComponent,
