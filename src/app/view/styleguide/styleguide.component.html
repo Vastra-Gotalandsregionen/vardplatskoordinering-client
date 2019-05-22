@@ -1,12 +1,22 @@
 <h1>Styleguide</h1>
 
+<app-layout-row>
+
+        <app-layout-column width=3>
+        </app-layout-column>
+
+        <app-layout-column width=8>
+        </app-layout-column>
+</app-layout-row>
+
+
 <h2>VPK card</h2>
 <vpk-card title="Card title" icon="bed">Some content</vpk-card>
 
 <vpk-card title="No icon">Some content</vpk-card>
 
 <h2>VPK list</h2>
-<vpk-list [navItems]="listNavItems"></vpk-list>
+<vpk-list [navItems]="mockListNavItems"></vpk-list>
 
 <h2>Layout med app-layout-row och app-layout-column</h2>
 <p>Värdet på width för app-layout-column kan vara mellan 1-12 summan av width för alla kolumnerna i en app-layout-row skall vara 12.</p>
@@ -14,12 +24,12 @@
 <app-layout-row>
     <app-layout-column width=6>
         <vpk-card title="Dokument" icon="file-alt">
-                <vpk-list [navItems]="listNavItems"></vpk-list>
+                <vpk-list [navItems]="mockListNavItems"></vpk-list>
         </vpk-card>
         </app-layout-column>
     <app-layout-column width=6>
         <vpk-card title="Länkar" icon="link">
-            <vpk-list [navItems]="listNavItems"></vpk-list>
+            <vpk-list [navItems]="mockListNavItems"></vpk-list>
         </vpk-card>
         </app-layout-column>
 </app-layout-row>
@@ -103,7 +113,7 @@
 </vpk-button-row>
 
 <h2>Navigation cards</h2>
-<vpk-navigation-cards [navItems]="cardNavItems"></vpk-navigation-cards>
+<vpk-navigation-cards [navItems]="mockCardNavItems"></vpk-navigation-cards>
 
 <h2>Title row - heading only</h2>
 <vpk-title-row heading="Rubriken står här"></vpk-title-row>
@@ -118,13 +128,13 @@
 
 <h2>Alerts</h2>
 <h3>Info (default)</h3>
-<vpk-alert [message]="alertMessage"></vpk-alert>
+<vpk-alert [message]="mockAlertMessage"></vpk-alert>
 
 <h3>Success</h3>
-<vpk-alert [message]="alertMessage" type="success"></vpk-alert>
+<vpk-alert [message]="mockAlertMessage" type="success"></vpk-alert>
 
 <h3>Danger</h3>
-<vpk-alert [message]="alertMessage" type="danger"></vpk-alert>
+<vpk-alert [message]="mockAlertMessage" type="danger"></vpk-alert>
 
 <h3>Warning</h3>
-<vpk-alert [message]="alertMessage" type="warning"></vpk-alert>
+<vpk-alert [message]="mockAlertMessage" type="warning"></vpk-alert>

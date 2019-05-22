@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { NavItem } from '../../domain/NavItem';
 
+//import * as data from './example.json';
+
 @Component({
   selector: 'app-styleguide',
   templateUrl: './styleguide.component.html',
@@ -9,19 +11,23 @@ import { NavItem } from '../../domain/NavItem';
 })
 export class StyleguideComponent implements OnInit {
 
-  cardNavItems: NavItem[] = [];
-  listNavItems: NavItem[] = [];
+  // Mock Data
+  mockAlertMessage: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate eleifend fermentum. Maecenas pellentesque sollicitudin rhoncus.';
+  mockCardNavItems: NavItem[] = [];
+  mockListNavItems: NavItem[] = [];
 
-  alertMessage: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate eleifend fermentum. Maecenas pellentesque sollicitudin rhoncus.';
+  styleGuideNavItems: NavItem[] = [];  
 
   constructor() { }
 
   ngOnInit() {
-    this.cardNavItems = this.getCardNavItems();
-    this.listNavItems = this.getListNavItems();
+    this.mockCardNavItems = this.getMockCardNavItems();
+    this.mockListNavItems = this.getMockListNavItems();
+
+    this.styleGuideNavItems = this.getStyleGuideNavItems();
   }
 
-  getCardNavItems(): NavItem[] {
+  getMockCardNavItems(): NavItem[] {
     let navItems: NavItem[]  = [];
 
     let navItem1 = new NavItem('Hem', 'Välj', '/hem', '', '');
@@ -37,7 +43,7 @@ export class StyleguideComponent implements OnInit {
     return navItems;
   }
 
-  getListNavItems(): NavItem[] {
+  getMockListNavItems(): NavItem[] {
     let navItems: NavItem[]  = [];
 
     let navItem1 = new NavItem('Till startsidan', '', '/hem', '', 'arrow-right');
@@ -49,6 +55,21 @@ export class StyleguideComponent implements OnInit {
     navItems.push(navItem3);
 
     return navItems;
-  }  
+  }
+  
+  getStyleGuideNavItems(): NavItem[] {
+    let navItems: NavItem[]  = [];
+
+    // let navItem1 = new NavItem('Till startsidan', '', '/hem', '', 'arrow-right');
+    // let navItem2 = new NavItem('Ladda ner', '', '#download-dummy', '', 'file-download');
+    // let navItem3 = new NavItem('Google', '', '', 'http://www.google.se', 'arrow-right');
+
+    // navItems.push(navItem1);
+    // navItems.push(navItem2);
+    // navItems.push(navItem3);
+
+
+    return navItems;
+  }
 
 }
