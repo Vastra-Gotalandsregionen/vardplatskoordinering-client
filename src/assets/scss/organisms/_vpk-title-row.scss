@@ -1,6 +1,10 @@
 .vpk-title-row {
-
+    display: block;
     margin: 0 0 20px 0;
+
+    .row {
+        padding: 0;
+    }
 
     .vpk-title-row-heading-col {
         .vpk-title-row-heading {
