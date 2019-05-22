@@ -11,6 +11,8 @@ export class StyleguideComponent implements OnInit {
 
   navItems: NavItem[] = [];
 
+  alertMessage: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate eleifend fermentum. Maecenas pellentesque sollicitudin rhoncus.';
+
   constructor() { }
 
   ngOnInit() {

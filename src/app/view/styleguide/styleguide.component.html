@@ -127,3 +127,16 @@
         <vpk-button-fab icon="plus" tooltip="Lägg till"></vpk-button-fab>
     </vpk-button-row>           
 </vpk-title-row>
+
+<h2>Alerts</h2>
+<h3>Info (default)</h3>
+<vpk-alert [message]="alertMessage"></vpk-alert>
+
+<h3>Success</h3>
+<vpk-alert [message]="alertMessage" type="success"></vpk-alert>
+
+<h3>Danger</h3>
+<vpk-alert [message]="alertMessage" type="danger"></vpk-alert>
+
+<h3>Warning</h3>
+<vpk-alert [message]="alertMessage" type="warning"></vpk-alert>
