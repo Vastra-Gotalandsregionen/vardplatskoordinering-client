@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FieldConfig } from '../../domain/FieldConfig';
-import { BasicEditDataSource } from '../../service/BasicEditDataSource';
-import { Administration } from '../../domain/Administration';
+import { FieldConfig } from '../../../domain/FieldConfig';
+import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
+import { Administration } from '../../../domain/Administration';
 import { HttpClient } from '@angular/common/http';
-import { Management } from '../../domain/Management';
+import { Management } from '../../../domain/Management';
 
 @Component({
   selector: 'app-areas',

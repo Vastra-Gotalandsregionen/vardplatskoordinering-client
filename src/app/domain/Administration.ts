@@ -5,4 +5,5 @@ export class Administration {
   maltalVardag: number;
   maltalHelg: number;
   maltalStorhelg: number;
+  management: number;
 }

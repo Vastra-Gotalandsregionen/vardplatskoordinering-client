@@ -9,7 +9,7 @@ import { Management } from '../../domain/Management';
 })
 export class CoordinationLandingComponent implements OnInit {
 
-  private managements: Management[];
+  managements: Management[];
 
   constructor(private http: HttpClient) { }
 

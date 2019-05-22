@@ -19,7 +19,7 @@ export class DefinitionsAdminComponent implements OnInit {
     FieldConfig.from('lista', 'input')
   ];
 
-  private dataSource: BasicEditDataSource<Definition>;
+  dataSource: BasicEditDataSource<Definition>;
 
   constructor(http: HttpClient) {
     this.dataSource = new BasicEditDataSource<Definition>(http, this.resourceUrl);
