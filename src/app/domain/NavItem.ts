@@ -1,13 +1,19 @@
 export class NavItem {
-  name: string;
+  label: string;
+  subLabel: string;
   routerLink: string;
   url: string;
-  label: string;
+  icon: string;
 
-  constructor(name: string, routerLink: string, url: string, label: string) {
 
-    if(name != '') {
-      this.name = name;
+  constructor(label: string, subLabel: string, routerLink: string, url: string, icon: string) {
+
+    if(label != '') {
+      this.label = label;
+    }
+
+    if(subLabel != '') {
+      this.subLabel = subLabel;
     }
 
     if(routerLink != '') {
@@ -18,9 +24,10 @@ export class NavItem {
       this.url = url;
     }
 
-    if(label != '') {
-      this.label = label;
+    if(icon != '') {
+      this.icon = icon;
     }
+
 }  
 
 }

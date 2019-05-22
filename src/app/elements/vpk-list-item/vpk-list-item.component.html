@@ -1,15 +1,21 @@
-<a [href]="url" class="vpk-list-item-link">
-
+<a *ngIf="navItem.routerLink" class="vpk-list-item-link" [routerLink]="navItem.routerLink">
     <div fxLayout="row">
-
         <div fxFlex class="vpk-list-item-text" >
-            {{text}}
+            {{navItem.label}}
         </div>
-
-        <div *ngIf="icon" fxFlex="40px" class="vpk-list-item-icon" >
-            <vpk-icon [icon]="icon" [iconSet]="iconSet"></vpk-icon>
+        <div *ngIf="navItem.icon" fxFlex="40px" class="vpk-list-item-icon" >
+            <vpk-icon [icon]="navItem.icon"></vpk-icon>
         </div>
-        
     </div>
+</a>
 
+<a *ngIf="navItem.url" class="vpk-list-item-link" [href]="navItem.url">
+    <div fxLayout="row">
+        <div fxFlex class="vpk-list-item-text" >
+            {{navItem.label}}
+        </div>
+        <div *ngIf="navItem.icon" fxFlex="40px" class="vpk-list-item-icon" >
+            <vpk-icon [icon]="navItem.icon"></vpk-icon>
+        </div>
+    </div>
 </a>

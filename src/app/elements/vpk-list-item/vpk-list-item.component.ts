@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { NavItem } from '../../domain/NavItem';
+
 @Component({
   selector: 'vpk-list-item',
   templateUrl: './vpk-list-item.component.html',
@@ -8,10 +10,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class VpkListItemComponent implements OnInit {
 
-  @Input() text: string = '';
-  @Input() url: string = '';
-  @Input() icon: string;
-  @Input() iconSet: string;
+  @Input() navItem: NavItem[];
 
   constructor() { }
 
