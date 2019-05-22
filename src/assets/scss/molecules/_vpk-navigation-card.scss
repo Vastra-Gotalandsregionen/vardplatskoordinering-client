@@ -1,0 +1,27 @@
+.vpk-navigation-card {
+
+
+    .vpk-card {
+
+        .mat-card-header {
+            display: block;
+            text-align: center;
+        }
+
+        .mat-card-content {
+            text-align: center;
+
+            .vpk-navigation-card-label {
+                font-size: 1.4em;
+            }
+
+            .vpk-icon {
+                margin-left: 5px;
+            }
+
+        }
+
+
+    }
+
+}
