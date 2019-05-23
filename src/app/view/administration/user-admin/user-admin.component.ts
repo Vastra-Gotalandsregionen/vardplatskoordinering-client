@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FieldConfig } from '../../../domain/FieldConfig';
+import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
 import { User } from '../../../domain/User';
-import { EditUserDialogComponent } from '../../../elements/edit-user-dialog/edit-user-dialog.component';
-import { MatDialog } from '@angular/material';
-import { CreateUserDialogComponent } from '../../../elements/create-user-dialog/create-user-dialog.component';
 
 @Component({
   selector: 'app-user-admin',
@@ -11,49 +10,19 @@ import { CreateUserDialogComponent } from '../../../elements/create-user-dialog/
   styleUrls: ['./user-admin.component.scss']
 })
 export class UserAdminComponent implements OnInit {
-  private usernameFilter = '%';
+  fieldConfigs: FieldConfig[] = [
+    FieldConfig.from('username', 'input'),
+    FieldConfig.from('name', 'input')
+  ];
 
-  pageContent: User[] = [];
+  dataSource: BasicEditDataSource<User>;
 
-  pageIndex = 0;
-
-  constructor(private http: HttpClient, public dialog: MatDialog) {
-
+  constructor(private http: HttpClient) {
+    this.dataSource = new BasicEditDataSource(http, '/api/user');
   }
 
   ngOnInit() {
-    const observable = this.http.get('/api/user?username=' + this.usernameFilter + '&page=' + this.pageIndex);
-    observable.subscribe((o: User[]) => {
-      console.log('Found', o);
-      this.pageContent = o;
-    });
-  }
-
-  createUser(): void {
-    const dialogRef = this.dialog.open(CreateUserDialogComponent, {
-      width: '500px',
-      data: { }
-    });
-
-    dialogRef.componentInstance.save.subscribe((result: User) => {
-      if (result) {
-        // this.http.put('/api/user', result).subscribe(() => this.ngOnInit());
-        this.editUser(result);
-      }
-    });
-  }
-
-  editUser(user: User) {
-    const dialogRef = this.dialog.open(EditUserDialogComponent, {
-      width: '500px',
-      data: {user}
-    });
-
-    dialogRef.componentInstance.save.subscribe((result: User) => {
-      if (result) {
-        this.http.put('/api/user', result).subscribe(() => this.ngOnInit());
-      }
-    });
+    this.dataSource.load();
   }
 
 }
