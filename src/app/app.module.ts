@@ -49,6 +49,11 @@ import { VpkTitleRowComponent } from './elements/vpk-title-row/vpk-title-row.com
 import { VpkAlertComponent } from './elements/vpk-alert/vpk-alert.component';
 import { VpkNavigationCardContentComponent } from './elements/vpk-navigation-card-content/vpk-navigation-card-content.component';
 import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vpk-list-item-content.component';
+import { StateService } from './service/state.service';
+import { LoginDialogComponent } from './elements/login-dialog/login-dialog.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './service/auth.service';
+import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +96,9 @@ import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vp
     CrudTableComponent,
     GenericEditDialogComponent,
     ConfirmDeleteDialogComponent,
-    GenericEditDialogComponent
+    GenericEditDialogComponent,
+    LoginDialogComponent,
+    ErrorDialogComponent
     // Attribute Directives
 
   ],
@@ -106,9 +113,13 @@ import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vp
     ReactiveFormsModule,
     FormsModule,
     CKEditorModule,
-    MatMenuModule
+    MatMenuModule,
+    JwtModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    StateService
+  ],
   entryComponents: [
     ConfirmDeleteDialogComponent,
     EditDecisionDialogComponent,
@@ -116,7 +127,9 @@ import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vp
     EditUserDialogComponent,
     GenericEditDialogComponent,
     EditUserDialogComponent,
-    CreateUserDialogComponent
+    CreateUserDialogComponent,
+    ErrorDialogComponent,
+    LoginDialogComponent
   ],
   bootstrap: [AppComponent]
 })
