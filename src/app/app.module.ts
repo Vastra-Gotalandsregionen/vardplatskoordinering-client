@@ -49,6 +49,7 @@ import { VpkTitleRowComponent } from './elements/vpk-title-row/vpk-title-row.com
 import { VpkAlertComponent } from './elements/vpk-alert/vpk-alert.component';
 import { VpkNavigationCardContentComponent } from './elements/vpk-navigation-card-content/vpk-navigation-card-content.component';
 import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vpk-list-item-content.component';
+import { DegreeOfImpactComponent } from './view/administration/degree-of-impact/degree-of-impact.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vp
     CrudTableComponent,
     GenericEditDialogComponent,
     ConfirmDeleteDialogComponent,
-    GenericEditDialogComponent
+    GenericEditDialogComponent,
+    DegreeOfImpactComponent
     // Attribute Directives
 
   ],

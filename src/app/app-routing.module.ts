@@ -10,6 +10,7 @@ import { AdministrationComponent } from './view/administration/administration/ad
 import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
 import { UserAdminComponent } from './view/administration/user-admin/user-admin.component';
 import { DefinitionsAdminComponent } from './view/administration/definitions/definitions-admin.component';
+import { DegreeOfImpactComponent } from './view/administration/degree-of-impact/degree-of-impact.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,12 @@ const routes: Routes = [
     path: 'administration/areas',
     component: AdministrationComponent
   },
+
+  {
+    path: 'administration/degreeOfImpact',
+    component: DegreeOfImpactComponent
+  },
+
   {
     path: 'administration/user-admin',
     component: UserAdminComponent
