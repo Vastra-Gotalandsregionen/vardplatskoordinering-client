@@ -24,12 +24,16 @@ export class ApplicationAdministrationComponent implements OnInit {
     const navItem3 = new NavItem('Avdelningar', 'Välj', '/administration/units', '', '');
     const navItem4 = new NavItem('Användare', 'Välj', '/administration/user-admin', '', '');
     const navItem5 = new NavItem('Definitioner', 'Välj', '/administration/definition', '', '');
+    const navItem6 = new NavItem('Grad av påverkan', 'Välj', '/administration/degreeOfImpact', '', '');
+
 
     navItems.push(navItem1);
     navItems.push(navItem2);
     navItems.push(navItem3);
     navItems.push(navItem4);
     navItems.push(navItem5);
+    navItems.push(navItem6);
+
 
     return navItems;
   }

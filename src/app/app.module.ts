@@ -49,6 +49,9 @@ import { VpkTitleRowComponent } from './elements/vpk-title-row/vpk-title-row.com
 import { VpkAlertComponent } from './elements/vpk-alert/vpk-alert.component';
 import { VpkNavigationCardContentComponent } from './elements/vpk-navigation-card-content/vpk-navigation-card-content.component';
 import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vpk-list-item-content.component';
+import { DegreeOfImpactComponent } from './view/administration/degree-of-impact/degree-of-impact.component';
+import { DegreeOfImpactDialogComponent } from './elements/degree-of-impact-dialog/degree-of-impact-dialog.component';
+import { ViewOnlyImpactDialogComponent } from './elements/view-only-impact-dialog/view-only-impact-dialog.component';
 import { StateService } from './service/state.service';
 import { LoginDialogComponent } from './elements/login-dialog/login-dialog.component';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -97,6 +100,10 @@ import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.compo
     GenericEditDialogComponent,
     ConfirmDeleteDialogComponent,
     GenericEditDialogComponent,
+    DegreeOfImpactComponent,
+    DegreeOfImpactDialogComponent,
+    ViewOnlyImpactDialogComponent,
+    GenericEditDialogComponent,
     LoginDialogComponent,
     ErrorDialogComponent
     // Attribute Directives
@@ -129,7 +136,10 @@ import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.compo
     EditUserDialogComponent,
     CreateUserDialogComponent,
     ErrorDialogComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    CreateUserDialogComponent,
+    DegreeOfImpactDialogComponent,
+    ViewOnlyImpactDialogComponent
   ],
   bootstrap: [AppComponent]
 })
