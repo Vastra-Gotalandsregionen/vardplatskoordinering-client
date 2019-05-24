@@ -47,7 +47,7 @@ export class GenericEditDialogComponent implements OnInit {
     }
 
     if (fieldConfig.type === 'select') {
-      return fieldConfig.options.find(option => option.value === value).label;
+      return fieldConfig.options.find(option => option.value === value).value;
     } else if (fieldConfig.type === 'multiselect') {
       const valueArray = value as Array<string>;
       const arrayValues = fieldConfig.options
@@ -66,7 +66,7 @@ export class GenericEditDialogComponent implements OnInit {
       const parts = field.name.split('.');
 
       let value = this.item;
-      parts.forEach((part, index, array) => {
+      parts.forEach((part, index) => {
         // Is last?
         if (index === parts.length - 1) {
           value[part] = model[field.name];
@@ -75,17 +75,6 @@ export class GenericEditDialogComponent implements OnInit {
         }
       });
 
-     /* let value = this.item;
-      for (const part of parts.slice(0, parts.length - 2)) {
-        if (value instanceof Array) {
-          value = value.map(j => j[part])/!*.join(', ')*!/;
-          break;
-        }
-        value = value[part];
-      }
-
-      debugger;
-      value = model[field.name];*/
     });
 
     this.dialogRef.close();
