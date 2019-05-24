@@ -9,7 +9,7 @@
 
     <ng-container *ngFor="let config of fieldConfigs" matColumnDef="{{config.name}}">
       <th mat-header-cell *matHeaderCellDef>{{config.name}}</th>
-      <td mat-cell *matCellDef="let item" [innerHTML]="getValue(config, item[config.name])"></td>
+      <td mat-cell *matCellDef="let item" [innerHTML]="getValue(config, item, config.name)"></td>
     </ng-container>
 
     <ng-container matColumnDef="edit">
