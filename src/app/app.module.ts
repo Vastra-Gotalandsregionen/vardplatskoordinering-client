@@ -102,7 +102,7 @@ import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.compo
     GenericEditDialogComponent,
     DegreeOfImpactComponent,
     DegreeOfImpactDialogComponent,
-    ViewOnlyImpactDialogComponent
+    ViewOnlyImpactDialogComponent,
     GenericEditDialogComponent,
     LoginDialogComponent,
     ErrorDialogComponent
@@ -136,7 +136,7 @@ import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.compo
     EditUserDialogComponent,
     CreateUserDialogComponent,
     ErrorDialogComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
     CreateUserDialogComponent,
     DegreeOfImpactDialogComponent,
     ViewOnlyImpactDialogComponent
