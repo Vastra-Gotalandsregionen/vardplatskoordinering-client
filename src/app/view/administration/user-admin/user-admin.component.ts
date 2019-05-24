@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FieldConfig, Option } from '../../../domain/FieldConfig';
+import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
 import { User } from '../../../domain/User';
-import { EditUserDialogComponent } from '../../../elements/edit-user-dialog/edit-user-dialog.component';
-import { MatDialog } from '@angular/material';
-import { CreateUserDialogComponent } from '../../../elements/create-user-dialog/create-user-dialog.component';
+import { Administration } from '../../../domain/Administration';
+import { forkJoin } from 'rxjs';
+import { Unit } from '../../../domain/unit';
 
 @Component({
   selector: 'app-user-admin',
@@ -11,49 +13,39 @@ import { CreateUserDialogComponent } from '../../../elements/create-user-dialog/
   styleUrls: ['./user-admin.component.scss']
 })
 export class UserAdminComponent implements OnInit {
-  private usernameFilter = '%';
+  fieldConfigs: FieldConfig[];
 
-  pageContent: User[] = [];
+  dataSource: BasicEditDataSource<User>;
 
-  pageIndex = 0;
-
-  constructor(private http: HttpClient, public dialog: MatDialog) {
-
+  constructor(private http: HttpClient) {
+    this.dataSource = new BasicEditDataSource(http, '/api/user/dto');
   }
 
   ngOnInit() {
-    const observable = this.http.get('/api/user?username=' + this.usernameFilter + '&page=' + this.pageIndex);
-    observable.subscribe((o: User[]) => {
-      console.log('Found', o);
-      this.pageContent = o;
-    });
-  }
+    this.dataSource.load();
 
-  createUser(): void {
-    const dialogRef = this.dialog.open(CreateUserDialogComponent, {
-      width: '500px',
-      data: { }
-    });
+    const administrationObservable = this.http.get<Administration[]>('/api/administration');
+    const unitObservable = this.http.get<Unit[]>('/api/unit');
+    // const administrationObservable = this.http.get<Administration[]>('/api/role');
 
-    dialogRef.componentInstance.save.subscribe((result: User) => {
-      if (result) {
-        // this.http.put('/api/user', result).subscribe(() => this.ngOnInit());
-        this.editUser(result);
-      }
-    });
-  }
+    forkJoin([administrationObservable, unitObservable])
+      .subscribe((resultArray) => {
+        const allAdministrations = resultArray[0];
+        const allUnits = resultArray[1];
 
-  editUser(user: User) {
-    const dialogRef = this.dialog.open(EditUserDialogComponent, {
-      width: '500px',
-      data: {user}
-    });
+        const administrationOptions: Option[] = allAdministrations.map(a => ({label: a.verks, value: a.id}));
+        const unitOptions: Option[] = allUnits.map(a => ({label: a.name, value: a.id}));
+        const roleOptions: Option[] = ['ADMIN', 'VPK', 'VPL'].map(a => ({label: a, value: a}));
 
-    dialogRef.componentInstance.save.subscribe((result: User) => {
-      if (result) {
-        this.http.put('/api/user', result).subscribe(() => this.ngOnInit());
-      }
-    });
+        this.fieldConfigs = [
+          FieldConfig.from('user.username', 'input'),
+          FieldConfig.from('user.name', 'input'),
+          FieldConfig.from('administrationIds', 'multiselect', administrationOptions),
+          FieldConfig.from('unitIds', 'multiselect', unitOptions),
+          FieldConfig.from('roleIds', 'multiselect', roleOptions)
+        ];
+      });
+
   }
 
 }

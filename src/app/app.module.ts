@@ -52,6 +52,11 @@ import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vp
 import { DegreeOfImpactComponent } from './view/administration/degree-of-impact/degree-of-impact.component';
 import { DegreeOfImpactDialogComponent } from './elements/degree-of-impact-dialog/degree-of-impact-dialog.component';
 import { ViewOnlyImpactDialogComponent } from './elements/view-only-impact-dialog/view-only-impact-dialog.component';
+import { StateService } from './service/state.service';
+import { LoginDialogComponent } from './elements/login-dialog/login-dialog.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './service/auth.service';
+import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +103,9 @@ import { ViewOnlyImpactDialogComponent } from './elements/view-only-impact-dialo
     DegreeOfImpactComponent,
     DegreeOfImpactDialogComponent,
     ViewOnlyImpactDialogComponent
+    GenericEditDialogComponent,
+    LoginDialogComponent,
+    ErrorDialogComponent
     // Attribute Directives
 
   ],
@@ -112,9 +120,13 @@ import { ViewOnlyImpactDialogComponent } from './elements/view-only-impact-dialo
     ReactiveFormsModule,
     FormsModule,
     CKEditorModule,
-    MatMenuModule
+    MatMenuModule,
+    JwtModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    StateService
+  ],
   entryComponents: [
     ConfirmDeleteDialogComponent,
     EditDecisionDialogComponent,
@@ -122,6 +134,9 @@ import { ViewOnlyImpactDialogComponent } from './elements/view-only-impact-dialo
     EditUserDialogComponent,
     GenericEditDialogComponent,
     EditUserDialogComponent,
+    CreateUserDialogComponent,
+    ErrorDialogComponent,
+    LoginDialogComponent
     CreateUserDialogComponent,
     DegreeOfImpactDialogComponent,
     ViewOnlyImpactDialogComponent

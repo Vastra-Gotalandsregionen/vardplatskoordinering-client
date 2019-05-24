@@ -4,7 +4,7 @@ import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
 import { HttpClient } from '@angular/common/http';
 import { Unit } from '../../../domain/unit';
 import { Administration } from '../../../domain/Administration';
-import { flatMap, map, toArray } from 'rxjs/operators';
+import { concatAll, flatMap, map, toArray } from 'rxjs/operators';
 import { forkJoin, of } from 'rxjs';
 import { Management } from '../../../domain/Management';
 import { Tuple2 } from '../../../domain/tuple2';
@@ -49,13 +49,14 @@ export class UnitsComponent implements OnInit {
   private updateFieldsConfigByFetchingAdministrationsWithManagement() {
     this.http.get<Administration[]>('/api/administration')
       .pipe(
-        flatMap((administrations: Administration[]) => of(...administrations)),
+        flatMap((administrations: Administration[]) => of(...administrations)), // Emit a stream of administrations instead of single array.
         map((administration: Administration) => forkJoin([
           this.http.get<Management>('/api/management/' + administration.management).pipe(map(m => m.name)),
           of(administration)
-        ])),
-        flatMap(value => value),
-        toArray()
+        ])), // forkJoin to make one observable out of two observables - one for management and one for administration
+        concatAll(), // Flatten the stream of observables to first-order values. The output is arrays with management and administration.
+        // flatMap(value => value),
+        toArray() // Make the stream into an array of the two-length arrays.
       )
       .subscribe((administrationNameManagementNamePairArray) => {
         const options1 = administrationNameManagementNamePairArray.map(e => ({

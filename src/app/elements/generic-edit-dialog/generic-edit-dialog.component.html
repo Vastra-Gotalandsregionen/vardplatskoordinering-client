@@ -16,6 +16,15 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field *ngIf="field.type === 'multiselect'">
+<!--      <mat-label>{{field.name}}</mat-label>-->
+      <mat-select [formControlName]="field.name" multiple>
+        <mat-option *ngFor="let option of field.options" [value]="option.value">
+          {{option.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <button (click)="cancel()">Avbryt</button>
