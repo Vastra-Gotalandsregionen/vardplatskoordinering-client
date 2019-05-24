@@ -37,19 +37,31 @@ export class GenericEditDialogComponent implements OnInit {
   getValue(fieldConfig: FieldConfig, item: any, fieldName: string) {
     const parts = fieldName.split('.');
 
+    // Take care of fieldNames which are dot-separated.
     let value = item;
     for (const part of parts) {
       if (value instanceof Array) {
-        value = value.map(j => j[part])/*.join(', ')*/;
+        value = value.map(j => j[part]);
         break;
       }
+
+      if (!value) {
+        value = {};
+      }
+
       value = value[part];
     }
 
     if (fieldConfig.type === 'select') {
-      return fieldConfig.options.find(option => option.value === value).value;
+      const found = fieldConfig.options.find(option => option.value === value);
+      return found ? found.value : null;
     } else if (fieldConfig.type === 'multiselect') {
-      const valueArray = value as Array<string>;
+      let valueArray = value as Array<string>;
+
+      if (!valueArray) {
+        valueArray = [];
+      }
+
       const arrayValues = fieldConfig.options
         .filter(option => valueArray.indexOf(option.value) > -1)
         .map(option => option.value);
@@ -65,12 +77,16 @@ export class GenericEditDialogComponent implements OnInit {
 
       const parts = field.name.split('.');
 
+      // Take care of fieldNames which are dot-separated.
       let value = this.item;
       parts.forEach((part, index) => {
         // Is last?
         if (index === parts.length - 1) {
           value[part] = model[field.name];
         } else {
+          if (!value[part]) {
+            value[part] = {};
+          }
           value = value[part];
         }
       });

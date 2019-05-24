@@ -38,8 +38,8 @@ export class UnitsComponent implements OnInit {
     this.http.get<Tuple2<Administration, Management>[]>('/api/administration/joinManagement')
       .subscribe((tuples2: Tuple2<Administration, Management>[]) => {
         this.fieldsConfigs = [
-          FieldConfig.from('name', 'input'),
-          FieldConfig.from('administration', 'select',
+          FieldConfig.from('name', 'Namn', 'input'),
+          FieldConfig.from('administration', 'Område', 'select',
             tuples2.map(tuple2 => ({label: tuple2.v2.name + ' > ' + tuple2.v1.verks, value: tuple2.v1.id})))
         ];
       });
@@ -65,8 +65,8 @@ export class UnitsComponent implements OnInit {
         }));
 
         this.fieldsConfigs = [
-          FieldConfig.from('name', 'input'),
-          FieldConfig.from('administration', 'select', options1)
+          FieldConfig.from('name', 'Namn', 'input'),
+          FieldConfig.from('administration', 'Område', 'select', options1)
         ];
       });
   }

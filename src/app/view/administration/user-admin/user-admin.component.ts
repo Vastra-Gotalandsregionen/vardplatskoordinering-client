@@ -13,7 +13,7 @@ import { Unit } from '../../../domain/unit';
   styleUrls: ['./user-admin.component.scss']
 })
 export class UserAdminComponent implements OnInit {
-  fieldConfigs: FieldConfig[];
+  fieldConfigs: FieldConfig[] = [];
 
   dataSource: BasicEditDataSource<User>;
 
@@ -38,11 +38,11 @@ export class UserAdminComponent implements OnInit {
         const roleOptions: Option[] = ['ADMIN', 'VPK', 'VPL'].map(a => ({label: a, value: a}));
 
         this.fieldConfigs = [
-          FieldConfig.from('user.username', 'input'),
-          FieldConfig.from('user.name', 'input'),
-          FieldConfig.from('administrationIds', 'multiselect', administrationOptions),
-          FieldConfig.from('unitIds', 'multiselect', unitOptions),
-          FieldConfig.from('roleIds', 'multiselect', roleOptions)
+          FieldConfig.from('user.username', 'Användarnamn', 'input'),
+          FieldConfig.from('user.name', 'Namn', 'input'),
+          FieldConfig.from('administrationIds', 'Områden', 'multiselect', administrationOptions),
+          FieldConfig.from('unitIds', 'Avdelningar', 'multiselect', unitOptions),
+          FieldConfig.from('roleIds', 'Roller', 'multiselect', roleOptions)
         ];
       });
 

@@ -1,14 +1,16 @@
 export class FieldConfig {
   name: string;
+  label: string;
   type: string;
   options: Option[];
 
-  static from(name, type, options?: Option[]) {
-    return new FieldConfig(name, type, options);
+  static from(name, label, type, options?: Option[]) {
+    return new FieldConfig(name, label, type, options);
   }
 
-  private constructor(name: string, type: string, options?: Option[]) {
+  private constructor(name: string, label: string, type: string, options?: Option[]) {
     this.name = name;
+    this.label = label;
     this.type = type;
     this.options = options;
   }

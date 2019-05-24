@@ -1,15 +1,16 @@
-<form [formGroup]="formGroup">
+<form [formGroup]="formGroup" >
   <div *ngFor="let field of fieldsConfigs">
-    <div><label>{{field.name}}</label></div>
+    <mat-form-field *ngIf="field.type === 'input'">
+      <input matInput placeholder="{{field.label}}" [formControlName]="field.name" />
+    </mat-form-field>
 
-    <input *ngIf="field.type === 'input'" [formControlName]="field.name" />
-
-    <textarea *ngIf="field.type === 'textarea'" [formControlName]="field.name"></textarea>
-
-    <ckeditor *ngIf="field.type === 'ckeditor'" [formControlName]="field.name"></ckeditor>
+    <div *ngIf="field.type === 'ckeditor'">
+      <label>{{field.label}}</label>
+      <ckeditor [formControlName]="field.name"></ckeditor>
+    </div>
 
     <mat-form-field *ngIf="field.type === 'select'">
-<!--      <mat-label>{{field.name}}</mat-label>-->
+      <mat-label>{{field.label}}</mat-label>
       <mat-select [formControlName]="field.name">
         <mat-option *ngFor="let option of field.options" [value]="option.value">
           {{option.label}}
@@ -18,7 +19,7 @@
     </mat-form-field>
 
     <mat-form-field *ngIf="field.type === 'multiselect'">
-<!--      <mat-label>{{field.name}}</mat-label>-->
+      <mat-label>{{field.label}}</mat-label>
       <mat-select [formControlName]="field.name" multiple>
         <mat-option *ngFor="let option of field.options" [value]="option.value">
           {{option.label}}

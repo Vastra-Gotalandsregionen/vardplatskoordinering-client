@@ -12,7 +12,7 @@ import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
 export class ManagementsComponent implements OnInit {
 
   fieldConfigs: FieldConfig[] = [
-    FieldConfig.from('name', 'input')
+    FieldConfig.from('name', 'Namn', 'input')
   ];
 
   dataSource: BasicEditDataSource<Management>;

@@ -25,12 +25,12 @@ export class AdministrationComponent implements OnInit {
     this.http.get('/api/management').subscribe((managements: Management[]) => {
 
       this.fieldConfigs = [
-        FieldConfig.from('verks', 'input'),
-        FieldConfig.from('faststVpl', 'input'),
-        FieldConfig.from('maltalVardag', 'input'),
-        FieldConfig.from('maltalHelg', 'input'),
-        FieldConfig.from('maltalStorhelg', 'input'),
-        FieldConfig.from('management', 'select', managements.map(m => ({label: m.name, value: m.id}))),
+        FieldConfig.from('verks', 'Namn', 'input'),
+        FieldConfig.from('faststVpl', 'Fastställda vårdplatser', 'input'),
+        FieldConfig.from('maltalVardag', 'Måltal vardag', 'input'),
+        FieldConfig.from('maltalHelg', 'Måltal helg', 'input'),
+        FieldConfig.from('maltalStorhelg', 'Måltal storhelg', 'input'),
+        FieldConfig.from('management', 'Förvaltning', 'select', managements.map(m => ({label: m.name, value: m.id}))),
       ];
     });
   }
