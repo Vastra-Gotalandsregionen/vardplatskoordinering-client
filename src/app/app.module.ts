@@ -50,6 +50,8 @@ import { VpkAlertComponent } from './elements/vpk-alert/vpk-alert.component';
 import { VpkNavigationCardContentComponent } from './elements/vpk-navigation-card-content/vpk-navigation-card-content.component';
 import { VpkListItemContentComponent } from './elements/vpk-list-item-content/vpk-list-item-content.component';
 import { DegreeOfImpactComponent } from './view/administration/degree-of-impact/degree-of-impact.component';
+import { DegreeOfImpactDialogComponent } from './elements/degree-of-impact-dialog/degree-of-impact-dialog.component';
+import { ViewOnlyImpactDialogComponent } from './elements/view-only-impact-dialog/view-only-impact-dialog.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,9 @@ import { DegreeOfImpactComponent } from './view/administration/degree-of-impact/
     GenericEditDialogComponent,
     ConfirmDeleteDialogComponent,
     GenericEditDialogComponent,
-    DegreeOfImpactComponent
+    DegreeOfImpactComponent,
+    DegreeOfImpactDialogComponent,
+    ViewOnlyImpactDialogComponent
     // Attribute Directives
 
   ],
@@ -118,7 +122,9 @@ import { DegreeOfImpactComponent } from './view/administration/degree-of-impact/
     EditUserDialogComponent,
     GenericEditDialogComponent,
     EditUserDialogComponent,
-    CreateUserDialogComponent
+    CreateUserDialogComponent,
+    DegreeOfImpactDialogComponent,
+    ViewOnlyImpactDialogComponent
   ],
   bootstrap: [AppComponent]
 })

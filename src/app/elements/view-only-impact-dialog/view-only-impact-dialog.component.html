@@ -1,0 +1,29 @@
+<mat-spinner class="spinner" *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading">
+<h1 mat-dialog-title>Grad of påverkan</h1>
+<mat-dialog-content>
+  <mat-table [dataSource]="impactList">
+    <ng-container matColumnDef="degree">
+      <mat-header-cell *matHeaderCellDef>Grad</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.degree }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="impact">
+      <mat-header-cell *matHeaderCellDef>Påverkan</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.impact }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+      <mat-header-cell *matHeaderCellDef>Påverkan</mat-header-cell>
+      <mat-cell *matCellDef="let element" [innerHTML] = element.impactDetails ></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-dialog-content>
+<mat-dialog-actions>
+</mat-dialog-actions>`
+
+</div>
+

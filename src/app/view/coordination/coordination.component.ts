@@ -12,6 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Management } from '../../domain/Management';
 import { RegistreraAggregatesDataSource } from '../../service/RegistreraAggregateDataSource';
 import { filter, switchMap, tap } from 'rxjs/operators';
+import { DegreeOfImpactDialogComponent } from '../../elements/degree-of-impact-dialog/degree-of-impact-dialog.component';
+import { ViewOnlyImpactDialogComponent } from '../../elements/view-only-impact-dialog/view-only-impact-dialog.component';
+
 
 @Component({
   selector: 'app-coordination',
@@ -175,5 +178,11 @@ export class CoordinationComponent implements OnInit {
       .map(r => r[property])
       .filter(value => !!value)
       .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+  }
+
+  openDegreeOfImpactDialog() {
+    const dialogRef = this.dialog.open(ViewOnlyImpactDialogComponent, {
+      width: '800px'
+    });
   }
 }
