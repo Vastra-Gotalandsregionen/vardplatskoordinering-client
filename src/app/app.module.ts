@@ -57,6 +57,8 @@ import { LoginDialogComponent } from './elements/login-dialog/login-dialog.compo
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './service/auth.service';
 import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.component';
+import { RegistreraTableComponent } from './elements/registrera-table/registrera-table.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -105,7 +107,8 @@ import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.compo
     ViewOnlyImpactDialogComponent,
     GenericEditDialogComponent,
     LoginDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    RegistreraTableComponent
     // Attribute Directives
 
   ],
@@ -121,7 +124,8 @@ import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.compo
     FormsModule,
     CKEditorModule,
     MatMenuModule,
-    JwtModule
+    JwtModule,
+    DragDropModule
   ],
   providers: [
     AuthService,

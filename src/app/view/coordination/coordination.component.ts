@@ -36,9 +36,6 @@ export class CoordinationComponent implements OnInit {
 
   dateObject: Date;
 
-  todayDisplayedColumns = ['verksamhet', 'dispVpl', 'inneliggande', 'fysOtillaten', 'fysTillaten', 'prognosFore',
-    'maltalVardag', 'diffVardag', 'action'];
-
   @ViewChild('oldRegistreraTable')
   table: MatTable<Registrera>;
 
@@ -173,13 +170,6 @@ export class CoordinationComponent implements OnInit {
     const dateString = d.toLocaleDateString('se-SE');
     // this.updateView(this.management.id, this.date);
     this.router.navigate([], {queryParams: {date: dateString}});
-  }
-
-  sum(registreringar: Registrera[], property: string) {
-    return registreringar
-      .map(r => r[property])
-      .filter(value => !!value)
-      .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
   }
 
   openDegreeOfImpactDialog() {

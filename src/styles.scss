@@ -53,3 +53,17 @@ mat-dialog-container .mat-form-field {
     margin-bottom: 0;
   }
 }
+
+.drag-handle {
+
+  margin-left: auto;
+
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
+}

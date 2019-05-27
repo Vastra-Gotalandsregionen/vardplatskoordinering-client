@@ -3,6 +3,10 @@
       <vpk-icon *ngIf="icon" mat-card-avatar [icon]="icon" size="2x"></vpk-icon>
 
       <mat-card-title>{{title}}</mat-card-title>
+
+      <vpk-icon class="drag-handle" size="2x" *ngIf="draggable" icon="arrows-alt" cdkDrag
+                cdkDragRootElement=".cdk-overlay-pane"
+                cdkDragHandle></vpk-icon>
     </mat-card-header>
     <mat-card-content>
       
@@ -10,4 +14,3 @@
 
     </mat-card-content>
   </mat-card>
-  
