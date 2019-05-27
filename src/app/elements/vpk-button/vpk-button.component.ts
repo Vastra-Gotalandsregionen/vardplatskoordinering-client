@@ -16,6 +16,7 @@ export class VpkButtonComponent implements OnInit {
   @Input() iconSize: string = 'sg';
   @Input() label: string;
   @Input() tooltip: string;
+  @Input() type: string = 'button';
 
   @HostBinding('class')
   get classes(): string {

@@ -30,7 +30,7 @@ export class AdministrationComponent implements OnInit {
         FieldConfig.from('maltalVardag', 'Måltal vardag', 'input'),
         FieldConfig.from('maltalHelg', 'Måltal helg', 'input'),
         FieldConfig.from('maltalStorhelg', 'Måltal storhelg', 'input'),
-        FieldConfig.from('management', 'Förvaltning', 'select', managements.map(m => ({label: m.name, value: m.id}))),
+        FieldConfig.from('management', 'Förvaltning', 'select', managements.map(m => ({label: m.name, value: m.id})), true),
       ];
     });
   }

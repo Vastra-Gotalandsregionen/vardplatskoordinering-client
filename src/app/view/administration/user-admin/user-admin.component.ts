@@ -6,6 +6,7 @@ import { User } from '../../../domain/User';
 import { Administration } from '../../../domain/Administration';
 import { forkJoin } from 'rxjs';
 import { Unit } from '../../../domain/unit';
+import { Management } from '../../../domain/Management';
 
 @Component({
   selector: 'app-user-admin',
@@ -26,23 +27,27 @@ export class UserAdminComponent implements OnInit {
 
     const administrationObservable = this.http.get<Administration[]>('/api/administration');
     const unitObservable = this.http.get<Unit[]>('/api/unit');
+    const managementObservable = this.http.get<Management[]>('/api/management');
     // const administrationObservable = this.http.get<Administration[]>('/api/role');
 
-    forkJoin([administrationObservable, unitObservable])
+    forkJoin([administrationObservable, unitObservable, managementObservable])
       .subscribe((resultArray) => {
         const allAdministrations = resultArray[0];
         const allUnits = resultArray[1];
+        const allManagements = resultArray[2];
 
         const administrationOptions: Option[] = allAdministrations.map(a => ({label: a.verks, value: a.id}));
         const unitOptions: Option[] = allUnits.map(a => ({label: a.name, value: a.id}));
         const roleOptions: Option[] = ['ADMIN', 'VPK', 'VPL'].map(a => ({label: a, value: a}));
+        const managementOptions: Option[] = allManagements.map(a => ({label: a.name, value: a.id}));
 
         this.fieldConfigs = [
-          FieldConfig.from('user.username', 'Användarnamn', 'input'),
-          FieldConfig.from('user.name', 'Namn', 'input'),
-          FieldConfig.from('administrationIds', 'Områden', 'multiselect', administrationOptions),
-          FieldConfig.from('unitIds', 'Avdelningar', 'multiselect', unitOptions),
-          FieldConfig.from('roleIds', 'Roller', 'multiselect', roleOptions)
+          FieldConfig.from('user.username', 'Användarnamn', 'input', null, true),
+          FieldConfig.from('user.name', 'Namn', 'input', null, true),
+          FieldConfig.from('user.management', 'Förvaltning', 'select', managementOptions, true),
+          FieldConfig.from('administrationIds', 'Områden', 'multiselect', administrationOptions, true),
+          FieldConfig.from('unitIds', 'Avdelningar', 'multiselect', unitOptions, true),
+          FieldConfig.from('roleIds', 'Roller', 'multiselect', roleOptions, true)
         ];
       });
 

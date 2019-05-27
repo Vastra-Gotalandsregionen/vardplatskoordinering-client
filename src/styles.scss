@@ -40,3 +40,30 @@ a
 {
   margin: auto;
 }
+
+mat-dialog-container .mat-form-field {
+  width: 100%;
+}
+
+.vpk-card-wrapper mat-dialog-container {
+  padding: 0;
+  overflow: hidden;
+
+  .vpk-card {
+    margin-bottom: 0;
+  }
+}
+
+.drag-handle {
+
+  margin-left: auto;
+
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
+}

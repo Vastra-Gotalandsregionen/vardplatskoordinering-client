@@ -36,9 +36,6 @@ export class CoordinationComponent implements OnInit {
 
   dateObject: Date;
 
-  todayDisplayedColumns = ['verksamhet', 'dispVpl', 'inneliggande', 'fysOtillaten', 'fysTillaten', 'prognosFore',
-    'maltalVardag', 'diffVardag', 'action'];
-
   @ViewChild('oldRegistreraTable')
   table: MatTable<Registrera>;
 
@@ -119,6 +116,7 @@ export class CoordinationComponent implements OnInit {
   editRegistrera(registrera: Registrera) {
     const dialogRef = this.dialog.open(EditRegistreraDialogComponent, {
       width: '500px',
+      panelClass: 'vpk-card-wrapper',
       data: {registrera, management: this.management}
     });
 
@@ -135,6 +133,7 @@ export class CoordinationComponent implements OnInit {
   editDecision(akutenTrappa: AkutenTrappa) {
     const dialogRef = this.dialog.open(EditDecisionDialogComponent, {
       width: '500px',
+      panelClass: 'vpk-card-wrapper',
       data: {akutenTrappa, management: this.management}
     });
 
@@ -171,13 +170,6 @@ export class CoordinationComponent implements OnInit {
     const dateString = d.toLocaleDateString('se-SE');
     // this.updateView(this.management.id, this.date);
     this.router.navigate([], {queryParams: {date: dateString}});
-  }
-
-  sum(registreringar: Registrera[], property: string) {
-    return registreringar
-      .map(r => r[property])
-      .filter(value => !!value)
-      .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
   }
 
   openDegreeOfImpactDialog() {

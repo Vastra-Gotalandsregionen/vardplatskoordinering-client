@@ -1,56 +1,62 @@
-<h1 mat-dialog-title>Registrera vårdplatsläget</h1>
-<div mat-dialog-content>
+<vpk-card title="Registrera vårdplatsläget">
   <h2>{{registrera.verksamhet}}, {{registrera.datum}}</h2>
 
   <form [formGroup]="formGroup">
     <div>
-      <label>Fastställda vårdplatser:</label>
-      <span>{{registrera.faststVpl}}</span>
+      <mat-form-field>
+        <input matInput placeholder="Fastställda vårdplatser:" [value]="registrera.faststVpl" disabled/>
+      </mat-form-field>
     </div>
 
     <div>
-      <label>Måltal:</label>
-      <span>{{registrera.maltalVardag}}</span>
+      <mat-form-field>
+        <input matInput placeholder="Måltal:" [value]="registrera.maltalVardag" disabled/>
+      </mat-form-field>
     </div>
 
     <div>
-      <label>Disponibla vårdplatser kl 06.00:</label>
-      <input formControlName="dispVpl" type="number">
+      <mat-form-field>
+        <input matInput placeholder="Disponibla vårdplatser kl 06.00:" formControlName="dispVpl" type="number">
+      </mat-form-field>
     </div>
 
     <div>
-      <label>Inneliggande:</label>
-      <input formControlName="inneliggande" type="number">
+      <mat-form-field>
+        <input matInput placeholder="Inneliggande:" formControlName="inneliggande" type="number">
+      </mat-form-field>
     </div>
 
     <div>
-      <label>Bristande fysisk utformning och utrustning:</label>
-      <input formControlName="fysTillaten" type="number">
+      <mat-form-field>
+        <input matInput placeholder="Bristande fysisk utformning och utrustning:" formControlName="fysTillaten" type="number">
+      </mat-form-field>
     </div>
 
     <div>
-      <label>Prognos lediga kl 16.00:</label>
-      <input formControlName="prognosFore" type="number">
+      <mat-form-field>
+        <input matInput placeholder="Prognos lediga kl 16.00:" formControlName="prognosFore" type="number">
+      </mat-form-field>
     </div>
 
     <div>
-      <label>Påverkansgrad:</label>
-      <input formControlName="pg" type="number">
+      <mat-form-field>
+        <input matInput placeholder="Påverkansgrad:" formControlName="pg" type="number">
+      </mat-form-field>
     </div>
 
     <div>
-      <label>Kommentarer</label>
-      <textarea formControlName="kommentar"
-                placeholder="Ange kontaktperson nåbar under eftermiddagen, namn och telefonnummer samt övriga kommentarer..."></textarea>
+      <mat-form-field>
+        <mat-label>Kommentarer:</mat-label>
+        <textarea matInput formControlName="kommentar"
+                  placeholder="Ange kontaktperson nåbar under eftermiddagen, namn och telefonnummer samt övriga kommentarer..."></textarea>
+      </mat-form-field>
     </div>
 
+    <vpk-button-row>
+      <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
+      <vpk-button (click)="saveAndEmit()" color="primary" label="Spara" type="submit"></vpk-button>
+    </vpk-button-row>
 
   </form>
-  <!--<mat-form-field>
-    <input matInput [(ngModel)]="registrera.verksamhet">
-  </mat-form-field>-->
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="cancel()">Avbryt</button>
-  <button mat-button (click)="saveAndEmit()" cdkFocusInitial >Registrera</button>
-</div>
+
+</vpk-card>

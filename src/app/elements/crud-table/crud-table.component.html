@@ -7,6 +7,30 @@
 <vpk-card>
   <table mat-table [dataSource]="dataSource">
 
+    <!-- Filter -->
+    <ng-container *ngFor="let config of fieldConfigs" matColumnDef="sort-{{config.name}}">
+      <th mat-header-cell *matHeaderCellDef>
+
+        <span *ngIf="config.filterable && (config.type === 'select' || config.type === 'multiselect')">
+          <mat-select placeholder="Välj filter" (valueChange)="applyFilter($event, config)">
+            <mat-option>Inget filter</mat-option>
+            <mat-option *ngFor="let option of config.options" [value]="option.value">{{option.label}}</mat-option>
+          </mat-select>
+        </span>
+
+        <span *ngIf="config.filterable && config.type === 'input'">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value, config)" placeholder="Filtrera"/>
+          </mat-form-field>
+        </span>
+
+      </th>
+    </ng-container>
+
+    <ng-container matColumnDef="sort-edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+    </ng-container>
+
     <ng-container *ngFor="let config of fieldConfigs" matColumnDef="{{config.name}}">
       <th mat-header-cell *matHeaderCellDef>{{config.label}}</th>
       <td mat-cell *matCellDef="let item" [innerHTML]="getValue(config, item, config.name)"></td>
@@ -31,6 +55,10 @@
         </mat-menu>
 
       </td>
+    </ng-container>
+
+    <ng-container *ngIf="isAnyFilter()">
+      <tr mat-header-row *matHeaderRowDef="getColumnsWithSortPrefix()"></tr>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="getColumns()"></tr>
