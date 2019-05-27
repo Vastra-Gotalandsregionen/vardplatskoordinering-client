@@ -10,7 +10,7 @@ import { NavItem } from '../../domain/NavItem';
 })
 export class VpkListItemContentComponent implements OnInit {
 
-  @Input() navItem: NavItem[];
+  @Input() navItem: NavItem;
 
   constructor() { }
 

@@ -29,7 +29,6 @@ import { ManagementsComponent } from './view/administration/managements/manageme
 import { AdministrationComponent } from './view/administration/administration/administration.component';
 import { CoordinationLandingComponent } from './view/coordination-landing/coordination-landing.component';
 import { UserAdminComponent } from './view/administration/user-admin/user-admin.component';
-import { EditUserDialogComponent } from './elements/edit-user-dialog/edit-user-dialog.component';
 import { DefinitionsAdminComponent } from './view/administration/definitions/definitions-admin.component';
 import { CrudTableComponent } from './elements/crud-table/crud-table.component';
 import { GenericEditDialogComponent } from './elements/generic-edit-dialog/generic-edit-dialog.component';
@@ -67,7 +66,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     HeaderComponent,
     EditRegistreraDialogComponent,
     CreateUserDialogComponent,
-    EditUserDialogComponent,
     LayoutComponent,
     LayoutColumnComponent,
     LayoutRowComponent,
@@ -135,9 +133,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ConfirmDeleteDialogComponent,
     EditDecisionDialogComponent,
     EditRegistreraDialogComponent,
-    EditUserDialogComponent,
     GenericEditDialogComponent,
-    EditUserDialogComponent,
     CreateUserDialogComponent,
     ErrorDialogComponent,
     LoginDialogComponent,
