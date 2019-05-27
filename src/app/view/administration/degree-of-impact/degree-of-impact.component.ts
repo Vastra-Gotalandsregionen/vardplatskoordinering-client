@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FieldConfig } from '../../../domain/FieldConfig';
+import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
+import { DegreeOfImpact } from '../../../domain/DegreeOfImpact';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-degree-of-impact',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DegreeOfImpactComponent implements OnInit {
 
-  constructor() { }
+  resourceUrl = '/api/degreeOfImpact';
+
+  fieldConfigs: FieldConfig[] = [
+    FieldConfig.from('degree', 'Grad', 'input'),
+    FieldConfig.from('impact', 'Påverkan', 'input'),
+    FieldConfig.from('impactDetails', 'Påverkan detalj', 'ckeditor'),
+  ];
+
+  dataSource: BasicEditDataSource<DegreeOfImpact>;
+
+  constructor(http: HttpClient) {
+    this.dataSource = new BasicEditDataSource<DegreeOfImpact>(http, this.resourceUrl);
+  }
 
   ngOnInit() {
+
+    this.dataSource.load();
   }
 
 }
