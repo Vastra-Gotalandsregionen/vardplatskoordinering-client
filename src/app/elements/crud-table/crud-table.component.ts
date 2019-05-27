@@ -52,7 +52,7 @@ export class CrudTableComponent implements OnInit {
       value = value[part];
     }
 
-    if (!value) {
+    if (!value && value !== 0) {
       return null;
     }
 
