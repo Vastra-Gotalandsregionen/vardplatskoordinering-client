@@ -1,26 +1,23 @@
 <vpk-card title="Dagens beslut - {{!akutenTrappa.id ? 'Ny' : 'Befintlig'}}">
-  <div mat-dialog-content>
-    <h2>{{akutenTrappa.datum}}, {{management.name}}</h2>
+  <h2>{{akutenTrappa.datum}}, {{management.name}}</h2>
 
-    <form [formGroup]="formGroup">
-      <div>
-        <label>Påverkansgrad (0-4):</label>
-        <input formControlName="vardplatstrappa">
-      </div>
+  <form [formGroup]="formGroup">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Påverkansgrad (0-4):" formControlName="vardplatstrappa">
+      </mat-form-field>
+    </div>
 
-      <div>
-        <label>Kommentarer:</label>
-        <ckeditor formControlName="beslut"></ckeditor>
-      </div>
+    <div>
+      <mat-label>Kommentarer:</mat-label>
+      <ckeditor formControlName="beslut"></ckeditor>
+    </div>
 
-    </form>
-    <!--<mat-form-field>
-      <input matInput [(ngModel)]="registrera.verksamhet">
-    </mat-form-field>-->
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="cancel()">Avbryt</button>
-    <button mat-button (click)="saveAndEmit()" cdkFocusInitial>Spara beslut</button>
-  </div>
+  </form>
+
+  <vpk-button-row>
+    <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
+    <vpk-button (click)="saveAndEmit()" color="primary" label="Spara"></vpk-button>
+  </vpk-button-row>
 
 </vpk-card>

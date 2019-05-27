@@ -52,6 +52,10 @@ export class CrudTableComponent implements OnInit {
       value = value[part];
     }
 
+    if (!value) {
+      return null;
+    }
+
     if (fieldConfig.type === 'select') {
       return fieldConfig.options.find(option => option.value === value).label;
     } else if (fieldConfig.type === 'multiselect') {
@@ -60,24 +64,11 @@ export class CrudTableComponent implements OnInit {
         .filter(option => valueArray.indexOf(option.value) > -1)
         .map(option => option.label)
         .join(', ');
-      // debugger;
     }
 
     return this.sanitizer.bypassSecurityTrustHtml(value);
   }
 
-  /*
-  const parts = fieldName.split('.');
-
-    let value = item;
-    for (const part of parts) {
-      if (value instanceof Array) {
-        value = value.map(j => j[part]).join(', ');
-        break;
-      }
-      value = value[part];
-    }
-   */
   confirmDelete(item: any) {
     const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
       width: '500px',
@@ -93,5 +84,23 @@ export class CrudTableComponent implements OnInit {
 
   openAdd() {
     this.openEdit({});
+  }
+
+  getColumnsWithSortPrefix() {
+    return this.getColumns()/*.filter(c => c !== 'edit')*/.map(c => 'sort-' + c);
+  }
+
+  applyFilter(value: any, config: FieldConfig) {
+    if (config.type === 'select') {
+      this.dataSource.filter({field: config.name, value, type: 'match'});
+    } else if (config.type === 'input') {
+      this.dataSource.filter({field: config.name, value, type: 'contains'});
+    } else if (config.type === 'multiselect') {
+      this.dataSource.filter({field: config.name, value, type: 'contains'});
+    }
+  }
+
+  isAnyFilter() {
+    return this.fieldConfigs.find(config => config.filterable);
   }
 }

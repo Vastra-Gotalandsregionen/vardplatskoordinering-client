@@ -119,6 +119,7 @@ export class CoordinationComponent implements OnInit {
   editRegistrera(registrera: Registrera) {
     const dialogRef = this.dialog.open(EditRegistreraDialogComponent, {
       width: '500px',
+      panelClass: 'vpk-card-wrapper',
       data: {registrera, management: this.management}
     });
 
@@ -135,6 +136,7 @@ export class CoordinationComponent implements OnInit {
   editDecision(akutenTrappa: AkutenTrappa) {
     const dialogRef = this.dialog.open(EditDecisionDialogComponent, {
       width: '500px',
+      panelClass: 'vpk-card-wrapper',
       data: {akutenTrappa, management: this.management}
     });
 

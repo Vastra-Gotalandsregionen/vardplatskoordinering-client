@@ -1,4 +1,4 @@
-<button  mat-flat-button mat-stroked-button [color]="color" class="vpk-button" [matTooltip]="tooltip" [disabled]="disabled">
+<button  mat-flat-button mat-stroked-button [color]="color" class="vpk-button" [matTooltip]="tooltip" [disabled]="disabled" [type]="type">
     <vpk-icon *ngIf="icon && iconPosition == 'left'" [icon]="icon" [size]="iconSize"></vpk-icon>
     <span *ngIf="label" class="vpk-button-label">
         {{label}}
