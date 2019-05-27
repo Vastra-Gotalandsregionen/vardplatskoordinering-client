@@ -13,9 +13,9 @@
       <mat-cell *matCellDef="let element">{{ element.impact }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="details">
-      <mat-header-cell *matHeaderCellDef>Påverkan</mat-header-cell>
-      <mat-cell *matCellDef="let element" [innerHTML] = element.impactDetails ></mat-cell>
+    <ng-container matColumnDef="details" >
+      <mat-header-cell *matHeaderCellDef class="mat-column-impact-detail">Påverkan</mat-header-cell >
+      <mat-cell *matCellDef="let element" [innerHTML] = element.impactDetails class="mat-column-impact-detail" ></mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
