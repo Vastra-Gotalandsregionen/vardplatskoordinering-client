@@ -5,6 +5,7 @@ import { BehaviorSubject, interval, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { retry, switchMap } from 'rxjs/operators';
+import { GlobalStateService } from './global-state.service';
 
 @Injectable()
 export class AuthService {
@@ -13,9 +14,11 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
 
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private managementId: number;
 
   constructor(private http: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private globalStateService: GlobalStateService) {
 
     const localStorageToken = localStorage.getItem('jwtToken');
 
@@ -33,6 +36,8 @@ export class AuthService {
           this.resetAuth();
         }
       });
+
+    this.globalStateService.getManagementId().subscribe(managementId => this.managementId = managementId);
   }
 
   private startRenew() {
@@ -105,7 +110,7 @@ export class AuthService {
   isAdmin() {
     const token = this.getToken();
     if (token) {
-      const roles = <string[]> token.roles;
+      const roles = token.roles as string[];
       return roles.indexOf('ADMIN') > -1;
     }
 
@@ -118,6 +123,25 @@ export class AuthService {
       return token.unitIds as string[];
     } else {
       return [];
+    }
+  }
+
+  hasAdministrationEditPermission(administrationId): boolean {
+    const token = this.getToken();
+
+    if (token && token.administrationIds) {
+      return token.administrationIds.indexOf(administrationId) > -1;
+    } else {
+      return false;
+    }
+  }
+
+  hasManagementAdminPermission(): boolean {
+    const token = this.getToken();
+    if (token) {
+      return this.isAdmin() || (token.managementId === this.managementId && token.roles.indexOf('MANAGEMENT_ADMIN') > -1);
+    } else {
+      return false;
     }
   }
 

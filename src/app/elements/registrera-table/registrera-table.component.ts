@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Registrera } from '../../domain/Registrera';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-registrera-table',
@@ -33,7 +34,8 @@ export class RegistreraTableComponent implements OnInit {
   expandedElements: number[] = [];
   allExpanded = false;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private authService: AuthService,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
   }
@@ -74,6 +76,21 @@ export class RegistreraTableComponent implements OnInit {
   }
 
   average(registreringar: Registrera[], property: string) {
-    return this.sum(registreringar, property) / registreringar.map(r => r[property]).filter(v => !!v).length;
+    const length = registreringar.map(r => r[property]).filter(v => !!v).length;
+
+    if (length === 0) {
+      return 0;
+    }
+
+    return this.sum(registreringar, property) / length;
+  }
+
+  hasEditPermission(registrera: Registrera): boolean {
+    if (this.authService.isAdmin() || this.authService.hasManagementAdminPermission()) {
+      return true;
+    }
+
+    const today = new Date().toISOString().slice(0, 10);
+    return this.authService.hasAdministrationEditPermission(registrera.administration) && registrera.datum === today;
   }
 }

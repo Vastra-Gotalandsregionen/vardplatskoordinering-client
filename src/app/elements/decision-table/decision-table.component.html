@@ -37,6 +37,9 @@
     <th class="cell-action" mat-header-cell *matHeaderCellDef> </th>
     <td class="cell-action" mat-cell *matCellDef="let aggregate">
         <vpk-button (click)="outputEditDecision(aggregate.akutenTrappaId)" class="condensed" icon="pen" tooltip="Redigera"></vpk-button>
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let aggregate">
+        <vpk-button *ngIf="hasEditPermission()" (click)="outputEditDecision(aggregate.akutenTrappaId)" class="condensed" icon="pen" tooltip="Redigera"></vpk-button>
     </td>
   </ng-container>
 

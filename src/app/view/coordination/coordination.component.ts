@@ -12,8 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Management } from '../../domain/Management';
 import { RegistreraAggregatesDataSource } from '../../service/RegistreraAggregateDataSource';
 import { filter, switchMap, tap } from 'rxjs/operators';
-import { DegreeOfImpactDialogComponent } from '../../elements/degree-of-impact-dialog/degree-of-impact-dialog.component';
 import { ViewOnlyImpactDialogComponent } from '../../elements/view-only-impact-dialog/view-only-impact-dialog.component';
+import { GlobalStateService } from '../../service/global-state.service';
+import { AuthService } from '../../service/auth.service';
 
 
 @Component({
@@ -42,7 +43,9 @@ export class CoordinationComponent implements OnInit {
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
               private router: Router,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private globalStateService: GlobalStateService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -55,12 +58,14 @@ export class CoordinationComponent implements OnInit {
 
     combineLatest(paramsObservable, queryParamsObservable)
       .subscribe(result => {
-        this.updateView(result[0].management, result[1].date);
+        this.updateView(Number(result[0].management), result[1].date);
       });
 
   }
 
   private updateView(managementId: number, date: string) {
+    this.globalStateService.setManagementId(managementId);
+
     if (!date) {
       date = this.today;
     }
@@ -107,6 +112,7 @@ export class CoordinationComponent implements OnInit {
         registrera.verksamhet = administration.verks;
         registrera.faststVpl = administration.faststVpl;
         registrera.maltalVardag = administration.maltalVardag;
+        registrera.administration = administration.id;
 
         this.todaysRegistreringar.push(registrera);
       }
@@ -176,5 +182,11 @@ export class CoordinationComponent implements OnInit {
     const dialogRef = this.dialog.open(ViewOnlyImpactDialogComponent, {
       width: '1000px'
     });
+  }
+
+  hasDecisionEditPermission() {
+    if (this.authService.isAdmin() || this.authService.hasManagementAdminPermission()) {
+      return true;
+    }
   }
 }

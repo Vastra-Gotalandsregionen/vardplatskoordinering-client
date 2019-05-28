@@ -38,7 +38,7 @@ export class UserAdminComponent implements OnInit {
 
         const administrationOptions: Option[] = allAdministrations.map(a => ({label: a.verks, value: a.id}));
         const unitOptions: Option[] = allUnits.map(a => ({label: a.name, value: a.id}));
-        const roleOptions: Option[] = ['ADMIN', 'VPK', 'VPL'].map(a => ({label: a, value: a}));
+        const roleOptions: Option[] = ['ADMIN', 'VPK', 'VPL', 'MANAGEMENT_ADMIN'].map(a => ({label: a, value: a}));
         const managementOptions: Option[] = allManagements.map(a => ({label: a.name, value: a.id}));
 
         this.fieldConfigs = [
