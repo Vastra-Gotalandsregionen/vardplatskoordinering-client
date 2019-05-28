@@ -5,7 +5,7 @@
       <vpk-icon style="display: inline-block" [@togglerExpand]="allExpanded ? 'expanded' : 'collapsed'" icon="chevron-down"></vpk-icon>
     </th>
     <td mat-cell *matCellDef="let registrera" (click)="toggleRow(registrera)" class="toggle-cell">
-      <vpk-icon style="display: inline-block" [@togglerExpand]="expandedElements.indexOf(registrera.id) > -1 ? 'expanded' : 'collapsed'" icon="chevron-down"></vpk-icon>
+      <vpk-icon style="display: inline-block" [@togglerExpand]="expandedElements.indexOf(registrera.administration) > -1 ? 'expanded' : 'collapsed'" icon="chevron-down"></vpk-icon>
     </td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
@@ -87,7 +87,7 @@
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let registrera" [attr.colspan]="todayDisplayedColumns.length">
       <div class="element-detail" [innerHTML]="getHtml(registrera.kommentar)"
-           [@detailExpand]="expandedElements.indexOf(registrera.id) > -1 ? 'expanded' : 'collapsed'">
+           [@detailExpand]="expandedElements.indexOf(registrera.administration) > -1 ? 'expanded' : 'collapsed'">
       </div>
     </td>
   </ng-container>
@@ -97,7 +97,7 @@
 
   <tr mat-row *matRowDef="let registrera; columns: todayDisplayedColumns;"
       class="element-row"
-      [class.expanded-row]="expandedElements.indexOf(registrera.id) > -1"></tr>
+      [class.expanded-row]="expandedElements.indexOf(registrera.administration) > -1"></tr>
 
   <tr mat-row *matRowDef="let registrera; columns: ['expandedDetail']" class="detail-row"></tr>
   <tr mat-footer-row *matFooterRowDef="todayDisplayedColumns" class="sum-row"></tr>

@@ -52,12 +52,12 @@ export class RegistreraTableComponent implements OnInit {
   }
 
   toggleRow(registrera: Registrera) {
-    const indexOf = this.expandedElements.indexOf(registrera.id);
+    const indexOf = this.expandedElements.indexOf(registrera.administration);
 
     if (indexOf > -1) {
       this.expandedElements.splice(indexOf, 1);
     } else {
-      this.expandedElements.push(registrera.id);
+      this.expandedElements.push(registrera.administration);
     }
   }
 
@@ -72,7 +72,7 @@ export class RegistreraTableComponent implements OnInit {
   toggleAllExpanded() {
     this.allExpanded = !this.allExpanded;
 
-    this.expandedElements = this.allExpanded ? this.registreringar.map(r => r.id) : [];
+    this.expandedElements = this.allExpanded ? this.registreringar.map(r => r.administration) : [];
   }
 
   average(registreringar: Registrera[], property: string) {
