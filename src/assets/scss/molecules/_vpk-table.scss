@@ -36,19 +36,21 @@
         overflow: hidden;
       }
       
-      .cell-num {
+      .number-cell {
           text-align: right;
       }
 
-      .cell-action {
+      .action-cell {
         text-align: right;
       }
 
+      .toggle-cell {
+          .vpk-icon {
+              display: inline-block;
+          }
+      }
 
-    
 
-
-    //class="num"
 
 
 
