@@ -27,4 +27,5 @@ export class Registrera {
   vgrid: string;
   inneliggande: number;
   pg: number;
+  administration: number;
 }

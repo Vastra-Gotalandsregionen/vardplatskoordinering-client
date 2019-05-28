@@ -4,6 +4,8 @@ import { RegistreraAggregatesDataSource } from '../../service/RegistreraAggregat
 import { filter, tap } from 'rxjs/operators';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Registrera } from '../../domain/Registrera';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-decision-table',
@@ -34,7 +36,8 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
 
   expandedElement: any;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private authService: AuthService,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.dataSource.connect(null).pipe(
@@ -60,5 +63,11 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
 
   getHtml(html: string) {
     return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+
+  hasEditPermission(): boolean {
+    if (this.authService.isAdmin() || this.authService.hasManagementAdminPermission()) {
+      return true;
+    }
   }
 }
