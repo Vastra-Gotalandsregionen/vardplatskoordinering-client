@@ -95,6 +95,7 @@ export class AuthService {
 
   resetAuth() {
     this.jwt = null;
+    this.globalStateService.setManagementId(null);
   }
 
   getLoggedInUserId(): string {
