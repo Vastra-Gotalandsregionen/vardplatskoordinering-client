@@ -180,7 +180,7 @@ export class CoordinationComponent implements OnInit {
 
   openDegreeOfImpactDialog() {
     const dialogRef = this.dialog.open(ViewOnlyImpactDialogComponent, {
-      width: '800px'
+      width: '1000px'
     });
   }
 

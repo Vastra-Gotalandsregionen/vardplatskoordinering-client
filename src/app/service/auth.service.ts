@@ -139,7 +139,7 @@ export class AuthService {
   hasManagementAdminPermission(): boolean {
     const token = this.getToken();
     if (token) {
-      return token.managementId === this.managementId && token.roles.indexOf('MANAGEMENT_ADMIN') > -1;
+      return this.isAdmin() || (token.managementId === this.managementId && token.roles.indexOf('MANAGEMENT_ADMIN') > -1);
     } else {
       return false;
     }

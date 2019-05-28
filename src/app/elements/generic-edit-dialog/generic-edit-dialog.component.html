@@ -28,6 +28,11 @@
     </mat-form-field>
   </div>
 
-  <button (click)="cancel()">Avbryt</button>
-  <button (click)="saveAndEmit()">Spara</button>
+  <!--<button (click)="cancel()">Avbryt</button>
+  <button (click)="saveAndEmit()">Spara</button>-->
+
+  <vpk-button-row>
+    <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
+    <vpk-button (click)="saveAndEmit()" color="primary" label="Spara"></vpk-button>
+  </vpk-button-row>
 </form>
