@@ -87,7 +87,7 @@
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let registrera" [attr.colspan]="todayDisplayedColumns.length">
       <div class="element-detail" [innerHTML]="getHtml(registrera.kommentar)"
-           [@detailExpand]="expandedElements.indexOf(registrera.id) > -1 ? 'expanded' : 'collapsed'">
+           [@detailExpand]="expandedElements.indexOf(registrera.id) > -1 ? 'expanded' : 'collapsed'" [ngClass]="expandedElements.indexOf(registrera.id) > -1 ? 'element-detail-expanded' : 'element-detail-collapsed'">
       </div>
     </td>
   </ng-container>
