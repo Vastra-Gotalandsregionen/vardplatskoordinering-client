@@ -33,22 +33,32 @@
       }
 
       .element-detail {
+
         overflow: hidden;
+
+        &.element-detail-expanded {
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            margin: 20px 40px;
+            padding: 10px;
+        }
+
       }
       
-      .cell-num {
+      .number-cell {
           text-align: right;
       }
 
-      .cell-action {
+      .action-cell {
         text-align: right;
       }
 
+      .toggle-cell {
+          .vpk-icon {
+              display: inline-block;
+          }
+      }
 
-    
 
-
-    //class="num"
 
 
 
