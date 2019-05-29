@@ -8,7 +8,7 @@ import { MaterialModule } from './module/material.module';
 import { HomeComponent } from './view/home/home.component';
 import { CoordinationComponent } from './view/coordination/coordination.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './elements/header/header.component';
 import { VpkIconComponent } from './elements/vpk-icon/vpk-icon.component';
 import { EditRegistreraDialogComponent } from './elements/edit-registrera-dialog/edit-registrera-dialog.component';
@@ -58,6 +58,8 @@ import { AuthService } from './service/auth.service';
 import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.component';
 import { RegistreraTableComponent } from './elements/registrera-table/registrera-table.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HttpErrorHandlerInterceptor } from './interceptor/http-error-handler-interceptor';
+import { JwtHttpInterceptor } from './interceptor/jwt-http-interceptor';
 
 @NgModule({
   declarations: [
@@ -127,7 +129,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   ],
   providers: [
     AuthService,
-    StateService
+    StateService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtHttpInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorHandlerInterceptor, multi: true}
   ],
   entryComponents: [
     ConfirmDeleteDialogComponent,

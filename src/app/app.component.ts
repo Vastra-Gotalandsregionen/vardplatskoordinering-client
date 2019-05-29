@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject, ViewContainerRef } from '@angular/core';
+import { ErrorDialogService } from './service/error-dialog.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'vardplatskoordinering-client';
+
+
+  constructor(@Inject(ErrorDialogService) errorDialogService,
+              @Inject(ViewContainerRef) viewContainerRef) {
+    errorDialogService.setRootViewContainerRef(viewContainerRef);
+  }
 }
