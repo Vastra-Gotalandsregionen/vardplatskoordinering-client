@@ -13,12 +13,14 @@ export class EditRegistreraDialogComponent {
   formGroup: FormGroup;
 
   registrera: Registrera;
+  administrationName: string;
 
   @Output() save: EventEmitter<Registrera> = new EventEmitter<Registrera>();
 
   constructor(public dialogRef: MatDialogRef<EditRegistreraDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { registrera: Registrera }) {
+              @Inject(MAT_DIALOG_DATA) public data: { registrera: Registrera, administrationName: string }) {
     this.registrera = data.registrera;
+    this.administrationName = data.administrationName;
     const r = this.registrera;
 
     this.formGroup = new FormGroup({

@@ -26,7 +26,7 @@
 
 <vpk-card title="Dagens registreringar" icon="bed">
 
-  <app-registrera-table [registreringar]="todaysRegistreringar" (editRegistrera)="editRegistrera($event)"></app-registrera-table>
+  <app-registrera-table [registreringar]="todaysRegistreringar" [administrationNameMap]="administrationNameMap" (editRegistrera)="editRegistrera($event)"></app-registrera-table>
 
 </vpk-card>
 

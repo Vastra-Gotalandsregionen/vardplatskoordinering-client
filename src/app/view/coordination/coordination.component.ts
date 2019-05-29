@@ -27,6 +27,7 @@ export class CoordinationComponent implements OnInit {
   todaysRegistreringar: Registrera[] = [];
   administrationer: Administration[];
   management: Management;
+  administrationNameMap = {};
 
   oldDecisionsDataSource: RegistreraAggregatesDataSource;
   todaysDecisionDataSource: RegistreraAggregatesDataSource;
@@ -99,17 +100,20 @@ export class CoordinationComponent implements OnInit {
       });
   }
 
-  private updateTodaysRegistreringar(todaysRegistreringar, administrationer) {
-    this.todaysRegistreringar = todaysRegistreringar;
+  private updateTodaysRegistreringar(todaysRegistreringar: Registrera[], administrationer) {
     this.administrationer = administrationer;
+    this.administrationer.forEach(administration => {
+      this.administrationNameMap[administration.id] = administration.verks;
+    });
+
+    this.todaysRegistreringar = todaysRegistreringar;
 
     this.administrationer.forEach(administration => {
-      const found = this.todaysRegistreringar.find(registrering => registrering.verksamhet === administration.verks);
+      const found = todaysRegistreringar.find(registrering => registrering.administration === administration.id);
       if (!found) {
         const registrera = new Registrera();
 
         registrera.datum = this.date;
-        registrera.verksamhet = administration.verks;
         registrera.faststVpl = administration.faststVpl;
         registrera.maltalVardag = administration.maltalVardag;
         registrera.administration = administration.id;
@@ -123,7 +127,7 @@ export class CoordinationComponent implements OnInit {
     const dialogRef = this.dialog.open(EditRegistreraDialogComponent, {
       width: '500px',
       panelClass: 'vpk-card-wrapper',
-      data: {registrera, management: this.management}
+      data: {registrera, administrationName: this.administrationNameMap[registrera.administration]}
     });
 
     dialogRef.componentInstance.save.pipe(

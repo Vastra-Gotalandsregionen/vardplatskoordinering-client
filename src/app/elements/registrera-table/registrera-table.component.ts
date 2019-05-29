@@ -3,6 +3,8 @@ import { Registrera } from '../../domain/Registrera';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from '../../service/auth.service';
+import { Administration } from '../../domain/Administration';
+import { Tuple2 } from '../../domain/tuple2';
 
 @Component({
   selector: 'app-registrera-table',
@@ -24,6 +26,7 @@ import { AuthService } from '../../service/auth.service';
 export class RegistreraTableComponent implements OnInit {
 
   @Input() registreringar: Registrera[];
+  @Input() administrationNameMap: {};
 
   @Output() editRegistrera = new EventEmitter<Registrera>();
 
@@ -35,9 +38,11 @@ export class RegistreraTableComponent implements OnInit {
   allExpanded = false;
 
   constructor(private authService: AuthService,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit() {
+
   }
 
   emitEitRegistrera(registrera: Registrera) {
@@ -76,7 +81,7 @@ export class RegistreraTableComponent implements OnInit {
   }
 
   average(registreringar: Registrera[], property: string) {
-    const length = registreringar.map(r => r[property]).filter(v => !!v).length;
+    const length = registreringar.map(r => r[property] || r[property] === 0).filter(v => !!v).length;
 
     if (length === 0) {
       return 0;
@@ -92,5 +97,9 @@ export class RegistreraTableComponent implements OnInit {
 
     const today = new Date().toISOString().slice(0, 10);
     return this.authService.hasAdministrationEditPermission(registrera.administration) && registrera.datum === today;
+  }
+
+  getAdministrationName(administration: number) {
+    return this.administrationNameMap[administration];
   }
 }
