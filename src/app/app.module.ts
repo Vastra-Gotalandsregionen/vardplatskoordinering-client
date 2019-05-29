@@ -58,6 +58,8 @@ import { AuthService } from './service/auth.service';
 import { ErrorDialogComponent } from './elements/error-dialog/error-dialog.component';
 import { RegistreraTableComponent } from './elements/registrera-table/registrera-table.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { VplComponent } from './view/vpl/vpl.component';
+import { VplAreasComponent } from './view/vpl-areas/vpl-areas.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +108,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     GenericEditDialogComponent,
     LoginDialogComponent,
     ErrorDialogComponent,
-    RegistreraTableComponent
+    RegistreraTableComponent,
+    VplComponent,
+    VplAreasComponent
     // Attribute Directives
 
   ],

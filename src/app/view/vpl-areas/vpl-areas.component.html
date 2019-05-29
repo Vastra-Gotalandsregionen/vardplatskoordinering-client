@@ -1,0 +1,30 @@
+<!--
+<vpk-title-row heading="Vårdplatsläge idag">
+-->
+  <vpk-title-row heading="{{management?.name}}{{management ? ', ' : ''}} {{dayName ? dayName + ' ' : ''}}{{date}}">
+  <vpk-button-row align="right">
+
+
+    <vpk-button-fab (click)="picker.open()" icon="calendar-day" color="" tooltip="Byt datum"></vpk-button-fab>
+  </vpk-button-row>
+</vpk-title-row>
+
+
+<div>
+  <input  (dateChange)="dateSelected('change', $event)" [(ngModel)]="dateObject" type="hidden" [matDatepicker]="picker" placeholder="Välj datum">
+  <mat-datepicker touchUi #picker></mat-datepicker>
+</div>
+
+
+<vpk-card title="07:00">
+
+</vpk-card>
+
+<vpk-card title="11:00">
+
+</vpk-card>
+
+<vpk-card title="16:00">
+
+
+</vpk-card>

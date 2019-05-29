@@ -11,6 +11,8 @@ import { CoordinationLandingComponent } from './view/coordination-landing/coordi
 import { UserAdminComponent } from './view/administration/user-admin/user-admin.component';
 import { DefinitionsAdminComponent } from './view/administration/definitions/definitions-admin.component';
 import { DegreeOfImpactComponent } from './view/administration/degree-of-impact/degree-of-impact.component';
+import { VplComponent } from './view/vpl/vpl.component';
+import { VplAreasComponent } from "./view/vpl-areas/vpl-areas.component";
 
 const routes: Routes = [
   {
@@ -57,6 +59,15 @@ const routes: Routes = [
   {
     path: 'administration/user-admin',
     component: UserAdminComponent
+  },
+
+  {
+    path: 'vpl',
+    component: VplComponent
+  },
+  {
+    path: 'vpl/:management',
+    component: VplAreasComponent
   },
   {
     path: 'styleguide',
