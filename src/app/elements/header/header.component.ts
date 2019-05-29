@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
     const dialogRef: MatDialogRef<LoginDialogComponent> = this.dialog.open(LoginDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+
     });
   }
 

@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Registrera } from '../../domain/Registrera';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from '../../service/auth.service';
+import { Administration } from '../../domain/Administration';
+import { Tuple2 } from '../../domain/tuple2';
 
 @Component({
   selector: 'app-registrera-table',
@@ -23,6 +26,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class RegistreraTableComponent implements OnInit {
 
   @Input() registreringar: Registrera[];
+  @Input() administrationNameMap: {};
 
   @Output() editRegistrera = new EventEmitter<Registrera>();
 
@@ -33,9 +37,12 @@ export class RegistreraTableComponent implements OnInit {
   expandedElements: number[] = [];
   allExpanded = false;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private authService: AuthService,
+              private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit() {
+
   }
 
   emitEitRegistrera(registrera: Registrera) {
@@ -50,12 +57,12 @@ export class RegistreraTableComponent implements OnInit {
   }
 
   toggleRow(registrera: Registrera) {
-    const indexOf = this.expandedElements.indexOf(registrera.id);
+    const indexOf = this.expandedElements.indexOf(registrera.administration);
 
     if (indexOf > -1) {
       this.expandedElements.splice(indexOf, 1);
     } else {
-      this.expandedElements.push(registrera.id);
+      this.expandedElements.push(registrera.administration);
     }
   }
 
@@ -70,10 +77,29 @@ export class RegistreraTableComponent implements OnInit {
   toggleAllExpanded() {
     this.allExpanded = !this.allExpanded;
 
-    this.expandedElements = this.allExpanded ? this.registreringar.map(r => r.id) : [];
+    this.expandedElements = this.allExpanded ? this.registreringar.map(r => r.administration) : [];
   }
 
   average(registreringar: Registrera[], property: string) {
-    return this.sum(registreringar, property) / registreringar.map(r => r[property]).filter(v => !!v).length;
+    const length = registreringar.map(r => r[property] || r[property] === 0).filter(v => !!v).length;
+
+    if (length === 0) {
+      return 0;
+    }
+
+    return this.sum(registreringar, property) / length;
+  }
+
+  hasEditPermission(registrera: Registrera): boolean {
+    if (this.authService.isAdmin() || this.authService.hasManagementAdminPermission()) {
+      return true;
+    }
+
+    const today = new Date().toISOString().slice(0, 10);
+    return this.authService.hasAdministrationEditPermission(registrera.administration) && registrera.datum === today;
+  }
+
+  getAdministrationName(administration: number) {
+    return this.administrationNameMap[administration];
   }
 }

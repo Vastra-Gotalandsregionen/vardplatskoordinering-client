@@ -18,7 +18,7 @@
 
     <vpk-alert message="Det finns inget beslut för dagen ännu."></vpk-alert>
 
-    <vpk-button (click)="editNewDecision()" class="condensed" icon="plus" iconSize="2x" tooltip="Lägg till"></vpk-button>
+    <vpk-button *ngIf="hasDecisionEditPermission()"  (click)="editNewDecision()" class="condensed" icon="plus" iconSize="2x" tooltip="Lägg till"></vpk-button>
   </div>
 
   <app-decision-table [dataSource]="todaysDecisionDataSource" (editDecision)="editDecisionByAkutenTrappaId($event)"></app-decision-table>
@@ -26,7 +26,7 @@
 
 <vpk-card title="Dagens registreringar" icon="bed">
 
-  <app-registrera-table [registreringar]="todaysRegistreringar" (editRegistrera)="editRegistrera($event)"></app-registrera-table>
+  <app-registrera-table [registreringar]="todaysRegistreringar" [administrationNameMap]="administrationNameMap" (editRegistrera)="editRegistrera($event)"></app-registrera-table>
 
 </vpk-card>
 

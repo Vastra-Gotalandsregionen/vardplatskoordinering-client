@@ -12,8 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Management } from '../../domain/Management';
 import { RegistreraAggregatesDataSource } from '../../service/RegistreraAggregateDataSource';
 import { filter, switchMap, tap } from 'rxjs/operators';
-import { DegreeOfImpactDialogComponent } from '../../elements/degree-of-impact-dialog/degree-of-impact-dialog.component';
 import { ViewOnlyImpactDialogComponent } from '../../elements/view-only-impact-dialog/view-only-impact-dialog.component';
+import { GlobalStateService } from '../../service/global-state.service';
+import { AuthService } from '../../service/auth.service';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class CoordinationComponent implements OnInit {
   todaysRegistreringar: Registrera[] = [];
   administrationer: Administration[];
   management: Management;
+  administrationNameMap = {};
 
   oldDecisionsDataSource: RegistreraAggregatesDataSource;
   todaysDecisionDataSource: RegistreraAggregatesDataSource;
@@ -42,7 +44,9 @@ export class CoordinationComponent implements OnInit {
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
               private router: Router,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private globalStateService: GlobalStateService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -55,12 +59,14 @@ export class CoordinationComponent implements OnInit {
 
     combineLatest(paramsObservable, queryParamsObservable)
       .subscribe(result => {
-        this.updateView(result[0].management, result[1].date);
+        this.updateView(Number(result[0].management), result[1].date);
       });
 
   }
 
   private updateView(managementId: number, date: string) {
+    this.globalStateService.setManagementId(managementId);
+
     if (!date) {
       date = this.today;
     }
@@ -94,19 +100,23 @@ export class CoordinationComponent implements OnInit {
       });
   }
 
-  private updateTodaysRegistreringar(todaysRegistreringar, administrationer) {
-    this.todaysRegistreringar = todaysRegistreringar;
+  private updateTodaysRegistreringar(todaysRegistreringar: Registrera[], administrationer) {
     this.administrationer = administrationer;
+    this.administrationer.forEach(administration => {
+      this.administrationNameMap[administration.id] = administration.verks;
+    });
+
+    this.todaysRegistreringar = todaysRegistreringar;
 
     this.administrationer.forEach(administration => {
-      const found = this.todaysRegistreringar.find(registrering => registrering.verksamhet === administration.verks);
+      const found = todaysRegistreringar.find(registrering => registrering.administration === administration.id);
       if (!found) {
         const registrera = new Registrera();
 
         registrera.datum = this.date;
-        registrera.verksamhet = administration.verks;
         registrera.faststVpl = administration.faststVpl;
         registrera.maltalVardag = administration.maltalVardag;
+        registrera.administration = administration.id;
 
         this.todaysRegistreringar.push(registrera);
       }
@@ -117,7 +127,7 @@ export class CoordinationComponent implements OnInit {
     const dialogRef = this.dialog.open(EditRegistreraDialogComponent, {
       width: '500px',
       panelClass: 'vpk-card-wrapper',
-      data: {registrera, management: this.management}
+      data: {registrera, administrationName: this.administrationNameMap[registrera.administration]}
     });
 
     dialogRef.componentInstance.save.pipe(
@@ -176,5 +186,11 @@ export class CoordinationComponent implements OnInit {
     const dialogRef = this.dialog.open(ViewOnlyImpactDialogComponent, {
       width: '1000px'
     });
+  }
+
+  hasDecisionEditPermission() {
+    if (this.authService.isAdmin() || this.authService.hasManagementAdminPermission()) {
+      return true;
+    }
   }
 }

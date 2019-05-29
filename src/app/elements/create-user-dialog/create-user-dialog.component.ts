@@ -57,7 +57,6 @@ export class CreateUserDialogComponent {
   findFromServer(): void {
     const observable = this.http.get('/api/vgr-user?filter=' + this.filter);
     observable.subscribe((o: User[]) => {
-      console.log('Found', o);
       this.users = o;
     });
   }

@@ -1,95 +1,101 @@
-<table mat-table multiTemplateDataRows [dataSource]="registreringar">
+<table class="vpk-table" mat-table multiTemplateDataRows [dataSource]="registreringar">
 
   <ng-container matColumnDef="toggleExpand">
     <th mat-header-cell *matHeaderCellDef (click)="toggleAllExpanded()" class="toggle-cell">
-      <vpk-icon style="display: inline-block" [@togglerExpand]="allExpanded ? 'expanded' : 'collapsed'" icon="chevron-down"></vpk-icon>
+      <vpk-icon [@togglerExpand]="allExpanded ? 'expanded' : 'collapsed'" icon="chevron-down"></vpk-icon>
     </th>
     <td mat-cell *matCellDef="let registrera" (click)="toggleRow(registrera)" class="toggle-cell">
-      <vpk-icon style="display: inline-block" [@togglerExpand]="expandedElements.indexOf(registrera.id) > -1 ? 'expanded' : 'collapsed'" icon="chevron-down"></vpk-icon>
+      <vpk-icon [@togglerExpand]="expandedElements.indexOf(registrera.administration) > -1 ? 'expanded' : 'collapsed'" icon="chevron-down"></vpk-icon>
     </td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
   <ng-container matColumnDef="verksamhet">
     <th mat-header-cell *matHeaderCellDef>Verksamhet</th>
-    <td mat-cell *matCellDef="let registrera">{{registrera.verksamhet}}</td>
+    <td mat-cell *matCellDef="let registrera">{{getAdministrationName(registrera.administration)}}</td>
     <td mat-footer-cell *matFooterCellDef>Summa</td>
   </ng-container>
 
   <ng-container matColumnDef="dispVpl">
-    <th mat-header-cell *matHeaderCellDef>Disp. vpl 06.00</th>
-    <td mat-cell *matCellDef="let registrera">{{registrera.dispVpl}}</td>
-    <td mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'dispVpl')}} </td>
+    <th class="number-cell" mat-header-cell *matHeaderCellDef>Disp. vpl 06.00</th>
+    <td class="number-cell" mat-cell *matCellDef="let registrera">{{registrera.dispVpl}}</td>
+    <td class="number-cell" mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'dispVpl')}} </td>
   </ng-container>
 
   <ng-container matColumnDef="inneliggande">
-    <th mat-header-cell *matHeaderCellDef>Inneliggande</th>
-    <td mat-cell *matCellDef="let registrera">{{registrera.inneliggande}}</td>
-    <td mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'inneliggande')}} </td>
+    <th class="number-cell" mat-header-cell *matHeaderCellDef>Inneliggande</th>
+    <td class="number-cell" mat-cell *matCellDef="let registrera">{{registrera.inneliggande}}</td>
+    <td class="number-cell" mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'inneliggande')}} </td>
   </ng-container>
 
   <ng-container matColumnDef="fysOtillaten">
-    <th mat-header-cell *matHeaderCellDef>Beläggning</th>
-    <td mat-cell *matCellDef="let registrera">{{registrera.fysOtillaten}}</td>
-    <td mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'fysOtillaten')}} </td>
+    <th class="number-cell" mat-header-cell *matHeaderCellDef>Beläggning</th>
+    <td class="number-cell" mat-cell *matCellDef="let registrera">{{registrera.fysOtillaten}}</td>
+    <td class="number-cell" mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'fysOtillaten')}} </td>
   </ng-container>
 
   <ng-container matColumnDef="fysTillaten">
-    <th mat-header-cell *matHeaderCellDef>Vpl med brister</th>
-    <td mat-cell *matCellDef="let registrera">{{registrera.fysTillaten}}</td>
-    <td mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'fysTillaten')}} </td>
+    <th class="number-cell" mat-header-cell *matHeaderCellDef>Vpl med brister</th>
+    <td class="number-cell" mat-cell *matCellDef="let registrera">{{registrera.fysTillaten}}</td>
+    <td class="number-cell" mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'fysTillaten')}} </td>
   </ng-container>
 
   <ng-container matColumnDef="prognosFore">
-    <th mat-header-cell *matHeaderCellDef>Prognos lediga 16.00</th>
-    <td mat-cell *matCellDef="let registrera">{{registrera.prognosFore}}</td>
-    <td mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'prognosFore')}} </td>
+    <th class="number-cell" mat-header-cell *matHeaderCellDef>Prognos lediga 16.00</th>
+    <td class="number-cell" mat-cell *matCellDef="let registrera">{{registrera.prognosFore}}</td>
+    <td class="number-cell" mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'prognosFore')}} </td>
   </ng-container>
 
   <ng-container matColumnDef="maltalVardag">
-    <th mat-header-cell *matHeaderCellDef>Måltal (vardag)</th>
-    <td mat-cell *matCellDef="let registrera">{{registrera.maltalVardag}}</td>
-    <td mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'maltalVardag')}} </td>
+    <th class="number-cell" mat-header-cell *matHeaderCellDef>Måltal (vardag)</th>
+    <td class="number-cell" mat-cell *matCellDef="let registrera">{{registrera.maltalVardag}}</td>
+    <td class="number-cell" mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'maltalVardag')}} </td>
   </ng-container>
 
   <ng-container matColumnDef="diffVardag">
-    <th mat-header-cell *matHeaderCellDef>Prognos minus måltal</th>
-    <td mat-cell *matCellDef="let registrera">{{registrera.diffVardag}}</td>
-    <td mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'diffVardag')}} </td>
+    <th class="number-cell" mat-header-cell *matHeaderCellDef>Prognos minus måltal</th>
+    <td class="number-cell" mat-cell *matCellDef="let registrera">{{registrera.diffVardag}}</td>
+    <td class="number-cell" mat-footer-cell *matFooterCellDef> {{sum(registreringar, 'diffVardag')}} </td>
   </ng-container>
 
   <ng-container matColumnDef="pg">
-    <th mat-header-cell *matHeaderCellDef>Påverkansgrad</th>
-    <td mat-cell *matCellDef="let registrera">{{registrera.pg}}</td>
-    <td mat-footer-cell *matFooterCellDef> {{average(registreringar, 'pg')}} </td>
+    <th class="number-cell" mat-header-cell *matHeaderCellDef>Påverkansgrad</th>
+    <td class="number-cell" mat-cell *matCellDef="let registrera">{{registrera.pg}}</td>
+    <td class="number-cell" mat-footer-cell *matFooterCellDef> {{average(registreringar, 'pg')}} </td>
   </ng-container>
 
   <ng-container matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let registrera">
-      <vpk-button *ngIf="!registrera.dispVpl" (click)="emitEitRegistrera(registrera)" class="condensed" icon="plus" tooltip="Lägg till"></vpk-button>
-      <vpk-button *ngIf="registrera.dispVpl" (click)="emitEitRegistrera(registrera)" class="condensed" icon="pen" tooltip="Redigera"></vpk-button>
+    <th class="action-cell" mat-header-cell *matHeaderCellDef></th>
+    <td class="action-cell" mat-cell *matCellDef="let registrera">
+      <ng-container *ngIf="hasEditPermission(registrera); else blankspace">
+        <vpk-button *ngIf="!registrera.dispVpl" (click)="emitEitRegistrera(registrera)" class="condensed" icon="plus" tooltip="Lägg till"></vpk-button>
+        <vpk-button *ngIf="registrera.dispVpl" (click)="emitEitRegistrera(registrera)" class="condensed" icon="pen" tooltip="Redigera"></vpk-button>
+      </ng-container>
+
+      <ng-template #blankspace>
+        &nbsp;
+      </ng-template>
     </td>
-    <td mat-footer-cell *matFooterCellDef></td>
+    <td class="action-cell" mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
   <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let registrera" [attr.colspan]="todayDisplayedColumns.length">
-      <div class="example-element-detail" [innerHTML]="getHtml(registrera.kommentar)"
-           [@detailExpand]="expandedElements.indexOf(registrera.id) > -1 ? 'expanded' : 'collapsed'">
+      <div class="element-detail" [innerHTML]="getHtml(registrera.kommentar)"
+           [@detailExpand]="expandedElements.indexOf(registrera.administration) > -1 ? 'expanded' : 'collapsed'" [ngClass]="expandedElements.indexOf(registrera.administration) > -1 ? 'element-detail-expanded' : 'element-detail-collapsed'">
       </div>
     </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="todayDisplayedColumns"
-      class="example-element-row"></tr>
+      class="element-row"></tr>
 
   <tr mat-row *matRowDef="let registrera; columns: todayDisplayedColumns;"
-      class="example-element-row"
-      [class.example-expanded-row]="expandedElements.indexOf(registrera.id) > -1"></tr>
+      class="element-row"
+      [class.expanded-row]="expandedElements.indexOf(registrera.administration) > -1"></tr>
 
-  <tr mat-row *matRowDef="let registrera; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  <tr mat-row *matRowDef="let registrera; columns: ['expandedDetail']" class="detail-row"></tr>
   <tr mat-footer-row *matFooterRowDef="todayDisplayedColumns" class="sum-row"></tr>
 
 </table>
