@@ -5,6 +5,11 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { StateService } from '../../service/state.service';
 import { AuthService } from '../../service/auth.service';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+import { HttpClient } from '@angular/common/http';
+import { Management } from '../../domain/Management';
+import { from } from 'rxjs';
+import { concatMap, map, toArray } from 'rxjs/operators';
+import { Administration } from '../../domain/Administration';
 
 @Component({
   selector: 'app-header',
@@ -13,13 +18,36 @@ import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 })
 export class HeaderComponent implements OnInit {
 
+  managementName: string;
+  administrationsString: string;
+
   constructor(private authService: AuthService,
               private stateService: StateService,
               private sanitizer: DomSanitizer,
               private dialog: MatDialog,
-              private router: Router) { }
+              private router: Router,
+              private http: HttpClient) { }
 
   ngOnInit() {
+    this.authService.isUserLoggedIn.subscribe(_ => {
+      const managementId = this.authService.getManagementId();
+      if (managementId) {
+        this.http.get<Management>('/api/management/' + managementId).subscribe(m => {
+          this.managementName = m.name;
+        });
+      } else {
+        this.managementName = '';
+      }
+
+      // const administrationsTemp = [];
+      const administrationids = this.authService.getAdministrationIds();
+      from(administrationids).pipe(
+        concatMap(id => this.http.get<Administration>('/api/administration/' + id)),
+        map(a => a.verks),
+        // tap(name => administrationsTemp.push(name)),
+        toArray()
+      ).subscribe(nameArray => this.administrationsString = nameArray.join(', '));
+    });
   }
 
   openLogin() {
@@ -82,4 +110,7 @@ export class HeaderComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
+  get roles() {
+    return this.authService.getRolesString();
+  }
 }

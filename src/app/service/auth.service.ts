@@ -4,7 +4,7 @@ import { TokenResponse } from '../domain/token-response';
 import { BehaviorSubject, interval, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { retry, switchMap } from 'rxjs/operators';
+import { retry, tap } from 'rxjs/operators';
 import { GlobalStateService } from './global-state.service';
 
 @Injectable()
@@ -40,22 +40,29 @@ export class AuthService {
     this.globalStateService.getManagementId().subscribe(managementId => this.managementId = managementId);
   }
 
+  public renewJwt() {
+    this.http.post('/api/login/renew', this.jwt).pipe(
+      retry(4)
+    ).subscribe(
+      (response: TokenResponse) => this.jwt = response.token,
+      error => {
+        this.jwt = null;
+        if (this.renewSubscription) {
+          this.renewSubscription.unsubscribe();
+        }
+      }
+    );
+  }
+
   private startRenew() {
     if (this.renewSubscription) {
       this.renewSubscription.unsubscribe();
     }
 
-    this.renewSubscription = interval(60000)
+    interval(60000)
       .pipe(
-        switchMap(() => this.http.post('/api/login/renew', this.jwt)),
-        retry(4)
-      ).subscribe(
-        (response: TokenResponse) => this.jwt = response.token,
-        error => {
-          this.jwt = null;
-          this.renewSubscription.unsubscribe();
-        }
-      );
+        tap(_ => this.renewJwt()
+      )).subscribe();
   }
 
   isTokenExpired() {
@@ -161,4 +168,32 @@ export class AuthService {
   }
 
 
+  getRolesString() {
+    const token = this.getToken();
+    if (token) {
+      const roles = token.roles as string[];
+
+      return roles.join(', ');
+    }
+
+    return '';
+  }
+
+  getManagementId(): number {
+    const token = this.getToken();
+    if (token) {
+      return token.managementId;
+    }
+
+    return null;
+  }
+
+  getAdministrationIds(): number[] {
+    const token = this.getToken();
+    if (token) {
+      return token.administrationIds;
+    }
+
+    return [];
+  }
 }

@@ -57,11 +57,12 @@
       </td>
     </ng-container>
 
+    <tr mat-header-row *matHeaderRowDef="getColumns()"></tr>
+
     <ng-container *ngIf="isAnyFilter()">
       <tr mat-header-row *matHeaderRowDef="getColumnsWithSortPrefix()"></tr>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="getColumns()"></tr>
     <tr mat-row *matRowDef="let item; columns: getColumns();"></tr>
 
   </table>

@@ -7,6 +7,7 @@ import { Administration } from '../../../domain/Administration';
 import { forkJoin } from 'rxjs';
 import { Unit } from '../../../domain/unit';
 import { Management } from '../../../domain/Management';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-user-admin',
@@ -18,12 +19,15 @@ export class UserAdminComponent implements OnInit {
 
   dataSource: BasicEditDataSource<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private authService: AuthService) {
     this.dataSource = new BasicEditDataSource(http, '/api/user/dto');
   }
 
   ngOnInit() {
     this.dataSource.load();
+
+    this.dataSource.getSaveEvents().subscribe(_ => this.authService.renewJwt())
 
     const administrationObservable = this.http.get<Administration[]>('/api/administration');
     const unitObservable = this.http.get<Unit[]>('/api/unit');

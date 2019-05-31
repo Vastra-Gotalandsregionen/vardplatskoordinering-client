@@ -1,32 +1,30 @@
-import {Component, Optional} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    styleUrls: ['./error-dialog.component.css'],
-    templateUrl: './error-dialog.component.html'
+  selector: 'app-error-dialog',
+  templateUrl: './error-dialog.component.html',
+  styleUrls: ['./error-dialog.component.scss']
 })
-export class ErrorDialogComponent {
-    err: any;
-    showDetails = false;
-    public dialogRef: MatDialogRef<ErrorDialogComponent>;
+export class ErrorDialogComponent implements OnInit {
 
-    constructor(@Optional() dialogRef: MatDialogRef<ErrorDialogComponent>) {
-        this.dialogRef = dialogRef;
-    }
+  errorMessage: string;
+  closeCallback: () => void;
 
-    public toggleDetails(): void {
-        this.showDetails = !this.showDetails;
-    }
+  constructor() { }
 
-    public close(): void {
-        this.dialogRef.close();
-    }
+  ngOnInit() {
+  }
 
-    public getErrorMessage() {
-      try {
-        return this.err.json().errorMessage;
-      } catch (e) {
-        return null;
-      }
-    }
+  setErrorMessage(errorMessage: string): void {
+    this.errorMessage = errorMessage;
+  }
+
+  closeErrorDialog() {
+    this.closeCallback();
+  }
+
+  setCloseCallback(closeCallback: () => void) {
+    this.closeCallback = closeCallback;
+  }
+
 }

@@ -8,6 +8,7 @@ import { ErrorDialogComponent } from '../elements/error-dialog/error-dialog.comp
 export class ErrorDialogService {
 
   private rootViewContainer: ViewContainerRef;
+  private shownViewRef = false;
 
   constructor(@Inject(ComponentFactoryResolver) private factoryResolver) { }
 
@@ -22,11 +23,22 @@ export class ErrorDialogService {
     this.setErrorMessage(component, error);
 
     const viewRef = component.hostView;
+
+    if (this.shownViewRef) {
+      this.hideErrorDialog(this.shownViewRef);
+    }
+
     this.rootViewContainer.insert(viewRef);
+    this.shownViewRef = viewRef;
 
     component.instance.setCloseCallback(() => {
-      this.rootViewContainer.remove(this.rootViewContainer.indexOf(viewRef));
+      this.hideErrorDialog(viewRef);
     });
+  }
+
+  private hideErrorDialog(viewRef) {
+    this.rootViewContainer.remove(this.rootViewContainer.indexOf(viewRef));
+    this.shownViewRef = null;
   }
 
   private setErrorMessage(component, error: HttpErrorResponse) {

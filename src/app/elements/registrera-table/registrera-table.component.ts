@@ -87,7 +87,7 @@ export class RegistreraTableComponent implements OnInit {
       return 0;
     }
 
-    return this.sum(registreringar, property) / length;
+    return (Math.round((this.sum(registreringar, property) / length) * 100) / 100).toLocaleString();
   }
 
   hasEditPermission(registrera: Registrera): boolean {
