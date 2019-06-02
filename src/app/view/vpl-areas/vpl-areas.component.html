@@ -6,6 +6,10 @@
 
 
     <vpk-button-fab (click)="picker.open()" icon="calendar-day" color="" tooltip="Byt datum"></vpk-button-fab>
+    <vpk-button-fab (click)="picker.open()" icon="star" color="accent" tooltip="Byt datum"></vpk-button-fab>
+    <vpk-button-fab (click)="picker.open()" icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>
+
+
   </vpk-button-row>
 </vpk-title-row>
 
@@ -15,16 +19,70 @@
   <mat-datepicker touchUi #picker></mat-datepicker>
 </div>
 
+<app-layout-row>
 
-<vpk-card title="07:00">
+  <app-layout-column width=4>
+
+    <vpk-card title="Faktiskt lediga platser" icon="chart-line">
+      <div fxLayoutAlign="space-around">
+        <button>07:00</button>
+        <button>11:00</button>
+        <button>16:00</button>
+      </div>
+      <div fxLayoutAlign="space-around">
+        <vpk-button-fab color="warn"></vpk-button-fab>
+        <vpk-button-fab color="warn"></vpk-button-fab>
+        <vpk-button-fab color="warn"></vpk-button-fab>
+      </div>
+    </vpk-card>
+
+  </app-layout-column>
+
+  <app-layout-column width=4>
+
+    <vpk-card title="Prognos lediga platser" icon="chart-line">
+      <div fxLayoutAlign="space-around">
+        <button>07:00</button>
+        <button>11:00</button>
+        <button>16:00</button>
+      </div>
+      <div fxLayoutAlign="space-around">
+        <vpk-button-fab color="warn"></vpk-button-fab>
+        <vpk-button-fab color="warn"></vpk-button-fab>
+        <vpk-button-fab color="warn"></vpk-button-fab>
+      </div>
+
+    </vpk-card>
+
+  </app-layout-column>
+
+  <app-layout-column width=4>
+
+    <vpk-card title="Prognos överbeläggning" icon="chart-line">
+      <div fxLayoutAlign="space-around">
+        <button>07:00</button>
+        <button>11:00</button>
+        <button>16:00</button>
+      </div>
+      <div fxLayoutAlign="space-around">
+        <vpk-button-fab color="warn"></vpk-button-fab>
+        <vpk-button-fab color="warn"></vpk-button-fab>
+        <vpk-button-fab color="warn"></vpk-button-fab>
+      </div>
+    </vpk-card>
+
+  </app-layout-column>
+</app-layout-row>
+
+<vpk-card title="07:00" icon="clock">
 
 </vpk-card>
 
-<vpk-card title="11:00">
+<vpk-card title="11:00"  icon="clock">
 
 </vpk-card>
 
-<vpk-card title="16:00">
+<vpk-card title="16:00"  icon="clock">
 
 
 </vpk-card>
