@@ -60,6 +60,8 @@ import { RegistreraTableComponent } from './elements/registrera-table/registrera
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpErrorHandlerInterceptor } from './interceptor/http-error-handler-interceptor';
 import { JwtHttpInterceptor } from './interceptor/jwt-http-interceptor';
+import { VplComponent } from './view/vpl/vpl.component';
+import { VplAreasComponent } from './view/vpl-areas/vpl-areas.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +110,9 @@ import { JwtHttpInterceptor } from './interceptor/jwt-http-interceptor';
     GenericEditDialogComponent,
     LoginDialogComponent,
     ErrorDialogComponent,
-    RegistreraTableComponent
+    RegistreraTableComponent,
+    VplComponent,
+    VplAreasComponent
     // Attribute Directives
 
   ],

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Management } from '../../domain/Management';
 import { NavItem } from '../../domain/NavItem';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-coordination-landing',
-  templateUrl: './coordination-landing.component.html',
-  styleUrls: ['./coordination-landing.component.scss']
+  selector: 'app-vpl',
+  templateUrl: './vpl.component.html',
+  styleUrls: ['./vpl.component.scss']
 })
-export class CoordinationLandingComponent implements OnInit {
+export class VplComponent implements OnInit {
 
   managements: Management[];
   navItems: NavItem[] = [];
@@ -26,5 +26,4 @@ export class CoordinationLandingComponent implements OnInit {
         }
       });
   }
-
 }
