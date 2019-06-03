@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   managementName: string;
   administrationsString: string;
+  hasApplicationAdministrationPermission: boolean;
 
   constructor(private authService: AuthService,
               private stateService: StateService,
@@ -47,6 +48,8 @@ export class HeaderComponent implements OnInit {
         // tap(name => administrationsTemp.push(name)),
         toArray()
       ).subscribe(nameArray => this.administrationsString = nameArray.join(', '));
+
+      this.hasApplicationAdministrationPermission = this.authService.hasApplicationAdministrationPermission;
     });
   }
 

@@ -53,7 +53,7 @@ export class CrudTableComponent implements OnInit {
     }
 
     if (!value && value !== 0) {
-      return null;
+      return '';
     }
 
     if (fieldConfig.type === 'select') {

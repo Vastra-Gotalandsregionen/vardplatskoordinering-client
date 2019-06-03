@@ -178,8 +178,8 @@ export class CoordinationComponent implements OnInit {
   dateSelected(thing, event: any) {
     const d: Date = event.value;
     const dateString = d.toLocaleDateString('se-SE');
-    // this.updateView(this.management.id, this.date);
-    this.router.navigate([], {queryParams: {date: dateString}});
+    const dateStringIEWorkaround = dateString.replace(/\u200E/g, '');
+    this.router.navigate([], {queryParams: {date: dateStringIEWorkaround}});
   }
 
   openDegreeOfImpactDialog() {

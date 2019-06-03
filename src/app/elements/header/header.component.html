@@ -71,7 +71,7 @@
               </a>
           </span>
 
-          <span class="list-item">
+          <span class="list-item" *ngIf="hasApplicationAdministrationPermission">
               <a routerLink="/administration" routerLinkActive="active">
                 <span class="nav-label">Administration</span>
               </a>

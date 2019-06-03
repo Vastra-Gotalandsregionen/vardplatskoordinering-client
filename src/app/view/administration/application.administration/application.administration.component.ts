@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavItem } from '../../../domain/NavItem';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-administration',
@@ -10,10 +11,33 @@ export class ApplicationAdministrationComponent implements OnInit {
 
   navItems: NavItem[] = [];
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.navItems = this.getNavItems();
+
+    this.authService.isUserLoggedIn.subscribe(_ => {
+      const navItems: NavItem[]  = [];
+
+      if (this.authService.isAdmin()) {
+        navItems.push(new NavItem('Förvaltningar', 'Välj', '/administration/managements', '', ''));
+        navItems.push(new NavItem('Definitioner', 'Välj', '/administration/definition', '', ''));
+        navItems.push(new NavItem('Grad av påverkan', 'Välj', '/administration/degreeOfImpact', '', ''));
+      }
+
+      if (this.authService.hasAdministrationAdministrationPermission) {
+        navItems.push(new NavItem('Områden', 'Välj', '/administration/areas', '', ''));
+      }
+
+      if (this.authService.hasUnitAdministrationPermission) {
+        navItems.push(new NavItem('Avdelningar', 'Välj', '/administration/units', '', ''));
+      }
+
+      if (this.authService.hasApplicationAdministrationPermission) {
+        navItems.push(new NavItem('Användare', 'Välj', '/administration/user-admin', '', ''));
+      }
+
+      this.navItems = navItems;
+    });
   }
 
   getNavItems(): NavItem[] {

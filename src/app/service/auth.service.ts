@@ -14,7 +14,10 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
 
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private managementId: number;
+  private currentManagementId: number;
+  public hasApplicationAdministrationPermission = false;
+  public hasAdministrationAdministrationPermission = false;
+  public hasUnitAdministrationPermission = false;
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -37,10 +40,14 @@ export class AuthService {
         }
       });
 
-    this.globalStateService.getManagementId().subscribe(managementId => this.managementId = managementId);
+    this.globalStateService.getManagementId().subscribe(managementId => this.currentManagementId = managementId);
   }
 
   public renewJwt() {
+    if (!this.jwt) {
+      return;
+    }
+
     this.http.post('/api/login/renew', this.jwt).pipe(
       retry(4)
     ).subscribe(
@@ -59,7 +66,7 @@ export class AuthService {
       this.renewSubscription.unsubscribe();
     }
 
-    interval(60000)
+    this.renewSubscription = interval(60000)
       .pipe(
         tap(_ => this.renewJwt()
       )).subscribe();
@@ -97,7 +104,26 @@ export class AuthService {
       localStorage.removeItem('jwtToken');
     }
 
+    this.hasAdministrationAdministrationPermission = this.hasAnyOfRoles(['VPK_MANAGER', 'VPL_MANAGER', 'ADMIN']);
+    this.hasApplicationAdministrationPermission = this.hasAnyOfRoles(['VPK_MANAGER', 'VPL_MANAGER', 'ADMIN']);
+    this.hasUnitAdministrationPermission = this.hasAnyOfRoles(['VPL_MANAGER', 'ADMIN']);
+
     this.isUserLoggedIn.next(this.isAuthenticated());
+  }
+
+  private hasAnyOfRoles(toFind) {
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+
+    const roles = token.roles as string[];
+
+    if (roles.some(role => toFind.includes(role))) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   resetAuth() {
@@ -147,7 +173,7 @@ export class AuthService {
   hasManagementAdminPermission(): boolean {
     const token = this.getToken();
     if (token) {
-      return this.isAdmin() || (token.managementId === this.managementId && token.roles.indexOf('MANAGEMENT_ADMIN') > -1);
+      return this.isAdmin() || (token.managementId === this.currentManagementId && token.roles.indexOf('VPK_MANAGER') > -1);
     } else {
       return false;
     }
