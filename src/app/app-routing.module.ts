@@ -12,7 +12,9 @@ import { UserAdminComponent } from './view/administration/user-admin/user-admin.
 import { DefinitionsAdminComponent } from './view/administration/definitions/definitions-admin.component';
 import { DegreeOfImpactComponent } from './view/administration/degree-of-impact/degree-of-impact.component';
 import { VplComponent } from './view/vpl/vpl.component';
-import { VplAreasComponent } from "./view/vpl-areas/vpl-areas.component";
+import { VplAreasComponent } from './view/vpl-areas/vpl-areas.component';
+import { HasRoleGuard } from './guard/has-role.guard';
+import { AdminGuard } from './guard/admin.guard';
 
 const routes: Routes = [
   {
@@ -30,35 +32,46 @@ const routes: Routes = [
 
   {
     path: 'administration',
-    component: ApplicationAdministrationComponent
+    component: ApplicationAdministrationComponent,
+    canActivate: [HasRoleGuard],
+    data: {roles: ['ADMIN', 'VPK_MANAGER', 'VPL_MANAGER']}
   },
   {
     path: 'administration/definition',
-    component: DefinitionsAdminComponent
+    component: DefinitionsAdminComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: 'administration/units',
-    component: UnitsComponent
+    component: UnitsComponent,
+    canActivate: [HasRoleGuard],
+    data: {roles: ['ADMIN', 'VPL_MANAGER']}
   },
 
   {
     path: 'administration/managements',
-    component: ManagementsComponent
+    component: ManagementsComponent,
+    canActivate: [AdminGuard]
   },
 
   {
     path: 'administration/areas',
-    component: AdministrationComponent
+    component: AdministrationComponent,
+    canActivate: [HasRoleGuard],
+    data: {roles: ['ADMIN', 'VPK_MANAGER', 'VPL_MANAGER']}
   },
 
   {
     path: 'administration/degreeOfImpact',
-    component: DegreeOfImpactComponent
+    component: DegreeOfImpactComponent,
+    canActivate: [AdminGuard]
   },
 
   {
     path: 'administration/user-admin',
-    component: UserAdminComponent
+    component: UserAdminComponent,
+    canActivate: [HasRoleGuard],
+    data: {roles: ['ADMIN', 'VPK_MANAGER', 'VPL_MANAGER']}
   },
 
   {

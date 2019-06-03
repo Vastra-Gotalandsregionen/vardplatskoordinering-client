@@ -35,12 +35,13 @@ export class UnitsComponent implements OnInit {
   }
 
   private updateFieldsConfigByFetchingWithADbJoin() {
-    this.http.get<Tuple2<Administration, Management>[]>('/api/administration/joinManagement')
-      .subscribe((tuples2: Tuple2<Administration, Management>[]) => {
+    this.http.get<Administration[]>('/api/administration')
+      .subscribe((administrations: Administration[]) => {
+        const administrationOptions = administrations.map(a => ({label: a.verks, value: a.id}));
+
         this.fieldsConfigs = [
           FieldConfig.from('name', 'Namn', 'input'),
-          FieldConfig.from('administration', 'Område', 'select',
-            tuples2.map(tuple2 => ({label: tuple2.v2.name + ' > ' + tuple2.v1.verks, value: tuple2.v1.id})))
+          FieldConfig.from('administration', 'Område', 'select', administrationOptions)
         ];
       });
   }

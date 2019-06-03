@@ -25,7 +25,7 @@ export class AdministrationComponent implements OnInit {
     this.http.get('/api/management').subscribe((managements: Management[]) => {
 
       this.fieldConfigs = [
-        FieldConfig.from('verks', 'Namn', 'input'),
+        FieldConfig.from('verks', 'Namn', 'input', null, true),
         FieldConfig.from('faststVpl', 'Fastställda vårdplatser', 'input'),
         FieldConfig.from('maltalVardag', 'Måltal vardag', 'input'),
         FieldConfig.from('maltalHelg', 'Måltal helg', 'input'),

@@ -62,6 +62,8 @@ import { HttpErrorHandlerInterceptor } from './interceptor/http-error-handler-in
 import { JwtHttpInterceptor } from './interceptor/jwt-http-interceptor';
 import { VplComponent } from './view/vpl/vpl.component';
 import { VplAreasComponent } from './view/vpl-areas/vpl-areas.component';
+import { HasRoleGuard } from './guard/has-role.guard';
+import { AdminGuard } from './guard/admin.guard';
 
 @NgModule({
   declarations: [
@@ -135,7 +137,9 @@ import { VplAreasComponent } from './view/vpl-areas/vpl-areas.component';
     AuthService,
     StateService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtHttpInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorHandlerInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorHandlerInterceptor, multi: true},
+    HasRoleGuard,
+    AdminGuard
   ],
   entryComponents: [
     ConfirmDeleteDialogComponent,

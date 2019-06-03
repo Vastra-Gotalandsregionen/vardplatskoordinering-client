@@ -111,7 +111,7 @@ export class AuthService {
     this.isUserLoggedIn.next(this.isAuthenticated());
   }
 
-  private hasAnyOfRoles(toFind) {
+  public hasAnyOfRoles(toFind) {
     const token = this.getToken();
     if (!token) {
       return false;
@@ -193,6 +193,15 @@ export class AuthService {
     return false;
   }
 
+
+  getRoles(): string[] {
+    const token = this.getToken();
+    if (token) {
+      return token.roles as string[];
+    }
+
+    return [];
+  }
 
   getRolesString() {
     const token = this.getToken();
