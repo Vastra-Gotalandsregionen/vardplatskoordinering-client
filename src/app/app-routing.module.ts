@@ -15,6 +15,7 @@ import { VplComponent } from './view/vpl/vpl.component';
 import { VplAreasComponent } from './view/vpl-areas/vpl-areas.component';
 import { HasRoleGuard } from './guard/has-role.guard';
 import { AdminGuard } from './guard/admin.guard';
+import { LoginPageComponent } from './view/login-page/login-page.component';
 
 const routes: Routes = [
   {
@@ -85,6 +86,10 @@ const routes: Routes = [
   {
     path: 'styleguide',
     component: StyleguideComponent
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent
   },
   {
     path: '**',

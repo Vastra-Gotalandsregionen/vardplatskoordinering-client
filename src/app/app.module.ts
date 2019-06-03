@@ -64,17 +64,21 @@ import { VplComponent } from './view/vpl/vpl.component';
 import { VplAreasComponent } from './view/vpl-areas/vpl-areas.component';
 import { HasRoleGuard } from './guard/has-role.guard';
 import { AdminGuard } from './guard/admin.guard';
+import { LoginComponent } from './elements/login/login.component';
+import { LoginPageComponent } from './view/login-page/login-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     // Elements
-    HeaderComponent,
     EditRegistreraDialogComponent,
     CreateUserDialogComponent,
+    GenericEditDialogComponent,
+    HeaderComponent,
     LayoutComponent,
     LayoutColumnComponent,
     LayoutRowComponent,
+    LoginComponent,
     VpkButtonComponent,
     VpkButtonFabComponent,
     VpkButtonRowComponent,
@@ -109,12 +113,12 @@ import { AdminGuard } from './guard/admin.guard';
     DegreeOfImpactComponent,
     DegreeOfImpactDialogComponent,
     ViewOnlyImpactDialogComponent,
-    GenericEditDialogComponent,
     LoginDialogComponent,
     ErrorDialogComponent,
     RegistreraTableComponent,
     VplComponent,
-    VplAreasComponent
+    VplAreasComponent,
+    LoginPageComponent
     // Attribute Directives
 
   ],

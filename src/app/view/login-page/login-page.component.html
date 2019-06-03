@@ -1,0 +1,8 @@
+<vpk-card title="Logga in">
+
+  <app-login *ngIf="!isLoggedIn; else alreadyLoggedIn" (loggedIn)="loggedIn()"></app-login>
+
+  <ng-template #alreadyLoggedIn>
+    <p>Du är redan inloggad.</p>
+  </ng-template>
+</vpk-card>

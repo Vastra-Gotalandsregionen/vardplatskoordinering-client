@@ -22,7 +22,7 @@ export class HasRoleGuard implements CanActivate {
     if (hasRole) {
       return true;
     } else {
-      this.router.navigate(['/'], { queryParams: { returnUrl: state.url }});
+      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
       return false;
     }
   }
