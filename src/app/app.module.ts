@@ -66,6 +66,7 @@ import { HasRoleGuard } from './guard/has-role.guard';
 import { AdminGuard } from './guard/admin.guard';
 import { LoginComponent } from './elements/login/login.component';
 import { LoginPageComponent } from './view/login-page/login-page.component';
+import { MdePopoverModule } from '@material-extended/mde';
 
 @NgModule({
   declarations: [
@@ -130,6 +131,7 @@ import { LoginPageComponent } from './view/login-page/login-page.component';
     MaterialModule,
     FontAwesomeModule,
     FlexLayoutModule,
+    MdePopoverModule,
     ReactiveFormsModule,
     FormsModule,
     CKEditorModule,

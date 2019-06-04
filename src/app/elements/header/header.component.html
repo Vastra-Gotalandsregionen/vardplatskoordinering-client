@@ -19,12 +19,6 @@
                     matTooltip="Visa redigeringsläge"><mat-icon>edit</mat-icon></button>
           </span>-->
 
-          <span class="header-control-item auth-info" *ngIf="managementName || administrationsString || roles">
-            <div>Förvaltning: {{managementName}}</div>
-            <div>Områden: {{administrationsString}}</div>
-            <div>Roller: {{roles}}</div>
-          </span>
-
           <!--<span *ngIf="admin" class="header-control-item">
             <button *ngIf="getShowDebug()" mat-button (click)="setShowDebug(false)" matTooltip="Dölj debug-läge"><mat-icon>visibility</mat-icon></button>
             <button *ngIf="!getShowDebug()" mat-button (click)="setShowDebug(true)" matTooltip="Visa debug-läge"><mat-icon>visibility_off</mat-icon></button>
@@ -34,9 +28,20 @@
             <span class="user-avatar" [style.background-image]="userAvatarBackgroundImageStyle()"></span>
           </span>
 
-          <span *ngIf="getLoggedInDisplayName()" class="header-control-item">
+          <span *ngIf="getLoggedInDisplayName()" class="header-control-item" [mdePopoverTriggerFor]="userInfoPopover" mdePopoverTriggerOn="hover" >
             {{getLoggedInDisplayName()}}
           </span>
+
+          <mde-popover #userInfoPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
+            <mat-card style="max-width: 300px">
+              <mat-card-content>
+                <div>Förvaltning: {{managementName}}</div>
+                <div>Områden: {{administrationsString}}</div>
+                <div>Roller: {{roles}}</div>
+              </mat-card-content>
+            </mat-card>
+          </mde-popover>
+
           <span *ngIf="!isLoggedIn()" class="header-control-item">
             <button mat-button (click)="openLogin()">Logga in</button>
           </span>
