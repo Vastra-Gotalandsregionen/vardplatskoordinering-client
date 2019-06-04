@@ -1,5 +1,7 @@
 .vpk-badge {
 
+    display: inline-block;
+
     .vpk-badge-container {
         background: #333;
         color: #fff;
@@ -53,7 +55,7 @@
 
         // Colors
 
-        &.vpk-badge-transp {
+        &.vpk-badge-transparent {
             background: transparent;
             color:#555;
         }
@@ -70,12 +72,14 @@
 
         &.vpk-badge-yellow {
             background: yellow;
-            color: white;
+            color: #222;
         }
         
 
 
     }
 
-
+    &+.vpk-badge {
+        margin-left: 10px;
+    }
 }

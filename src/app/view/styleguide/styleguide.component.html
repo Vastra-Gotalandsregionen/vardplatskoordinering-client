@@ -138,3 +138,28 @@
 
 <h3>Warning</h3>
 <vpk-alert [message]="mockAlertMessage" type="warning"></vpk-alert>
+
+<h2>VPK-badge</h2>
+<p>För att visa data i en cirkel</p>
+<p>Tillgängliga attribut för vpk-badge:</p>
+<ul>
+    <li><em>value</em>: Värdet som skall stå i cirkeln</li>
+    <li><em>color</em>: Färger för cirkel. Möjliga värden är "red", "green", "yellow" och "transparent". Default style är mörkgrå.</li>
+    <li><em>size</em>: Storlek på cirkel. Möjliga värden är "s", "m", "l" och "xl". Defaultvärde är "m"</li> 
+</ul>
+<h3>VPK-badge storlekar</h3>
+<div>
+    <vpk-badge value="s" size="s"></vpk-badge>
+    <vpk-badge value="m" size="m"></vpk-badge>
+    <vpk-badge value="l" size="l"></vpk-badge>
+    <vpk-badge value="xl" size="xl"></vpk-badge>
+</div>    
+<h3>VPK-badge färger (default, red, green, yellow, transparent)</h3>
+<div>
+    <vpk-badge value="d"></vpk-badge>
+    <vpk-badge value="r" color="red"></vpk-badge>
+    <vpk-badge value="g" color="green"></vpk-badge>
+    <vpk-badge value="y" color="yellow"></vpk-badge>
+    <vpk-badge value="t" color="transparent"></vpk-badge>
+</div>    
+
