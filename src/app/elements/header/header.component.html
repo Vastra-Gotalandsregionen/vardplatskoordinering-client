@@ -32,14 +32,21 @@
             {{getLoggedInDisplayName()}}
           </span>
 
-          <mde-popover #userInfoPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
-            <mat-card style="max-width: 300px">
-              <mat-card-content>
-                <div>Förvaltning: {{managementName}}</div>
-                <div>Områden: {{administrationsString}}</div>
-                <div>Roller: {{roles}}</div>
-              </mat-card-content>
-            </mat-card>
+          <mde-popover class="user-info-popover" #userInfoPopover="mdePopover" [mdePopoverOverlapTrigger]="false" mdePopoverArrowColor="rgba(255, 255, 255, 1.0)">
+
+              <app-layout-row>
+                  <app-layout-column width=4><em>Förvaltning:</em></app-layout-column>
+                  <app-layout-column width=8>{{managementName}}</app-layout-column>
+              </app-layout-row>
+              <app-layout-row>
+                  <app-layout-column width=4><em>Områden:</em></app-layout-column>
+                  <app-layout-column width=8>{{administrationsString}}</app-layout-column>
+              </app-layout-row>
+              <app-layout-row>
+                  <app-layout-column width=4><em>Roller:</em></app-layout-column>
+                  <app-layout-column width=8>{{roles}}</app-layout-column>
+              </app-layout-row>
+        
           </mde-popover>
 
           <span *ngIf="!isLoggedIn()" class="header-control-item">
