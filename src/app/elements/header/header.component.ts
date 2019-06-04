@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
     const dialogConfig: MatDialogConfig = {
       disableClose: false,
       hasBackdrop: true,
-      panelClass: 'apk-dialog'
+      panelClass: 'vpk-dialog'
     };
 
     const dialogRef: MatDialogRef<LoginDialogComponent> = this.dialog.open(LoginDialogComponent, dialogConfig);

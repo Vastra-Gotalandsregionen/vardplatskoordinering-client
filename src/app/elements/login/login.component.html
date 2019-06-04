@@ -18,7 +18,9 @@
     </mat-form-field>
   </div>
 
-  <div mat-dialog-actions>
-    <button mat-button (click)="login()" mat-raised-button>Logga in</button>
-  </div>
+  <vpk-button-row align="right">
+      <vpk-button label="Avbryt" (click)="cancel()"></vpk-button>
+      <vpk-button color="primary" label="Logga in" (click)="login()"></vpk-button>
+  </vpk-button-row>
+  
 </form>
