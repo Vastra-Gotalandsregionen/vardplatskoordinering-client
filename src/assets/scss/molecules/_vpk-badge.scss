@@ -1,0 +1,81 @@
+.vpk-badge {
+
+    .vpk-badge-container {
+        background: #333;
+        color: #fff;
+        display: inline-block;
+        font-size: 16px;
+        height: 40px;
+        line-height: 40px;
+        margin: 0 auto;
+        text-align: center;
+        width: 40px;
+
+        @include border-radius(50%);
+
+        // Sizes
+        &.vpk-badge-size-s {
+            font-size: 12px;
+            height: 24px;
+            line-height: 24px;
+            width: 24px;
+        }
+
+        &.vpk-badge-size-m {
+            // Default size
+        }
+
+        &.vpk-badge-size-l {
+            font-size: 22px;
+            height: 70px;
+            line-height: 70px;
+            width: 70px;
+        }
+
+        &.vpk-badge-size-xl {
+            font-size: 28px;
+            height: 90px;
+            line-height: 90px;
+            width: 90px;
+        }
+
+        &.vpk-badge-auto-x {
+            &.vpk-badge-size-s,
+            &.vpk-badge-size-m,
+            &.vpk-badge-size-l,
+            &.vpk-badge-size-xl {
+                padding: 0 10px;
+                width: auto;
+                @include border-radius(10px);
+            }
+        }
+
+
+        // Colors
+
+        &.vpk-badge-transp {
+            background: transparent;
+            color:#555;
+        }
+
+        &.vpk-badge-red {
+            background: red;
+            color: white;
+        }
+
+        &.vpk-badge-green {
+            background: green;
+            color: white;
+        }
+
+        &.vpk-badge-yellow {
+            background: yellow;
+            color: white;
+        }
+        
+
+
+    }
+
+
+}

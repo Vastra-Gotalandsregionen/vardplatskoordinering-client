@@ -24,16 +24,28 @@
   <app-layout-column width=4>
 
     <vpk-card title="Faktiskt lediga platser" icon="chart-line">
-      <div fxLayoutAlign="space-around">
-        <button>07:00</button>
-        <button>11:00</button>
-        <button>16:00</button>
-      </div>
-      <div fxLayoutAlign="space-around">
-        <vpk-button-fab color="warn"></vpk-button-fab>
-        <vpk-button-fab color="warn"></vpk-button-fab>
-        <vpk-button-fab color="warn"></vpk-button-fab>
-      </div>
+
+      <app-layout-row>
+        <app-layout-column width="4">
+          <div class="vpk-dashboard-element">
+              <div class="vpk-dashboard-element-label">07.00</div>
+              <vpk-badge value="-31" size="l" color="red"></vpk-badge>
+          </div>
+        </app-layout-column>
+        <app-layout-column width="4">
+            <div class="vpk-dashboard-element">
+                <div class="vpk-dashboard-element-label">11.00</div>
+                <vpk-badge value="-31" size="l" color="red"></vpk-badge>
+            </div>
+        </app-layout-column>
+        <app-layout-column width="4">
+            <div class="vpk-dashboard-element">
+                <div class="vpk-dashboard-element-label">16.00</div>
+                <vpk-badge value="-" size="l" color="transp"></vpk-badge>
+            </div>
+        </app-layout-column>
+      </app-layout-row>
+
     </vpk-card>
 
   </app-layout-column>
@@ -41,17 +53,26 @@
   <app-layout-column width=4>
 
     <vpk-card title="Prognos lediga platser" icon="chart-line">
-      <div fxLayoutAlign="space-around">
-        <button>07:00</button>
-        <button>11:00</button>
-        <button>16:00</button>
-      </div>
-      <div fxLayoutAlign="space-around">
-        <vpk-button-fab color="warn"></vpk-button-fab>
-        <vpk-button-fab color="warn"></vpk-button-fab>
-        <vpk-button-fab color="warn"></vpk-button-fab>
-      </div>
-
+        <app-layout-row>
+            <app-layout-column width="4">
+              <div class="vpk-dashboard-element">
+                  <div class="vpk-dashboard-element-label">07.00</div>
+                  <vpk-badge value="-31" size="l" color="red"></vpk-badge>
+              </div>
+            </app-layout-column>
+            <app-layout-column width="4">
+                <div class="vpk-dashboard-element">
+                    <div class="vpk-dashboard-element-label">11.00</div>
+                    <vpk-badge value="-31" size="l" color="red"></vpk-badge>
+                </div>
+            </app-layout-column>
+            <app-layout-column width="4">
+                <div class="vpk-dashboard-element">
+                    <div class="vpk-dashboard-element-label">16.00</div>
+                    <vpk-badge value="-" size="l" color="transp"></vpk-badge>
+                </div>
+            </app-layout-column>
+          </app-layout-row>
     </vpk-card>
 
   </app-layout-column>
@@ -59,16 +80,26 @@
   <app-layout-column width=4>
 
     <vpk-card title="Prognos överbeläggning" icon="chart-line">
-      <div fxLayoutAlign="space-around">
-        <button>07:00</button>
-        <button>11:00</button>
-        <button>16:00</button>
-      </div>
-      <div fxLayoutAlign="space-around">
-        <vpk-button-fab color="warn"></vpk-button-fab>
-        <vpk-button-fab color="warn"></vpk-button-fab>
-        <vpk-button-fab color="warn"></vpk-button-fab>
-      </div>
+        <app-layout-row>
+            <app-layout-column width="4">
+              <div class="vpk-dashboard-element">
+                  <div class="vpk-dashboard-element-label">07.00</div>
+                  <vpk-badge value="-31" size="l"></vpk-badge>
+              </div>
+            </app-layout-column>
+            <app-layout-column width="4">
+                <div class="vpk-dashboard-element">
+                    <div class="vpk-dashboard-element-label">11.00</div>
+                    <vpk-badge value="-31" size="l"></vpk-badge>
+                </div>
+            </app-layout-column>
+            <app-layout-column width="4">
+                <div class="vpk-dashboard-element">
+                    <div class="vpk-dashboard-element-label">16.00</div>
+                    <vpk-badge value="-" size="l" color="transp"></vpk-badge>
+                </div>
+            </app-layout-column>
+          </app-layout-row>
     </vpk-card>
 
   </app-layout-column>

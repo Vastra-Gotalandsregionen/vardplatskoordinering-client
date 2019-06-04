@@ -67,6 +67,7 @@ import { AdminGuard } from './guard/admin.guard';
 import { LoginComponent } from './elements/login/login.component';
 import { LoginPageComponent } from './view/login-page/login-page.component';
 import { MdePopoverModule } from '@material-extended/mde';
+import { VpkBadgeComponent } from './elements/vpk-badge/vpk-badge.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { MdePopoverModule } from '@material-extended/mde';
     LayoutColumnComponent,
     LayoutRowComponent,
     LoginComponent,
+    VpkBadgeComponent,
     VpkButtonComponent,
     VpkButtonFabComponent,
     VpkButtonRowComponent,
