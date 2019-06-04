@@ -22,6 +22,7 @@ export class GenericEditDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: {item: any, fieldsConfigs: FieldConfig[]}) {
     this.item = data.item;
     this.fieldsConfigs = data.fieldsConfigs;
+    this.dialogRef.addPanelClass('vpk-dialog');
   }
 
   ngOnInit() {

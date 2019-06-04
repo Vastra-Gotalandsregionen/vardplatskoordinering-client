@@ -1,6 +1,8 @@
-<p>
-  Är du säker att du vill ta bort?
-</p>
+  <h1 mat-dialog-title>Ta bort</h1>
+  
+  <p>Är du säker att du vill ta bort?</p>
 
-<button (click)="confirm()">Bekräfta</button>
-<button (click)="cancel()">Avbryt</button>
+  <vpk-button-row align="right">
+    <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
+    <vpk-button (click)="confirm()" color="primary" label="Bekräfta"></vpk-button>
+  </vpk-button-row>

@@ -1,18 +1,25 @@
 .vpk-button-row {
+    display: block;
     margin: 20px 0 20px 0;
 
-    vpk-button + vpk-button,
-    vpk-button-fab + vpk-button-fab {
-        margin-left: 15px;
+    .vpk-button-row-container {
+        vpk-button + vpk-button,
+        vpk-button-fab + vpk-button-fab {
+            margin-left: 15px;
+        }
     }
 
-    &.vpk-button-row-center {
+
+    .vpk-button-row-container-center {
         text-align: center;
     }
 
-    &.vpk-button-row-right {
+    .vpk-button-row-container-right {
         text-align: right;
     }
 
+    &:last-child {
+        margin-bottom: 0;
+    }
 
 }
