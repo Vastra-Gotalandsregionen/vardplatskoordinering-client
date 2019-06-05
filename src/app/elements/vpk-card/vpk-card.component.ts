@@ -9,6 +9,7 @@ export class VpkCardComponent implements OnInit {
 
   @Input() title: string;
   @Input() icon: string;
+  @Input() iconSet: string = 'fas';
   @Input() draggable: false;
 
   constructor() { }

@@ -2,8 +2,14 @@
   <vpk-button-row align="right">
 
     <vpk-button-fab (click)="openDegreeOfImpactDialog()" icon="chart-line" color="" tooltip="Grad av påverkan"></vpk-button-fab>
-
     <vpk-button-fab (click)="picker.open()" icon="calendar-day" color="" tooltip="Byt datum"></vpk-button-fab>
+    <!-- When not favorited -->
+    <vpk-button-fab *ngIf="isLoggedIn()" (click)="picker.open()" icon="star" tooltip="Lägg till som favorit" class="vpk-fab-favorite"></vpk-button-fab>
+    <!-- When favorited -->
+    <!--
+    <vpk-button-fab *ngIf="isLoggedIn()" (click)="picker.open()" icon="star" tooltip="Ta bort som favorit" class="vpk-fab-favorite is-favorite"></vpk-button-fab>
+    -->
+
   </vpk-button-row>
 </vpk-title-row>
 
@@ -14,7 +20,7 @@
 </div>
 
 <vpk-card title="Dagens beslut">
-  <div *ngIf="(todaysDecisionDataSource.count | async) === 0">
+  <div *ngIf="(todaysDecisionDataSource.count | async) === 0" class="decision-empty" [class.decision-empty-with-add]=hasDecisionEditPermission()>
 
     <vpk-alert message="Det finns inget beslut för dagen ännu."></vpk-alert>
 
