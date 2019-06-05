@@ -9,7 +9,7 @@
     <button (click)="findFromServer()">Sök</button>
   </div>
 
-  <table mat-table [dataSource]="users">
+  <table mat-table [dataSource]="users" class="vpk-table">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Namn</th>

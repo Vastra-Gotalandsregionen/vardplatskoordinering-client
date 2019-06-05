@@ -2,7 +2,7 @@
 <div *ngIf="!isLoading">
 <h1 mat-dialog-title>Grad av påverkan</h1>
 <mat-dialog-content>
-  <mat-table [dataSource]="impactList">
+  <mat-table [dataSource]="impactList" class="vpk-table">
     <ng-container matColumnDef="degree">
       <mat-header-cell *matHeaderCellDef>Grad</mat-header-cell>
       <mat-cell *matCellDef="let element">{{ element.degree }}</mat-cell>
