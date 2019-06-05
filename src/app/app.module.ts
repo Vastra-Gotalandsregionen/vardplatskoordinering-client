@@ -60,14 +60,15 @@ import { RegistreraTableComponent } from './elements/registrera-table/registrera
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HttpErrorHandlerInterceptor } from './interceptor/http-error-handler-interceptor';
 import { JwtHttpInterceptor } from './interceptor/jwt-http-interceptor';
-import { VplComponent } from './view/vpl/vpl.component';
-import { VplAreasComponent } from './view/vpl-areas/vpl-areas.component';
+import { VplLandingComponent } from './view/vpl-landing/vpl-landing.component';
+import { VplAreasComponent } from './view/vpl-landing/vpl-areas/vpl-areas.component';
 import { HasRoleGuard } from './guard/has-role.guard';
 import { AdminGuard } from './guard/admin.guard';
 import { LoginComponent } from './elements/login/login.component';
 import { LoginPageComponent } from './view/login-page/login-page.component';
 import { MdePopoverModule } from '@material-extended/mde';
 import { VpkBadgeComponent } from './elements/vpk-badge/vpk-badge.component';
+import { VplComponent } from './view/vpl-landing/vpl-areas/vpl/vpl.component';
 
 @NgModule({
   declarations: [
@@ -119,9 +120,10 @@ import { VpkBadgeComponent } from './elements/vpk-badge/vpk-badge.component';
     LoginDialogComponent,
     ErrorDialogComponent,
     RegistreraTableComponent,
-    VplComponent,
+    VplLandingComponent,
     VplAreasComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    VplComponent
     // Attribute Directives
 
   ],

@@ -11,11 +11,12 @@ import { CoordinationLandingComponent } from './view/coordination-landing/coordi
 import { UserAdminComponent } from './view/administration/user-admin/user-admin.component';
 import { DefinitionsAdminComponent } from './view/administration/definitions/definitions-admin.component';
 import { DegreeOfImpactComponent } from './view/administration/degree-of-impact/degree-of-impact.component';
-import { VplComponent } from './view/vpl/vpl.component';
-import { VplAreasComponent } from './view/vpl-areas/vpl-areas.component';
+import { VplLandingComponent } from './view/vpl-landing/vpl-landing.component';
+import { VplAreasComponent } from './view/vpl-landing/vpl-areas/vpl-areas.component';
 import { HasRoleGuard } from './guard/has-role.guard';
 import { AdminGuard } from './guard/admin.guard';
 import { LoginPageComponent } from './view/login-page/login-page.component';
+import { VplComponent } from './view/vpl-landing/vpl-areas/vpl/vpl.component';
 
 const routes: Routes = [
   {
@@ -77,11 +78,15 @@ const routes: Routes = [
 
   {
     path: 'vpl',
-    component: VplComponent
+    component: VplLandingComponent
   },
   {
     path: 'vpl/:management',
     component: VplAreasComponent
+  },
+  {
+    path: 'vpl/:management/:administration',
+    component: VplComponent
   },
   {
     path: 'styleguide',
