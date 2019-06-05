@@ -1,5 +1,4 @@
-import {MatPaginatorIntl} from '@angular/material';
-import { getFactoryOf } from '@angular/core/src/render3';
+import { MatPaginatorIntl } from '@angular/material';
 
 export class MatPaginatorIntlSv extends MatPaginatorIntl {
   itemsPerPageLabel = 'Poster per sida';
@@ -7,10 +6,8 @@ export class MatPaginatorIntlSv extends MatPaginatorIntl {
   previousPageLabel = 'Föregående';
   firstPageLabel = 'Första';
   lastPageLabel = 'Sista';
-  
 
-
-  getRangeLabel = (page: number, pageSize: number, length: number):string => {
+  getRangeLabel = (page: number, pageSize: number, length: number): string => {
     if (length === 0 || pageSize === 0) {
       return `0 av ${length}`;
     }
@@ -21,8 +18,6 @@ export class MatPaginatorIntlSv extends MatPaginatorIntl {
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
     return `${startIndex + 1} - ${endIndex} av ${length}`;
-  };
-
-  
+  }
 
 }
