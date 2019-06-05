@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Management } from '../../domain/Management';
+import { AuthService } from '../../service/auth.service';
 import { combineLatest} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,7 +19,8 @@ export class VplAreasComponent implements OnInit {
 
   dateObject: Date;
 
-  constructor(private http: HttpClient,
+  constructor(private authService: AuthService,
+              private http: HttpClient,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -57,5 +59,10 @@ export class VplAreasComponent implements OnInit {
     this.http.get<Management>('/api/management/' + managementId)
       .subscribe(management => this.management = management);
   }
+
+  isLoggedIn() {
+    return this.authService.isAuthenticated();
+  }
+ 
 }
 

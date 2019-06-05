@@ -61,7 +61,7 @@
         }
 
         &.vpk-badge-red {
-            background: red;
+            background: $vpk-red;
             color: white;
         }
 
@@ -70,9 +70,9 @@
             color: white;
         }
 
-        &.vpk-badge-yellow {
-            background: yellow;
-            color: #222;
+        &.vpk-badge-orange {
+            background: $vgr-orange;
+            color: #fff;
         }
         
 

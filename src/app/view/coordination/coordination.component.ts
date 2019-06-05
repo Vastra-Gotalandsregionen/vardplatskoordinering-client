@@ -194,4 +194,9 @@ export class CoordinationComponent implements OnInit {
       return true;
     }
   }
+
+  isLoggedIn() {
+    return this.authService.isAuthenticated();
+  }
+
 }
