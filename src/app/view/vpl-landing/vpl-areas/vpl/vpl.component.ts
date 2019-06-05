@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Management } from '../../domain/Management';
-import { AuthService } from '../../service/auth.service';
-import { combineLatest} from 'rxjs';
+import { AuthService } from '../../../../service/auth.service';
+import { combineLatest } from 'rxjs';
 import { Management } from '../../../../domain/Management';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
+import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: 'app-vpl',
@@ -66,4 +65,7 @@ export class VplComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
 
+  dateSelected(change: string, $event: MatDatepickerInputEvent<any>) {
+
+  }
 }

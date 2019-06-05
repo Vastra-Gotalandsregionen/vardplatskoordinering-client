@@ -10,7 +10,7 @@ import { AuthService } from '../../service/auth.service';
 export class LoginPageComponent implements OnInit {
   private returnUrl: string;
 
-  private isLoggedIn: boolean;
+  isLoggedIn: boolean;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
