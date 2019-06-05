@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './view/home/home.component';
 import { CoordinationComponent } from './view/coordination/coordination.component';
 import { StyleguideComponent } from './view/styleguide/styleguide.component';
+import { DocumentsComponent } from './view/documents/documents.component';
 import { ApplicationAdministrationComponent } from './view/administration/application.administration/application.administration.component';
 import { UnitsComponent } from './view/administration/units/units.component';
 import { ManagementsComponent } from './view/administration/managements/managements.component';
@@ -30,7 +31,10 @@ const routes: Routes = [
     path: 'koordinering/:management',
     component: CoordinationComponent
   },
-
+  {
+    path: 'dokument',
+    component: DocumentsComponent
+  },
   {
     path: 'administration',
     component: ApplicationAdministrationComponent,

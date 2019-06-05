@@ -68,6 +68,7 @@ import { LoginComponent } from './elements/login/login.component';
 import { LoginPageComponent } from './view/login-page/login-page.component';
 import { MdePopoverModule } from '@material-extended/mde';
 import { VpkBadgeComponent } from './elements/vpk-badge/vpk-badge.component';
+import { DocumentsComponent } from './view/documents/documents.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { VpkBadgeComponent } from './elements/vpk-badge/vpk-badge.component';
     // Views
     HomeComponent,
     CoordinationComponent,
+    DocumentsComponent,
     StyleguideComponent,
     DecisionTableComponent,
     EditDecisionDialogComponent,
