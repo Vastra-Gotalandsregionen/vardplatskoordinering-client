@@ -4,7 +4,7 @@ import {Component, HostBinding, Input} from '@angular/core';
   selector: 'app-layout-column',
   templateUrl: './layout-column.component.html',
   styleUrls: ['./layout-column.component.scss'],
-  host: {'class': 'layout-column'}
+  host: {'class': 'vpk-alert'}
 })
 export class LayoutColumnComponent {
 
@@ -13,6 +13,8 @@ export class LayoutColumnComponent {
   @HostBinding('class')
   get classes(): string {
     let classes = this.getColumnWidthClass();
+    // host declaration above seems not work
+    classes = classes + ' layout-column';
 
     if(this.class != undefined) {
       classes = classes + ' ' + this.class;
