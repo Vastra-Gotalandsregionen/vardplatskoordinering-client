@@ -1,8 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { StateService } from '../../service/state.service';
 import { AuthService } from '../../service/auth.service';
 import { TokenResponse } from '../../domain/token-response';
+
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   userId: string;
   password: string;
+
+  @Input() dialogRef: MatDialogRef<LoginDialogComponent>;
 
   @Output() loggedIn = new EventEmitter<void>();
 
@@ -34,5 +39,10 @@ export class LoginComponent implements OnInit {
         this.authService.jwt = response.token;
       });
   }
+
+  cancel(): void {
+    this.dialogRef.close();
+  }
+
 
 }
