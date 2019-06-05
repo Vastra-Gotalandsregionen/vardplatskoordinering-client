@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FieldConfig } from '../../../domain/FieldConfig';
 import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
 import { HttpClient } from '@angular/common/http';
-import { Unit } from '../../../domain/unit';
+import { VplUnit } from '../../../domain/vpl-unit';
 import { Administration } from '../../../domain/Administration';
 import { concatAll, flatMap, map, toArray } from 'rxjs/operators';
 import { forkJoin, of } from 'rxjs';
 import { Management } from '../../../domain/Management';
-import { Tuple2 } from '../../../domain/tuple2';
 
 @Component({
   selector: 'app-units',
@@ -16,14 +15,14 @@ import { Tuple2 } from '../../../domain/tuple2';
 })
 export class UnitsComponent implements OnInit {
 
-  resourceUrl = '/api/unit';
+  resourceUrl = '/api/vplUnit';
 
   fieldsConfigs: FieldConfig[] = [];
 
-  dataSource: BasicEditDataSource<Unit>;
+  dataSource: BasicEditDataSource<VplUnit>;
 
   constructor(private http: HttpClient) {
-    this.dataSource = new BasicEditDataSource<Unit>(http, this.resourceUrl);
+    this.dataSource = new BasicEditDataSource<VplUnit>(http, this.resourceUrl);
   }
 
   ngOnInit() {
@@ -40,7 +39,11 @@ export class UnitsComponent implements OnInit {
         const administrationOptions = administrations.map(a => ({label: a.verks, value: a.id}));
 
         this.fieldsConfigs = [
-          FieldConfig.from('name', 'Namn', 'input'),
+          FieldConfig.from('avd', 'Namn', 'input'),
+          FieldConfig.from('sjh', 'Sjukhus', 'select', [{label: 'NÄL', value: 'NÄL'}, {label: 'US', value: 'US'}]),
+          FieldConfig.from('antal', 'Disponibla', 'input'),
+          FieldConfig.from('fast', 'Fastställda', 'input'),
+          FieldConfig.from('medd', 'Förklaring', 'input'),
           FieldConfig.from('administration', 'Område', 'select', administrationOptions)
         ];
       });

@@ -5,7 +5,7 @@ import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
 import { User } from '../../../domain/User';
 import { Administration } from '../../../domain/Administration';
 import { forkJoin } from 'rxjs';
-import { Unit } from '../../../domain/unit';
+import { VplUnit } from '../../../domain/vpl-unit';
 import { Management } from '../../../domain/Management';
 import { AuthService } from '../../../service/auth.service';
 
@@ -30,7 +30,7 @@ export class UserAdminComponent implements OnInit {
     this.dataSource.getSaveEvents().subscribe(_ => this.authService.renewJwt())
 
     const administrationObservable = this.http.get<Administration[]>('/api/administration');
-    const unitObservable = this.http.get<Unit[]>('/api/unit');
+    const unitObservable = this.http.get<VplUnit[]>('/api/vplUnit');
     const managementObservable = this.http.get<Management[]>('/api/management');
     // const administrationObservable = this.http.get<Administration[]>('/api/role');
 
@@ -43,7 +43,7 @@ export class UserAdminComponent implements OnInit {
         const nullOption = [{label: 'Ej vald', value: null}];
 
         const administrationOptions: Option[] = allAdministrations.map(a => ({label: a.verks, value: a.id}));
-        const unitOptions: Option[] = allUnits.map(a => ({label: a.name, value: a.id}));
+        const unitOptions: Option[] = allUnits.map(a => ({label: a.avd, value: a.id}));
         const managementOptions: Option[] = nullOption.concat(allManagements.map(a => ({label: a.name, value: a.id})));
 
         const roleOptions: Option[] = ['VPK', 'VPL', 'VPK_MANAGER', 'VPL_MANAGER'].map(a => ({label: a, value: a}));
