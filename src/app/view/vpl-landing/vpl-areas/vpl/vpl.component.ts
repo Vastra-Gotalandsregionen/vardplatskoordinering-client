@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Management } from '../../domain/Management';
 import { AuthService } from '../../service/auth.service';
 import { combineLatest} from 'rxjs';
+import { Management } from '../../../../domain/Management';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
 
 @Component({
-  selector: 'app-vpl-areas',
-  templateUrl: './vpl-areas.component.html',
-  styleUrls: ['./vpl-areas.component.scss']
+  selector: 'app-vpl',
+  templateUrl: './vpl.component.html',
+  styleUrls: ['./vpl.component.scss']
 })
-export class VplAreasComponent implements OnInit {
+export class VplComponent implements OnInit {
 
   management: Management;
   date: string;
@@ -63,6 +65,5 @@ export class VplAreasComponent implements OnInit {
   isLoggedIn() {
     return this.authService.isAuthenticated();
   }
- 
-}
 
+}

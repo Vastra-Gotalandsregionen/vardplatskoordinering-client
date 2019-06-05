@@ -4,11 +4,11 @@ import { NavItem } from '../../domain/NavItem';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-vpl',
-  templateUrl: './vpl.component.html',
-  styleUrls: ['./vpl.component.scss']
+  selector: 'app-vpl-landing',
+  templateUrl: './vpl-landing.component.html',
+  styleUrls: ['./vpl-landing.component.scss']
 })
-export class VplComponent implements OnInit {
+export class VplLandingComponent implements OnInit {
 
   managements: Management[];
   navItems: NavItem[] = [];
