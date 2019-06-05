@@ -27,4 +27,12 @@
 
     }
 
+    @media(max-width: 870px) {
+        .vpk-navigation-card {
+            float: none;
+            margin: 10px 0;
+            width: 100%;
+        }        
+    }
+
 }

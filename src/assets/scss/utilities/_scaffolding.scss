@@ -109,13 +109,13 @@
     padding: 0 20px;
   }
 
-  app-layout-column:first-child {
+  .app-layout-column:first-child {
     .col-inner {
       padding-left: 0;
     }
   }
 
-  app-layout-column:last-child {
+  .app-layout-column:last-child {
     .col-inner {
       padding-right: 0;
     }
@@ -125,6 +125,11 @@
 
 @media(max-width: 870px) {
   .row .col {
-    width: 100%
+    width: 100%;
+
+    .col-inner {
+      padding: 0;
+    }
+
   }
 }

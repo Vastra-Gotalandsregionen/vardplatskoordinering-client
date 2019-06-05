@@ -3,7 +3,8 @@ import {Component, HostBinding, Input} from '@angular/core';
 @Component({
   selector: 'app-layout-column',
   templateUrl: './layout-column.component.html',
-  styleUrls: ['./layout-column.component.scss']
+  styleUrls: ['./layout-column.component.scss'],
+  host: {'class': 'layout-column'}
 })
 export class LayoutColumnComponent {
 
