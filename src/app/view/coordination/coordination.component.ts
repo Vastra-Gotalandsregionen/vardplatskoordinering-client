@@ -177,7 +177,7 @@ export class CoordinationComponent implements OnInit {
 
   dateSelected(thing, event: any) {
     const d: Date = event.value;
-    const dateString = d.toLocaleDateString('se-SE');
+    const dateString = d.toLocaleDateString('sv-SE');
     const dateStringIEWorkaround = dateString.replace(/\u200E/g, '');
     this.router.navigate([], {queryParams: {date: dateStringIEWorkaround}});
   }
