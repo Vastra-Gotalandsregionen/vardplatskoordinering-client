@@ -1,0 +1,29 @@
+.decision-empty {
+
+    .vpk-alert {
+        width: 100%;
+    }
+
+
+    &.decision-empty-with-add {
+
+        @include clearfix();
+
+        .vpk-alert {
+            float: left;
+            width: 90%;
+
+            .alert {
+                margin-bottom: 0;
+            }
+        }
+
+
+        .vpk-button {
+            float: right;
+        }
+
+    }
+
+
+}

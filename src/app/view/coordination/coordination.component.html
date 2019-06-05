@@ -14,7 +14,7 @@
 </div>
 
 <vpk-card title="Dagens beslut">
-  <div *ngIf="(todaysDecisionDataSource.count | async) === 0">
+  <div *ngIf="(todaysDecisionDataSource.count | async) === 0" class="decision-empty" [class.decision-empty-with-add]=hasDecisionEditPermission()>
 
     <vpk-alert message="Det finns inget beslut för dagen ännu."></vpk-alert>
 
