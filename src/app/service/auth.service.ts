@@ -231,4 +231,8 @@ export class AuthService {
 
     return [];
   }
+
+  authorizedToUnit(id: number) {
+    return this.isAdmin() || this.getUnitIds().includes(id.toString());
+  }
 }

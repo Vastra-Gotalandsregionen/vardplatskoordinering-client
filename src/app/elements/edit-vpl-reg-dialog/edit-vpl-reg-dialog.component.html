@@ -1,0 +1,74 @@
+<vpk-card title="Registrera vårdplatsläget">
+  <h2>{{unitName}}</h2>
+
+  <form [formGroup]="formGroup">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Fastställda vårdplatser:" [value]="vplReg.fast" disabled/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Avdelning:" [value]="unitName" disabled/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Datum:" [value]="vplReg.datum" disabled/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Tid:" [value]="vplReg.tid" disabled/>
+      </mat-form-field>
+    </div>
+
+    <!--<div>
+      <mat-form-field>
+        <input matInput placeholder="Disponibla vårdplatser kl 06.00:" formControlName="dispVpl" type="number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Inneliggande:" formControlName="inneliggande" type="number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Bristande fysisk utformning och utrustning:" formControlName="fysTillaten" type="number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Prognos lediga kl 16.00:" formControlName="prognosFore" type="number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Påverkansgrad:" formControlName="pg" type="number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Kommentarer:</mat-label>
+        <textarea matInput formControlName="kommentar"
+                  placeholder="Ange kontaktperson nåbar under eftermiddagen, namn och telefonnummer samt övriga kommentarer..."></textarea>
+      </mat-form-field>
+    </div>-->
+
+    <vpk-button-row align="right">
+      <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
+      <vpk-button (click)="saveAndEmit()" color="primary" label="Spara" type="submit"></vpk-button>
+    </vpk-button-row>
+
+  </form>
+
+</vpk-card>

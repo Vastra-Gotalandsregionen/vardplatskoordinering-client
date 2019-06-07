@@ -111,14 +111,13 @@
 </app-layout-row>
 
 <vpk-card title="07:00" icon="clock" iconSet="far">
-
+  <app-vpl-table [dataSource]="morningVplRegs"></app-vpl-table>
 </vpk-card>
 
 <vpk-card title="11:00"  icon="clock" iconSet="far">
-
+  <app-vpl-table [dataSource]="noonVplRegs"></app-vpl-table>
 </vpk-card>
 
 <vpk-card title="16:00"  icon="clock" iconSet="far">
-
-
+  <app-vpl-table [dataSource]="afternoonVplRegs"></app-vpl-table>
 </vpk-card>
