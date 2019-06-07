@@ -1,26 +1,33 @@
+$badgeSizeSmall: 24px;
+$badgeSizeMedium: 40px;
+$badgeSizeLarge: 70px;
+$badgeSizeXlarge: 90px;
+
 .vpk-badge {
 
     display: inline-block;
 
     .vpk-badge-container {
         background: #333;
-        color: #fff;
+        box-sizing: border-box;
+        color: white;
         display: inline-block;
         font-size: 16px;
-        height: 40px;
-        line-height: 40px;
+        font-weight: bold;
+        height: $badgeSizeMedium;
+        line-height: $badgeSizeMedium;
         margin: 0 auto;
         text-align: center;
-        width: 40px;
+        width: $badgeSizeMedium;
 
         @include border-radius(50%);
 
         // Sizes
         &.vpk-badge-size-s {
             font-size: 12px;
-            height: 24px;
-            line-height: 24px;
-            width: 24px;
+            height: $badgeSizeSmall;
+            line-height: $badgeSizeSmall;
+            width: $badgeSizeSmall;
         }
 
         &.vpk-badge-size-m {
@@ -29,16 +36,16 @@
 
         &.vpk-badge-size-l {
             font-size: 22px;
-            height: 70px;
-            line-height: 70px;
-            width: 70px;
+            height: $badgeSizeLarge;
+            line-height: $badgeSizeLarge;
+            width: $badgeSizeLarge;
         }
 
         &.vpk-badge-size-xl {
             font-size: 28px;
-            height: 90px;
-            line-height: 90px;
-            width: 90px;
+            height: $badgeSizeXlarge;
+            line-height: $badgeSizeXlarge;
+            width: $badgeSizeXlarge;
         }
 
         &.vpk-badge-auto-x {

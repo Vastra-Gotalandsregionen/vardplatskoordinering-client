@@ -1,0 +1,21 @@
+<vpk-title-row heading="Dokument och länkar"></vpk-title-row>
+
+<app-layout-row>
+
+  <app-layout-column width=6>
+
+      <vpk-card title="Dokument" icon="file-alt" iconSet="far">
+        <vpk-list [navItems]="docsList1"></vpk-list>
+      </vpk-card>
+
+  </app-layout-column>
+
+  <app-layout-column width=6>
+
+    <vpk-card title="Länkar" icon="link">
+      <vpk-list [navItems]="docsList2"></vpk-list>
+  </vpk-card>
+
+  </app-layout-column>
+
+</app-layout-row>

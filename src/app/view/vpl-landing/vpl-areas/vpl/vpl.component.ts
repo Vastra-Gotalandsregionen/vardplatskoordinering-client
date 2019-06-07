@@ -16,6 +16,7 @@ import { VplUnit } from '../../../../domain/vpl-unit';
 })
 export class VplComponent implements OnInit {
 
+  isFavorite: boolean = false;
   management: Management;
   date: string;
   dayName: string;
@@ -131,6 +132,11 @@ export class VplComponent implements OnInit {
 
   isLoggedIn() {
     return this.authService.isAuthenticated();
+  }
+
+  toggleFavorite() {
+    // Implement actual logic to toggle favorite
+    this.isFavorite = !this.isFavorite;
   }
 
   dateSelected(change: string, event: MatDatepickerInputEvent<any>) {

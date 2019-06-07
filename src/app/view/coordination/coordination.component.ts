@@ -24,6 +24,7 @@ import { AuthService } from '../../service/auth.service';
 })
 export class CoordinationComponent implements OnInit {
 
+  isFavorite: boolean = false;
   todaysRegistreringar: Registrera[] = [];
   administrationer: Administration[];
   management: Management;
@@ -198,5 +199,11 @@ export class CoordinationComponent implements OnInit {
   isLoggedIn() {
     return this.authService.isAuthenticated();
   }
+
+  toggleFavorite() {
+    // Implement logic to toggle favorite
+    this.isFavorite = !this.isFavorite;
+  }
+
 
 }

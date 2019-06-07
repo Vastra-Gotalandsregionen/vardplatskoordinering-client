@@ -68,6 +68,7 @@ import { LoginComponent } from './elements/login/login.component';
 import { LoginPageComponent } from './view/login-page/login-page.component';
 import { MdePopoverModule } from '@material-extended/mde';
 import { VpkBadgeComponent } from './elements/vpk-badge/vpk-badge.component';
+import { DocumentsComponent } from './view/documents/documents.component';
 import { VplComponent } from './view/vpl-landing/vpl-areas/vpl/vpl.component';
 import { VplTableComponent } from './elements/vpl-table/vpl-table.component';
 import { EditVplRegDialogComponent } from './elements/edit-vpl-reg-dialog/edit-vpl-reg-dialog.component';
@@ -101,6 +102,7 @@ import { EditVplRegDialogComponent } from './elements/edit-vpl-reg-dialog/edit-v
     // Views
     HomeComponent,
     CoordinationComponent,
+    DocumentsComponent,
     StyleguideComponent,
     DecisionTableComponent,
     EditDecisionDialogComponent,

@@ -6,13 +6,8 @@
 
 
     <vpk-button-fab (click)="picker.open()" icon="calendar-day" color="" tooltip="Byt datum"></vpk-button-fab>
-
-    <!-- When not favorited -->
-    <vpk-button-fab *ngIf="isLoggedIn()" (click)="picker.open()" icon="star" tooltip="Lägg till som favorit" class="vpk-fab-favorite"></vpk-button-fab>
-    <!-- When favorited -->
-    <!--
-    <vpk-button-fab *ngIf="isLoggedIn()" (click)="picker.open()" icon="star" tooltip="Ta bort som favorit" class="vpk-fab-favorite is-favorite"></vpk-button-fab>
-    -->
+    <vpk-button-fab *ngIf="isLoggedIn() && !isFavorite" (click)="toggleFavorite()" icon="star" tooltip="Lägg till som favorit" class="vpk-fab-favorite"></vpk-button-fab>
+    <vpk-button-fab *ngIf="isLoggedIn() && isFavorite" (click)="toggleFavorite()" icon="star" tooltip="Ta bort som favorit" class="vpk-fab-favorite is-favorite"></vpk-button-fab>
     <vpk-button-fab (click)="picker.open()" icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>
 
   </vpk-button-row>

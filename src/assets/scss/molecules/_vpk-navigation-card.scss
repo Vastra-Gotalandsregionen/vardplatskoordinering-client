@@ -5,9 +5,12 @@
 
         .vpk-card {
 
+            @include transition(all .5s ease);
+
             .mat-card-header {
                 display: block;
                 text-align: center;
+                @include transition(all .5s ease);
             }
     
             .mat-card-content {
@@ -15,36 +18,41 @@
     
                 .vpk-navigation-card-label {
                     font-size: 1.4em;
+                    @include transition(all .5s ease);
                 }
     
                 .vpk-icon {
                     margin-left: 5px;
+                    @include transition(all .5s ease);
                 }
     
             }
     
         }        
 
+        // Blue hover
         &:hover {
             .vpk-card {
-                border-top-color: $vgr-orange;
+                background: $vgr-blue;
 
                 .mat-card-header {
-                    color: $vgr-orange;
+                    color: white;
                 }
 
                 .mat-card-content {
                     .vpk-navigation-card-label {
                         //text-decoration: underline;
-                        color: $vgr-orange;
+                        color: white;
                     }
                     .vpk-icon {
-                        color: $vgr-orange;
+                        color: white;
                     }
                 }
 
             }
-        }
+        }        
+
+
     }
 
 }

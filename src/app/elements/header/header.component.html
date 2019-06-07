@@ -1,7 +1,7 @@
 <div class="header">
 
   <div class="header-top-bar">
-    <div class="retain-contain">
+    <div class="container">
 
       <mat-toolbar class="">
         <a routerLink="home" routerLinkActive="active">
@@ -62,7 +62,7 @@
   </div>
 
   <div class="header-menu-bar">
-    <div class="retain-contain">
+    <div class="container">
       <mat-toolbar class="menu-bar">
 
         <mat-toolbar-row>
@@ -88,6 +88,12 @@
                 <span class="nav-label">Vårdplatsläge</span>
               </a>
           </span>
+
+          <span class="list-item">
+            <a routerLink="/dokument" routerLinkActive="active">
+              <span class="nav-label">Dokument och länkar</span>
+            </a>
+        </span>
 
           <span class="list-item" *ngIf="hasApplicationAdministrationPermission">
               <a routerLink="/administration" routerLinkActive="active">

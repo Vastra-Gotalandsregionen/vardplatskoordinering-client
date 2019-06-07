@@ -1,3 +1,23 @@
+.wrapper {
+    box-sizing: border-box;    
+    margin: 0 auto;
+    position: relative;
+
+    min-height: 100%;
+    margin-bottom: -$footer-height;
+}
+
+.container {
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: $scaffolding-max-width;
+  padding: 0 20px;
+  position: relative;
+  width: auto;
+}
+
+
+
 //
 // Grid system uses mincss grid (see vendor/mincss)
 // col-inner has been added to markup examples compared to mincss grid to
@@ -19,19 +39,6 @@
 //      <div class="col-inner">8</div>
 //    </div>
 //</div>
-
-.retain-contain {
-    max-width: $scaffolding-max-width;
-    margin: 0 auto;
-    position: relative;
-}
-
-.container {
-  box-sizing: border-box;
-  margin: 0;
-  margin: 0 20px;
-  width: auto
-}
 
 .row {
   @extend .clearfix;
@@ -102,13 +109,13 @@
     padding: 0 20px;
   }
 
-  app-layout-column:first-child {
+  .layout-column:first-child {
     .col-inner {
       padding-left: 0;
     }
   }
 
-  app-layout-column:last-child {
+  .layout-column:last-child {
     .col-inner {
       padding-right: 0;
     }
@@ -118,6 +125,11 @@
 
 @media(max-width: 870px) {
   .row .col {
-    width: 100%
+    width: 100%;
+
+    .col-inner {
+      padding: 0;
+    }
+
   }
 }

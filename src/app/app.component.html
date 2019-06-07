@@ -1,13 +1,9 @@
-<div id="container">
-
-  <!--<div class="alert" *ngIf="newVersionAvailable">
-    En ny version av Vårdplatspusslet finns tillgänglig. <a onclick="javascript: location.reload()">Ladda om sidan </a> för att uppdatera.
-  </div>-->
+<div class="wrapper">
   <app-header></app-header>
 
   <div class="content">
 
-    <div class="retain-contain">
+    <div class="container">
 
       <router-outlet></router-outlet>
 
@@ -16,7 +12,7 @@
   </div>
 
   <div class="footer">
-    <div class="retain-contain">
+    <div class="container">
       <mat-toolbar>
         <a href="//www.vgregion.se" class="logo-link">
           <img class="logo" src="/assets/images/vgr-logotyp-neg.png" alt="Logo VGR" />
@@ -24,5 +20,4 @@
       </mat-toolbar>
     </div>
   </div>
-
 </div>
