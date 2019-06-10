@@ -66,9 +66,9 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
     <td class="action-cell" mat-cell *matCellDef="let reg">
-      <ng-container *ngIf="!reg.regtid; else blankspace">
-        <vpk-button (click)="edit(reg)" class="condensed" icon="plus" tooltip="Lägg till"></vpk-button>
-      <vpk-button *ngIf="hasEditPermission(reg.id)" (click)="edit(reg)" class="condensed" icon="pen" tooltip="Redigera"></vpk-button>
+      <ng-container *ngIf="hasEditPermission(reg.avdid); else blankspace">
+        <vpk-button *ngIf="!reg.id" (click)="edit(reg)" class="condensed" icon="plus" tooltip="Lägg till"></vpk-button>
+        <vpk-button *ngIf="reg.id" (click)="edit(reg)" class="condensed" icon="pen" tooltip="Redigera"></vpk-button>
       </ng-container>
       <ng-template #blankspace>
         &nbsp;

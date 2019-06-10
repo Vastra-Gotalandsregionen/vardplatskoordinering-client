@@ -8,6 +8,7 @@ import { MatDatepickerInputEvent } from '@angular/material';
 import { VplReg } from '../../../../domain/vpl-reg';
 import { concatAll, concatMap, map, toArray } from 'rxjs/operators';
 import { VplUnit } from '../../../../domain/vpl-unit';
+import { Administration } from '../../../../domain/Administration';
 
 @Component({
   selector: 'app-vpl',
@@ -16,8 +17,11 @@ import { VplUnit } from '../../../../domain/vpl-unit';
 })
 export class VplComponent implements OnInit {
 
-  isFavorite: boolean = false;
+  isFavorite = false;
+
   management: Management;
+  administration: Administration;
+
   date: string;
   dayName: string;
   today = new Date().toISOString().slice(0, 10);
@@ -27,7 +31,7 @@ export class VplComponent implements OnInit {
   morningVplRegs: VplReg[] = [];
   noonVplRegs: VplReg[] = [];
   afternoonVplRegs: VplReg[] = [];
-
+  authorizedUnits: VplUnit[];
 
   constructor(private authService: AuthService,
               private http: HttpClient,
@@ -46,7 +50,10 @@ export class VplComponent implements OnInit {
         map(result => forkJoin([
           of(result[0]),
           of(result[1]),
-          this.http.get<VplUnit[]>(`/api/vplUnit?administration=${result[0].administration}`)])),
+          this.http.get<VplUnit[]>(`/api/vplUnit?administration=${result[0].administration}`),
+          this.http.get<Administration>(`/api/administration/${result[0].administration}`
+          )]
+        )),
         concatAll()
         /*concatMap(r => {
           debugger;
@@ -68,20 +75,21 @@ export class VplComponent implements OnInit {
       .subscribe(result => {
         const pathParams = result[0];
         const queryParams = result[1];
-        const authorizedUnits = result[2].filter(unit => this.authService.authorizedToUnit(unit.id));
-        this.updateView(pathParams.management, pathParams.administration, queryParams.date, authorizedUnits);
+        this.authorizedUnits = result[2].filter(unit => this.authService.authorizedToUnit(unit.id));
+        this.administration = result[3];
+        this.updateView(pathParams.management, pathParams.administration, queryParams.date, this.authorizedUnits);
       });
 
   }
 
-  private updateView(managementId: string, administration: string, date: string, authorizedUnits: VplUnit[]) {
+  private updateView(managementId: number, administration: number, date: string, authorizedUnits: VplUnit[]) {
 
     if (!date) {
       date = this.today;
     }
 
     from(['07:00', '11:00', '16:00']).pipe(
-      concatMap(tid => this.http.get<VplReg[]>('/api/vplReg', {params: {administration, datum: date, tid}})),
+      concatMap(tid => this.http.get<VplReg[]>('/api/vplReg', {params: {administration: administration.toString(), datum: date, tid}})),
       // concatAll(),
       toArray()
     ).subscribe((vplRegsArray: VplReg[][]) => {
@@ -93,11 +101,6 @@ export class VplComponent implements OnInit {
       this.complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits, this.noonVplRegs, '11:00');
       this.complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits, this.afternoonVplRegs, '16:00');
     });
-
-/*    this.http.get<VplReg[]>('/api/vplReg', {params: {administration, datum: date, tid: '07:00'}})
-      .subscribe(vplRegs => {
-        this.morningVplRegs = vplRegs;
-      });*/
 
     this.date = date;
 
@@ -144,5 +147,9 @@ export class VplComponent implements OnInit {
     const dateString = d.toLocaleDateString('sv-SE');
     const dateStringIEWorkaround = dateString.replace(/\u200E/g, '');
     this.router.navigate([], {queryParams: {date: dateStringIEWorkaround}});
+  }
+
+  updateAll() {
+    this.updateView(this.management.id, this.administration.id, this.date, this.authorizedUnits);
   }
 }

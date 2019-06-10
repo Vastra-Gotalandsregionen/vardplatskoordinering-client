@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { VplReg } from '../../domain/vpl-reg';
 import { AuthService } from '../../service/auth.service';
 import { MatDialog } from '@angular/material';
@@ -12,6 +12,7 @@ import { EditVplRegDialogComponent } from '../edit-vpl-reg-dialog/edit-vpl-reg-d
 export class VplTableComponent implements OnInit {
 
   @Input() dataSource: VplReg[];
+  @Output() saveEvent = new EventEmitter();
 
   regDisplayedColumns = ['avd', 'regtid', 'max', 'inneliggande', 'hem', 'hemp', 'planIn', 'medFardigbehandlade', 'ob', 'prognosis',
     'actions'];
@@ -23,7 +24,7 @@ export class VplTableComponent implements OnInit {
   }
 
   hasEditPermission(id: number) {
-    this.authService.authorizedToUnit(id);
+    return this.authService.authorizedToUnit(id);
   }
 
   edit(vplReg: VplReg) {
@@ -34,6 +35,8 @@ export class VplTableComponent implements OnInit {
     });
 
     dialogRef.componentInstance.save.subscribe((result: VplReg) => {
+
+      this.saveEvent.emit(result);
       /*if (result) {
         this.http.put('/api/akutenTrappa', result).subscribe(() => {
           this.updateDecisions();

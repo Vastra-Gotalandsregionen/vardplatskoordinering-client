@@ -4,12 +4,6 @@
   <form [formGroup]="formGroup">
     <div>
       <mat-form-field>
-        <input matInput placeholder="Fastställda vårdplatser:" [value]="vplReg.fast" disabled/>
-      </mat-form-field>
-    </div>
-
-    <div>
-      <mat-form-field>
         <input matInput placeholder="Avdelning:" [value]="unitName" disabled/>
       </mat-form-field>
     </div>
@@ -23,6 +17,48 @@
     <div>
       <mat-form-field>
         <input matInput placeholder="Tid:" [value]="vplReg.tid" disabled/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Fastställda vårdplatser:" [value]="vplReg.fast" disabled/>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Disponibla vårdplatser:" formControlName="max" type="number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Antal inneliggande:" formControlName="inneliggande" type="number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Planerade hem idag:" formControlName="hem" type="number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Planerade hem imorgon:" formControlName="hemp" type="number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Antal planerade in:" formControlName="planIn" type="number">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Antal utskrivningsklara:" formControlName="medFardigbehandlade" type="number">
       </mat-form-field>
     </div>
 
