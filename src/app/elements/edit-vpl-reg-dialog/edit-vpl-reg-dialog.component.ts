@@ -17,6 +17,7 @@ export class EditVplRegDialogComponent implements OnInit {
 
   vplReg: VplReg;
   unitName: string;
+  obRumOptions: string[] = ['Läkarrum', 'Korridor', 'Behandlingsrum', 'Burspråk', 'Dagrum'];
 
   constructor(public dialogRef: MatDialogRef<EditVplRegDialogComponent>,
               private http: HttpClient,
@@ -65,9 +66,15 @@ export class EditVplRegDialogComponent implements OnInit {
     this.vplReg.hemp = model.hemp;
     this.vplReg.planIn = model.planIn;
     this.vplReg.medFardigbehandlade = model.medFardigbehandlade;
+    this.vplReg.ob1 = model.ob1;
+    this.vplReg.ob1Rum = model.ob1Rum;
+    this.vplReg.ob2 = model.ob2;
+    this.vplReg.ob2Rum = model.ob2Rum;
+    this.vplReg.ob3 = model.ob3;
+    this.vplReg.ob3Rum = model.ob3Rum;
 
 
-    this.http.put<VplReg>('/api/vplReg', this.vplReg)
+    this.http.put<VplReg>('/api/vpl-reg', this.vplReg)
       .subscribe(result => {
         this.dialogRef.close();
         this.save.emit(result);

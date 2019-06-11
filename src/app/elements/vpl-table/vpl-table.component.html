@@ -2,65 +2,65 @@
   <ng-container matColumnDef="avd">
     <th mat-header-cell *matHeaderCellDef>Avdelning</th>
     <td mat-cell *matCellDef="let reg">{{reg.avd}}</td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
   <ng-container matColumnDef="regtid">
     <th mat-header-cell *matHeaderCellDef>Reg tid</th>
     <td mat-cell *matCellDef="let reg">{{reg.regtid}}</td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
   <ng-container matColumnDef="max">
     <th mat-header-cell *matHeaderCellDef>Disp</th>
     <td mat-cell *matCellDef="let reg">{{reg.max}}</td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-footer-cell *matFooterCellDef>{{sum(dataSource, 'max')}}</td>
   </ng-container>
 
   <ng-container matColumnDef="inneliggande">
     <th mat-header-cell *matHeaderCellDef>Inneligg.</th>
     <td mat-cell *matCellDef="let reg">{{reg.inneliggande}}</td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-footer-cell *matFooterCellDef>{{sum(dataSource, 'inneliggande')}}</td>
   </ng-container>
 
   <ng-container matColumnDef="hem">
     <th mat-header-cell *matHeaderCellDef>Hem idag</th>
     <td mat-cell *matCellDef="let reg">{{reg.hem}}</td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-footer-cell *matFooterCellDef>{{sum(dataSource, 'hem')}}</td>
   </ng-container>
 
   <ng-container matColumnDef="hemp">
     <th mat-header-cell *matHeaderCellDef>Hem imorgon</th>
     <td mat-cell *matCellDef="let reg">{{reg.hemp}}</td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-footer-cell *matFooterCellDef>{{sum(dataSource, 'hemp')}}</td>
   </ng-container>
 
   <ng-container matColumnDef="planIn">
     <th mat-header-cell *matHeaderCellDef>Plan in</th>
     <td mat-cell *matCellDef="let reg">{{reg.planIn}}</td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-footer-cell *matFooterCellDef>{{sum(dataSource, 'planIn')}}</td>
   </ng-container>
 
   <ng-container matColumnDef="medFardigbehandlade">
     <th mat-header-cell *matHeaderCellDef>Utskr. klara</th>
     <td mat-cell *matCellDef="let reg">{{reg.medFardigbehandlade}}</td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-footer-cell *matFooterCellDef>{{sum(dataSource, 'medFardigbehandlade')}}</td>
   </ng-container>
 
   <ng-container matColumnDef="ob">
     <th mat-header-cell *matHeaderCellDef>Överbeläggningar</th>
     <td mat-cell *matCellDef="let reg">
       <ng-container *ngIf="reg.ob1 && reg.ob1 > 0"><span>{{reg.ob1}} pat i {{reg.ob1Rum}}</span></ng-container>
-      <ng-container *ngIf="reg.ob2 && reg.ob2 > 0"><br/><span>{{reg.ob1}} pat i {{reg.ob1Rum}}</span></ng-container>
-      <ng-container *ngIf="reg.ob3 && reg.ob3 > 0"><br/><span>{{reg.ob1}} pat i {{reg.ob1Rum}}</span></ng-container>
+      <ng-container *ngIf="reg.ob2 && reg.ob2 > 0"><br/><span>{{reg.ob2}} pat i {{reg.ob2Rum}}</span></ng-container>
+      <ng-container *ngIf="reg.ob3 && reg.ob3 > 0"><br/><span>{{reg.ob3}} pat i {{reg.ob3Rum}}</span></ng-container>
     </td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-footer-cell *matFooterCellDef>{{sumMultipleFields(dataSource, ['ob1', 'ob2', 'ob3'])}}</td>
   </ng-container>
 
   <ng-container matColumnDef="prognosis">
     <th mat-header-cell *matHeaderCellDef>Prognos</th>
-    <td mat-cell *matCellDef="let reg">{{0}}</td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-cell *matCellDef="let reg">{{calculatePrognosis(reg)}}</td>
+    <td mat-footer-cell *matFooterCellDef>{{sumPrognosis(dataSource)}}</td>
   </ng-container>
 
   <ng-container matColumnDef="actions">
@@ -73,11 +73,11 @@
       <ng-template #blankspace>
         &nbsp;
       </ng-template>
-<!--
-    <th mat-header-cell *matHeaderCellDef> </th>
--->
+      <!--
+          <th mat-header-cell *matHeaderCellDef> </th>
+      -->
     </td>
-    <!--      <td mat-footer-cell *matFooterCellDef>Summa</td>-->
+    <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="regDisplayedColumns"
@@ -87,5 +87,5 @@
       class="element-row"></tr>
 
   <!--    <tr mat-row *matRowDef="let registrera; columns: ['expandedDetail']" class="detail-row"></tr>-->
-  <!--    <tr mat-footer-row *matFooterRowDef="regDisplayedColumns" class="sum-row"></tr>-->
+  <tr mat-footer-row *matFooterRowDef="regDisplayedColumns" class="sum-row"></tr>
 </table>

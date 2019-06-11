@@ -12,6 +12,7 @@
     <mat-form-field *ngIf="field.type === 'select'">
       <mat-label>{{field.label}}</mat-label>
       <mat-select [formControlName]="field.name">
+        <mat-option>-</mat-option>
         <mat-option *ngFor="let option of field.options" [value]="option.value">
           {{option.label}}
         </mat-option>
@@ -27,9 +28,6 @@
       </mat-select>
     </mat-form-field>
   </div>
-
-  <!--<button (click)="cancel()">Avbryt</button>
-  <button (click)="saveAndEmit()">Spara</button>-->
 
   <vpk-button-row align="right">
     <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>

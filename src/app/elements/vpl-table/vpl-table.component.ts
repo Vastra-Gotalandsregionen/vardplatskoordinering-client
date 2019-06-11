@@ -3,6 +3,7 @@ import { VplReg } from '../../domain/vpl-reg';
 import { AuthService } from '../../service/auth.service';
 import { MatDialog } from '@angular/material';
 import { EditVplRegDialogComponent } from '../edit-vpl-reg-dialog/edit-vpl-reg-dialog.component';
+import { CalculateUtil } from '../../util/calculate-util';
 
 @Component({
   selector: 'app-vpl-table',
@@ -37,11 +38,22 @@ export class VplTableComponent implements OnInit {
     dialogRef.componentInstance.save.subscribe((result: VplReg) => {
 
       this.saveEvent.emit(result);
-      /*if (result) {
-        this.http.put('/api/akutenTrappa', result).subscribe(() => {
-          this.updateDecisions();
-        });
-      }*/
     });
+  }
+
+  calculatePrognosis(reg: VplReg) {
+    return CalculateUtil.calculatePrognosis(reg);
+  }
+
+  sum(vplRegs: VplReg[], field: string) {
+    return vplRegs.reduce((previousValue, currentValue) => previousValue + (currentValue[field] || 0), 0);
+  }
+
+  sumMultipleFields(vplRegs: VplReg[], fields: string[]) {
+    return CalculateUtil.sumMultipleFields(vplRegs, fields);
+  }
+
+  sumPrognosis(vplRegs: VplReg[]) {
+    return vplRegs.reduce((previousValue, vplReg) => previousValue + this.calculatePrognosis(vplReg), 0);
   }
 }

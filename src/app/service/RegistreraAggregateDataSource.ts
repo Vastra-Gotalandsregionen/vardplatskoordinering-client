@@ -24,7 +24,7 @@ export class RegistreraAggregatesDataSource implements DataSource<RegistreraAggr
 
   load(page: number) {
     this._currentPage = page;
-    this.http.get('/api/registreraAggregate?management=' + this.managementId + '&page=' + page + (this.datum ? '&datum=' + this.datum : ''))
+    this.http.get(`/api/registrera-aggregate?management=${this.managementId}&page=${page}${this.datum ? '&datum=' + this.datum : ''}`)
       .subscribe((pageResponse: PageResponse<RegistreraAggregate[]>) => {
         this.registreraAggregatesSubject.next(pageResponse.content);
         this._count.next(pageResponse.totalElements);

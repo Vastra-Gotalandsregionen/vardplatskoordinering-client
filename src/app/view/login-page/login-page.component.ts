@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
   private returnUrl: string;
 
   isLoggedIn: boolean;
@@ -16,12 +17,18 @@ export class LoginPageComponent implements OnInit {
               private route: ActivatedRoute,
               private authService: AuthService) { }
 
+  private subscription: Subscription;
+
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl;
 
-    this.authService.isUserLoggedIn.subscribe(loggedIn => {
+    this.subscription = this.authService.isUserLoggedIn.subscribe(loggedIn => {
       this.isLoggedIn = loggedIn;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   loggedIn() {

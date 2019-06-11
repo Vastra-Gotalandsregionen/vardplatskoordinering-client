@@ -15,7 +15,7 @@ import { Management } from '../../../domain/Management';
 })
 export class UnitsComponent implements OnInit {
 
-  resourceUrl = '/api/vplUnit';
+  resourceUrl = '/api/vpl-unit';
 
   fieldsConfigs: FieldConfig[] = [];
 
@@ -40,11 +40,11 @@ export class UnitsComponent implements OnInit {
 
         this.fieldsConfigs = [
           FieldConfig.from('avd', 'Namn', 'input'),
-          FieldConfig.from('sjh', 'Sjukhus', 'select', [{label: 'NÄL', value: 'NÄL'}, {label: 'US', value: 'US'}]),
+          FieldConfig.from('sjh', 'Sjukhus', 'select', [{label: 'NÄL', value: 'NÄL'}, {label: 'US', value: 'US'}], true),
           FieldConfig.from('antal', 'Disponibla', 'input'),
           FieldConfig.from('fast', 'Fastställda', 'input'),
           FieldConfig.from('medd', 'Förklaring', 'input'),
-          FieldConfig.from('administration', 'Område', 'select', administrationOptions)
+          FieldConfig.from('administration', 'Område', 'select', administrationOptions, true)
         ];
       });
   }

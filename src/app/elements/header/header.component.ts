@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
@@ -7,7 +7,7 @@ import { AuthService } from '../../service/auth.service';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { HttpClient } from '@angular/common/http';
 import { Management } from '../../domain/Management';
-import { from } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { concatMap, map, toArray } from 'rxjs/operators';
 import { Administration } from '../../domain/Administration';
 
@@ -16,11 +16,12 @@ import { Administration } from '../../domain/Administration';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   managementName: string;
   administrationsString: string;
   hasApplicationAdministrationPermission: boolean;
+  private subscription: Subscription;
 
   constructor(private authService: AuthService,
               private stateService: StateService,
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
               private http: HttpClient) { }
 
   ngOnInit() {
-    this.authService.isUserLoggedIn.subscribe(_ => {
+    this.subscription = this.authService.isUserLoggedIn.subscribe(_ => {
       const managementId = this.authService.getManagementId();
       if (managementId) {
         this.http.get<Management>('/api/management/' + managementId).subscribe(m => {
@@ -51,6 +52,10 @@ export class HeaderComponent implements OnInit {
 
       this.hasApplicationAdministrationPermission = this.authService.hasApplicationAdministrationPermission;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   openLogin() {

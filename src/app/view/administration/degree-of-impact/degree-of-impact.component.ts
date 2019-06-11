@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DegreeOfImpactComponent implements OnInit {
 
-  resourceUrl = '/api/degreeOfImpact';
+  resourceUrl = '/api/degree-of-impact';
 
   fieldConfigs: FieldConfig[] = [
     FieldConfig.from('degree', 'Grad', 'input'),

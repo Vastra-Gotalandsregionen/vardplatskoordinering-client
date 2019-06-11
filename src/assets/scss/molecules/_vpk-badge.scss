@@ -73,8 +73,13 @@ $badgeSizeXlarge: 90px;
         }
 
         &.vpk-badge-green {
-            background: green;
+            background: $vpk-green;
             color: white;
+        }
+
+        &.vpk-badge-yellow {
+            background: $vpk-yellow;
+            color: #000000;
         }
 
         &.vpk-badge-orange {

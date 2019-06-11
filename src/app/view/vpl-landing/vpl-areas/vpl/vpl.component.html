@@ -1,7 +1,7 @@
 <!--
 <vpk-title-row heading="Vårdplatsläge idag">
 -->
-<vpk-title-row heading="{{management?.name}}{{management ? ', ' : ''}} {{dayName ? dayName + ' ' : ''}}{{date}}">
+<vpk-title-row heading="{{management?.name}} – {{administration?.verks}}, {{dayName ? dayName + ' ' : ''}}{{date}}">
   <vpk-button-row align="right">
 
 
@@ -29,19 +29,19 @@
         <app-layout-column width="4">
           <div class="vpk-dashboard-element">
             <div class="vpk-dashboard-element-label">07.00</div>
-            <vpk-badge value="-31" size="l" color="red"></vpk-badge>
+            <vpk-badge *ngFor="let value of [calculateActualVacants(morningVplRegs)]" [value]="value" size="l" [color]="calculateColor(value)"></vpk-badge>
           </div>
         </app-layout-column>
         <app-layout-column width="4">
           <div class="vpk-dashboard-element">
             <div class="vpk-dashboard-element-label">11.00</div>
-            <vpk-badge value="-31" size="l" color="red"></vpk-badge>
+            <vpk-badge *ngFor="let value of [calculateActualVacants(noonVplRegs)]" [value]="value" size="l" [color]="calculateColor(value)"></vpk-badge>
           </div>
         </app-layout-column>
         <app-layout-column width="4">
           <div class="vpk-dashboard-element">
             <div class="vpk-dashboard-element-label">16.00</div>
-            <vpk-badge value="-" size="l" color="transparent"></vpk-badge>
+            <vpk-badge *ngFor="let value of [calculateActualVacants(afternoonVplRegs)]" [value]="value" size="l" [color]="calculateColor(value)"></vpk-badge>
           </div>
         </app-layout-column>
       </app-layout-row>
@@ -56,20 +56,20 @@
       <app-layout-row>
         <app-layout-column width="4">
           <div class="vpk-dashboard-element">
-            <div class="vpk-dashboard-element-label">07.00</div>
-            <vpk-badge value="-31" size="l" color="red"></vpk-badge>
+            <div class="vpk-dashboard-element-label">07:00</div>
+            <vpk-badge *ngFor="let value of [calculatePrognosis(morningVplRegs)]" value="{{value}}" size="l" [color]="calculateColor(value)"></vpk-badge>
           </div>
         </app-layout-column>
         <app-layout-column width="4">
           <div class="vpk-dashboard-element">
             <div class="vpk-dashboard-element-label">11.00</div>
-            <vpk-badge value="-31" size="l" color="red"></vpk-badge>
+            <vpk-badge *ngFor="let value of [calculatePrognosis(noonVplRegs)]"  value="{{value}}" size="l" [color]="calculateColor(value)"></vpk-badge>
           </div>
         </app-layout-column>
         <app-layout-column width="4">
           <div class="vpk-dashboard-element">
             <div class="vpk-dashboard-element-label">16.00</div>
-            <vpk-badge value="-" size="l" color="transparent"></vpk-badge>
+            <vpk-badge *ngFor="let value of [calculatePrognosis(afternoonVplRegs)]"  value="{{value}}" size="l" [color]="calculateColor(value)"></vpk-badge>
           </div>
         </app-layout-column>
       </app-layout-row>
@@ -84,19 +84,19 @@
         <app-layout-column width="4">
           <div class="vpk-dashboard-element">
             <div class="vpk-dashboard-element-label">07.00</div>
-            <vpk-badge value="-31" size="l"></vpk-badge>
+            <vpk-badge *ngFor="let value of [calculatePrognosisOb(morningVplRegs)]" [value]="value" [color]="value !== '-' ? 'black' : 'transparent'" size="l"></vpk-badge>
           </div>
         </app-layout-column>
         <app-layout-column width="4">
           <div class="vpk-dashboard-element">
             <div class="vpk-dashboard-element-label">11.00</div>
-            <vpk-badge value="-31" size="l"></vpk-badge>
+            <vpk-badge *ngFor="let value of [calculatePrognosisOb(noonVplRegs)]" [value]="value" [color]="value !== '-' ? 'black' : 'transparent'" size="l"></vpk-badge>
           </div>
         </app-layout-column>
         <app-layout-column width="4">
           <div class="vpk-dashboard-element">
             <div class="vpk-dashboard-element-label">16.00</div>
-            <vpk-badge value="-" size="l" color="transparent"></vpk-badge>
+            <vpk-badge *ngFor="let value of [calculatePrognosisOb(afternoonVplRegs)]" [value]="value" [color]="value !== '-' ? 'black' : 'transparent'" size="l"></vpk-badge>
           </div>
         </app-layout-column>
       </app-layout-row>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../../../service/auth.service';
-import { combineLatest, forkJoin, from, of } from 'rxjs';
+import { combineLatest, forkJoin, from, of, Subscription } from 'rxjs';
 import { Management } from '../../../../domain/Management';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,13 +9,14 @@ import { VplReg } from '../../../../domain/vpl-reg';
 import { concatAll, concatMap, map, toArray } from 'rxjs/operators';
 import { VplUnit } from '../../../../domain/vpl-unit';
 import { Administration } from '../../../../domain/Administration';
+import { CalculateUtil } from '../../../../util/calculate-util';
 
 @Component({
   selector: 'app-vpl',
   templateUrl: './vpl.component.html',
   styleUrls: ['./vpl.component.scss']
 })
-export class VplComponent implements OnInit {
+export class VplComponent implements OnInit, OnDestroy {
 
   isFavorite = false;
 
@@ -39,38 +40,24 @@ export class VplComponent implements OnInit {
               private router: Router) {
   }
 
+  private subscription: Subscription;
+
   ngOnInit() {
 
     const pathParams$ = this.route.params;
     const queryParams$ = this.route.queryParams;
     const userLoggedIn$ = this.authService.isUserLoggedIn;
 
-    combineLatest(pathParams$, queryParams$, userLoggedIn$)
+    this.subscription = combineLatest(pathParams$, queryParams$, userLoggedIn$)
       .pipe(
         map(result => forkJoin([
           of(result[0]),
           of(result[1]),
-          this.http.get<VplUnit[]>(`/api/vplUnit?administration=${result[0].administration}`),
+          this.http.get<VplUnit[]>(`/api/vpl-unit?administration=${result[0].administration}`),
           this.http.get<Administration>(`/api/administration/${result[0].administration}`
           )]
         )),
         concatAll()
-        /*concatMap(r => {
-          debugger;
-          return of([r[0], r[1], this.http.get('/api/unit')]);
-        }),*/
-        // toArray()
-        // concatAll(),
-        /*concat(result => {
-          debugger;
-          return [];
-        }),*/
-        /*combineAll(result => {
-          debugger;
-          return of(...[result[0], result[1]]);
-        }),*/
-        // concatAll(),
-        // toArray()
       )
       .subscribe(result => {
         const pathParams = result[0];
@@ -79,7 +66,10 @@ export class VplComponent implements OnInit {
         this.administration = result[3];
         this.updateView(pathParams.management, pathParams.administration, queryParams.date, this.authorizedUnits);
       });
+  }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   private updateView(managementId: number, administration: number, date: string, authorizedUnits: VplUnit[]) {
@@ -89,7 +79,7 @@ export class VplComponent implements OnInit {
     }
 
     from(['07:00', '11:00', '16:00']).pipe(
-      concatMap(tid => this.http.get<VplReg[]>('/api/vplReg', {params: {administration: administration.toString(), datum: date, tid}})),
+      concatMap(tid => this.http.get<VplReg[]>('/api/vpl-reg', {params: {administration: administration.toString(), datum: date, tid}})),
       // concatAll(),
       toArray()
     ).subscribe((vplRegsArray: VplReg[][]) => {
@@ -97,9 +87,9 @@ export class VplComponent implements OnInit {
       this.noonVplRegs = vplRegsArray[1];
       this.afternoonVplRegs = vplRegsArray[2];
 
-      this.complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits, this.morningVplRegs, '07:00');
-      this.complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits, this.noonVplRegs, '11:00');
-      this.complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits, this.afternoonVplRegs, '16:00');
+      this.complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits, this.morningVplRegs, '07:00', date);
+      this.complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits, this.noonVplRegs, '11:00', date);
+      this.complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits, this.afternoonVplRegs, '16:00', date);
     });
 
     this.date = date;
@@ -119,7 +109,7 @@ export class VplComponent implements OnInit {
       .subscribe(management => this.management = management);
   }
 
-  private complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits: VplUnit[], vplRegs, tid: string) {
+  private complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits: VplUnit[], vplRegs, tid: string, date: string) {
     authorizedUnits.forEach(unit => {
       if (!vplRegs.map(reg => reg.avdid).includes(unit.id)) {
         const reg = new VplReg();
@@ -127,7 +117,7 @@ export class VplComponent implements OnInit {
         reg.tid = tid;
         reg.avd = unit.avd;
         reg.fast = unit.fast;
-        reg.datum = this.today;
+        reg.datum = date;
         vplRegs.push(reg);
       }
     });
@@ -151,5 +141,81 @@ export class VplComponent implements OnInit {
 
   updateAll() {
     this.updateView(this.management.id, this.administration.id, this.date, this.authorizedUnits);
+  }
+
+  accumulateField(vplRegs: VplReg[], field: string) {
+    if (!this.anyIsPersisted(vplRegs)) {
+      return '-';
+    }
+
+    return vplRegs.reduce((previousValue, currentValue) => previousValue + (currentValue[field] || 0), 0);
+  }
+
+  private anyIsPersisted(vplRegs: VplReg[]) {
+    return vplRegs.length > 0 && vplRegs.some(vplReg => !!vplReg.id);
+  }
+
+  calculatePrognosis(vplRegs: VplReg[]) {
+    if (!this.anyIsPersisted(vplRegs)) {
+      return '-';
+    }
+
+    return this.accumulatePrognosis(vplRegs);
+  }
+
+  private accumulatePrognosis(vplRegs) {
+    if (!this.anyIsPersisted(vplRegs)) {
+      return '-';
+    }
+
+    return vplRegs.reduce((previousValue, currentValue) => previousValue + CalculateUtil.calculatePrognosis(currentValue), 0);
+  }
+
+  sumMultipleFields(vplRegs: VplReg[], fields: string[]) {
+    if (!this.anyIsPersisted(vplRegs)) {
+      return '-';
+    }
+
+    return CalculateUtil.sumMultipleFields(vplRegs, fields);
+  }
+
+  calculateColor(value) {
+    if (value === undefined || value === null || value === '-') {
+      return 'transparent';
+    }
+
+    if (value > 0) {
+      return 'green';
+    } else if (value === 0) {
+      return 'yellow';
+    } else if (value < 0) {
+      return 'red';
+    } else {
+      return '';
+    }
+  }
+
+  calculatePrognosisOb(vplRegs: VplReg[]) {
+    if (!this.anyIsPersisted(vplRegs)) {
+      return '-';
+    }
+
+    const negatives = vplRegs
+      .map(vplReg => CalculateUtil.calculatePrognosis(vplReg))
+      .filter(prognosis => prognosis < 0);
+
+    if (negatives.length > 0) {
+      return negatives.reduce((previousValue, currentValue) => previousValue + currentValue);
+    } else {
+      return '-';
+    }
+  }
+
+  calculateActualVacants(vplRegs: VplReg[]) {
+    if (!this.anyIsPersisted(vplRegs)) {
+      return '-';
+    }
+
+    return this.accumulateField(vplRegs, 'max') - this.accumulateField(vplRegs, 'inneliggande');
   }
 }

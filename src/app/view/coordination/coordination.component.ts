@@ -150,7 +150,7 @@ export class CoordinationComponent implements OnInit {
 
     dialogRef.componentInstance.save.subscribe((result: AkutenTrappa) => {
       if (result) {
-        this.http.put('/api/akutenTrappa', result).subscribe(() => {
+        this.http.put('/api/akuten-trappa', result).subscribe(() => {
           this.updateDecisions();
         });
       }
@@ -170,7 +170,7 @@ export class CoordinationComponent implements OnInit {
   }
 
   editDecisionByAkutenTrappaId(akutenTrappaId: number) {
-    this.http.get('/api/akutenTrappa/' + akutenTrappaId)
+    this.http.get('/api/akuten-trappa/' + akutenTrappaId)
       .subscribe((akutenTrappa: AkutenTrappa) => {
         this.editDecision(akutenTrappa);
       });
