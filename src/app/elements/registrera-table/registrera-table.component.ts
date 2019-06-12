@@ -91,12 +91,12 @@ export class RegistreraTableComponent implements OnInit {
   }
 
   hasEditPermission(registrera: Registrera): boolean {
-    if (this.authService.isAdmin() || this.authService.hasManagementAdminPermission()) {
+    if (this.authService.isAdmin() || this.authService.hasVpkManagementAdminPermission()) {
       return true;
     }
 
     const today = new Date().toISOString().slice(0, 10);
-    return this.authService.hasAdministrationEditPermission(registrera.administration) && registrera.datum === today;
+    return this.authService.hasVpkEditPermission(registrera.administration) && registrera.datum === today;
   }
 
   getAdministrationName(administration: number) {

@@ -66,7 +66,7 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
   }
 
   hasEditPermission(): boolean {
-    if (this.authService.isAdmin() || this.authService.hasManagementAdminPermission()) {
+    if (this.authService.isAdmin() || this.authService.hasVpkManagementAdminPermission()) {
       return true;
     }
   }

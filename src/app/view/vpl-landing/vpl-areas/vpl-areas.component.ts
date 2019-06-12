@@ -3,6 +3,7 @@ import { NavItem } from '../../../domain/NavItem';
 import { HttpClient } from '@angular/common/http';
 import { Administration } from '../../../domain/Administration';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-vpl-areas',
@@ -17,12 +18,19 @@ export class VplAreasComponent implements OnInit {
   private management: string;
 
   constructor(private http: HttpClient,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private authService: AuthService) {
     this.management = route.snapshot.params.management;
   }
 
   ngOnInit() {
-    this.http.get('/api/administration', {params: {management: this.management}})
+    const options = {params: {management: this.management, administrations: undefined}};
+
+    if (this.authService.isAuthenticated()) {
+      options.params.administrations = this.authService.getAdministrationIds();
+    }
+
+    this.http.get('/api/administration', options)
       .subscribe((administrations: Administration[]) => {
         this.administrations = administrations;
 

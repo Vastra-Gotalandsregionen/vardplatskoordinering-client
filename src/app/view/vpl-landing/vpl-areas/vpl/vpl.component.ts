@@ -62,7 +62,7 @@ export class VplComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         const pathParams = result[0];
         const queryParams = result[1];
-        this.authorizedUnits = result[2].filter(unit => this.authService.authorizedToUnit(unit.id));
+        this.authorizedUnits = result[2].filter(unit => this.authService.authorizedToUnitVpl(unit.id));
         this.administration = result[3];
         this.updateView(pathParams.management, pathParams.administration, queryParams.date, this.authorizedUnits);
       });

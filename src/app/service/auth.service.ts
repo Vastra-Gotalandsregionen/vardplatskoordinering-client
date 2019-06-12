@@ -173,7 +173,8 @@ export class AuthService {
   hasManagementAdminPermission(): boolean {
     const token = this.getToken();
     if (token) {
-      return this.isAdmin() || (token.managementId === this.currentManagementId && token.roles.indexOf('VPK_MANAGER') > -1);
+      return this.isAdmin()
+        || (token.managementId === this.currentManagementId && token.roles.indexOf('VPK_MANAGER') > -1);
     } else {
       return false;
     }
