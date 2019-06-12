@@ -44,7 +44,18 @@ export class UserAdminComponent implements OnInit {
         const unitOptions: Option[] = allUnits.map(a => ({label: a.avd, value: a.id}));
         const managementOptions: Option[] = allManagements.map(a => ({label: a.name, value: a.id}));
 
-        const roleOptions: Option[] = ['VPK', 'VPL', 'VPK_MANAGER', 'VPL_MANAGER'].map(a => ({label: a, value: a}));
+        const roleOptions: Option[] = [];
+
+        if (this.authService.hasAnyOfRoles(['VPK_MANAGER']) || this.authService.isAdmin()) {
+          roleOptions.push({label: 'VPK_MANAGER', value: 'VPK_MANAGER'});
+          roleOptions.push({label: 'VPK', value: 'VPK'});
+        }
+
+        if (this.authService.hasAnyOfRoles(['VPL_MANAGER']) || this.authService.isAdmin()) {
+          roleOptions.push({label: 'VPL_MANAGER', value: 'VPL_MANAGER'});
+          roleOptions.push({label: 'VPL', value: 'VPL'});
+        }
+
         if (this.authService.isAdmin()) {
           roleOptions.push({label: 'ADMIN', value: 'ADMIN'});
         }

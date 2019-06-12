@@ -111,7 +111,7 @@ export class VplComponent implements OnInit, OnDestroy {
 
   private complementWithAuthorizedUnitsNotAlreadyInCollection(authorizedUnits: VplUnit[], vplRegs, tid: string, date: string) {
     authorizedUnits.forEach(unit => {
-      if (!vplRegs.map(reg => reg.avdid).includes(unit.id)) {
+      if (!(vplRegs.map(reg => reg.avdid).indexOf(unit.id) > -1)) {
         const reg = new VplReg();
         reg.avdid = unit.id;
         reg.tid = tid;

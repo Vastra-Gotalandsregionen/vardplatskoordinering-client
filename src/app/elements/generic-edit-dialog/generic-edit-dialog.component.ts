@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Registrera } from '../../domain/Registrera';
 import { FormControl, FormGroup } from '@angular/forms';
-import { FieldConfig } from '../../domain/FieldConfig';
+import { FieldConfig, Option } from '../../domain/FieldConfig';
 
 @Component({
   selector: 'app-generic-edit-dialog',
@@ -79,16 +79,22 @@ export class GenericEditDialogComponent implements OnInit {
       const parts = field.name.split('.');
 
       // Take care of fieldNames which are dot-separated.
-      let value = this.item;
+      let entity = this.item;
       parts.forEach((part, index) => {
         // Is last?
         if (index === parts.length - 1) {
-          value[part] = model[field.name];
-        } else {
-          if (!value[part]) {
-            value[part] = {};
+          const fieldConfig = this.fieldsConfigs.find(fc => fc.name === field.name);
+
+          if (fieldConfig.type === 'multiselect') {
+            this.setWhatUserIsAuthorizedToSet(entity, part, model[field.name], fieldConfig.options);
+          } else {
+            entity[part] = model[field.name];
           }
-          value = value[part];
+        } else {
+          if (!entity[part]) {
+            entity[part] = {};
+          }
+          entity = entity[part];
         }
       });
 
@@ -100,5 +106,19 @@ export class GenericEditDialogComponent implements OnInit {
 
   cancel() {
     this.dialogRef.close();
+  }
+
+  // So we don't remove options involuntarily, just because we don't see those options.
+  private setWhatUserIsAuthorizedToSet(entity: any, part: string, modelValues: any[], options: Option[]) {
+    const authorizedValues = options.map(o => o.value);
+    const previousValues = entity[part] as any[] || [];
+    const previousValuesWithRemovedItems = previousValues
+      .filter(pv => (modelValues.indexOf(pv) > -1) || !(authorizedValues.indexOf(pv) > -1));
+
+    const result = previousValuesWithRemovedItems;
+    // Filter out those not already in value, and add them
+    modelValues.filter(mv => !(previousValuesWithRemovedItems.indexOf(mv) > -1)).forEach(mv => result.push(mv));
+
+    entity[part] = result;
   }
 }

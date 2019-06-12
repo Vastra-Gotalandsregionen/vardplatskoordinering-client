@@ -111,7 +111,7 @@ export class AuthService {
     this.isUserLoggedIn.next(this.isAuthenticated());
   }
 
-  public hasAnyOfRoles(toFind) {
+  public hasAnyOfRoles(toFind: string[]) {
     const token = this.getToken();
     if (!token) {
       return false;
@@ -119,7 +119,7 @@ export class AuthService {
 
     const roles = token.roles as string[];
 
-    if (roles.some(role => toFind.includes(role))) {
+    if (roles.some(role => toFind.indexOf(role) > -1)) {
       return true;
     } else {
       return false;
@@ -160,17 +160,17 @@ export class AuthService {
     }
   }
 
-  hasAdministrationEditPermission(administrationId): boolean {
+  hasVpkEditPermission(administrationId): boolean {
     const token = this.getToken();
 
     if (token && token.administrationIds) {
-      return token.administrationIds.indexOf(administrationId) > -1;
+      return token.administrationIds.indexOf(administrationId) > -1 && this.hasAnyOfRoles(['VPK']);
     } else {
       return false;
     }
   }
 
-  hasManagementAdminPermission(): boolean {
+  hasVpkManagementAdminPermission(): boolean {
     const token = this.getToken();
     if (token) {
       return this.isAdmin()
@@ -233,7 +233,8 @@ export class AuthService {
     return [];
   }
 
-  authorizedToUnit(id: number) {
-    return this.isAdmin() || this.getUnitIds().includes(id.toString());
+  authorizedToUnitVpl(id: number) {
+    return this.hasAnyOfRoles(['ADMIN', 'VPL_MANAGER'])
+      || (this.getUnitIds().indexOf(id.toString()) > -1 && this.hasAnyOfRoles(['VPL']));
   }
 }

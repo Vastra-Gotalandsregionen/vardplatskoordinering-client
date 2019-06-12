@@ -24,7 +24,7 @@ export class VplAreasComponent implements OnInit {
   }
 
   ngOnInit() {
-    const options = {params: {management: this.management, administrations: undefined}};
+    const options = {params: {management: this.management, administrations: []}};
 
     if (this.authService.isAuthenticated()) {
       options.params.administrations = this.authService.getAdministrationIds();

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DegreeOfImpact } from '../../domain/DegreeOfImpact';
-import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-view-only-impact-dialog',
@@ -11,13 +10,13 @@ import { MatTableDataSource } from '@angular/material';
 export class ViewOnlyImpactDialogComponent implements OnInit {
 
   displayedColumns = ['degree', 'impact', 'details'];
-  isLoading: boolean = true;
-  impactList: DegreeOfImpact[] = []
+  isLoading = true;
+  impactList: DegreeOfImpact[] = [];
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<DegreeOfImpact[]>('api/degreeOfImpact').subscribe(impactList => {
+    this.http.get<DegreeOfImpact[]>('/api/degree-of-impact').subscribe(impactList => {
       this.impactList = impactList;
       this.isLoading = false;
     });
