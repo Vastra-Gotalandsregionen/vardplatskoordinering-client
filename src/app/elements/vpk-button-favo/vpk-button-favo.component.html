@@ -1,0 +1,9 @@
+<!--<button (click)="toggleFavoriteForCurrentPage()" #contentProjection mat-fab [color]="color" class="vpk-button"
+        [matTooltip]="tooltip" [disabled]="disabled">
+  <vpk-icon *ngIf="icon" [icon]="icon"></vpk-icon>
+</button>-->
+
+<vpk-button-fab *ngIf="isLoggedIn() && !isFavorite" (click)="toggleFavoriteForCurrentPage()" icon="star"
+                tooltip="Lägg till som favorit" class="vpk-fab-favorite"></vpk-button-fab>
+<vpk-button-fab *ngIf="isLoggedIn() && isFavorite" (click)="toggleFavoriteForCurrentPage()" icon="star" tooltip="Ta bort som favorit"
+                class="vpk-fab-favorite is-favorite"></vpk-button-fab>
