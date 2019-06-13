@@ -1,0 +1,22 @@
+<vpk-title-row [heading]="'Definitioner'">
+</vpk-title-row>
+<mat-spinner class="spinner" *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading">
+  <vpk-card>
+    <mat-table [dataSource]="definitionList" class="vpk-table">
+
+      <ng-container matColumnDef="definition" >
+        <mat-header-cell *matHeaderCellDef class="mat-column-impact-detail" [ngClass]="'customWidthClass'">Namn</mat-header-cell >
+        <mat-cell *matCellDef="let element" [innerHTML] = element.definition class="mat-column-impact-detail" [ngClass]="'customWidthClass'"></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="beskrivning" >
+        <th> <mat-header-cell *matHeaderCellDef class="mat-column-impact-detail">Beskrivning</mat-header-cell ></th>
+        <td> <mat-cell *matCellDef="let element" [innerHTML] = element.beskrivning class="mat-column-impact-detail" ></mat-cell></td>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </vpk-card>
+</div>
