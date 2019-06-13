@@ -42,6 +42,7 @@ import { MatMenuModule } from '@angular/material';
 import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/confirm-delete-dialog.component';
 import { VpkButtonRowComponent } from './elements/vpk-button-row/vpk-button-row.component';
 import { VpkButtonFabComponent } from './elements/vpk-button-fab/vpk-button-fab.component';
+import { VpkButtonFavoComponent} from './elements/vpk-button-favo/vpk-button-favo.component';
 import { VpkNavigationCardsComponent } from './elements/vpk-navigation-cards/vpk-navigation-cards.component';
 import { VpkNavigationCardComponent } from './elements/vpk-navigation-card/vpk-navigation-card.component';
 import { VpkTitleRowComponent } from './elements/vpk-title-row/vpk-title-row.component';
@@ -88,6 +89,7 @@ import { EditVplRegDialogComponent } from './elements/edit-vpl-reg-dialog/edit-v
     VpkBadgeComponent,
     VpkButtonComponent,
     VpkButtonFabComponent,
+    VpkButtonFavoComponent,
     VpkButtonRowComponent,
     VpkCardComponent,
     VpkIconComponent,

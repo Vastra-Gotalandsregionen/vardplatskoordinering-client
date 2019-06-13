@@ -3,9 +3,9 @@
 
     <vpk-button-fab (click)="openDegreeOfImpactDialog()" icon="chart-line" color="" tooltip="Grad av påverkan"></vpk-button-fab>
     <vpk-button-fab (click)="picker.open()" icon="calendar-day" color="" tooltip="Byt datum"></vpk-button-fab>
-    <vpk-button-fab *ngIf="isLoggedIn() && !isFavorite" (click)="toggleFavorite()" icon="star" tooltip="Lägg till som favorit" class="vpk-fab-favorite"></vpk-button-fab>
-    <vpk-button-fab *ngIf="isLoggedIn() && isFavorite" (click)="toggleFavorite()" icon="star" tooltip="Ta bort som favorit" class="vpk-fab-favorite is-favorite"></vpk-button-fab>
-
+<!--    <vpk-button-fab *ngIf="isLoggedIn() && !isFavorite" (click)="toggleFavorite()" icon="star" tooltip="Lägg till som favorit" class="vpk-fab-favorite"></vpk-button-fab>
+    <vpk-button-fab *ngIf="isLoggedIn() && isFavorite" (click)="toggleFavorite()" icon="star" tooltip="Ta bort som favorit" class="vpk-fab-favorite is-favorite"></vpk-button-fab>-->
+    <vpk-button-favo name="Koordinering"></vpk-button-favo>
   </vpk-button-row>
 </vpk-title-row>
 

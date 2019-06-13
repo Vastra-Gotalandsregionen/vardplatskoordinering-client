@@ -4,17 +4,26 @@
 
   <app-layout-column width=6>
 
-      <vpk-card title="Om Vårdplatskoordinering" icon="info-circle">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac condimentum eros. Ut vel rhoncus justo, ut iaculis lorem. Proin sagittis quis libero vel mattis. Sed a nunc sed dui laoreet consequat. Morbi vitae dapibus diam. Quisque feugiat, tellus ut dictum facilisis, arcu nisi fringilla est, eget sollicitudin arcu felis ac ex. Duis in eros molestie, porta justo eu, bibendum ligula. Cras ultrices mauris vel nisi ornare consequat. Quisque varius risus vitae ultricies condimentum. </p>
-      </vpk-card>
+    <vpk-card title="Om Vårdplatskoordinering" icon="info-circle">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac condimentum eros. Ut vel rhoncus justo,
+        ut iaculis lorem. Proin sagittis quis libero vel mattis. Sed a nunc sed dui laoreet consequat. Morbi vitae
+        dapibus diam. Quisque feugiat, tellus ut dictum facilisis, arcu nisi fringilla est, eget sollicitudin arcu felis
+        ac ex. Duis in eros molestie, porta justo eu, bibendum ligula. Cras ultrices mauris vel nisi ornare consequat.
+        Quisque varius risus vitae ultricies condimentum. </p>
+    </vpk-card>
 
   </app-layout-column>
 
   <app-layout-column width=6>
 
     <vpk-card title="Mina favoriter" icon="star">
-        <vpk-alert message="Du har inte lagt till några favoriter ännu."></vpk-alert>
-      </vpk-card>
+      <vpk-alert *ngIf="navItems.length === 0" message="Du har inte lagt till några favoriter ännu."></vpk-alert>
+      <!--<p *ngFor="let item of favoriteLinks">
+        <a href="{{item.url}}">{{item.name}} {{item.info}}</a>
+      </p>-->
+      <vpk-list [navItems]="navItems"></vpk-list>
+    </vpk-card>
+
 
   </app-layout-column>
 
