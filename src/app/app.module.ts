@@ -42,6 +42,7 @@ import { MatMenuModule } from '@angular/material';
 import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/confirm-delete-dialog.component';
 import { VpkButtonRowComponent } from './elements/vpk-button-row/vpk-button-row.component';
 import { VpkButtonFabComponent } from './elements/vpk-button-fab/vpk-button-fab.component';
+import { VpkButtonFavoComponent} from './elements/vpk-button-favo/vpk-button-favo.component';
 import { VpkNavigationCardsComponent } from './elements/vpk-navigation-cards/vpk-navigation-cards.component';
 import { VpkNavigationCardComponent } from './elements/vpk-navigation-card/vpk-navigation-card.component';
 import { VpkTitleRowComponent } from './elements/vpk-title-row/vpk-title-row.component';
@@ -72,6 +73,7 @@ import { DocumentsComponent } from './view/documents/documents.component';
 import { VplComponent } from './view/vpl-landing/vpl-areas/vpl/vpl.component';
 import { VplTableComponent } from './elements/vpl-table/vpl-table.component';
 import { EditVplRegDialogComponent } from './elements/edit-vpl-reg-dialog/edit-vpl-reg-dialog.component';
+import { DefinitionsComponent } from './view/definitions/definitions.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,7 @@ import { EditVplRegDialogComponent } from './elements/edit-vpl-reg-dialog/edit-v
     VpkBadgeComponent,
     VpkButtonComponent,
     VpkButtonFabComponent,
+    VpkButtonFavoComponent,
     VpkButtonRowComponent,
     VpkCardComponent,
     VpkIconComponent,
@@ -129,7 +132,8 @@ import { EditVplRegDialogComponent } from './elements/edit-vpl-reg-dialog/edit-v
     LoginPageComponent,
     VplComponent,
     VplTableComponent,
-    EditVplRegDialogComponent
+    EditVplRegDialogComponent,
+    DefinitionsComponent
     // Attribute Directives
 
   ],

@@ -18,6 +18,7 @@ import { HasRoleGuard } from './guard/has-role.guard';
 import { AdminGuard } from './guard/admin.guard';
 import { LoginPageComponent } from './view/login-page/login-page.component';
 import { VplComponent } from './view/vpl-landing/vpl-areas/vpl/vpl.component';
+import { DefinitionsComponent } from './view/definitions/definitions.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'dokument',
     component: DocumentsComponent
+  },
+  {
+    path: 'definitions',
+    component: DefinitionsComponent
   },
   {
     path: 'administration',
