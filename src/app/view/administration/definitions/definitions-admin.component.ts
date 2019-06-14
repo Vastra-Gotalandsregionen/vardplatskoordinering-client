@@ -14,8 +14,8 @@ export class DefinitionsAdminComponent implements OnInit {
   resourceUrl = '/api/definition';
 
   fieldConfigs: FieldConfig[] = [
-    FieldConfig.from('definition', 'Namn', 'input'),
-    FieldConfig.from('beskrivning', 'Beskrivning', 'ckeditor'),
+    FieldConfig.from('definition', 'Namn', 'input', null, false, true),
+    FieldConfig.from('beskrivning', 'Beskrivning', 'ckeditor', null, false, true),
     FieldConfig.from('lista', 'Publik', 'input')
   ];
 

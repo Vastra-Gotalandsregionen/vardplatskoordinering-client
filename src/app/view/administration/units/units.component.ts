@@ -39,12 +39,12 @@ export class UnitsComponent implements OnInit {
         const administrationOptions = administrations.map(a => ({label: a.verks, value: a.id}));
 
         this.fieldsConfigs = [
-          FieldConfig.from('avd', 'Namn', 'input'),
+          FieldConfig.from('avd', 'Namn', 'input', null, false, true),
           FieldConfig.from('sjh', 'Sjukhus', 'select', [{label: 'NÄL', value: 'NÄL'}, {label: 'US', value: 'US'}], true),
-          FieldConfig.from('antal', 'Disponibla', 'input'),
-          FieldConfig.from('fast', 'Fastställda', 'input'),
+          FieldConfig.from('antal', 'Disponibla', 'input', null, false, true),
+          FieldConfig.from('fast', 'Fastställda', 'input', null, false, true),
           FieldConfig.from('medd', 'Förklaring', 'input'),
-          FieldConfig.from('administration', 'Område', 'select', administrationOptions, true)
+          FieldConfig.from('administration', 'Område', 'select', administrationOptions, true, true)
         ];
       });
   }
@@ -69,8 +69,8 @@ export class UnitsComponent implements OnInit {
         }));
 
         this.fieldsConfigs = [
-          FieldConfig.from('name', 'Namn', 'input'),
-          FieldConfig.from('administration', 'Område', 'select', options1)
+          FieldConfig.from('name', 'Namn', 'input', null, false, true),
+          FieldConfig.from('administration', 'Område', 'select', options1, false, true)
         ];
       });
   }

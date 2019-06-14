@@ -4,17 +4,19 @@ export class FieldConfig {
   type: string;
   options: Option[];
   filterable: boolean;
+  required: boolean;
 
-  static from(name, label, type, options?: Option[], filterable?: boolean) {
-    return new FieldConfig(name, label, type, options, filterable);
+  static from(name, label, type, options?: Option[], filterable?: boolean, required?: boolean) {
+    return new FieldConfig(name, label, type, options, filterable, required || false);
   }
 
-  private constructor(name: string, label: string, type: string, options?: Option[], filterable?: boolean) {
+  private constructor(name: string, label: string, type: string, options?: Option[], filterable?: boolean, required?: boolean) {
     this.name = name;
     this.label = label;
     this.type = type;
     this.options = options;
     this.filterable = filterable;
+    this.required = required;
   }
 }
 

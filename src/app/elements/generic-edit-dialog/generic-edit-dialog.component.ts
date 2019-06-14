@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Registrera } from '../../domain/Registrera';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FieldConfig, Option } from '../../domain/FieldConfig';
 
 @Component({
@@ -17,9 +17,10 @@ export class GenericEditDialogComponent implements OnInit {
 
   item: any;
   fieldsConfigs: FieldConfig[];
+  possiblyMarkCkEditorAsTouched = false;
 
   constructor(public dialogRef: MatDialogRef<GenericEditDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: {item: any, fieldsConfigs: FieldConfig[]}) {
+              @Inject(MAT_DIALOG_DATA) public data: { item: any, fieldsConfigs: FieldConfig[] }) {
     this.item = data.item;
     this.fieldsConfigs = data.fieldsConfigs;
     this.dialogRef.addPanelClass('vpk-dialog');
@@ -28,8 +29,13 @@ export class GenericEditDialogComponent implements OnInit {
   ngOnInit() {
     const group: any = {};
     this.fieldsConfigs.forEach(fieldConfig => {
-      group[fieldConfig.name] = new FormControl(this.getValue(fieldConfig, this.item, fieldConfig.name));
-      // group[field.name] = new FormControl(this.item[field.name]);
+      const formControl = new FormControl(this.getValue(fieldConfig, this.item, fieldConfig.name));
+
+      if (fieldConfig.required) {
+        formControl.setValidators(Validators.required);
+      }
+
+      group[fieldConfig.name] = formControl;
     });
 
     this.formGroup = new FormGroup((group));
@@ -73,6 +79,15 @@ export class GenericEditDialogComponent implements OnInit {
   }
 
   saveAndEmit() {
+    if (!this.formGroup.valid) {
+      Object.keys(this.formGroup.controls).forEach(field => {
+        const control = this.formGroup.get([field]);
+        control.markAsTouched({onlySelf: true});
+        this.possiblyMarkCkEditorAsTouched = true;
+      });
+      return;
+    }
+
     const model = this.formGroup.value;
     this.fieldsConfigs.forEach(field => {
 

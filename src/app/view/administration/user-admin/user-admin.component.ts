@@ -61,9 +61,9 @@ export class UserAdminComponent implements OnInit {
         }
 
         this.fieldConfigs = [
-          FieldConfig.from('user.username', 'Användarnamn', 'input', null, true),
+          FieldConfig.from('user.username', 'Användarnamn', 'input', null, true, true),
           FieldConfig.from('user.name', 'Namn', 'input', null, true),
-          FieldConfig.from('user.management', 'Förvaltning', 'select', managementOptions, true),
+          FieldConfig.from('user.management', 'Förvaltning', 'select', managementOptions, true, true),
           FieldConfig.from('administrationIds', 'Områden', 'multiselect', administrationOptions, true),
           FieldConfig.from('unitIds', 'Avdelningar', 'multiselect', unitOptions, true),
           FieldConfig.from('roleIds', 'Roller', 'multiselect', roleOptions, true)

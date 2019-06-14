@@ -14,9 +14,9 @@ export class DegreeOfImpactComponent implements OnInit {
   resourceUrl = '/api/degree-of-impact';
 
   fieldConfigs: FieldConfig[] = [
-    FieldConfig.from('degree', 'Grad', 'input'),
-    FieldConfig.from('impact', 'Påverkan', 'input'),
-    FieldConfig.from('impactDetails', 'Påverkan detalj', 'ckeditor'),
+    FieldConfig.from('degree', 'Grad', 'input', null, false, true),
+    FieldConfig.from('impact', 'Påverkan', 'input', null, false, true),
+    FieldConfig.from('impactDetails', 'Påverkan detalj', 'ckeditor', null, false, true),
   ];
 
   dataSource: BasicEditDataSource<DegreeOfImpact>;
