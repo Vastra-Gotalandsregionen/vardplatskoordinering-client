@@ -18,12 +18,15 @@
 
     <vpk-card title="Mina favoriter" icon="star">
       <vpk-alert *ngIf="navItems.length === 0" message="Du har inte lagt till några favoriter ännu."></vpk-alert>
-      <!--<p *ngFor="let item of favoriteLinks">
-        <a href="{{item.url}}">{{item.name}} {{item.info}}</a>
-      </p>-->
-      <vpk-list [navItems]="navItems"></vpk-list>
+      <app-layout-row *ngFor="let favoriteLink of favoriteLinks">
+        <app-layout-column width=6>
+          <a href="{{favoriteLink.url}}">{{favoriteLink.name}}</a>
+        </app-layout-column>
+        <app-layout-column width=6>
+          {{favoriteLink.info}}
+        </app-layout-column>
+      </app-layout-row>
     </vpk-card>
-
 
   </app-layout-column>
 
