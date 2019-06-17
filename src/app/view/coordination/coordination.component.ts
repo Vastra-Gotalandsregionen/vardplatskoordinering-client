@@ -146,7 +146,7 @@ export class CoordinationComponent implements OnInit {
     const dialogRef = this.dialog.open(EditDecisionDialogComponent, {
       width: '500px',
       panelClass: 'vpk-card-wrapper',
-      data: {akutenTrappa, management: this.management, newDecision: this.newDecision}
+      data: {akutenTrappa, management: this.management, newDecision: !akutenTrappa.id}
     });
 
     dialogRef.componentInstance.save.subscribe((result: AkutenTrappa) => {
@@ -173,12 +173,10 @@ export class CoordinationComponent implements OnInit {
   }
 
   editNewDecision() {
-    this.newDecision = true;
     const akutenTrappa = new AkutenTrappa();
     akutenTrappa.management = this.management.id;
     akutenTrappa.datum = this.date;
     this.editDecision(akutenTrappa);
-    this.newDecision = false;
   }
 
   editDecisionByAkutenTrappaId(akutenTrappaId: number) {
