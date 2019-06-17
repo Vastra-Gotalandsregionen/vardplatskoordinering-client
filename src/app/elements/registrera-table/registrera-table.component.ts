@@ -45,7 +45,7 @@ export class RegistreraTableComponent implements OnInit {
 
   }
 
-  emitEitRegistrera(registrera: Registrera) {
+  emitEditRegistrera(registrera: Registrera) {
     this.editRegistrera.emit(registrera);
   }
 

@@ -14,15 +14,17 @@ export class EditRegistreraDialogComponent {
 
   registrera: Registrera;
   administrationName: string;
+  newRegistration = false;
 
   @Output() save: EventEmitter<Registrera> = new EventEmitter<Registrera>();
+  @Output() delete: EventEmitter<Registrera> = new EventEmitter<Registrera>();
 
   constructor(public dialogRef: MatDialogRef<EditRegistreraDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { registrera: Registrera, administrationName: string }) {
+              @Inject(MAT_DIALOG_DATA) public data: { registrera: Registrera, administrationName: string, newRegistration: boolean }) {
     this.registrera = data.registrera;
     this.administrationName = data.administrationName;
     const r = this.registrera;
-
+    this.newRegistration = data.newRegistration;
     this.formGroup = new FormGroup({
       dispVpl: new FormControl(r.dispVpl, Validators.required),
       inneliggande: new FormControl(r.inneliggande, Validators.required),
@@ -56,5 +58,18 @@ export class EditRegistreraDialogComponent {
 
     this.dialogRef.close();
     this.save.emit(this.registrera);
+  }
+
+  deleteAndEmit() {
+    const model = this.formGroup.value;
+    this.registrera.dispVpl = model.dispVpl;
+    this.registrera.inneliggande = model.inneliggande;
+    this.registrera.fysTillaten = model.fysTillaten;
+    this.registrera.prognosFore = model.prognosFore;
+    this.registrera.pg = model.pg;
+    this.registrera.kommentar = model.kommentar;
+
+    this.dialogRef.close();
+    this.delete.emit(this.registrera);
   }
 }

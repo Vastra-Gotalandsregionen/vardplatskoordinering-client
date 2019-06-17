@@ -129,12 +129,21 @@ export class CoordinationComponent implements OnInit {
     const dialogRef = this.dialog.open(EditRegistreraDialogComponent, {
       width: '500px',
       panelClass: 'vpk-card-wrapper',
-      data: {registrera, administrationName: this.administrationNameMap[registrera.administration]}
+      data: {registrera, administrationName: this.administrationNameMap[registrera.administration], newRegistration: !registrera.id}
     });
 
     dialogRef.componentInstance.save.pipe(
       filter((result: Registrera) => !!result),
       switchMap((result: Registrera) => this.http.put('/api/registrera', result)),
+      switchMap(() => this.http.get('/api/registrera?management=' + this.management.id + '&datum=' + this.date)),
+      tap(() => this.updateDecisions())
+    ).subscribe((pageResponse: PageResponse<Registrera[]>) => {
+      this.updateTodaysRegistreringar(pageResponse.content, this.administrationer);
+    });
+
+    dialogRef.componentInstance.delete.pipe(
+      filter((result: Registrera) => !!result),
+      switchMap((result: Registrera) => this.http.delete('/api/registrera/' + registrera.id )),
       switchMap(() => this.http.get('/api/registrera?management=' + this.management.id + '&datum=' + this.date)),
       tap(() => this.updateDecisions())
     ).subscribe((pageResponse: PageResponse<Registrera[]>) => {
