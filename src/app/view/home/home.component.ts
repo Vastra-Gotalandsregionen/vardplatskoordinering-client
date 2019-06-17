@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
 
   public navItems: NavItem[] = [];
 
+  public favoriteLinks: FavoriteLink[] = [];
+
   constructor(private http: HttpClient, private auth: AuthService) {
   }
 
@@ -20,6 +22,7 @@ export class HomeComponent implements OnInit {
     this.http.get('/api/favorite-link/username/' + this.auth.getLoggedInUserId()).subscribe((fos: FavoriteLink[]) => {
       console.log(fos);
       this.navItems = this.toNavItems(fos);
+      this.favoriteLinks = fos;
     });
   }
 

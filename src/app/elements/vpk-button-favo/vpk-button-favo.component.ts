@@ -1,9 +1,9 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { GlobalStateService } from '../../service/global-state.service';
-import { StateService } from '../../service/state.service';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../../service/auth.service';
-import { FavoriteLink } from '../../domain/FavoriteLink';
+import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {GlobalStateService} from '../../service/global-state.service';
+import {StateService} from '../../service/state.service';
+import {HttpClient} from '@angular/common/http';
+import {AuthService} from '../../service/auth.service';
+import {FavoriteLink} from '../../domain/FavoriteLink';
 
 @Component({
   selector: 'vpk-button-favo',
@@ -21,6 +21,8 @@ export class VpkButtonFavoComponent implements OnInit {
 
   public isFavorite: boolean = false;
 
+  public model: FavoriteLink = null;
+
   @HostBinding('class')
   get classes(): string {
 
@@ -37,31 +39,40 @@ export class VpkButtonFavoComponent implements OnInit {
 
 
   constructor(private global: GlobalStateService, private stateService: StateService, private http: HttpClient, private authService: AuthService) {
-    global.getManagementId().subscribe(n => console.log('managementId', n));
-    console.log(stateService);
-    http.get('api/favorite-link/username/' + authService.getLoggedInUserId() + '?url="' + encodeURIComponent(location.pathname.replace('/', '_')) + '"').subscribe(r => {
-      console.log('Result for favo', r);
-      this.isFavorite = r != null;
+    const fetchUrl = 'api/favorite-link/username/' + authService.getLoggedInUserId() + '?url=' + encodeURIComponent(location.pathname.replace('/', '_')) + '';
+    http.get(fetchUrl).subscribe((r: FavoriteLink[]) => {
+      this.isFavorite = r.length == 1;
+      if (r.length == 1) {
+        this.model = r[0];
+      } else {
+        this.model = null;
+        this.isFavorite = false;
+      }
     });
   }
 
   ngOnInit() {
-    console.log(this.authService.getToken());
+
   }
 
   public toggleFavoriteForCurrentPage() {
-    const favo = new FavoriteLink();
-    favo.name = this.name;
-    var info = location.pathname.split('/')[1];
-    info = info.charAt(0).toUpperCase() + info.substring(1);
-    favo.info = info;
-    favo.url = location.pathname;
+    if (!this.isFavorite) {
+      const favo = new FavoriteLink();
+      favo.name = document.getElementsByClassName('vpk-title-row-heading')[0].textContent.split(',')[0];
 
-    console.log('toggleFavoriteForCurrentPage', favo);
-    this.http.put('/api/favorite-link/user/' + this.authService.getLoggedInUserId(), favo).subscribe((result: FavoriteLink) => {
-      console.log('Saved as', result);
-      this.isFavorite = true;
-    });
+      favo.info = this.name;
+      favo.url = location.pathname;
+
+      this.http.put('/api/favorite-link/user/' + this.authService.getLoggedInUserId(), favo).subscribe((result: FavoriteLink) => {
+        this.isFavorite = true;
+        this.model = result;
+      });
+    } else {
+      this.http.delete('/api/favorite-link/' + this.model.id).subscribe(r => {
+        this.isFavorite = false;
+        this.model = null;
+      });
+    }
   }
 
   isLoggedIn() {
