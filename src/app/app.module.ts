@@ -74,6 +74,8 @@ import { VplComponent } from './view/vpl-landing/vpl-areas/vpl/vpl.component';
 import { VplTableComponent } from './elements/vpl-table/vpl-table.component';
 import { EditVplRegDialogComponent } from './elements/edit-vpl-reg-dialog/edit-vpl-reg-dialog.component';
 import { DefinitionsComponent } from './view/definitions/definitions.component';
+import { LinksComponent } from './view/administration/links/links.component';
+import { VplLinksComponent } from './view/administration/vpl-links/vpl-links.component';
 
 @NgModule({
   declarations: [
@@ -133,7 +135,9 @@ import { DefinitionsComponent } from './view/definitions/definitions.component';
     VplComponent,
     VplTableComponent,
     EditVplRegDialogComponent,
-    DefinitionsComponent
+    DefinitionsComponent,
+    LinksComponent,
+    VplLinksComponent
     // Attribute Directives
 
   ],

@@ -171,10 +171,18 @@ export class AuthService {
   }
 
   hasVpkManagementAdminPermission(): boolean {
+    return this.hasManagerRoleCommon('VPK_MANAGER');
+  }
+
+  hasVplManagementAdminPermission(): boolean {
+    return this.hasManagerRoleCommon('VPL_MANAGER');
+  }
+
+  private hasManagerRoleCommon(role: string) {
     const token = this.getToken();
     if (token) {
       return this.isAdmin()
-        || (token.managementId === this.currentManagementId && token.roles.indexOf('VPK_MANAGER') > -1);
+        || (token.managementId === this.currentManagementId && token.roles.indexOf(role) > -1);
     } else {
       return false;
     }

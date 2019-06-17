@@ -18,14 +18,16 @@ export class VplTableComponent implements OnInit {
   regDisplayedColumns = ['avd', 'regtid', 'max', 'inneliggande', 'hem', 'hemp', 'planIn', 'medFardigbehandlade', 'ob', 'prognosis',
     'actions'];
 
+  today = new Date().toISOString().slice(0, 10);
+
   constructor(private authService: AuthService,
               public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
-  hasEditPermission(id: number) {
-    return this.authService.authorizedToUnitVpl(id);
+  hasEditPermission(reg: VplReg) {
+    return this.authService.authorizedToUnitVpl(reg.id) && reg.datum === this.today;
   }
 
   edit(vplReg: VplReg) {

@@ -19,6 +19,8 @@ import { AdminGuard } from './guard/admin.guard';
 import { LoginPageComponent } from './view/login-page/login-page.component';
 import { VplComponent } from './view/vpl-landing/vpl-areas/vpl/vpl.component';
 import { DefinitionsComponent } from './view/definitions/definitions.component';
+import { LinksComponent } from './view/administration/links/links.component';
+import { VplLinksComponent } from './view/administration/vpl-links/vpl-links.component';
 
 const routes: Routes = [
   {
@@ -83,6 +85,20 @@ const routes: Routes = [
     component: UserAdminComponent,
     canActivate: [HasRoleGuard],
     data: {roles: ['ADMIN', 'VPK_MANAGER', 'VPL_MANAGER']}
+  },
+
+  {
+    path: 'administration/links',
+    component: LinksComponent,
+    canActivate: [HasRoleGuard],
+    data: {roles: ['ADMIN', 'VPK_MANAGER']}
+  },
+
+  {
+    path: 'administration/vpl-links',
+    component: VplLinksComponent,
+    canActivate: [HasRoleGuard],
+    data: {roles: ['ADMIN', 'VPL_MANAGER']}
   },
 
   {
