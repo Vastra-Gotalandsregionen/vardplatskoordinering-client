@@ -39,12 +39,8 @@ export class VpkButtonFavoComponent implements OnInit {
 
 
   constructor(private global: GlobalStateService, private stateService: StateService, private http: HttpClient, private authService: AuthService) {
-    global.getManagementId().subscribe(n => console.log('managementId', n));
-    console.log(stateService);
-    const fetchUrl = 'api/favorite-link/username/' + authService.getLoggedInUserId() + '?url="' + encodeURIComponent(location.pathname.replace('/', '_')) + '"';
-    console.log(fetchUrl);
+    const fetchUrl = 'api/favorite-link/username/' + authService.getLoggedInUserId() + '?url=' + encodeURIComponent(location.pathname.replace('/', '_')) + '';
     http.get(fetchUrl).subscribe((r: FavoriteLink[]) => {
-      console.log('Result for favo', r);
       this.isFavorite = r.length == 1;
       if (r.length == 1) {
         this.model = r[0];
@@ -56,7 +52,7 @@ export class VpkButtonFavoComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.authService.getToken());
+
   }
 
   public toggleFavoriteForCurrentPage() {
@@ -67,15 +63,12 @@ export class VpkButtonFavoComponent implements OnInit {
       favo.info = this.name;
       favo.url = location.pathname;
 
-      console.log('toggleFavoriteForCurrentPage', favo);
       this.http.put('/api/favorite-link/user/' + this.authService.getLoggedInUserId(), favo).subscribe((result: FavoriteLink) => {
-        console.log('Saved as', result);
         this.isFavorite = true;
         this.model = result;
       });
     } else {
       this.http.delete('/api/favorite-link/' + this.model.id).subscribe(r => {
-        console.log('Removed ', r);
         this.isFavorite = false;
         this.model = null;
       });
