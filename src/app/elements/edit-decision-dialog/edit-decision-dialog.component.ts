@@ -12,17 +12,18 @@ import { Management } from '../../domain/Management';
 export class EditDecisionDialogComponent implements OnInit {
 
   @Output() save: EventEmitter<AkutenTrappa> = new EventEmitter<AkutenTrappa>();
+  @Output() delete: EventEmitter<AkutenTrappa> = new EventEmitter<AkutenTrappa>();
 
   akutenTrappa: AkutenTrappa;
   management: Management;
-
+  newDecision = false;
   formGroup: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<EditDecisionDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { akutenTrappa: AkutenTrappa, management: Management }) {
+              @Inject(MAT_DIALOG_DATA) public data: { akutenTrappa: AkutenTrappa, management: Management, newDecision: boolean }) {
     this.akutenTrappa = data.akutenTrappa;
     this.management = data.management;
-
+    this.newDecision = data.newDecision;
     const at = this.akutenTrappa;
 
     this.formGroup = new FormGroup({
@@ -52,6 +53,18 @@ export class EditDecisionDialogComponent implements OnInit {
     this.dialogRef.close();
     this.save.emit(this.akutenTrappa);
   }
+
+  deleteAndEmit() {
+
+    const model = this.formGroup.value;
+    this.akutenTrappa.id = model.id;
+    this.akutenTrappa.vardplatstrappa = model.vardplatstrappa;
+    this.akutenTrappa.beslut = model.beslut;
+
+    this.dialogRef.close();
+    this.delete.emit(this.akutenTrappa);
+  }
+
 
   cancel(): void {
     this.dialogRef.close();

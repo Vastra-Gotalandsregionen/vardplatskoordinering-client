@@ -24,11 +24,12 @@ import { AuthService } from '../../service/auth.service';
 })
 export class CoordinationComponent implements OnInit {
 
-  isFavorite: boolean = false;
+  isFavorite = false;
   todaysRegistreringar: Registrera[] = [];
   administrationer: Administration[];
   management: Management;
   administrationNameMap = {};
+  newDecision = false;
 
   oldDecisionsDataSource: RegistreraAggregatesDataSource;
   todaysDecisionDataSource: RegistreraAggregatesDataSource;
@@ -145,7 +146,7 @@ export class CoordinationComponent implements OnInit {
     const dialogRef = this.dialog.open(EditDecisionDialogComponent, {
       width: '500px',
       panelClass: 'vpk-card-wrapper',
-      data: {akutenTrappa, management: this.management}
+      data: {akutenTrappa, management: this.management, newDecision: this.newDecision}
     });
 
     dialogRef.componentInstance.save.subscribe((result: AkutenTrappa) => {
@@ -154,7 +155,16 @@ export class CoordinationComponent implements OnInit {
           this.updateDecisions();
         });
       }
+    })
+
+    dialogRef.componentInstance.delete.subscribe((result: AkutenTrappa) => {
+      if (result) {
+        this.http.delete('/api/akuten-trappa/' + akutenTrappa.id).subscribe(() => {
+          this.updateDecisions();
+        });
+      }
     });
+
   }
 
   private updateDecisions() {
@@ -163,15 +173,18 @@ export class CoordinationComponent implements OnInit {
   }
 
   editNewDecision() {
+    this.newDecision = true;
     const akutenTrappa = new AkutenTrappa();
     akutenTrappa.management = this.management.id;
     akutenTrappa.datum = this.date;
     this.editDecision(akutenTrappa);
+    this.newDecision = false;
   }
 
   editDecisionByAkutenTrappaId(akutenTrappaId: number) {
     this.http.get('/api/akuten-trappa/' + akutenTrappaId)
       .subscribe((akutenTrappa: AkutenTrappa) => {
+        this.newDecision = false;
         this.editDecision(akutenTrappa);
       });
   }
