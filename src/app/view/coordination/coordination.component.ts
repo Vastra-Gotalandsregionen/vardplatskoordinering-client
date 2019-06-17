@@ -24,11 +24,12 @@ import { AuthService } from '../../service/auth.service';
 })
 export class CoordinationComponent implements OnInit {
 
-  isFavorite: boolean = false;
+  isFavorite = false;
   todaysRegistreringar: Registrera[] = [];
   administrationer: Administration[];
   management: Management;
   administrationNameMap = {};
+  newDecision = false;
 
   oldDecisionsDataSource: RegistreraAggregatesDataSource;
   todaysDecisionDataSource: RegistreraAggregatesDataSource;
@@ -128,12 +129,21 @@ export class CoordinationComponent implements OnInit {
     const dialogRef = this.dialog.open(EditRegistreraDialogComponent, {
       width: '500px',
       panelClass: 'vpk-card-wrapper',
-      data: {registrera, administrationName: this.administrationNameMap[registrera.administration]}
+      data: {registrera, administrationName: this.administrationNameMap[registrera.administration], newRegistration: !registrera.id}
     });
 
     dialogRef.componentInstance.save.pipe(
       filter((result: Registrera) => !!result),
       switchMap((result: Registrera) => this.http.put('/api/registrera', result)),
+      switchMap(() => this.http.get('/api/registrera?management=' + this.management.id + '&datum=' + this.date)),
+      tap(() => this.updateDecisions())
+    ).subscribe((pageResponse: PageResponse<Registrera[]>) => {
+      this.updateTodaysRegistreringar(pageResponse.content, this.administrationer);
+    });
+
+    dialogRef.componentInstance.delete.pipe(
+      filter((result: Registrera) => !!result),
+      switchMap((result: Registrera) => this.http.delete('/api/registrera/' + registrera.id )),
       switchMap(() => this.http.get('/api/registrera?management=' + this.management.id + '&datum=' + this.date)),
       tap(() => this.updateDecisions())
     ).subscribe((pageResponse: PageResponse<Registrera[]>) => {
@@ -145,7 +155,7 @@ export class CoordinationComponent implements OnInit {
     const dialogRef = this.dialog.open(EditDecisionDialogComponent, {
       width: '500px',
       panelClass: 'vpk-card-wrapper',
-      data: {akutenTrappa, management: this.management}
+      data: {akutenTrappa, management: this.management, newDecision: !akutenTrappa.id}
     });
 
     dialogRef.componentInstance.save.subscribe((result: AkutenTrappa) => {
@@ -154,7 +164,16 @@ export class CoordinationComponent implements OnInit {
           this.updateDecisions();
         });
       }
+    })
+
+    dialogRef.componentInstance.delete.subscribe((result: AkutenTrappa) => {
+      if (result) {
+        this.http.delete('/api/akuten-trappa/' + akutenTrappa.id).subscribe(() => {
+          this.updateDecisions();
+        });
+      }
     });
+
   }
 
   private updateDecisions() {
@@ -172,6 +191,7 @@ export class CoordinationComponent implements OnInit {
   editDecisionByAkutenTrappaId(akutenTrappaId: number) {
     this.http.get('/api/akuten-trappa/' + akutenTrappaId)
       .subscribe((akutenTrappa: AkutenTrappa) => {
+        this.newDecision = false;
         this.editDecision(akutenTrappa);
       });
   }
