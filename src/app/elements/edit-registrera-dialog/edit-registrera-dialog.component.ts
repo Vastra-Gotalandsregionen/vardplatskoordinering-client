@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { Registrera } from '../../domain/Registrera';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
 
 @Component({
   selector: 'app-edit-registrera-dialog',
@@ -19,7 +20,7 @@ export class EditRegistreraDialogComponent {
   @Output() save: EventEmitter<Registrera> = new EventEmitter<Registrera>();
   @Output() delete: EventEmitter<Registrera> = new EventEmitter<Registrera>();
 
-  constructor(public dialogRef: MatDialogRef<EditRegistreraDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<EditRegistreraDialogComponent>, public dialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: { registrera: Registrera, administrationName: string, newRegistration: boolean }) {
     this.registrera = data.registrera;
     this.administrationName = data.administrationName;
@@ -61,15 +62,26 @@ export class EditRegistreraDialogComponent {
   }
 
   deleteAndEmit() {
-    const model = this.formGroup.value;
-    this.registrera.dispVpl = model.dispVpl;
-    this.registrera.inneliggande = model.inneliggande;
-    this.registrera.fysTillaten = model.fysTillaten;
-    this.registrera.prognosFore = model.prognosFore;
-    this.registrera.pg = model.pg;
-    this.registrera.kommentar = model.kommentar;
+    const res = true;
+    const dialogRef2 = this.dialog.open(ConfirmDeleteDialogComponent, {
+      width: '500px',
+      data: {item: res}
+    });
 
-    this.dialogRef.close();
-    this.delete.emit(this.registrera);
+    dialogRef2.componentInstance.confirmDelete.subscribe(ok => {
+      if (ok === true) {
+        const model = this.formGroup.value;
+        this.registrera.dispVpl = model.dispVpl;
+        this.registrera.inneliggande = model.inneliggande;
+        this.registrera.fysTillaten = model.fysTillaten;
+        this.registrera.prognosFore = model.prognosFore;
+        this.registrera.pg = model.pg;
+        this.registrera.kommentar = model.kommentar;
+        this.dialogRef.close();
+        this.delete.emit(this.registrera);
+      } else {
+        this.cancel();
+      }
+    });
   }
 }

@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AkutenTrappa } from '../../domain/AkutenTrappa';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { Management } from '../../domain/Management';
+import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
 
 @Component({
   selector: 'app-edit-decision-dialog',
@@ -19,7 +20,7 @@ export class EditDecisionDialogComponent implements OnInit {
   newDecision = false;
   formGroup: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<EditDecisionDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<EditDecisionDialogComponent>, public dialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: { akutenTrappa: AkutenTrappa, management: Management, newDecision: boolean }) {
     this.akutenTrappa = data.akutenTrappa;
     this.management = data.management;
@@ -56,15 +57,26 @@ export class EditDecisionDialogComponent implements OnInit {
 
   deleteAndEmit() {
 
-    const model = this.formGroup.value;
-    this.akutenTrappa.id = model.id;
-    this.akutenTrappa.vardplatstrappa = model.vardplatstrappa;
-    this.akutenTrappa.beslut = model.beslut;
+    const res = true;
+    const dialogRef2 = this.dialog.open(ConfirmDeleteDialogComponent, {
+      width: '500px',
+      data: {item: res}
+    });
 
-    this.dialogRef.close();
-    this.delete.emit(this.akutenTrappa);
+    dialogRef2.componentInstance.confirmDelete.subscribe(ok => {
+      if (ok === true) {
+        const model = this.formGroup.value;
+        this.akutenTrappa.id = model.id;
+        this.akutenTrappa.vardplatstrappa = model.vardplatstrappa;
+        this.akutenTrappa.beslut = model.beslut;
+
+        this.dialogRef.close();
+        this.delete.emit(this.akutenTrappa);
+      } else {
+        this.cancel();
+      }
+    });
   }
-
 
   cancel(): void {
     this.dialogRef.close();
