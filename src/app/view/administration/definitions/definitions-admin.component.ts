@@ -15,8 +15,9 @@ export class DefinitionsAdminComponent implements OnInit {
 
   fieldConfigs: FieldConfig[] = [
     FieldConfig.from('definition', 'Namn', 'input', null, false, true),
+    FieldConfig.from('key_', 'Nyckel', 'input'),
     FieldConfig.from('beskrivning', 'Beskrivning', 'ckeditor', null, false, true),
-    FieldConfig.from('public_', 'Publik', 'boolean')
+    FieldConfig.from('public_', 'På lista', 'boolean')
   ];
 
   dataSource: BasicEditDataSource<Definition>;

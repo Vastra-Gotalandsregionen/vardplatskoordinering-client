@@ -76,6 +76,7 @@ import { EditVplRegDialogComponent } from './elements/edit-vpl-reg-dialog/edit-v
 import { DefinitionsComponent } from './view/definitions/definitions.component';
 import { LinksComponent } from './view/administration/links/links.component';
 import { VplLinksComponent } from './view/administration/vpl-links/vpl-links.component';
+import { DefinitionCardComponent } from './elements/definition-card/definition-card.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +138,8 @@ import { VplLinksComponent } from './view/administration/vpl-links/vpl-links.com
     EditVplRegDialogComponent,
     DefinitionsComponent,
     LinksComponent,
-    VplLinksComponent
+    VplLinksComponent,
+    DefinitionCardComponent
     // Attribute Directives
 
   ],

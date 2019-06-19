@@ -11,12 +11,12 @@ export class DefinitionsComponent implements OnInit {
 
   displayedColumns = ['definition', 'beskrivning'];
   isLoading = true;
-  definitionList: Definition[] = []
+  definitionList: Definition[] = [];
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<Definition[]>('/api/definition').subscribe(definitionList => {
+    this.http.get<Definition[]>('/api/definition?public=true').subscribe(definitionList => {
       this.definitionList = definitionList;
       this.isLoading = false;
     });
