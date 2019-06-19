@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {AuthService} from '../../service/auth.service';
-import {FavoriteLink} from '../../domain/FavoriteLink';
-import {NavItem} from '../../domain/NavItem';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../service/auth.service';
+import { FavoriteLink } from '../../domain/FavoriteLink';
+import { NavItem } from '../../domain/NavItem';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +21,15 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get('/api/favorite-link/username/' + this.auth.getLoggedInUserId()).subscribe((fos: FavoriteLink[]) => {
-      console.log(fos);
+    this.auth.isUserLoggedIn.pipe(
+      switchMap(isLoggedIn => {
+        if (isLoggedIn) {
+          return this.http.get('/api/favorite-link/username/' + this.auth.getLoggedInUserId());
+        } else {
+          return of([]);
+        }
+      })
+    ).subscribe((fos: FavoriteLink[]) => {
       this.navItems = this.toNavItems(fos);
       this.favoriteLinks = fos;
     });
