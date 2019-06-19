@@ -22,29 +22,29 @@ export class ApplicationAdministrationComponent implements OnInit, OnDestroy {
       const navItems: NavItem[] = [];
 
       if (this.authService.isAdmin()) {
-        navItems.push(new NavItem('Förvaltningar', 'Välj', '/administration/managements', '', ''));
-        navItems.push(new NavItem('Definitioner', 'Välj', '/administration/definition', '', ''));
-        navItems.push(new NavItem('Grad av påverkan', 'Välj', '/administration/degreeOfImpact', '', ''));
+        navItems.push(new NavItem('Förvaltningar', 'Välj', '/administration/managements', '', '', ''));
+        navItems.push(new NavItem('Definitioner', 'Välj', '/administration/definition', '', '', ''));
+        navItems.push(new NavItem('Grad av påverkan', 'Välj', '/administration/degreeOfImpact', '', '', ''));
       }
 
       if (this.authService.hasAdministrationAdministrationPermission) {
-        navItems.push(new NavItem('Områden', 'Välj', '/administration/areas', '', ''));
+        navItems.push(new NavItem('Områden', 'Välj', '/administration/areas', '', '', ''));
       }
 
       if (this.authService.hasUnitAdministrationPermission) {
-        navItems.push(new NavItem('Avdelningar', 'Välj', '/administration/units', '', ''));
+        navItems.push(new NavItem('Avdelningar', 'Välj', '/administration/units', '', '', ''));
       }
 
       if (this.authService.hasApplicationAdministrationPermission) {
-        navItems.push(new NavItem('Användare', 'Välj', '/administration/user-admin', '', ''));
+        navItems.push(new NavItem('Användare', 'Välj', '/administration/user-admin', '', '', ''));
       }
 
       if (this.authService.hasVpkManagementAdminPermission()) {
-        navItems.push(new NavItem('Länkar Vårdplatskoordinering', 'Välj', '/administration/links', '', ''));
+        navItems.push(new NavItem('Länkar Vårdplatskoordinering', 'Välj', '/administration/links', '', '', ''));
       }
 
       if (this.authService.hasVplManagementAdminPermission()) {
-        navItems.push(new NavItem('Länkar Vårdplatsläget', 'Välj', '/administration/vpl-links', '', ''));
+        navItems.push(new NavItem('Länkar Vårdplatsläget', 'Välj', '/administration/vpl-links', '', '', ''));
       }
 
       this.navItems = navItems;

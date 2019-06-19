@@ -2,6 +2,9 @@
     <div fxFlex class="vpk-list-item-text" >
         {{navItem.label}}
     </div>
+    <div *ngIf="navItem.subLabel" fxFlex="120px" class="vpk-list-item-type" >
+        {{navItem.subLabel}}
+    </div>
     <div *ngIf="navItem.icon" fxFlex="40px" class="vpk-list-item-icon" >
         <vpk-icon [icon]="navItem.icon"></vpk-icon>
     </div>

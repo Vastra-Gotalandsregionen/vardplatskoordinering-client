@@ -30,10 +30,10 @@ export class StyleguideComponent implements OnInit {
   getMockCardNavItems(): NavItem[] {
     let navItems: NavItem[]  = [];
 
-    let navItem1 = new NavItem('Hem', 'Välj', '/hem', '', '');
-    let navItem2 = new NavItem('Koordinering', 'Välj', '/koordinering', '', '');
-    let navItem3 = new NavItem('Administration', 'Välj', '/administration', '', '');
-    let navItem4 = new NavItem('Google', 'Välj', '', 'http://www.google.se', '');
+    let navItem1 = new NavItem('Hem', 'Välj', '/hem', '', '', '');
+    let navItem2 = new NavItem('Koordinering', 'Välj', '/koordinering', '', '', '');
+    let navItem3 = new NavItem('Administration', 'Välj', '/administration', '', '', '');
+    let navItem4 = new NavItem('Google (nytt fönster)', 'Välj', '', 'http://www.google.se', '', '_BLANK');
 
     navItems.push(navItem1);
     navItems.push(navItem2);
@@ -46,9 +46,9 @@ export class StyleguideComponent implements OnInit {
   getMockListNavItems(): NavItem[] {
     let navItems: NavItem[]  = [];
 
-    let navItem1 = new NavItem('Till startsidan', '', '/hem', '', 'arrow-right');
-    let navItem2 = new NavItem('Ladda ner', '', '#download-dummy', '', 'file-download');
-    let navItem3 = new NavItem('Google', '', '', 'http://www.google.se', 'arrow-right');
+    let navItem1 = new NavItem('Till startsidan', '', '/hem', '', 'arrow-right', '');
+    let navItem2 = new NavItem('Ladda ner', '', '#download-dummy', '', 'file-download', '');
+    let navItem3 = new NavItem('Google (nytt fönster)', 'Välj', '', 'http://www.google.se', '', '_BLANK');
 
     navItems.push(navItem1);
     navItems.push(navItem2);
@@ -59,15 +59,6 @@ export class StyleguideComponent implements OnInit {
   
   getStyleGuideNavItems(): NavItem[] {
     let navItems: NavItem[]  = [];
-
-    // let navItem1 = new NavItem('Till startsidan', '', '/hem', '', 'arrow-right');
-    // let navItem2 = new NavItem('Ladda ner', '', '#download-dummy', '', 'file-download');
-    // let navItem3 = new NavItem('Google', '', '', 'http://www.google.se', 'arrow-right');
-
-    // navItems.push(navItem1);
-    // navItems.push(navItem2);
-    // navItems.push(navItem3);
-
 
     return navItems;
   }

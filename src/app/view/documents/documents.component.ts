@@ -27,7 +27,7 @@ export class DocumentsComponent implements OnInit {
     this.http.get<Link[]>(url)
       .pipe(
         flatMap(links => of(...links)),
-        map(link => new NavItem(link.label, '', '', link.url, 'link')),
+        map(link => new NavItem(link.label, '', '', link.url, 'link', '_blank')),
         toArray()
       )
       .subscribe(navitems => callback(navitems));

@@ -12,27 +12,49 @@
     }
 
     .vpk-list-item-link {
+        background: transparent;
         color: $vgr-blue;
         display: block;
         padding: 10px;
         text-decoration: none;
 
+        @include transition(all .3s ease);
+
         .vpk-list-item-text {
             color: $vgr-blue;
             text-decoration: underline;
+            @include transition(all .3s ease);
         }
 
-        .vpk-list-item-text {}
+        .vpk-list-item-type {
+            color: $vgr-gray-dark;
+            @include transition(all .3s ease);
+        }
 
         .vpk-list-item-icon {
             color: $vgr-gray-dark;
             text-decoration: none;
+            @include transition(all .3s ease);
         }
 
         &:hover {
             .vpk-list-item-text {
                 text-decoration: none;
             }
+        }
+
+        &:hover {
+            background: $vgr-blue;
+            color: white;
+
+            .vpk-list-item-text,
+            .vpk-list-item-type,
+            .vpk-list-item-icon {
+                color: white;
+                text-decoration: none;
+            }
+
+    
         }
         
     }

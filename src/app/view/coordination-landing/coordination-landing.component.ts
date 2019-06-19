@@ -21,7 +21,7 @@ export class CoordinationLandingComponent implements OnInit {
         this.managements = managements;
 
         for (const management of managements) {
-          const navItem = new NavItem(management.name, 'Välj', management.id.toString(), '', 'arrow-right');
+          const navItem = new NavItem(management.name, 'Välj', management.id.toString(), '', 'arrow-right', '');
           this.navItems.push(navItem);
         }
       });

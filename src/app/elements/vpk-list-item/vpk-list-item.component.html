@@ -2,6 +2,6 @@
     <vpk-list-item-content [navItem]="navItem"></vpk-list-item-content>
 </a>
 
-<a *ngIf="navItem.url" class="vpk-list-item-link" [href]="navItem.url" target="_blank">
+<a *ngIf="navItem.url" class="vpk-list-item-link" [href]="navItem.url" [target]="navItem.target">
     <vpk-list-item-content [navItem]="navItem"></vpk-list-item-content>
 </a>

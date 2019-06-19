@@ -35,7 +35,7 @@ export class VplAreasComponent implements OnInit {
         this.administrations = administrations;
 
         for (const administration of administrations) {
-          const navItem = new NavItem(administration.verks, 'Välj', administration.id.toString(), '', 'arrow-right');
+          const navItem = new NavItem(administration.verks, 'Välj', administration.id.toString(), '', 'arrow-right', '');
           this.navItems.push(navItem);
         }
       });
