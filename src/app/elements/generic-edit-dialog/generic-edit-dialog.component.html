@@ -27,6 +27,11 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <ng-container *ngIf="field.type === 'boolean'">
+      <mat-label>{{field.label}}<span *ngIf="field.required">*</span></mat-label>
+      <mat-checkbox [formControlName]="field.name"></mat-checkbox>
+    </ng-container>
   </div>
 
   <vpk-button-row align="right">

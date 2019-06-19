@@ -3,4 +3,5 @@ export class Definition {
   definition: string;
   beskrivning: string;
   lista: string;
+  public_: boolean;
 }

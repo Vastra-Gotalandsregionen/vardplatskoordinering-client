@@ -33,7 +33,11 @@
 
     <ng-container *ngFor="let config of fieldConfigs" matColumnDef="{{config.name}}">
       <th mat-header-cell *matHeaderCellDef>{{config.label}}</th>
-      <td mat-cell *matCellDef="let item" [innerHTML]="getValue(config, item, config.name)"></td>
+      <td mat-cell *matCellDef="let item">
+        <span *ngIf="config.type !== 'boolean'" [innerHTML]="getValue(config, item, config.name)"></span>
+        <span *ngIf="config.type === 'boolean' && getUnsafeValue(config, item, config.name)"><vpk-icon icon="check-square" iconSet="far"></vpk-icon></span>
+        <span *ngIf="config.type === 'boolean' && !getUnsafeValue(config, item, config.name)"><vpk-icon icon="square" iconSet="far"></vpk-icon></span>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="edit">

@@ -41,6 +41,12 @@ export class CrudTableComponent implements OnInit {
   }
 
   getValue(fieldConfig: FieldConfig, item: any, fieldName: string) {
+    const value = this.getUnsafeValue(fieldConfig, item, fieldName);
+
+    return this.sanitizer.bypassSecurityTrustHtml(value);
+  }
+
+  getUnsafeValue(fieldConfig: FieldConfig, item: any, fieldName: string) {
     const parts = fieldName.split('.');
 
     let value = item;
@@ -52,21 +58,22 @@ export class CrudTableComponent implements OnInit {
       value = value[part];
     }
 
-    if (!value && value !== 0) {
-      return '';
+    if (!value && value !== 0 && fieldConfig.type !== 'boolean') {
+      return  '';
     }
 
     if (fieldConfig.type === 'select') {
-      return fieldConfig.options.find(option => option.value === value).label;
+      value = fieldConfig.options.find(option => option.value === value).label;
     } else if (fieldConfig.type === 'multiselect') {
       const valueArray = value as Array<string>;
-      return fieldConfig.options
+      value = fieldConfig.options
         .filter(option => valueArray.indexOf(option.value) > -1)
         .map(option => option.label)
         .join(', ');
+    } else if (fieldConfig.type === 'boolean') {
+      value = !!value;
     }
-
-    return this.sanitizer.bypassSecurityTrustHtml(value);
+    return value;
   }
 
   confirmDelete(item: any) {
