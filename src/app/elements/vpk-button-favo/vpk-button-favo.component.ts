@@ -4,6 +4,8 @@ import {StateService} from '../../service/state.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../service/auth.service';
 import {FavoriteLink} from '../../domain/FavoriteLink';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'vpk-button-favo',
@@ -13,36 +15,39 @@ import {FavoriteLink} from '../../domain/FavoriteLink';
 export class VpkButtonFavoComponent implements OnInit {
 
   @Input() color: string;
-  @Input() class: string = '';
-  @Input() disabled: boolean = false;
+  @Input() class = '';
+  @Input() disabled = false;
   @Input() icon: string;
   @Input() tooltip: string;
   @Input() name: string;
 
-  public isFavorite: boolean = false;
+  public isFavorite = false;
 
   public model: FavoriteLink = null;
+
+  loggedIn: boolean;
 
   @HostBinding('class')
   get classes(): string {
 
     let classes = 'vpk-button';
 
-    if (this.class != undefined) {
+    if (this.class !== undefined) {
       classes = classes + ' ' + this.class;
     }
     return classes;
   }
 
+  constructor(private global: GlobalStateService,
+              private stateService: StateService,
+              private http: HttpClient,
+              public authService: AuthService) {
+    const fetchUrl = 'api/favorite-link/username/' + authService.getLoggedInUserId() + '?url='
+      + encodeURIComponent(location.pathname.replace('/', '_')) + '';
 
-  buttonElementClass: string = '';
-
-
-  constructor(private global: GlobalStateService, private stateService: StateService, private http: HttpClient, private authService: AuthService) {
-    const fetchUrl = 'api/favorite-link/username/' + authService.getLoggedInUserId() + '?url=' + encodeURIComponent(location.pathname.replace('/', '_')) + '';
     http.get(fetchUrl).subscribe((r: FavoriteLink[]) => {
-      this.isFavorite = r.length == 1;
-      if (r.length == 1) {
+      this.isFavorite = r.length === 1;
+      if (r.length === 1) {
         this.model = r[0];
       } else {
         this.model = null;
@@ -52,7 +57,26 @@ export class VpkButtonFavoComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.authService.isUserLoggedIn.pipe(
+      switchMap(loggedIn => {
+        this.loggedIn = loggedIn;
+        if (loggedIn) {
+          const fetchUrl = 'api/favorite-link/username/' + this.authService.getLoggedInUserId() + '?url='
+            + encodeURIComponent(location.pathname.replace('/', '_')) + '';
+          return this.http.get(fetchUrl);
+        } else {
+          return of([]);
+        }
+      })
+    ).subscribe((r: FavoriteLink[]) => {
+        this.isFavorite = r.length === 1;
+        if (r.length === 1) {
+          this.model = r[0];
+        } else {
+          this.model = null;
+          this.isFavorite = false;
+        }
+      });
   }
 
   public toggleFavoriteForCurrentPage() {
@@ -76,7 +100,7 @@ export class VpkButtonFavoComponent implements OnInit {
   }
 
   isLoggedIn() {
-    return this.authService.isAuthenticated();
+    return this.loggedIn;
   }
 
 }

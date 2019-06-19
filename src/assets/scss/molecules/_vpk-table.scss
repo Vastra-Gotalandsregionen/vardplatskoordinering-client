@@ -7,7 +7,6 @@
   .mat-footer-cell,
   .mat-header-cell {
     padding: 0 10px;
-    word-break: break-all;
   }
 
   .mat-header-cell {
@@ -90,4 +89,10 @@
   }
 
 
+}
+
+app-crud-table.break-word {
+  td {
+    word-break: break-word;
+  }
 }
