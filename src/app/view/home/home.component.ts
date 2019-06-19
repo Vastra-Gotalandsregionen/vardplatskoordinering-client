@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   private toNavItems(fromThese: FavoriteLink[]): NavItem[] {
     const results: NavItem[] = [];
     for (const item of fromThese) {
-      const nav = new NavItem(item.name, item.info, '', item.url, '');
+      const nav = new NavItem(item.name, item.info, item.url, '', 'arrow-right', '');
       results.push(nav);
     }
     return results;
