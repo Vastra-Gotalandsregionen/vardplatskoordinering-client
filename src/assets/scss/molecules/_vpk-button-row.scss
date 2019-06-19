@@ -4,7 +4,9 @@
 
     .vpk-button-row-container {
         vpk-button + vpk-button,
-        vpk-button-fab + vpk-button-fab {
+        vpk-button-fab + vpk-button-fab,
+        vpk-button-fab + vpk-button-favo,
+        vpk-button-favo + vpk-button-fab {
             margin-left: 15px;
         }
     }
