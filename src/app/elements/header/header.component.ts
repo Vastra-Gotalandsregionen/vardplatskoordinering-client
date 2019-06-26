@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { StateService } from '../../service/state.service';
@@ -18,6 +18,7 @@ import { Administration } from '../../domain/Administration';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
+  isMenuOn: boolean;
   managementName: string;
   administrationsString: string;
   hasApplicationAdministrationPermission: boolean;
@@ -28,7 +29,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private sanitizer: DomSanitizer,
               private dialog: MatDialog,
               private router: Router,
-              private http: HttpClient) { }
+              private http: HttpClient) {
+
+                this.router.events.subscribe((event: Event) => {
+                  switch (true) {
+                    case event instanceof NavigationStart: {
+                      break;
+                    }
+            
+                    case event instanceof NavigationEnd:
+                    case event instanceof NavigationCancel:
+                    case event instanceof NavigationError: {
+                      this.isMenuOn = false;
+                      break;
+                    }
+                    default: {
+                      break;
+                    }
+                  }
+                });
+            
+                
+  }
 
   ngOnInit() {
     this.subscription = this.authService.isUserLoggedIn.subscribe(_ => {
@@ -76,6 +98,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logout() {
     this.authService.resetAuth();
     this.router.navigate(['/']);
+  }
+
+  menuToggle() {
+    console.log('Menu was toggled.');
+    this.isMenuOn = !this.isMenuOn;
   }
 
   getShowContentEdit(): boolean {

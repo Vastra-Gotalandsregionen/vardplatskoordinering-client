@@ -45,7 +45,7 @@ export class RegistreraTableComponent implements OnInit {
 
                 breakpointObserver.observe(['(max-width: 600px)']).subscribe(result => {
                   this.todayDisplayedColumns = result.matches ? 
-                  ['toggleExpand', 'verksamhet', 'diffVardag', 'pg', 'action'] : 
+                  ['toggleExpand', 'verksamhet', 'pg', 'action'] : 
                       ['toggleExpand', 'verksamhet', 'dispVpl', 'inneliggande', 'fysOtillaten', 'fysTillaten', 'prognosFore',
     'maltalVardag', 'diffVardag', 'pg', 'action'];
                 });
