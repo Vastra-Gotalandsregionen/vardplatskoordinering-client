@@ -68,7 +68,7 @@ export class RegistreraTableComponent implements OnInit {
 
   getHtml(html: string) {
     if (!html) {
-      return '–';
+      return ' &mdash;';
     }
 
     return this.sanitizer.bypassSecurityTrustHtml(html);

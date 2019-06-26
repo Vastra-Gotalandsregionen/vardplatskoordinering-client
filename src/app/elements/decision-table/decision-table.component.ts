@@ -62,6 +62,10 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
   }
 
   getHtml(html: string) {
+    if (!html) {
+      return ' &mdash;';
+    }
+
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
