@@ -82,6 +82,38 @@
   <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let registrera" [attr.colspan]="todayDisplayedColumns.length">
+
+        <div class="mobile-details" [@detailExpand]="expandedElements.indexOf(registrera.administration) > -1 ? 'expanded' : 'collapsed'" [ngClass]="expandedElements.indexOf(registrera.administration) > -1 ? 'mobile-details-expanded' : 'mobile-details-collapsed'">
+
+            <div class="mobile-detail-item">
+                <div class="mobile-detail-item-label">Disp. vpl 06.00:</div>
+                <div class="mobile-detail-item-data number-data">{{registrera.dispVpl}}</div>
+            </div>
+  
+            <div class="mobile-detail-item">
+                <div class="mobile-detail-item-label">Inneliggande:</div>
+                <div class="mobile-detail-item-data number-data">{{registrera.inneliggande}}</div>
+            </div>
+  
+            <div class="mobile-detail-item">
+                <div class="mobile-detail-item-label">Vpl med brister:</div>
+                <div class="mobile-detail-item-data number-data">{{registrera.fysTillaten}}</div>
+            </div>
+
+            <div class="mobile-detail-item">
+                <div class="mobile-detail-item-label">Prognos lediga 16.00:</div>
+                <div class="mobile-detail-item-data number-data">{{registrera.prognosFore}}</div>
+            </div>
+
+            <div class="mobile-detail-item">
+                <div class="mobile-detail-item-label">Måltal (vardag):</div>
+                <div class="mobile-detail-item-data number-data">{{registrera.maltalVardag}}</div>
+            </div>
+
+
+          </div>
+
+
       <div class="element-detail" [innerHTML]="getHtml(registrera.kommentar)"
            [@detailExpand]="expandedElements.indexOf(registrera.administration) > -1 ? 'expanded' : 'collapsed'" [ngClass]="expandedElements.indexOf(registrera.administration) > -1 ? 'element-detail-expanded' : 'element-detail-collapsed'">
       </div>

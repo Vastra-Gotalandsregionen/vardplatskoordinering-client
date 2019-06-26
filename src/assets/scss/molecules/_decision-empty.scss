@@ -11,7 +11,11 @@
 
         .vpk-alert {
             float: left;
-            width: 90%;
+            width: 80%;
+
+            @include xsmall {
+                width: 90%;
+            }
 
             .alert {
                 margin-bottom: 0;

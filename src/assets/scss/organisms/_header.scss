@@ -89,6 +89,46 @@
 
   .header-menu-bar {
     background: $vgr-blue-dark;
+
+    .mat-toolbar-row {
+
+      display: block;
+      height: auto;
+      
+      @include xsmall {
+        display: flex;
+        height: 48px;
+      }
+
+      .list-item {
+        display: block;
+
+        a {
+          display: block;
+
+          &.active {
+            background: $vpk-orange;
+            border-bottom-color: transparent;
+          }
+        }
+
+        @include xsmall {
+          display: inline;
+          a {
+            display: inline;
+
+            &.active {
+              background: transparent;
+              border-bottom-color: $vpk-orange;
+            }
+  
+          }
+        }
+      }
+
+
+    }
+
   }
 
 }

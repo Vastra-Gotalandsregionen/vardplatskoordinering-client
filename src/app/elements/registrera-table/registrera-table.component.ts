@@ -6,6 +6,8 @@ import { AuthService } from '../../service/auth.service';
 import { Administration } from '../../domain/Administration';
 import { Tuple2 } from '../../domain/tuple2';
 
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+
 @Component({
   selector: 'app-registrera-table',
   templateUrl: './registrera-table.component.html',
@@ -38,7 +40,16 @@ export class RegistreraTableComponent implements OnInit {
   allExpanded = false;
 
   constructor(private authService: AuthService,
-              private sanitizer: DomSanitizer) {
+              private sanitizer: DomSanitizer,
+              private breakpointObserver: BreakpointObserver) {
+
+                breakpointObserver.observe(['(max-width: 600px)']).subscribe(result => {
+                  this.todayDisplayedColumns = result.matches ? 
+                  ['toggleExpand', 'verksamhet', 'diffVardag', 'pg', 'action'] : 
+                      ['toggleExpand', 'verksamhet', 'dispVpl', 'inneliggande', 'fysOtillaten', 'fysTillaten', 'prognosFore',
+    'maltalVardag', 'diffVardag', 'pg', 'action'];
+                });
+
   }
 
   ngOnInit() {
