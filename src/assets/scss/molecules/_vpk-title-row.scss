@@ -1,0 +1,29 @@
+.vpk-title-row {
+
+    .vpk-title-row-heading-col {
+        h1 {
+            font-size: 140%;
+
+            @include xsmall {
+                font-size: 200%;
+            }
+        }
+    }
+
+    .vpk-title-row-controls-col {
+
+        .vpk-button-row .vpk-button-row-container-right {
+            text-align: left;
+        }
+
+        @include xsmall {
+            .vpk-button-row .vpk-button-row-container-right {
+                text-align: right;
+            }
+        }
+
+    }
+
+
+
+}

@@ -7,6 +7,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Registrera } from '../../domain/Registrera';
 import { AuthService } from '../../service/auth.service';
 
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+
 @Component({
   selector: 'app-decision-table',
   templateUrl: './decision-table.component.html',
@@ -37,7 +39,17 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
   expandedElement: any;
 
   constructor(private authService: AuthService,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer,
+              private breakpointObserver: BreakpointObserver) {
+  
+                breakpointObserver.observe(['(max-width: 600px)']).subscribe(result => {
+                  this.displayedColumns = result.matches ? 
+                      ['toggleExpand', 'datum', 'vardplatstrappa', 'action'] : 
+                      ['toggleExpand', 'datum', 'ledigaDisp', 'overbel', 'diff', 'vardplatstrappa', 'action'];
+                });
+
+
+  }
 
   ngOnInit() {
     this.dataSource.connect(null).pipe(
@@ -62,6 +74,10 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
   }
 
   getHtml(html: string) {
+    if (!html) {
+      return ' &mdash;';
+    }
+
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 

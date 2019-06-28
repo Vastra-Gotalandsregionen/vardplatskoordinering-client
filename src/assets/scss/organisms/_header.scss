@@ -2,10 +2,37 @@
   background: $vgr-blue;
   color: #fff;
 
-  .logo {
-    margin: 10px auto;
-    width: 200px;
+  .logo-wrap {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 0 0 0;
+    width: 150px;
+
+    @include xsmall {
+      display: inline-block;
+      padding: 10px 0;
+      width: 200px;
+    }
+
+    .logo {
+      display: inline-block;
+
+      img {
+        display: inline-block;
+        width: 100%;
+      }
+    }
   }
+
+  // .logo {
+  //   display: inline-block;
+  //   margin: 10px auto;
+  //   width: 150px;
+
+  //   @include xsmall {
+  //     width: 200px;
+  //   }
+  // }
 
   .mat-toolbar {
     background: transparent;
@@ -14,53 +41,15 @@
     font-weight: normal;
   }
 
-  .menu-toggle {
-    background: transparent;
-    color: #fff;
-    box-shadow: none;
-    @include border-radius(0);
-  }
-
-  .header-toolbar-spacer {
-    flex: 1 1 auto;
-  }
-
-  .header-controls {
-
-    .user-avatar {
-      height: 32px;
-      width: 32px;
-    }
-
-    .header-control-item {
-      display: inline-block;
-      margin-right: 5px;
-      vertical-align: middle;
-
-      button {
-        text-transform: none;
-
-        &.on {
-          border: 1px solid white;
-        }
-
-      }
-
-      &.auth-info {
-        font-size: .8em;
-        margin-right: 48px;
-      }
-
-    }
-
-  }
-
   .header-top-bar {
     background: darken($vgr-blue, 10);
     background: $vgr-blue;
-    padding: 10px 0;
-    //padding-bottom: 20px;
+    padding: 0;
 
+    @include xsmall {
+      padding: 10px 0;
+    }
+    
     @include small {
       background-image: url(assets/images/dekorelement.svg);
       background-repeat: no-repeat;
@@ -84,11 +73,161 @@
       background-position: center -100px;
     }
 
+    .container {
+
+      padding: 0;
+
+      @include xsmall {
+        padding: 0 20px;
+      }
+    }
+
+    .mat-toolbar {
+      
+      display: block;
+      height: auto;
+      padding: 0;
+
+      @include xsmall {
+        display: flex;
+        height: 64px;
+      }
+    }
+
+    .header-toolbar-spacer {
+      flex: 1 1 auto;
+    }
+  
+    .header-controls {
+
+      background: $vgr-blue-dark;
+      padding: 5px 20px;
+
+      @include xsmall {
+        background: transparent;
+        padding: 0;
+      }
+
+      .user-avatar {
+        height: 24px;
+        margin-top: 8px;
+        width: 24px;
+
+        @include xsmall {
+          height: 32px;
+          width: 32px;
+        }
+      }
+  
+      .header-control-item {
+        display: inline-block;
+        margin-right: 5px;
+        vertical-align: middle;
+
+        &.menu-toggle-wrap {
+          display: inline-block;
+          margin-right: 15px;
+  
+          @include xsmall {
+            display: none;
+          }
+        }
+  
+  
+        button {
+          text-transform: none;
+  
+          &.on {
+            border: 1px solid white;
+          }
+  
+        }
+  
+        &.auth-info {
+          font-size: .8em;
+          margin-right: 48px;
+        }
+  
+      }
+  
+    }
+  
+
 
   }
 
   .header-menu-bar {
     background: $vgr-blue-dark;
+
+    display: none;
+
+    &.open {
+      display: block;
+    }
+
+    @include xsmall {
+      display: block;
+    }
+
+    .container {
+      padding: 0;
+
+      @include xsmall {
+        padding: 0 20px;
+      }
+    }
+
+    .mat-toolbar-row {
+
+      display: block;
+      height: auto;
+      padding: 0;
+      
+      @include xsmall {
+        display: flex;
+        height: 48px;
+      }
+
+      .list-item {
+        display: block;
+
+        a {
+          display: block;
+          padding: 2px 30px;
+
+          &.active {
+            background: $vpk-orange;
+            border-bottom-color: transparent;
+          }
+
+          &:hover {
+            border-bottom-color: transparent;
+          }
+
+        }
+
+        @include xsmall {
+          display: inline;
+          a {
+            display: inline;
+            padding: 10px 30px;
+
+            &.active {
+              background: transparent;
+              border-bottom-color: $vpk-orange;
+            }
+
+            &:hover {
+              border-bottom-color: white;
+            }
+  
+          }
+        }
+      }
+
+
+    }
+
   }
 
 }

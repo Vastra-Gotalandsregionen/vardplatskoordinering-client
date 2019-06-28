@@ -4,26 +4,23 @@
     <div class="container">
 
       <mat-toolbar class="">
-        <a routerLink="home" routerLinkActive="active">
-          <img class="logo" src="/assets/images/vgr-logotyp-neg.png" alt="Logo VPL"/>
-        </a>
+
+        <span class="logo-wrap">
+            <a routerLink="home" routerLinkActive="active" class="logo">
+              <img class="logo" src="/assets/images/vgr-logotyp-neg.png" alt="Logo VPL"/>
+            </a>
+        </span>
 
         <div class="header-toolbar-spacer"></div>
 
         <div class="header-controls">
 
-          <!--<span *ngIf="admin" class="header-control-item">
-            <button *ngIf="getShowContentEdit()" mat-button (click)="setShowContentEdit(false)"
-                    matTooltip="Dölj redigeringsläge" class="on"><mat-icon>edit</mat-icon></button>
-            <button *ngIf="!getShowContentEdit()" mat-button (click)="setShowContentEdit(true)"
-                    matTooltip="Visa redigeringsläge"><mat-icon>edit</mat-icon></button>
-          </span>-->
-
-          <!--<span *ngIf="admin" class="header-control-item">
-            <button *ngIf="getShowDebug()" mat-button (click)="setShowDebug(false)" matTooltip="Dölj debug-läge"><mat-icon>visibility</mat-icon></button>
-            <button *ngIf="!getShowDebug()" mat-button (click)="setShowDebug(true)" matTooltip="Visa debug-läge"><mat-icon>visibility_off</mat-icon></button>
-          </span>-->
-
+          <span class="header-control-item menu-toggle-wrap">
+            <span class="menu-toggle" (click)="menuToggle()">
+                <vpk-icon icon="bars"></vpk-icon>
+            </span>
+          </span>
+  
           <span *ngIf="getLoggedInUserId()" class="header-control-item">
             <span class="user-avatar" [style.background-image]="userAvatarBackgroundImageStyle()"></span>
           </span>
@@ -61,7 +58,7 @@
     </div>
   </div>
 
-  <div class="header-menu-bar">
+  <div class="header-menu-bar" [ngClass]="{open: isMenuOn}">
     <div class="container">
       <mat-toolbar class="menu-bar">
 
