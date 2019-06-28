@@ -27,7 +27,7 @@ export class VplTableComponent implements OnInit {
   }
 
   hasEditPermission(reg: VplReg) {
-    return this.authService.authorizedToUnitVpl(reg.id) && reg.datum === this.today;
+    return this.authService.authorizedToUnitVpl(reg.avdid) && reg.datum === this.today;
   }
 
   edit(vplReg: VplReg) {
