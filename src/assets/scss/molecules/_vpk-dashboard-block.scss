@@ -1,0 +1,58 @@
+.vpk-dashboard-block {
+
+    .c4 {
+        width: 33.33%
+    }
+
+    .row {
+
+        .col-inner {
+          padding: 0 20px;
+        }
+      
+        .layout-column:first-child {
+          .col-inner {
+            padding-left: 0;
+          }
+        }
+      
+        .layout-column:last-child {
+          .col-inner {
+            padding-right: 0;
+          }
+        }
+      
+      }    
+
+    // Override media query from scaffolding
+    @media(max-width: 870px) {
+
+
+        .c4 {
+            width: 33.33%
+        }
+    
+        .row {
+    
+            .col-inner {
+              padding: 0 20px;
+            }
+          
+            .layout-column:first-child {
+              .col-inner {
+                padding-left: 0;
+              }
+            }
+          
+            .layout-column:last-child {
+              .col-inner {
+                padding-right: 0;
+              }
+            }
+          
+          }            
+
+    }
+
+
+}

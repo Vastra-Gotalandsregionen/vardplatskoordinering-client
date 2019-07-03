@@ -40,7 +40,11 @@
   .mobile-details {
     display: block;
     padding: 0;
-    margin: 5px 50px;
+    margin: 5px 5px;
+
+    @include xsmall {
+      margin: 5px 30px;
+    }
 
     &.mobile-details-collapsed {
       display: none;
@@ -61,6 +65,7 @@
 
       .mobile-detail-item-data {
         margin-left: 160px;
+        max-width: 200px;
 
         &.number-data {
           text-align: right;
@@ -68,6 +73,12 @@
 
       }
 
+    }
+
+    &.mobile-details-only {
+      .mobile-detail-item:last-child {
+        border-bottom: none;
+      }
     }
 
   }
@@ -84,7 +95,11 @@
     overflow: hidden;
 
     &.element-detail-expanded {
-      margin: 20px 50px;
+      margin: 10px 5px;
+
+      @include xsmall {
+        margin: 20px 30px;
+      }
     }
 
   }

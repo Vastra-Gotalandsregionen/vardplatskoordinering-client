@@ -1,81 +1,81 @@
 <!-- Needed to do this with ngStyle instead of *ngIf due to a problem where the rows didn't show after a view with zero items. -->
 <table class="vpk-table" mat-table multiTemplateDataRows [dataSource]="dataSource" [ngStyle]="{display: ((dataSource.count | async) > 0) ? 'table' : 'none'}" >
 
-  <ng-container matColumnDef="toggleExpand">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let aggregate" (click)="expandedElement = expandedElement === aggregate ? null : aggregate" class="toggle-cell">
-      <vpk-icon [@togglerExpand]="aggregate == expandedElement ? 'expanded' : 'collapsed'" icon="chevron-down"></vpk-icon>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="datum">
-    <th mat-header-cell *matHeaderCellDef>Datum</th>
-    <td mat-cell *matCellDef="let aggregate">{{aggregate.veckodag.slice(0, 3)}} ({{aggregate.datum}})</td>
-  </ng-container>
-
-  <ng-container matColumnDef="ledigaDisp">
-    <th class="number-cell" mat-header-cell *matHeaderCellDef>Utfall lediga disp vpl</th>
-    <td class="number-cell" mat-cell *matCellDef="let aggregate"> {{aggregate.ledigaDisp}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="overbel">
-    <th class="number-cell" mat-header-cell *matHeaderCellDef>Utfall antal överbeläggn.</th>
-    <td class="number-cell" mat-cell *matCellDef="let aggregate">{{aggregate.overbel}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="diff">
-    <th class="number-cell" mat-header-cell *matHeaderCellDef>Prognos minus måltal</th>
-    <td class="number-cell" mat-cell *matCellDef="let aggregate">{{aggregate.diff}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="vardplatstrappa">
-    <th class="number-cell" mat-header-cell *matHeaderCellDef>Grad av påverkan</th>
-    <td class="number-cell" mat-cell *matCellDef="let aggregate">{{aggregate.vardplatstrappa}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="action">
-    <th class="action-cell" mat-header-cell *matHeaderCellDef> </th>
-    <td class="action-cell" mat-cell *matCellDef="let aggregate">
-        <vpk-button *ngIf="hasEditPermission()" (click)="outputEditDecision(aggregate.akutenTrappaId)" class="condensed" icon="pen" tooltip="Redigera"></vpk-button>
-    <th mat-header-cell *matHeaderCellDef> </th>
-  </ng-container>
-
-  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-  <ng-container matColumnDef="expandedDetail">
-    <td mat-cell *matCellDef="let aggregate" [attr.colspan]="displayedColumns.length">
-
-        <div class="mobile-details" [@detailExpand]="aggregate == expandedElement ? 'expanded' : 'collapsed'" [ngClass]="aggregate == expandedElement ? 'mobile-details-expanded' : 'mobile-details-collapsed'">
-
-          <div class="mobile-detail-item">
-              <div class="mobile-detail-item-label">Utfall lediga disp vpl:</div>
-              <div class="mobile-detail-item-data number-data">{{aggregate.ledigaDisp}}</div>
+    <ng-container matColumnDef="toggleExpand">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let aggregate" (click)="expandedElement = expandedElement === aggregate ? null : aggregate" class="toggle-cell">
+        <vpk-icon [@togglerExpand]="aggregate == expandedElement ? 'expanded' : 'collapsed'" icon="chevron-down"></vpk-icon>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="datum">
+      <th mat-header-cell *matHeaderCellDef>Datum</th>
+      <td mat-cell *matCellDef="let aggregate">{{aggregate.veckodag.slice(0, 3)}} ({{aggregate.datum}})</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="ledigaDisp">
+      <th class="number-cell" mat-header-cell *matHeaderCellDef>Utfall lediga disp vpl</th>
+      <td class="number-cell" mat-cell *matCellDef="let aggregate"> {{aggregate.ledigaDisp}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="overbel">
+      <th class="number-cell" mat-header-cell *matHeaderCellDef>Utfall antal överbeläggn.</th>
+      <td class="number-cell" mat-cell *matCellDef="let aggregate">{{aggregate.overbel}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="diff">
+      <th class="number-cell" mat-header-cell *matHeaderCellDef>Prognos minus måltal</th>
+      <td class="number-cell" mat-cell *matCellDef="let aggregate">{{aggregate.diff}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="vardplatstrappa">
+      <th class="number-cell" mat-header-cell *matHeaderCellDef>Grad av påverkan</th>
+      <td class="number-cell" mat-cell *matCellDef="let aggregate">{{aggregate.vardplatstrappa}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="action">
+      <th class="action-cell" mat-header-cell *matHeaderCellDef> </th>
+      <td class="action-cell" mat-cell *matCellDef="let aggregate">
+          <vpk-button *ngIf="hasEditPermission()" (click)="outputEditDecision(aggregate.akutenTrappaId)" class="condensed" icon="pen" tooltip="Redigera"></vpk-button>
+      <th mat-header-cell *matHeaderCellDef> </th>
+    </ng-container>
+  
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let aggregate" [attr.colspan]="displayedColumns.length">
+  
+          <div class="mobile-details" [@detailExpand]="aggregate == expandedElement ? 'expanded' : 'collapsed'" [ngClass]="aggregate == expandedElement ? 'mobile-details-expanded' : 'mobile-details-collapsed'">
+  
+            <div class="mobile-detail-item">
+                <div class="mobile-detail-item-label">Utfall lediga disp vpl:</div>
+                <div class="mobile-detail-item-data number-data">{{aggregate.ledigaDisp}}</div>
+            </div>
+  
+            <div class="mobile-detail-item">
+                <div class="mobile-detail-item-label">Utfall antal överbeläggn:</div>
+                <div class="mobile-detail-item-data number-data">{{aggregate.overbel}}</div>
+            </div>
+  
+            <div class="mobile-detail-item">
+                <div class="mobile-detail-item-label">Prognos minus måltal:</div>
+                <div class="mobile-detail-item-data number-data">{{aggregate.diff}}</div>
+            </div>
+  
           </div>
-
-          <div class="mobile-detail-item">
-              <div class="mobile-detail-item-label">Utfall antal överbeläggn:</div>
-              <div class="mobile-detail-item-data number-data">{{aggregate.overbel}}</div>
-          </div>
-
-          <div class="mobile-detail-item">
-              <div class="mobile-detail-item-label">Prognos minus måltal:</div>
-              <div class="mobile-detail-item-data number-data">{{aggregate.diff}}</div>
-          </div>
-
+  
+        <div class="element-detail" [innerHTML]="getHtml(aggregate.beslut)"
+             [@detailExpand]="aggregate == expandedElement ? 'expanded' : 'collapsed'" [ngClass]="aggregate == expandedElement ? 'element-detail-expanded' : 'element-detail-collapsed'">
         </div>
-
-      <div class="element-detail" [innerHTML]="getHtml(aggregate.beslut)"
-           [@detailExpand]="aggregate == expandedElement ? 'expanded' : 'collapsed'" [ngClass]="aggregate == expandedElement ? 'element-detail-expanded' : 'element-detail-collapsed'">
-      </div>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let aggregate; columns: displayedColumns;"
-      class="element-row"
-      [class.expanded-row]="expandedElement === aggregate"
-      ></tr>
-  <tr mat-row *matRowDef="let aggregate; columns: ['expandedDetail']" class="detail-row"></tr>
-
-</table>
-
-<mat-paginator [hidePageSize]="true" [style.display]="(dataSource.count | async) >= 5 ? 'block': 'none'" [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let aggregate; columns: displayedColumns;"
+        class="element-row"
+        [class.expanded-row]="expandedElement === aggregate"
+        ></tr>
+    <tr mat-row *matRowDef="let aggregate; columns: ['expandedDetail']" class="detail-row"></tr>
+  
+  </table>
+  
+  <mat-paginator [hidePageSize]="true" [style.display]="(dataSource.count | async) >= 5 ? 'block': 'none'" [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
