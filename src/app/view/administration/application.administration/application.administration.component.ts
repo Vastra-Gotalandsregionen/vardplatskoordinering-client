@@ -47,6 +47,10 @@ export class ApplicationAdministrationComponent implements OnInit, OnDestroy {
         navItems.push(new NavItem('Länkar Vårdplatsläget', 'Välj', '/administration/vpl-links', '', '', ''));
       }
 
+      if (this.authService.hasVplManagementAdminPermission()) {
+        navItems.push(new NavItem('Admin Vårdplatsläget', 'Välj', '/administration/vpl-admin', '', '', ''));
+      }
+
       this.navItems = navItems;
     });
   }

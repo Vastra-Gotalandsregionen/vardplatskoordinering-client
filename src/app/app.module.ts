@@ -77,6 +77,7 @@ import { DefinitionsComponent } from './view/definitions/definitions.component';
 import { LinksComponent } from './view/administration/links/links.component';
 import { VplLinksComponent } from './view/administration/vpl-links/vpl-links.component';
 import { DefinitionCardComponent } from './elements/definition-card/definition-card.component';
+import { VplAdministrationComponent } from './view/administration/vpl-administration/vpl-administration.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +140,8 @@ import { DefinitionCardComponent } from './elements/definition-card/definition-c
     DefinitionsComponent,
     LinksComponent,
     VplLinksComponent,
-    DefinitionCardComponent
+    DefinitionCardComponent,
+    VplAdministrationComponent
     // Attribute Directives
 
   ],

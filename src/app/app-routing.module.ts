@@ -21,6 +21,7 @@ import { VplComponent } from './view/vpl-landing/vpl-areas/vpl/vpl.component';
 import { DefinitionsComponent } from './view/definitions/definitions.component';
 import { LinksComponent } from './view/administration/links/links.component';
 import { VplLinksComponent } from './view/administration/vpl-links/vpl-links.component';
+import {VplAdministrationComponent} from './view/administration/vpl-administration/vpl-administration.component';
 
 const routes: Routes = [
   {
@@ -102,25 +103,37 @@ const routes: Routes = [
   },
 
   {
+    path: 'administration/vpl-admin',
+    component: VplAdministrationComponent,
+    canActivate: [HasRoleGuard],
+    data: {roles: ['ADMIN', 'VPL_MANAGER']}
+  },
+
+  {
     path: 'vpl',
     component: VplLandingComponent
   },
+
   {
     path: 'vpl/:management',
     component: VplAreasComponent
   },
+
   {
     path: 'vpl/:management/:administration',
     component: VplComponent
   },
+
   {
     path: 'styleguide',
     component: StyleguideComponent
   },
+
   {
     path: 'login',
     component: LoginPageComponent
   },
+
   {
     path: '**',
     redirectTo: 'hem'

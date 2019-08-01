@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VplReg } from '../../domain/vpl-reg';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
+import {VplRum} from '../../domain/vpl-rum';
 
 @Component({
   selector: 'app-edit-vpl-reg-dialog',
@@ -17,7 +18,7 @@ export class EditVplRegDialogComponent implements OnInit {
 
   vplReg: VplReg;
   unitName: string;
-  obRumOptions: string[] = ['Läkarrum', 'Korridor', 'Behandlingsrum', 'Burspråk', 'Dagrum'];
+  obRumOptions: string[] = [];
 
   constructor(public dialogRef: MatDialogRef<EditVplRegDialogComponent>,
               private http: HttpClient,
@@ -25,7 +26,8 @@ export class EditVplRegDialogComponent implements OnInit {
     this.vplReg = data.vplReg;
     this.unitName = data.unitName;
     const r = this.vplReg;
-
+    this.http.get<VplRum[]>('/api/vplRum'
+    ).subscribe((vplrums: VplRum[]) => {this.obRumOptions = vplrums.map(rum => rum.rum); });
     this.formGroup = new FormGroup({
       max: new FormControl(r.max, Validators.required),
       inneliggande: new FormControl(r.inneliggande, Validators.required),
