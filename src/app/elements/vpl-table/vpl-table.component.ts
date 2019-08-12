@@ -40,12 +40,12 @@ export class VplTableComponent implements OnInit {
               public dialog: MatDialog,
               private breakpointObserver: BreakpointObserver) {
                 breakpointObserver.observe(['(max-width: 600px)']).subscribe(result => {
-                  
-                  this.regDisplayedColumns = result.matches ? 
-                    ['toggleExpand', 'avd', 'prognosis','actions'] : 
+
+                  this.regDisplayedColumns = result.matches ?
+                    ['toggleExpand', 'avd', 'prognosis', 'actions'] :
                     ['avd', 'regtid', 'max', 'inneliggande', 'hem', 'hemp', 'planIn', 'medFardigbehandlade', 'ob', 'prognosis', 'actions'];
                 });
-                
+
   }
 
   ngOnInit() {

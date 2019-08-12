@@ -211,7 +211,7 @@ export class CoordinationComponent implements OnInit {
   }
 
   hasDecisionEditPermission() {
-    if (this.authService.isAdmin() || this.authService.hasVpkManagementAdminPermission()) {
+    if (this.authService.isAdmin() || this.authService.hasVpkManagementAdminPermission(this.authService.getManagementId())) {
       return true;
     }
   }

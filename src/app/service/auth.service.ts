@@ -170,19 +170,37 @@ export class AuthService {
     }
   }
 
-  hasVpkManagementAdminPermission(): boolean {
-    return this.hasManagerRoleCommon('VPK_MANAGER');
+  hasVpkManagementAdminPermissionGlobal(): boolean {
+    const token = this.getToken();
+    if (token) {
+      return this.isAdmin() || token.roles.indexOf('VPK_MANAGER') > -1;
+    } else {
+      return false;
+    }
   }
 
-  hasVplManagementAdminPermission(): boolean {
-    return this.hasManagerRoleCommon('VPL_MANAGER');
+  hasVplManagementAdminPermissionGlobal(): boolean {
+    const token = this.getToken();
+    if (token) {
+      return this.isAdmin() || token.roles.indexOf('VPL_MANAGER') > -1;
+    } else {
+      return false;
+    }
   }
 
-  private hasManagerRoleCommon(role: string) {
+  hasVpkManagementAdminPermission(managementId: number): boolean {
+    return this.hasManagerRoleCommon('VPK_MANAGER', managementId);
+  }
+
+  /*hasVplManagementAdminPermission(managementId: number): boolean {
+    return this.hasManagerRoleCommon('VPL_MANAGER', managementId);
+  }*/
+
+  private hasManagerRoleCommon(role: string, managementId: number) {
     const token = this.getToken();
     if (token) {
       return this.isAdmin()
-        || (token.managementId === this.currentManagementId && token.roles.indexOf(role) > -1);
+        || (token.managementId === managementId && token.roles.indexOf(role) > -1);
     } else {
       return false;
     }

@@ -41,10 +41,10 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
   constructor(private authService: AuthService,
               private sanitizer: DomSanitizer,
               private breakpointObserver: BreakpointObserver) {
-  
+
                 breakpointObserver.observe(['(max-width: 600px)']).subscribe(result => {
-                  this.displayedColumns = result.matches ? 
-                      ['toggleExpand', 'datum', 'vardplatstrappa', 'action'] : 
+                  this.displayedColumns = result.matches ?
+                      ['toggleExpand', 'datum', 'vardplatstrappa', 'action'] :
                       ['toggleExpand', 'datum', 'ledigaDisp', 'overbel', 'diff', 'vardplatstrappa', 'action'];
                 });
 
@@ -82,7 +82,7 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
   }
 
   hasEditPermission(): boolean {
-    if (this.authService.isAdmin() || this.authService.hasVpkManagementAdminPermission()) {
+    if (this.authService.isAdmin() || this.authService.hasVpkManagementAdminPermission(this.authService.getManagementId())) {
       return true;
     }
   }

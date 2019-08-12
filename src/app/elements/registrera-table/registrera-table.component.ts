@@ -44,8 +44,8 @@ export class RegistreraTableComponent implements OnInit {
               private breakpointObserver: BreakpointObserver) {
 
                 breakpointObserver.observe(['(max-width: 600px)']).subscribe(result => {
-                  this.todayDisplayedColumns = result.matches ? 
-                  ['toggleExpand', 'verksamhet', 'pg', 'action'] : 
+                  this.todayDisplayedColumns = result.matches ?
+                  ['toggleExpand', 'verksamhet', 'pg', 'action'] :
                       ['toggleExpand', 'verksamhet', 'dispVpl', 'inneliggande', 'fysOtillaten', 'fysTillaten', 'prognosFore',
     'maltalVardag', 'diffVardag', 'pg', 'action'];
                 });
@@ -102,7 +102,7 @@ export class RegistreraTableComponent implements OnInit {
   }
 
   hasEditPermission(registrera: Registrera): boolean {
-    if (this.authService.isAdmin() || this.authService.hasVpkManagementAdminPermission()) {
+    if (this.authService.isAdmin() || this.authService.hasVpkManagementAdminPermission(this.authService.getManagementId())) {
       return true;
     }
 
