@@ -48,7 +48,7 @@ export class ApplicationAdministrationComponent implements OnInit, OnDestroy {
       }
 
       if (this.authService.hasVplManagementAdminPermissionGlobal()) {
-        navItems.push(new NavItem('Admin Vårdplatsläget', 'Välj', '/administration/vpl-admin', '', '', ''));
+        navItems.push(new NavItem('Rumstyper', 'Välj', '/administration/vpl-admin', '', '', ''));
       }
 
       this.navItems = navItems;
