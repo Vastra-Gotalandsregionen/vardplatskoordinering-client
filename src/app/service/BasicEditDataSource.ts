@@ -26,11 +26,13 @@ export class BasicEditDataSource<T> implements DataSource<T> {
   }
 
   load() {
-    this.http.get(this.resourceUrl)
+    const subscription = this.http.get(this.resourceUrl)
       .subscribe((result: T[]) => {
         this.data = result;
         this.emitFilteredItems();
       });
+
+    return subscription;
   }
 
 

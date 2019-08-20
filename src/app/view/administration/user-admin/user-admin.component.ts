@@ -4,7 +4,7 @@ import { FieldConfig, Option } from '../../../domain/FieldConfig';
 import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
 import { User } from '../../../domain/User';
 import { Administration } from '../../../domain/Administration';
-import { forkJoin } from 'rxjs';
+import {BehaviorSubject, forkJoin} from 'rxjs';
 import { VplUnit } from '../../../domain/vpl-unit';
 import { Management } from '../../../domain/Management';
 import { AuthService } from '../../../service/auth.service';
@@ -16,6 +16,7 @@ import { AuthService } from '../../../service/auth.service';
 })
 export class UserAdminComponent implements OnInit {
   fieldConfigs: FieldConfig[] = [];
+  isLoading = true;
 
   dataSource: BasicEditDataSource<User>;
 
@@ -25,16 +26,27 @@ export class UserAdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSource.load();
+    const userLoadingSubject = new BehaviorSubject(null);
 
-    this.dataSource.getSaveEvents().subscribe(_ => this.authService.renewJwt())
+
+    const subscription = this.dataSource.load();
+
+    subscription.add(teardown => {
+      userLoadingSubject.next(1);
+      userLoadingSubject.complete();
+    });
+
+    this.dataSource.getSaveEvents().subscribe(_ => this.authService.renewJwt());
 
     const administrationObservable = this.http.get<Administration[]>('/api/administration');
     const unitObservable = this.http.get<VplUnit[]>('/api/vpl-unit');
     const managementObservable = this.http.get<Management[]>('/api/management');
     // const administrationObservable = this.http.get<Administration[]>('/api/role');
 
-    forkJoin([administrationObservable, unitObservable, managementObservable])
+    forkJoin([administrationObservable, unitObservable, managementObservable, userLoadingSubject])
+      .finally(() => {
+        this.isLoading = false;
+      })
       .subscribe((resultArray) => {
         const allAdministrations = resultArray[0];
         const allUnits = resultArray[1];
