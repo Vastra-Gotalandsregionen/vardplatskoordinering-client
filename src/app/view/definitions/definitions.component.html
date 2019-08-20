@@ -1,7 +1,10 @@
 <vpk-title-row [heading]="'Definitioner'">
 </vpk-title-row>
-<mat-spinner class="spinner" *ngIf="isLoading"></mat-spinner>
-<div *ngIf="!isLoading">
+
+<ng-template #Loading>
+  <app-loading-indicator></app-loading-indicator>
+</ng-template>
+<div *ngIf="!isLoading; else Loading " >
   <vpk-card>
     <mat-table [dataSource]="definitionList" class="vpk-table">
 

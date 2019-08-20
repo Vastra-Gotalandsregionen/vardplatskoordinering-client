@@ -78,6 +78,7 @@ import { LinksComponent } from './view/administration/links/links.component';
 import { VplLinksComponent } from './view/administration/vpl-links/vpl-links.component';
 import { DefinitionCardComponent } from './elements/definition-card/definition-card.component';
 import { VplAdministrationComponent } from './view/administration/vpl-administration/vpl-administration.component';
+import { LoadingIndicatorComponent } from './elements/loading-indicator/loading-indicator.component';
 
 @NgModule({
   declarations: [
@@ -141,7 +142,8 @@ import { VplAdministrationComponent } from './view/administration/vpl-administra
     LinksComponent,
     VplLinksComponent,
     DefinitionCardComponent,
-    VplAdministrationComponent
+    VplAdministrationComponent,
+    LoadingIndicatorComponent
     // Attribute Directives
 
   ],
