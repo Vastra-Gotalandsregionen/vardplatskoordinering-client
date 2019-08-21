@@ -1,1 +1,5 @@
-<app-crud-table heading="Avdelningar" [fieldConfigs]="fieldsConfigs" [dataSource]="dataSource"></app-crud-table>
+
+<ng-template #Loading>
+  <app-loading-indicator></app-loading-indicator>
+</ng-template>
+<app-crud-table heading="Avdelningar" [fieldConfigs]="fieldsConfigs" [dataSource]="dataSource"  *ngIf="!isLoading; else Loading "></app-crud-table>
