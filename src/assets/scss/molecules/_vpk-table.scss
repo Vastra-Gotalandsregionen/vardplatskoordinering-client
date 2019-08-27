@@ -9,6 +9,10 @@
     padding: 0 10px;
   }
 
+  .mat-cell {
+    word-break: break-all;
+  }
+
   .mat-header-cell {
     font-size: 14px;
     font-weight: bold;
