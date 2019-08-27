@@ -1,122 +1,124 @@
-<vpk-card title="Registrera vårdplatsläget">
-  <h2>{{unitName}}</h2>
+<mat-dialog-content>
+  <vpk-card title="Registrera vårdplatsläget">
+    <h2>{{unitName}}</h2>
 
-  <form [formGroup]="formGroup">
-    <app-layout-row>
-      <app-layout-column width="6">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Avdelning:" [value]="unitName" disabled/>
-          </mat-form-field>
-        </div>
-      </app-layout-column>
-
-      <app-layout-column width="6">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Datum:" [value]="vplReg.datum" disabled/>
-          </mat-form-field>
-        </div>
-      </app-layout-column>
-    </app-layout-row>
-
-    <app-layout-row>
-      <app-layout-column width="6">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Tid:" [value]="vplReg.tid" disabled/>
-          </mat-form-field>
-        </div>
-      </app-layout-column>
-
-      <app-layout-column width="6">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Fastställda vårdplatser:" [value]="vplReg.fast" disabled/>
-          </mat-form-field>
-        </div>
-      </app-layout-column>
-    </app-layout-row>
-
-    <app-layout-row>
-      <app-layout-column width="6">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Disponibla vårdplatser:" formControlName="max" type="number">
-          </mat-form-field>
-        </div>
-      </app-layout-column>
-
-      <app-layout-column width="6">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Antal inneliggande:" formControlName="inneliggande" type="number">
-          </mat-form-field>
-        </div>
-      </app-layout-column>
-    </app-layout-row>
-
-    <app-layout-row>
-      <app-layout-column width="6">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Planerade hem idag:" formControlName="hem" type="number">
-          </mat-form-field>
-        </div>
-      </app-layout-column>
-
-      <app-layout-column width="6">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Planerade hem imorgon:" formControlName="hemp" type="number">
-          </mat-form-field>
-        </div>
-      </app-layout-column>
-    </app-layout-row>
-
-    <app-layout-row>
-      <app-layout-column width="6">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Antal planerade in:" formControlName="planIn" type="number">
-          </mat-form-field>
-        </div>
-      </app-layout-column>
-
-      <app-layout-column width="6">
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="Antal utskrivningsklara:" formControlName="medFardigbehandlade" type="number">
-          </mat-form-field>
-        </div>
-      </app-layout-column>
-    </app-layout-row>
-
-    <div>
-      <app-layout-row *ngFor="let i of [1, 2, 3]">
-        <app-layout-column width="4">
-          <mat-form-field>
-            <input matInput [placeholder]="'Överbeläggning ' + i" [formControlName]="'ob' + i" type="number">
-          </mat-form-field>
+    <form [formGroup]="formGroup">
+      <app-layout-row>
+        <app-layout-column width="6">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Avdelning:" [value]="unitName" disabled/>
+            </mat-form-field>
+          </div>
         </app-layout-column>
-        <app-layout-column width="8">
-          <mat-form-field>
-            <mat-select [formControlName]="'ob' + i + 'Rum'" [placeholder]="'Rum'">
-              <mat-option>-</mat-option>
-              <mat-option *ngFor="let option of obRumOptions" [value]="option">
-                {{option}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+
+        <app-layout-column width="6">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Datum:" [value]="vplReg.datum" disabled/>
+            </mat-form-field>
+          </div>
         </app-layout-column>
       </app-layout-row>
-    </div>
 
-    <vpk-button-row align="right">
-      <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
-      <vpk-button (click)="saveAndEmit()" color="primary" label="Spara" type="submit"></vpk-button>
-    </vpk-button-row>
+      <app-layout-row>
+        <app-layout-column width="6">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Tid:" [value]="vplReg.tid" disabled/>
+            </mat-form-field>
+          </div>
+        </app-layout-column>
 
-  </form>
+        <app-layout-column width="6">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Fastställda vårdplatser:" [value]="vplReg.fast" disabled/>
+            </mat-form-field>
+          </div>
+        </app-layout-column>
+      </app-layout-row>
 
-</vpk-card>
+      <app-layout-row>
+        <app-layout-column width="6">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Disponibla vårdplatser:" formControlName="max" type="number">
+            </mat-form-field>
+          </div>
+        </app-layout-column>
+
+        <app-layout-column width="6">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Antal inneliggande:" formControlName="inneliggande" type="number">
+            </mat-form-field>
+          </div>
+        </app-layout-column>
+      </app-layout-row>
+
+      <app-layout-row>
+        <app-layout-column width="6">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Planerade hem idag:" formControlName="hem" type="number">
+            </mat-form-field>
+          </div>
+        </app-layout-column>
+
+        <app-layout-column width="6">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Planerade hem imorgon:" formControlName="hemp" type="number">
+            </mat-form-field>
+          </div>
+        </app-layout-column>
+      </app-layout-row>
+
+      <app-layout-row>
+        <app-layout-column width="6">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Antal planerade in:" formControlName="planIn" type="number">
+            </mat-form-field>
+          </div>
+        </app-layout-column>
+
+        <app-layout-column width="6">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Antal utskrivningsklara:" formControlName="medFardigbehandlade" type="number">
+            </mat-form-field>
+          </div>
+        </app-layout-column>
+      </app-layout-row>
+
+      <div>
+        <app-layout-row *ngFor="let i of [1, 2, 3]">
+          <app-layout-column width="4">
+            <mat-form-field>
+              <input matInput [placeholder]="'Överbeläggning ' + i" [formControlName]="'ob' + i" type="number">
+            </mat-form-field>
+          </app-layout-column>
+          <app-layout-column width="8">
+            <mat-form-field>
+              <mat-select [formControlName]="'ob' + i + 'Rum'" [placeholder]="'Rum'">
+                <mat-option>-</mat-option>
+                <mat-option *ngFor="let option of obRumOptions" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </app-layout-column>
+        </app-layout-row>
+      </div>
+
+      <vpk-button-row align="right">
+        <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
+        <vpk-button (click)="saveAndEmit()" color="primary" label="Spara" type="submit"></vpk-button>
+      </vpk-button-row>
+
+    </form>
+
+  </vpk-card>
+</mat-dialog-content>

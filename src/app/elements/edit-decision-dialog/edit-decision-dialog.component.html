@@ -1,34 +1,36 @@
-<vpk-card title="Dagens beslut - {{!akutenTrappa.id ? 'Ny' : 'Befintlig'}}" [draggable]="true">
-  <h2>{{akutenTrappa.datum}}, {{management.name}}</h2>
+<mat-dialog-content>
+  <vpk-card title="Dagens beslut - {{!akutenTrappa.id ? 'Ny' : 'Befintlig'}}" [draggable]="true">
+    <h2>{{akutenTrappa.datum}}, {{management.name}}</h2>
 
-  <form [formGroup]="formGroup">
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Påverkansgrad (0-4):" formControlName="vardplatstrappa">
-      </mat-form-field>
-    </div>
+    <form [formGroup]="formGroup">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Påverkansgrad (0-4):" formControlName="vardplatstrappa">
+        </mat-form-field>
+      </div>
 
-    <div>
-      <mat-label>Kommentarer:</mat-label>
+      <div>
+        <mat-label>Kommentarer:</mat-label>
 
-      <!--
-      <div><i class="note-text">Notera att information som förs in blir offentlig och inte ska innehålla något som kan kopplas till person.</i></div>
-      -->
-      <vpk-alert message="Notera att information som förs in blir offentlig och inte ska innehålla något som kan kopplas till person."></vpk-alert>
-      
+        <!--
+        <div><i class="note-text">Notera att information som förs in blir offentlig och inte ska innehålla något som kan kopplas till person.</i></div>
+        -->
+        <vpk-alert message="Notera att information som förs in blir offentlig och inte ska innehålla något som kan kopplas till person."></vpk-alert>
+        
 
-      <ckeditor formControlName="beslut"></ckeditor>
-    </div>
+        <ckeditor formControlName="beslut"></ckeditor>
+      </div>
 
-  </form>
+    </form>
 
-  <vpk-button-row >
-    <a class="delete-btn" (click)="deleteAndEmit()" *ngIf="!newDecision"><span class="material-icons">delete</span></a>
-    <span class="save-delete-btn">
-      <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
-      <vpk-button (click)="saveAndEmit()" color="primary" label="Spara"></vpk-button>
-    </span>
-    <span class="clearfix"></span>
-  </vpk-button-row>
+    <vpk-button-row >
+      <a class="delete-btn" (click)="deleteAndEmit()" *ngIf="!newDecision"><span class="material-icons">delete</span></a>
+      <span class="save-delete-btn">
+        <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
+        <vpk-button (click)="saveAndEmit()" color="primary" label="Spara"></vpk-button>
+      </span>
+      <span class="clearfix"></span>
+    </vpk-button-row>
 
-</vpk-card>
+  </vpk-card>
+</mat-dialog-content>

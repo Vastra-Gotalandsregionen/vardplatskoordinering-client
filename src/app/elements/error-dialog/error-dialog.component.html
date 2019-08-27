@@ -1,13 +1,15 @@
-<div id="errorDialogMask">
-</div>
+<mat-dialog-content>
+  <div id="errorDialogMask">
+  </div>
 
-<div id="errorDialogContainer">
-  <h3>Fel</h3>
-  <p>
-    {{errorMessage}}
-  </p>
+  <div id="errorDialogContainer">
+    <h3>Fel</h3>
+    <p>
+      {{errorMessage}}
+    </p>
 
-  <vpk-button-row align="right">
-    <vpk-button (click)="closeErrorDialog()" label="Stäng"></vpk-button>
-  </vpk-button-row>
-</div>
+    <vpk-button-row align="right">
+      <vpk-button (click)="closeErrorDialog()" label="Stäng"></vpk-button>
+    </vpk-button-row>
+  </div>
+</mat-dialog-content>

@@ -1,41 +1,43 @@
-<form [formGroup]="formGroup" >
-  <div *ngFor="let field of fieldsConfigs">
-    <mat-form-field *ngIf="field.type === 'input'">
-      <input matInput placeholder="{{field.label}}{{field.required ? '*': ''}}" [formControlName]="field.name" />
-    </mat-form-field>
+<mat-dialog-content>
+  <form [formGroup]="formGroup" >
+    <div *ngFor="let field of fieldsConfigs">
+      <mat-form-field *ngIf="field.type === 'input'">
+        <input matInput placeholder="{{field.label}}{{field.required ? '*': ''}}" [formControlName]="field.name" />
+      </mat-form-field>
 
-    <div *ngIf="field.type === 'ckeditor'">
-      <label>{{field.label}}<span *ngIf="field.required">*</span></label>
-      <ckeditor [formControlName]="field.name" [ngClass]="possiblyMarkCkEditorAsTouched ? 'possibly-mark-invalid' : ''"></ckeditor>
+      <div *ngIf="field.type === 'ckeditor'">
+        <label>{{field.label}}<span *ngIf="field.required">*</span></label>
+        <ckeditor [formControlName]="field.name" [ngClass]="possiblyMarkCkEditorAsTouched ? 'possibly-mark-invalid' : ''"></ckeditor>
+      </div>
+
+      <mat-form-field *ngIf="field.type === 'select'">
+        <mat-label>{{field.label}}<span *ngIf="field.required">*</span></mat-label>
+        <mat-select [formControlName]="field.name">
+          <mat-option>-</mat-option>
+          <mat-option *ngFor="let option of field.options" [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="field.type === 'multiselect'">
+        <mat-label>{{field.label}}<span *ngIf="field.required">*</span></mat-label>
+        <mat-select [formControlName]="field.name" multiple>
+          <mat-option *ngFor="let option of field.options" [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <ng-container *ngIf="field.type === 'boolean'">
+        <mat-label>{{field.label}}<span *ngIf="field.required">*</span></mat-label>
+        <mat-checkbox [formControlName]="field.name"></mat-checkbox>
+      </ng-container>
     </div>
 
-    <mat-form-field *ngIf="field.type === 'select'">
-      <mat-label>{{field.label}}<span *ngIf="field.required">*</span></mat-label>
-      <mat-select [formControlName]="field.name">
-        <mat-option>-</mat-option>
-        <mat-option *ngFor="let option of field.options" [value]="option.value">
-          {{option.label}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field *ngIf="field.type === 'multiselect'">
-      <mat-label>{{field.label}}<span *ngIf="field.required">*</span></mat-label>
-      <mat-select [formControlName]="field.name" multiple>
-        <mat-option *ngFor="let option of field.options" [value]="option.value">
-          {{option.label}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <ng-container *ngIf="field.type === 'boolean'">
-      <mat-label>{{field.label}}<span *ngIf="field.required">*</span></mat-label>
-      <mat-checkbox [formControlName]="field.name"></mat-checkbox>
-    </ng-container>
-  </div>
-
-  <vpk-button-row align="right">
-    <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
-    <vpk-button (click)="saveAndEmit()" color="primary" label="Spara"></vpk-button>
-  </vpk-button-row>
-</form>
+    <vpk-button-row align="right">
+      <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
+      <vpk-button (click)="saveAndEmit()" color="primary" label="Spara"></vpk-button>
+    </vpk-button-row>
+  </form>
+</mat-dialog-content>
