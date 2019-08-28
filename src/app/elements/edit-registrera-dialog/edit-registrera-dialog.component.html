@@ -1,69 +1,71 @@
-<vpk-card title="Registrera vårdplatsläget">
-  <h2>{{administrationName}}, {{registrera.datum}}</h2>
+<mat-dialog-content>
+  <vpk-card title="Registrera vårdplatsläget">
+    <h2>{{administrationName}}, {{registrera.datum}}</h2>
 
-  <form [formGroup]="formGroup">
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Fastställda vårdplatser:" [value]="registrera.faststVpl" disabled/>
-      </mat-form-field>
-    </div>
+    <form [formGroup]="formGroup">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Fastställda vårdplatser:" [value]="registrera.faststVpl" disabled/>
+        </mat-form-field>
+      </div>
 
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Måltal:" [value]="registrera.maltalVardag" disabled/>
-      </mat-form-field>
-    </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Måltal:" [value]="registrera.maltalVardag" disabled/>
+        </mat-form-field>
+      </div>
 
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Disponibla vårdplatser kl 06.00:" formControlName="dispVpl" type="number">
-      </mat-form-field>
-    </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Disponibla vårdplatser kl 06.00:" formControlName="dispVpl" type="number">
+        </mat-form-field>
+      </div>
 
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Inneliggande:" formControlName="inneliggande" type="number">
-      </mat-form-field>
-    </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Inneliggande:" formControlName="inneliggande" type="number">
+        </mat-form-field>
+      </div>
 
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Bristande fysisk utformning och utrustning:" formControlName="fysTillaten" type="number">
-      </mat-form-field>
-    </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Bristande fysisk utformning och utrustning:" formControlName="fysTillaten" type="number">
+        </mat-form-field>
+      </div>
 
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Prognos lediga kl 16.00:" formControlName="prognosFore" type="number">
-      </mat-form-field>
-    </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Prognos lediga kl 16.00:" formControlName="prognosFore" type="number">
+        </mat-form-field>
+      </div>
 
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Påverkansgrad:" formControlName="pg" type="number">
-      </mat-form-field>
-    </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Påverkansgrad:" formControlName="pg" type="number">
+        </mat-form-field>
+      </div>
 
-    <div>
-      <mat-form-field>
-        <mat-label>Kommentarer:</mat-label>
-        <vpk-alert message="Notera att information som förs in blir offentlig och inte ska innehålla något som kan kopplas till person."></vpk-alert>        
+      <div>
+        <mat-form-field>
+          <mat-label>Kommentarer:</mat-label>
+          <vpk-alert message="Notera att information som förs in blir offentlig och inte ska innehålla något som kan kopplas till person."></vpk-alert>        
 
-        <textarea matInput formControlName="kommentar" rows="4"
-                  placeholder="Ange kontaktperson nåbar under eftermiddagen, namn och telefonnummer samt övriga kommentarer."></textarea>
-      </mat-form-field>
-    </div>
+          <textarea matInput formControlName="kommentar" rows="4"
+                    placeholder="Ange kontaktperson nåbar under eftermiddagen, namn och telefonnummer samt övriga kommentarer."></textarea>
+        </mat-form-field>
+      </div>
 
 
-    <vpk-button-row >
-      <a class="delete-btn" (click)="deleteAndEmit()" *ngIf="!newRegistration"><span class="material-icons">delete</span></a>
-      <span class="save-delete-btn">
-      <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
-      <vpk-button (click)="saveAndEmit()" color="primary" label="Spara"></vpk-button>
-    </span>
-      <span class="clearfix"></span>
-    </vpk-button-row>
+      <vpk-button-row >
+        <a class="delete-btn" (click)="deleteAndEmit()" *ngIf="!newRegistration"><span class="material-icons">delete</span></a>
+        <span class="save-delete-btn">
+        <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
+        <vpk-button (click)="saveAndEmit()" color="primary" label="Spara"></vpk-button>
+      </span>
+        <span class="clearfix"></span>
+      </vpk-button-row>
 
-  </form>
+    </form>
 
-</vpk-card>
+  </vpk-card>
+</mat-dialog-content>
