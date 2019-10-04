@@ -72,14 +72,26 @@ export class UserAdminComponent implements OnInit {
           roleOptions.push({label: 'ADMIN', value: 'ADMIN'});
         }
 
-        this.fieldConfigs = [
-          FieldConfig.from('user.username', 'Användarnamn', 'input', null, true, true),
-          FieldConfig.from('user.name', 'Namn', 'input', null, true),
-          FieldConfig.from('user.management', 'Förvaltning', 'select', managementOptions, true, true),
-          FieldConfig.from('administrationIds', 'Områden', 'multiselect', administrationOptions, true),
-          FieldConfig.from('unitIds', 'Avdelningar', 'multiselect', unitOptions, true),
-          FieldConfig.from('roleIds', 'Roller', 'multiselect', roleOptions, true)
-        ];
+        if ( (this.authService.hasVplManagementAdminPermissionGlobal() && this.authService.hasVpkManagementAdminPermissionGlobal())
+            || this.authService.hasVplManagementAdminPermissionGlobal()
+            || this.authService.isAdmin()) {
+          this.fieldConfigs = [
+            FieldConfig.from('user.username', 'Användarnamn', 'input', null, true, true),
+            FieldConfig.from('user.name', 'Namn', 'input', null, true),
+            FieldConfig.from('user.management', 'Förvaltning', 'select', managementOptions, true, true),
+            FieldConfig.from('administrationIds', 'Områden', 'multiselect', administrationOptions, true),
+            FieldConfig.from('unitIds', 'Avdelningar', 'multiselect', unitOptions, true),
+            FieldConfig.from('roleIds', 'Roller', 'multiselect', roleOptions, true)
+          ];
+        } else {
+          this.fieldConfigs = [
+            FieldConfig.from('user.username', 'Användarnamn', 'input', null, true, true),
+            FieldConfig.from('user.name', 'Namn', 'input', null, true),
+            FieldConfig.from('user.management', 'Förvaltning', 'select', managementOptions, true, true),
+            FieldConfig.from('administrationIds', 'Områden', 'multiselect', administrationOptions, true),
+            FieldConfig.from('roleIds', 'Roller', 'multiselect', roleOptions, true)
+          ];
+        }
       });
 
   }
