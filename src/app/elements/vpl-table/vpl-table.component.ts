@@ -28,6 +28,8 @@ export class VplTableComponent implements OnInit {
 
   @Input() dataSource: VplReg[];
   @Output() saveEvent = new EventEmitter();
+  @Output() deleteEvent = new EventEmitter();
+  newRegistration  = true;
 
   regDisplayedColumns = ['avd', 'regtid', 'max', 'inneliggande', 'hem', 'hemp', 'planIn', 'medFardigbehandlade', 'ob', 'prognosis',
     'actions'];
@@ -59,13 +61,18 @@ export class VplTableComponent implements OnInit {
     const dialogRef = this.dialog.open(EditVplRegDialogComponent, {
       width: '500px',
       panelClass: 'vpk-card-wrapper',
-      data: {vplReg, unitName: vplReg.avd}
+      data: {vplReg, unitName: vplReg.avd, newRegistration: !vplReg.id }
     });
 
     dialogRef.componentInstance.save.subscribe((result: VplReg) => {
 
       this.saveEvent.emit(result);
     });
+
+    dialogRef.componentInstance.delete.subscribe(() => {
+      this.deleteEvent.emit();
+    });
+
   }
 
   calculatePrognosis(reg: VplReg) {

@@ -113,9 +113,13 @@
         </app-layout-row>
       </div>
 
-      <vpk-button-row align="right">
+      <vpk-button-row>
+        <a class="delete-btn" (click)="deleteAndEmit()" *ngIf="!newRegistration"><span class="material-icons">delete</span></a>
+        <span class="save-delete-btn">
         <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
         <vpk-button (click)="saveAndEmit()" color="primary" label="Spara" type="submit"></vpk-button>
+        </span>
+        <span class="clearfix"></span>
       </vpk-button-row>
 
     </form>

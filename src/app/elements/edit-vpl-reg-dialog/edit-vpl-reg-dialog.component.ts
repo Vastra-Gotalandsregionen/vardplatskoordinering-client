@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VplReg } from '../../domain/vpl-reg';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import {VplRum} from '../../domain/vpl-rum';
+import {ConfirmDeleteDialogComponent} from '../confirm-delete-dialog/confirm-delete-dialog.component';
 
 @Component({
   selector: 'app-edit-vpl-reg-dialog',
@@ -15,16 +16,19 @@ export class EditVplRegDialogComponent implements OnInit {
   formGroup: FormGroup;
 
   @Output() save: EventEmitter<VplReg> = new EventEmitter<VplReg>();
+  @Output() delete: EventEmitter<VplReg> = new EventEmitter<VplReg>();
 
   vplReg: VplReg;
   unitName: string;
   obRumOptions: string[] = [];
+  newRegistration = false;
 
   constructor(public dialogRef: MatDialogRef<EditVplRegDialogComponent>,
-              private http: HttpClient,
-              @Inject(MAT_DIALOG_DATA) public data: { vplReg: VplReg, unitName: string }) {
+              private http: HttpClient, public dialog: MatDialog,
+              @Inject(MAT_DIALOG_DATA) public data: { vplReg: VplReg, unitName: string, newRegistration: boolean }) {
     this.vplReg = data.vplReg;
     this.unitName = data.unitName;
+    this.newRegistration = data.newRegistration;
     const r = this.vplReg;
     this.http.get<VplRum[]>('/api/vplRum'
     ).subscribe((vplrums: VplRum[]) => {this.obRumOptions = vplrums.map(rum => rum.rum); });
@@ -81,5 +85,25 @@ export class EditVplRegDialogComponent implements OnInit {
         this.dialogRef.close();
         this.save.emit(result);
       });
+  }
+
+  deleteAndEmit() {
+    const res = true;
+    const dialogRef2 = this.dialog.open(ConfirmDeleteDialogComponent, {
+      width: '500px',
+      data: {item: res}
+    });
+
+    dialogRef2.componentInstance.confirmDelete.subscribe(ok => {
+      if (ok === true) {
+        this.http.delete('/api/vpl-reg/' + this.vplReg.id)
+          .subscribe(() => {
+            this.dialogRef.close();
+            this.delete.emit();
+          });
+      } else {
+        this.cancel();
+      }
+    });
   }
 }
