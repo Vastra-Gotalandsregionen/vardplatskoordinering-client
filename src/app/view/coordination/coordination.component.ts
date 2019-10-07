@@ -164,7 +164,7 @@ export class CoordinationComponent implements OnInit {
           this.updateDecisions();
         });
       }
-    })
+    });
 
     dialogRef.componentInstance.delete.subscribe((result: AkutenTrappa) => {
       if (result) {
@@ -224,6 +224,4 @@ export class CoordinationComponent implements OnInit {
     // Implement logic to toggle favorite
     this.isFavorite = !this.isFavorite;
   }
-
-
 }

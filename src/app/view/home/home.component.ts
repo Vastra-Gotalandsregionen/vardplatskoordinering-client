@@ -44,4 +44,8 @@ export class HomeComponent implements OnInit {
     return results;
   }
 
+  get loggedIn() {
+    return this.auth.isUserLoggedIn.getValue();
+  }
+
 }
