@@ -1,15 +1,15 @@
 <mat-card class="vpk-card">
-    <mat-card-header *ngIf="title">
+    <mat-card-header *ngIf="heading">
       <vpk-icon *ngIf="icon" mat-card-avatar [icon]="icon" [iconSet]="iconSet" size="2x"></vpk-icon>
 
-      <mat-card-title>{{title}}</mat-card-title>
+      <mat-card-title>{{heading}}</mat-card-title>
 
       <vpk-icon class="drag-handle" size="2x" *ngIf="draggable" icon="arrows-alt" cdkDrag
                 cdkDragRootElement=".cdk-overlay-pane"
                 cdkDragHandle></vpk-icon>
     </mat-card-header>
     <mat-card-content>
-      
+
         <ng-content></ng-content>
 
     </mat-card-content>

@@ -15,7 +15,7 @@
   <mat-datepicker touchUi #picker></mat-datepicker>
 </div>
 
-<vpk-card title="Dagens beslut">
+<vpk-card heading="Dagens beslut">
   <div *ngIf="(todaysDecisionDataSource.count | async) === 0" class="decision-empty" [class.decision-empty-with-add]=hasDecisionEditPermission()>
 
     <vpk-alert message="Det finns inget beslut för dagen ännu."></vpk-alert>
@@ -26,13 +26,13 @@
   <app-decision-table [dataSource]="todaysDecisionDataSource" (editDecision)="editDecisionByAkutenTrappaId($event)"></app-decision-table>
 </vpk-card>
 
-<vpk-card title="Dagens registreringar" icon="bed">
+<vpk-card heading="Dagens registreringar" icon="bed">
 
   <app-registrera-table [registreringar]="todaysRegistreringar" [administrationNameMap]="administrationNameMap" (editRegistrera)="editRegistrera($event)"></app-registrera-table>
 
 </vpk-card>
 
-<vpk-card title="Tidigare beslut">
+<vpk-card heading="Tidigare beslut">
 
   <app-decision-table [dataSource]="oldDecisionsDataSource" (editDecision)="editDecisionByAkutenTrappaId($event)"></app-decision-table>
 

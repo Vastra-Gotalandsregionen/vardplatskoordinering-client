@@ -7,9 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class VpkCardComponent implements OnInit {
 
-  @Input() title: string;
+  @Input() heading: string;
   @Input() icon: string;
-  @Input() iconSet: string = 'fas';
+  @Input() iconSet = 'fas';
   @Input() draggable: false;
 
   constructor() { }

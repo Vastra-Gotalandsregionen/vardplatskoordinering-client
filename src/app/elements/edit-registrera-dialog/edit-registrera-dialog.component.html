@@ -1,5 +1,5 @@
 <mat-dialog-content>
-  <vpk-card title="Registrera vårdplatsläget">
+  <vpk-card heading="Registrera vårdplatsläget">
     <h2>{{administrationName}}, {{registrera.datum}}</h2>
 
     <form [formGroup]="formGroup">
@@ -48,7 +48,7 @@
       <div>
         <mat-form-field>
           <mat-label>Kommentarer:</mat-label>
-          <vpk-alert message="Notera att information som förs in blir offentlig och inte ska innehålla något som kan kopplas till person."></vpk-alert>        
+          <vpk-alert message="Notera att information som förs in blir offentlig och inte ska innehålla något som kan kopplas till person."></vpk-alert>
 
           <textarea matInput formControlName="kommentar" rows="4"
                     placeholder="Ange kontaktperson nåbar under eftermiddagen, namn och telefonnummer samt övriga kommentarer."></textarea>

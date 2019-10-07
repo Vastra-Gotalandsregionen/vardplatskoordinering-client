@@ -11,9 +11,9 @@
 
 
 <h2>VPK card</h2>
-<vpk-card title="Card title" icon="bed">Some content</vpk-card>
+<vpk-card heading="Card title" icon="bed">Some content</vpk-card>
 
-<vpk-card title="No icon">Some content</vpk-card>
+<vpk-card heading="No icon">Some content</vpk-card>
 
 <h2>VPK list</h2>
 <vpk-list [navItems]="mockListNavItems"></vpk-list>
@@ -23,12 +23,12 @@
 
 <app-layout-row>
     <app-layout-column width=6>
-        <vpk-card title="Dokument" icon="file-alt">
+        <vpk-card heading="Dokument" icon="file-alt">
                 <vpk-list [navItems]="mockListNavItems"></vpk-list>
         </vpk-card>
         </app-layout-column>
     <app-layout-column width=6>
-        <vpk-card title="Länkar" icon="link">
+        <vpk-card heading="Länkar" icon="link">
             <vpk-list [navItems]="mockListNavItems"></vpk-list>
         </vpk-card>
         </app-layout-column>
@@ -56,7 +56,7 @@
 
     <h3>Primär- och sekundärknapp med ikon</h3>
     <vpk-button-row>
-        <vpk-button icon="plus" color="primary" label="Lägg till"></vpk-button>    
+        <vpk-button icon="plus" color="primary" label="Lägg till"></vpk-button>
         <vpk-button icon="plus" label="Lägg till"></vpk-button>
     </vpk-button-row>
 
@@ -102,13 +102,13 @@
 
 <h3>Vänsterjusterade knappar</h3>
 <vpk-button-row>
-    <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>    
+    <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>
     <vpk-button-fab icon="plus" tooltip="Lägg till"></vpk-button-fab>
 </vpk-button-row>
 
 <h3>Högerjusterade knappar</h3>
 <vpk-button-row align="right">
-    <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>    
+    <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>
     <vpk-button-fab icon="plus" tooltip="Lägg till"></vpk-button-fab>
 </vpk-button-row>
 
@@ -121,9 +121,9 @@
 <h2>Title row - with controls</h2>
 <vpk-title-row heading="Rubriken står här">
     <vpk-button-row align="right">
-        <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>    
+        <vpk-button-fab icon="plus" color="primary" tooltip="Lägg till"></vpk-button-fab>
         <vpk-button-fab icon="plus" tooltip="Lägg till"></vpk-button-fab>
-    </vpk-button-row>           
+    </vpk-button-row>
 </vpk-title-row>
 
 <h2>Alerts</h2>
@@ -145,7 +145,7 @@
 <ul>
     <li><em>value</em>: Värdet som skall stå i cirkeln</li>
     <li><em>color</em>: Färger för cirkel. Möjliga värden är "red", "green", "orange" och "transparent". Default style är mörkgrå.</li>
-    <li><em>size</em>: Storlek på cirkel. Möjliga värden är "s", "m", "l" och "xl". Defaultvärde är "m"</li> 
+    <li><em>size</em>: Storlek på cirkel. Möjliga värden är "s", "m", "l" och "xl". Defaultvärde är "m"</li>
 </ul>
 <h3>VPK-badge storlekar</h3>
 <div>
@@ -153,7 +153,7 @@
     <vpk-badge value="m" size="m"></vpk-badge>
     <vpk-badge value="l" size="l"></vpk-badge>
     <vpk-badge value="xl" size="xl"></vpk-badge>
-</div>    
+</div>
 <h3>VPK-badge färger (default, red, green, yellow, transparent)</h3>
 <div>
     <vpk-badge value="d"></vpk-badge>
@@ -161,5 +161,5 @@
     <vpk-badge value="g" color="green"></vpk-badge>
     <vpk-badge value="o" color="orange"></vpk-badge>
     <vpk-badge value="t" color="transparent"></vpk-badge>
-</div>    
+</div>
 

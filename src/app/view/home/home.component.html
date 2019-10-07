@@ -10,7 +10,7 @@
 
   <app-layout-column width=6>
 
-    <vpk-card title="Mina favoriter" icon="star">
+    <vpk-card heading="Mina favoriter" icon="star">
       <vpk-alert *ngIf="!loggedIn" message="Logga in för att se favoriter."></vpk-alert>
       <vpk-alert *ngIf="navItems.length === 0 && loggedIn" message="Du har inte lagt till några favoriter ännu."></vpk-alert>
 

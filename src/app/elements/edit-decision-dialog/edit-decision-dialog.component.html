@@ -1,5 +1,5 @@
 <mat-dialog-content>
-  <vpk-card title="Dagens beslut - {{!akutenTrappa.id ? 'Ny' : 'Befintlig'}}" [draggable]="true">
+  <vpk-card heading="Dagens beslut - {{!akutenTrappa.id ? 'Ny' : 'Befintlig'}}" [draggable]="true">
     <h2>{{akutenTrappa.datum}}, {{management.name}}</h2>
 
     <form [formGroup]="formGroup">
