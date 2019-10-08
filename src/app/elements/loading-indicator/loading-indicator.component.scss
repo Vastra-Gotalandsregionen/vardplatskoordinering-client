@@ -1,8 +1,8 @@
 .loading-indicator {
   display: block;
   text-align: center;
-  top: calc(50% - 18px);
-  position: absolute;
+  top: calc(50% - 64px);
+  position: fixed;
   left: calc(50% - 33px);
 }
 .icon.icon-spinner {
