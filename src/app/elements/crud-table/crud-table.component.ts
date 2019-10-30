@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { GenericEditDialogComponent } from '../generic-edit-dialog/generic-edit-dialog.component';
 import { FieldConfig } from '../../domain/FieldConfig';
 import { BasicEditDataSource } from '../../service/BasicEditDataSource';

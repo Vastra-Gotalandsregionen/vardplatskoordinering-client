@@ -4,7 +4,7 @@ import { combineLatest, forkJoin, from, of, Subscription } from 'rxjs';
 import { Management } from '../../../../domain/Management';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDatepickerInputEvent } from '@angular/material';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { VplReg } from '../../../../domain/vpl-reg';
 import { concatAll, concatMap, map, toArray } from 'rxjs/operators';
 import { VplUnit } from '../../../../domain/vpl-unit';

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Registrera } from '../../domain/Registrera';
-import { MatDialog, MatTable } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTable } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import { PageResponse } from '../../domain/PageResponse';
 import { Administration } from '../../domain/Administration';

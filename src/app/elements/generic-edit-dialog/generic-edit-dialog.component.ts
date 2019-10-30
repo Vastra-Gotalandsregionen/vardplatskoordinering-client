@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Registrera } from '../../domain/Registrera';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FieldConfig, Option } from '../../domain/FieldConfig';

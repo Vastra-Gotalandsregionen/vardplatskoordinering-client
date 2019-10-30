@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { VplReg } from '../../domain/vpl-reg';
 import { AuthService } from '../../service/auth.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { EditVplRegDialogComponent } from '../edit-vpl-reg-dialog/edit-vpl-reg-dialog.component';
 import { CalculateUtil } from '../../util/calculate-util';

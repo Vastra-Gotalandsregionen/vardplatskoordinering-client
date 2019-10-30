@@ -1,4 +1,4 @@
-import { MatPaginatorIntl } from '@angular/material';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
 export class MatPaginatorIntlSv extends MatPaginatorIntl {
   itemsPerPageLabel = 'Poster per sida';

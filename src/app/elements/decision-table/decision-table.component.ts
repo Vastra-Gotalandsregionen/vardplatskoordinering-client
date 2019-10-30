@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
 import { RegistreraAggregatesDataSource } from '../../service/RegistreraAggregateDataSource';
 import { filter, tap } from 'rxjs/operators';
 import { animate, state, style, transition, trigger } from '@angular/animations';

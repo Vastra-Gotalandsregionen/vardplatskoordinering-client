@@ -38,7 +38,7 @@ import { LayoutColumnComponent } from './elements/layout-column/layout-column.co
 import { LayoutComponent } from './elements/layout/layout.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { VpkButtonComponent } from './elements/vpk-button/vpk-button.component';
-import { MatMenuModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
 import { ConfirmDeleteDialogComponent } from './elements/confirm-delete-dialog/confirm-delete-dialog.component';
 import { VpkButtonRowComponent } from './elements/vpk-button-row/vpk-button-row.component';
 import { VpkButtonFabComponent } from './elements/vpk-button-fab/vpk-button-fab.component';
