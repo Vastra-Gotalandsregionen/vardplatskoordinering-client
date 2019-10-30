@@ -118,6 +118,8 @@ export class CoordinationComponent implements OnInit {
         registrera.datum = this.date;
         registrera.faststVpl = administration.faststVpl;
         registrera.maltalVardag = administration.maltalVardag;
+        registrera.maltalHelg = administration.maltalHelg;
+        registrera.maltalStorhelg = administration.maltalStorhelg;
         registrera.administration = administration.id;
 
         this.todaysRegistreringar.push(registrera);
@@ -208,6 +210,10 @@ export class CoordinationComponent implements OnInit {
       width: '1000px',
       panelClass: 'vpk-dialog'
     });
+  }
+
+  downloadStatistics() {
+    window.location.href = '/api/statistics/' + this.management.id;
   }
 
   hasDecisionEditPermission() {
