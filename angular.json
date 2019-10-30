@@ -75,6 +75,9 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "es5": {
+              "tsConfig": "./src/tsconfig-es5.app.json"
             }
           }
         },
@@ -86,6 +89,9 @@
           "configurations": {
             "production": {
               "browserTarget": "vardplatskoordinering-client:build:production"
+            },
+            "es5": {
+              "browserTarget": "vardplatskoordinering-client:build:es5"
             }
           }
         },
