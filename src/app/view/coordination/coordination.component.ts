@@ -40,8 +40,8 @@ export class CoordinationComponent implements OnInit {
 
   dateObject: Date;
 
-  @ViewChild('oldRegistreraTable')
-  table: MatTable<Registrera>;
+  @ViewChild('oldRegistreraTable', { static: false })
+  table: MatTable<Registrera>; // todo Unused?
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,

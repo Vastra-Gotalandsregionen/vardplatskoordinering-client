@@ -32,7 +32,7 @@ export class DecisionTableComponent implements AfterViewInit, OnInit {
 
   @Output() editDecision = new EventEmitter<number>();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   displayedColumns = ['toggleExpand', 'datum', 'ledigaDisp', 'overbel', 'diff', 'vardplatstrappa', 'action'];
 
