@@ -79,6 +79,7 @@ import { VplLinksComponent } from './view/administration/vpl-links/vpl-links.com
 import { DefinitionCardComponent } from './elements/definition-card/definition-card.component';
 import { VplAdministrationComponent } from './view/administration/vpl-administration/vpl-administration.component';
 import { LoadingIndicatorComponent } from './elements/loading-indicator/loading-indicator.component';
+import { GenerateEncodedPasswordComponent } from './view/generate-encoded-password/generate-encoded-password.component';
 
 @NgModule({
   declarations: [
@@ -143,7 +144,8 @@ import { LoadingIndicatorComponent } from './elements/loading-indicator/loading-
     VplLinksComponent,
     DefinitionCardComponent,
     VplAdministrationComponent,
-    LoadingIndicatorComponent
+    LoadingIndicatorComponent,
+    GenerateEncodedPasswordComponent
     // Attribute Directives
 
   ],

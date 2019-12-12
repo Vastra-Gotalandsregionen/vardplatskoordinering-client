@@ -22,6 +22,7 @@ import { DefinitionsComponent } from './view/definitions/definitions.component';
 import { LinksComponent } from './view/administration/links/links.component';
 import { VplLinksComponent } from './view/administration/vpl-links/vpl-links.component';
 import {VplAdministrationComponent} from './view/administration/vpl-administration/vpl-administration.component';
+import {GenerateEncodedPasswordComponent} from "./view/generate-encoded-password/generate-encoded-password.component";
 
 const routes: Routes = [
   {
@@ -132,6 +133,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent
+  },
+  {
+    path: 'genpass',
+    component: GenerateEncodedPasswordComponent
   },
 
   {
