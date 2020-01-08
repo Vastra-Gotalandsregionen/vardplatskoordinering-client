@@ -66,7 +66,7 @@ export class BasicEditDataSource<T> implements DataSource<T> {
           return true; // Don't filter anything out.
         }
 
-        const itemFieldValue = this.getItemFieldValue(item, f.field);
+        const itemFieldValue = this.getItemFieldValue(item, f.field) || '';
         if (f.type === 'match') {
           return itemFieldValue === f.value;
         } else if (f.type === 'contains') {
