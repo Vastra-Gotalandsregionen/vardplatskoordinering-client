@@ -32,7 +32,13 @@ export class CrudTableComponent implements OnInit {
     });
 
     dialogRef.componentInstance.save.subscribe(itemToSave => {
-      this.dataSource.save(itemToSave).subscribe(result => this.dataSource.load());
+      this.dataSource.save(itemToSave).subscribe(
+        result => {
+          this.dataSource.load();
+          dialogRef.close(result);
+        },
+        error => console.error(error)
+      );
     });
   }
 
@@ -63,7 +69,8 @@ export class CrudTableComponent implements OnInit {
     }
 
     if (fieldConfig.type === 'select') {
-      value = fieldConfig.options.find(option => option.value === value).label;
+      const foundOption = fieldConfig.options.find(option => option.value === value);
+      value = foundOption ? foundOption.label : '';
     } else if (fieldConfig.type === 'multiselect') {
       const valueArray = value as Array<string>;
       value = fieldConfig.options

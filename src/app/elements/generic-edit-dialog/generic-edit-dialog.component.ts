@@ -115,7 +115,6 @@ export class GenericEditDialogComponent implements OnInit {
 
     });
 
-    this.dialogRef.close();
     this.save.emit(this.item);
   }
 

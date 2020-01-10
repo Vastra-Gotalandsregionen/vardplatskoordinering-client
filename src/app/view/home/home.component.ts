@@ -1,27 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../../service/auth.service';
-import { FavoriteLink } from '../../domain/FavoriteLink';
-import { NavItem } from '../../domain/NavItem';
-import { switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {AuthService} from '../../service/auth.service';
+import {FavoriteLink} from '../../domain/FavoriteLink';
+import {NavItem} from '../../domain/NavItem';
+import {switchMap} from 'rxjs/operators';
+import {of, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   public navItems: NavItem[] = [];
+  public shortcutNNavItems: NavItem[] = [
+    {
+      label: 'NU-sjukvården',
+      routerLink: '/koordinering/1',
+      icon: 'arrow-right',
+      subLabel: 'Koordinering',
+      target: null,
+      url: null
+    },
+    {
+      label: 'NU-sjukvården - Område 1',
+      routerLink: '/vpl/1/1',
+      icon: 'arrow-right',
+      subLabel: 'Vårdplatsläge',
+      target: null,
+      url: null
+    }
+  ];
 
   public favoriteLinks: FavoriteLink[] = [];
 
   constructor(private http: HttpClient, private auth: AuthService) {
   }
 
+  private userLoggedIn$: Subscription;
+
   ngOnInit() {
-    this.auth.isUserLoggedIn.pipe(
+    this.userLoggedIn$ = this.auth.isUserLoggedIn.pipe(
       switchMap(isLoggedIn => {
         if (isLoggedIn) {
           return this.http.get('/api/favorite-link/username/' + this.auth.getLoggedInUserId());
@@ -33,6 +53,10 @@ export class HomeComponent implements OnInit {
       this.navItems = this.toNavItems(fos);
       this.favoriteLinks = fos;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.userLoggedIn$.unsubscribe();
   }
 
   private toNavItems(fromThese: FavoriteLink[]): NavItem[] {
@@ -47,5 +71,4 @@ export class HomeComponent implements OnInit {
   get loggedIn() {
     return this.auth.isUserLoggedIn.getValue();
   }
-
 }

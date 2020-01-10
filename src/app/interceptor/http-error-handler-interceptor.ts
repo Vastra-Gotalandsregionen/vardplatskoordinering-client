@@ -1,4 +1,4 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { ErrorDialogService } from '../service/error-dialog.service';
@@ -16,7 +16,11 @@ export class HttpErrorHandlerInterceptor implements HttpInterceptor {
     return next.handle(req)
       .pipe(
         catchError(error => {
-          this.errorDialogService.showErrorDialog(error);
+          if ((error as HttpErrorResponse).status !== 0) {
+            this.errorDialogService.showErrorDialog(error);
+          } else {
+            console.log('You are offline');
+          }
           return throwError(error);
         })
       );
