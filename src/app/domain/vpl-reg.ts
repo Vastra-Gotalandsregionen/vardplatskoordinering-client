@@ -5,6 +5,7 @@ export class VplReg {
   datum: string;
   tid: string;
   max: number;
+  defaultMax: number;
   fast: number;
   maxMedd: string;
   inneliggande: number;

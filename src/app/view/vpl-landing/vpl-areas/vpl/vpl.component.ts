@@ -118,6 +118,7 @@ export class VplComponent implements OnInit, OnDestroy {
         reg.avd = unit.avd;
         reg.fast = unit.fast;
         reg.datum = date;
+        reg.defaultMax = unit.antal;
         vplRegs.push(reg);
       }
     });

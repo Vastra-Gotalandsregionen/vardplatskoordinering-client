@@ -33,7 +33,7 @@ export class EditVplRegDialogComponent implements OnInit {
     this.http.get<VplRum[]>('/api/vplRum'
     ).subscribe((vplrums: VplRum[]) => {this.obRumOptions = vplrums.map(rum => rum.rum); });
     this.formGroup = new FormGroup({
-      max: new FormControl(r.max, Validators.required),
+      max: new FormControl(r.max || r.defaultMax, Validators.required),
       inneliggande: new FormControl(r.inneliggande, Validators.required),
       hem: new FormControl(r.hem, Validators.required),
       hemp: new FormControl(r.hemp, Validators.required),
