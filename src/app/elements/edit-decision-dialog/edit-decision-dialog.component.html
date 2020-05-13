@@ -5,7 +5,7 @@
     <form [formGroup]="formGroup">
       <div>
         <mat-form-field>
-          <input matInput placeholder="Påverkansgrad (0-4):" formControlName="vardplatstrappa">
+          <input type="number" matInput placeholder="Påverkansgrad (0-4):" formControlName="vardplatstrappa">
         </mat-form-field>
       </div>
 
@@ -21,7 +21,7 @@
       <a class="delete-btn" (click)="deleteAndEmit()" *ngIf="!newDecision"><span class="material-icons">delete</span></a>
       <span class="save-delete-btn">
         <vpk-button (click)="cancel()" label="Avbryt"></vpk-button>
-        <vpk-button (click)="saveAndEmit()" color="primary" label="Spara"></vpk-button>
+        <vpk-button [disabled]="!formGroup.valid" (click)="saveAndEmit()" color="primary" label="Spara"></vpk-button>
       </span>
       <span class="clearfix"></span>
     </vpk-button-row>
