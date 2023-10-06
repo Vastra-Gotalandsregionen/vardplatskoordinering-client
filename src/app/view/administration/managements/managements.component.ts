@@ -12,7 +12,10 @@ import { BasicEditDataSource } from '../../../service/BasicEditDataSource';
 export class ManagementsComponent implements OnInit {
 
   fieldConfigs: FieldConfig[] = [
-    FieldConfig.from('name', 'Namn', 'input', null, false, true)
+    FieldConfig.from('name', 'Namn', 'input', null, false, true),
+    FieldConfig.from('morning', 'Morgon', 'select', [{label: 'Ja', value: true}, {label: 'Nej', value: false}], false),
+    FieldConfig.from('noon', 'Förmiddag', 'select', [{label: 'Ja', value: true}, {label: 'Nej', value: false}], false),
+    FieldConfig.from('afternoon', 'Eftermiddag', 'select', [{label: 'Ja', value: true}, {label: 'Nej', value: false}], false)
   ];
 
   dataSource: BasicEditDataSource<Management>;
