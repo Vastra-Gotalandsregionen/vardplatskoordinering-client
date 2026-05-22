@@ -1,5 +1,20 @@
 # VardplatskoordineringClient
 
+## Systemet är avvecklat
+
+**Detta system är inte längre i drift och detta repository är arkiverat.**
+
+Vårdplatskoordineringen avvecklades i maj 2026. Koden bevaras i arkiverat skick för referens, men underhålls inte vidare och ska inte användas för nyutveckling eller driftsättning.
+
+## This system has been decommissioned
+
+**This repository is archived and no longer actively maintained.**
+
+The Vårdplatskoordinering system was taken out of service in May 2026. The code is preserved for reference purposes only and should not be used for new development or deployment.
+
+---
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
 ## Development server
